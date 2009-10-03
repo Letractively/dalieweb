@@ -70,8 +70,9 @@
 	width: 100%;
 }
 #content {
+	width: 100%;
 	float: left;
-	height: 94ex;
+	height: 54em;
 }
 #footer {
 	background: #39747A;
