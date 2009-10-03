@@ -1,0 +1,244 @@
+@CHARSET "ISO-8859-1" ;
+ 
+/* Basisvorlage CSS
+www.dalieweb.de
+Start: 01.05.2009
+Letzte Aenderung: 00.00.20xx
+*/
+body {
+	background: #006666; /* HintergrundFarbe */
+}
+
+#wrapper { /* kompletter Container für die ganze Darstellung */
+	background: #fff;
+	text-align: left;
+	width: 80em;
+	max-width: 100%;
+	margin: 0 auto;
+}
+
+#meta-information { /* Header mit Logo */
+	background: #006666;
+	padding-top: 20px;
+}
+
+#navigation {
+	background: #07565B;
+	margin-top: 30px;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+#navigation table {
+	background: #07565B;
+	border-collapse: collapse;
+	color: gray;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-right: 0px;
+	margin-left: -10px;
+}
+
+#navigation td {
+	border-style: dotted;
+	border-width: 1px;
+	border-color: gray;
+}
+
+#navigation td.aktiv {
+	border: 1px solid #d3be92 /*#EDE290*/;
+}
+
+#hauptinhalt { /* Foto mit Anschrift */
+	float: left;
+	width: 49.2em;
+	max-width: 70%;
+}
+#frame{
+	background: #eee6d2;
+	float: left;
+	width: 100%;
+}
+#druck{
+	float: right;
+	margin: 2px;
+	padding: 2px;
+}
+
+#inhalt ul,li {
+	list-style-type: disc;
+}
+
+#inhalt table {
+	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+}
+
+#inhalt td {
+	vertical-align: top;
+}
+
+h1,
+#hauptinhalt h2,
+#hauptinhalt h3,
+#hauptinhalt h4,
+#hauptinhalt p,
+#hauptinhalt ul,
+#hauptinhalt table,
+#inhalt table,
+#inhalt p,
+#inhalt h3,
+#navigation td,
+#navigation {
+	padding: 0 30px;
+}
+
+h2,
+#hauptinhalt h2,
+#inhalt h2,
+#notizen h3,
+#notizen h4,
+#notizen p,
+#notizen ul,
+#notizen table,
+#notizen {
+	padding: 0 20px;
+}
+
+#notizen { /* Loginbereich */
+	background: #eee6d2; /*#C6B8AF;*/
+	float: right;
+	margin: 2px;
+	padding: 0 5px 5px 5px;
+	max-width: 28%;
+}
+
+#notizen p {
+	font: 0.83em/ 1.8em Arial, Tahoma, Verdana, sans-serif;
+	margin-top: 1.8em;
+	margin-bottom: 1.8em;
+}
+
+#notizen button {
+	display: block; /* über ganze breite */
+	font: 0.8em Arial, Tahoma, Verdana, sans-serif;
+	height: 2.0em;
+	text-align: center;
+	text-transform: uppercase;
+	width: 100px;
+}
+
+#notizen h3 {
+	background: #d3be92; /*#e0d0b0;*/
+	margin: 1px;
+	padding: 1px 5px;
+}
+
+.ws-notizen {
+	background: #ece1cc;
+	border: 2px solid #e0d0b0;
+	border-top: 1px solid #e0d0b0;
+	margin: 14px 0;
+}
+
+.tIcon {
+	display: block;
+	float: left;
+}
+
+.fm-Icon-1 {
+	background: #006666 none repeat scroll 0 0;
+	bottom: 70%;
+	display: block;
+	position: absolute;
+	right: 5.5%;
+}
+
+.fm-Icon-4 {
+	background: #006666 none repeat scroll 0 0;
+	bottom: 64%;
+	display: block;
+	position: absolute;
+	right: 5.5%;
+}
+
+.tTip {
+	display: block;
+	float: left;
+	padding-top: 4px;
+	text-align: left;
+}
+
+.stdIcon {
+	margin-right: 9px;
+}
+
+#rand-information { /* hidden Container -> ohne Darstellung */
+	background: #006666;
+	clear: both;
+	color: #fff;
+	padding: 0 0;
+}
+
+#rand-information p {
+	font: 0.83em/ 1.8em Verdana, Arial, Tahoma, sans-serif;
+	margin-top: 1.8em;
+	margin-bottom: 1.8em;
+	padding: 0 20px;
+}
+
+#footer-frame {
+	background: #07565B;
+	margin: 0 10px 0 10px;
+}
+
+#footer {
+	background: #07565B;
+	bottom: 0;
+	color: gray;
+	font-size: 75%;
+	position: fixed;
+	margin: 0 20px 0 20px;
+	height: 3.5%;
+	width: 920px;
+}
+
+#footer p {
+	padding: 0 20px; /*Abstand zum Rahmen*/
+	margin-top: 0.6em;
+	clear: both;
+}
+#footer-frame a:LINK
+{
+	/* :LINK für Verweise zu noch nicht besuchten Seiten */
+	text-decoration: none;
+	color: #FFFFFF;
+	background-color: transparent;
+	border-bottom: 1px dotted #778899                  
+}
+#footer-frame a:VISITED
+{
+	/* :VISITED für Verweise zu bereits besuchten Seiten */
+	text-decoration: none;
+	color: #B2BCC6;
+	background-color: transparent;
+	border-bottom: 1px dotted #B2BCC6
+}
+#footer-frame a:HOVER
+{	
+	/* :HOVER für Elemente, während der Anwender mit der Maus darüber fährt */
+	color: #B2BCC6;
+}
+#footer-frame table {
+	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;
+}
+
+#fotter-frame td {
+	vertical-align: top;
+}
+.bild {
+	border: 1px solid #C6B8AF;
+	float: left;
+	padding: 5px;
+	width: 157px;
+}

@@ -1,0 +1,65 @@
+@CHARSET "ISO-8859-1";
+
+@IMPORT url("Master.css");
+@IMPORT url("selinas-SiteTyp6.css");
+
+#pageHeader{
+	border-bottom: 1px dotted #B2BCC6;
+	background-color:#FFFFFF;
+	border-top: 1px solid #778899;
+	height: 3em
+}
+#pageHeader .strapline {
+	color: #778899;
+	background: transparent;
+	float: right; /* Elemente umfließen lassen */
+	margin-right: 2em; /* transparenten Abstand von rechts */
+	margin-top: 0.5em /* transparenten Abstand von oben */;
+	font-family: Georgia, "Times New Roman";
+	font-size: 110%;
+}
+#pageHeader .logo{
+	float: left; /* Elemente umfließen lassen */
+	margin-left: 1.5em; /* transparenten Abstand von links*/
+	margin-top: 0.5em; /* transparenten Abstand von oben */
+	border: 1px dotted #B2BCC6; /*Rahmen wie Link's */
+	background-color: #006666 /*Hintergrund Farbe Selinas Grün*/
+}
+#contentRight h3 {
+	background: #d3be92; /*#e0d0b0;*/
+	margin: 1px;
+	padding: 1px 5px;
+}
+.ws-notizen {
+	background: #ece1cc;
+	border: 2px solid #e0d0b0;
+	border-top: 1px solid #e0d0b0;
+	margin: 14px 10px;
+}
+.ws-notizen input{
+	background: #FFF;
+	width: 90%;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #7F9DB9;
+	padding-rigth: 2px;
+	margin-left: 2px;
+}
+.ws-notizen button {
+	display: block; /* über ganze breite */
+	font: 0.8em Arial, Tahoma, Verdana, sans-serif;
+	height: 2.0em;
+	text-align: center;
+	text-transform: uppercase;
+	width: 100px;
+}
+#footer{
+	background-color:	#FFFFFF;
+}
+#pageFooter {
+	border-top: 1px dotted #AAAAAA;
+	background-color: #CCCCCC;
+	color: #626262;
+	height: 3em;
+	width: 100%;
+}
