@@ -9,6 +9,8 @@ import help.HelpDate;
 
 import java.util.Vector;
 
+import model.Person;
+
 /**
  * Class description goes here.
  *
@@ -20,7 +22,7 @@ import java.util.Vector;
  * protected = "false" sichtbar innerhalb Package und abgeleiteten Klassen<br>
  * public    = "false" sichtbar ausserhalb<br>
  */
-public class User {
+public class User extends Person {
 
     private String userId;//DV0101 AnmeldeKennnung am System
     private String userStatus;//aktiv/inkativ
@@ -61,6 +63,9 @@ public class User {
         this.userId = columns.elementAt(0).toString();
         this.userStatus = columns.elementAt(1).toString();
         this.password = columns.elementAt(2).toString();
+        this.setName(columns.elementAt(3).toString());
+        this.setVorname(columns.elementAt(4).toString());
+        this.setGeburtstag(HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(5).toString()));
         this.permitId = Integer.parseInt(columns.elementAt(6).toString());
         this.kundenId = Integer.parseInt(columns.elementAt(7).toString());
         this.standortId = Integer.parseInt(columns.elementAt(8).toString());
