@@ -37,6 +37,7 @@
 					<li><a href="selinas-SiteTyp4.jsp">SiteTyp 4</a></li>
 					<li><a href="selinas-SiteTyp5.jsp">SiteTyp 5</a></li>
 					<li><a class="on" href="selinas-SiteTyp6.jsp">SiteTyp 6</a></li>
+					<li><a href="selinas-SiteTyp7.jsp">SiteTyp 7</a></li>
 				</ul>
 			</div><!-- headerMenu -->
 	</div><!-- header -->
