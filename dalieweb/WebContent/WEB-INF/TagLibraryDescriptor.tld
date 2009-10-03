@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN" "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_2.dtd">
+<taglib>
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>1.2</jsp-version>
+	<short-name>DALIE</short-name>
+	<uri>WEB-INF/TagLibaryDescriptor</uri>
+	<tag>
+	<name>FooterLebenslauf</name>
+	<tag-class>tagLibrary.FooterLebenslauf</tag-class>
+	</tag>
+	<tag>
+	<name>HinweisOption</name>
+	<tag-class>tagLibrary.HinweisOption</tag-class>
+	<attribute>
+			<name>message</name>
+			<required>false</required><!--nicht zwingend-->
+			<rtexprvalue>true</rtexprvalue><!--dynamisch durch Skriptteile erlaubt-->
+		</attribute>
+		<attribute>
+			<name>typ</name>
+			<required>false</required><!-- n.zwingend -->
+		</attribute>
+	</tag>
+	<tag>
+	<name>NavigationOption</name>
+	<tag-class>tagLibrary.NavigationOption</tag-class>
+	</tag>
+</taglib>
