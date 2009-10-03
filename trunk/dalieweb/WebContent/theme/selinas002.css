@@ -1,0 +1,179 @@
+@CHARSET "ISO-8859-1";
+/* Basisvorlage CSS
+www.dalieweb.de
+Start: 00.00.20xx
+Letzte Aenderung: 00.00.20xx
+*/
+
+/* Farbschema
+--------------------------------------------------------------------------------------- */
+/*
+Farbton (Element): #xxxxxx
+Farbton (Element): #xxxxxx
+Farbton (Element): #xxxxxx
+Farbton (Element): #xxxxxx
+Farbton (Element): #xxxxxx
+*/
+
+/* Reset
+--------------------------------------------------------------------------------------- */
+* 
+{
+	padding: 0; /* keine. Innenabstände */
+	margin: 0;  /* keine Außenabstand   */
+	border: 0;  /* keine Rahmen setzen  */
+}
+/* Globals und Typo 
+--------------------------------------------------------------------------------------- */
+html {
+/* 	Wahlweise Grid-Hintergrund
+	Rasterhintergrund, der die Breite bis 100 Pixel und eine Höhe bis 950 Pixel anzeigt. 
+	Die Breite von 960 Pixel ist markiert. 
+	Der Hintergrund ist transparent, muss also nicht nur mit #fff verwendet werden. 
+	Es wird eine Schriftgröße von 75% oder 12px festgelegt.
+	background: #fff;
+*/	
+	background-position: top left;
+	background-repeat: no-repeat;
+	background-color: transparent;
+	background-image: url("../bilder/grid.png")
+}
+
+body {
+/* 	Wahlweise Linienhintergrund
+	Linienhintergrund abgestimmt auf eine Schriftgröße von 12px.	
+	background: #fff;
+	*/	
+	font-size: 75%;;
+	background-position: top left;
+	background-color: transparent;
+	background-image: url("../bilder/line-height.gif")
+}
+
+html>body {
+	font-size: 12px;
+}
+
+a:link {
+	color: #0066FF;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #FF9B00;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/* Macht die gepunktete Linie um geklickte Links unsichtbar
+--------------------------------------------------------------------------------------- */
+a:focus {
+    outline: none;
+}
+
+
+/* Vertikaler Rhythmus basierend auf 12px Basisgröße für den Fließtext
+--------------------------------------------------------------------------------------- */
+p {
+	font: 1em/1.5em Arial, Tahoma, Verdana, sans-serif;
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+}
+
+h1 {
+	font: 1.67em/0.9em Georgia, "Times New Roman", Times, serif;
+	margin-top: 0.9em;
+	margin-bottom: 0.9em;
+}
+
+h2 {
+	font: 1.5em/1em Georgia, "Times New Roman", Times, serif;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+h3 {
+	font: 1.33em/1.13em Georgia, "Times New Roman", Times, serif;
+	margin-top: 1.13em;
+	margin-bottom: 1.13em;
+}
+
+h4 {
+	font: 1.17em/1.29em Georgia, "Times New Roman", Times, serif;
+	margin-top: 1.29em;
+	margin-bottom: 1.29em;
+}
+
+
+/* Bilder und verlinkte Bilder ohne Rahmen 
+--------------------------------------------------------------------------------------- */
+img, a img {
+	border: 0;
+}
+
+
+/* Links- bzw. Rechtsausrichtung für Elemente
+--------------------------------------------------------------------------------------- */
+.links {
+	float: left;
+	margin: 0 0.5em 0.5em 0; /*Außenabstand */
+}
+
+.rechts {
+	float: right;
+	margin: 0 0 0.5em 0.5em; /* Außenabstand */
+}
+
+
+
+/* Layoutelemente
+Verwenden Sie overflow: hidden; um nötige Foats aufzulösen.
+--------------------------------------------------------------------------------------- */
+#wrapper {
+	float: none;
+	margin: 0 auto;	/* Außenabstand */
+	width: 80em;/* bestimmt die breite */
+	max-width: 100%;
+}
+
+#header {
+	border : 2px solid #B2BCC6;
+	background: transparent;
+}
+
+#navi {
+	
+}
+
+#content {
+	background: #C1EAFF;
+	display: inline;
+	float: left;
+	max-width: 70%;	
+	width: 49.2em;
+}
+
+#sidebar {
+	/* Mit clear: kann der Umfluss abgebrochen werden,
+	 und die Fortsetzung unterhalb 
+	des umflossenen Elements oder Bereichs definiert werden. */
+	clear: none; /* Erzwingt keine Fortsetzung unterhalb. 
+	(Normaleinstellung) */
+	float: right; 	
+	/* Mit display: kann die Anzeige von Elementen 
+	unterdrückt oder die Art 
+	der Anzeige festlegt werden. */
+	display: inline; /* inline Erzwingt die Anzeige im Text - 
+	das Element wird im laufenden Textfluss angezeigt. */
+	width: 29.2em;
+	max-width: 28%;
+	background: #DDFFA6;
+}
+
+#footer {
+	clear: both; /* Erzwingt in jedem Fall die Fortsetzung unterhalb */	
+	background: #105011;
+}
