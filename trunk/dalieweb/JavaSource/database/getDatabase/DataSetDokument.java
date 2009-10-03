@@ -60,7 +60,7 @@ public class DataSetDokument {
 		Vector liste = new Vector();
 		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokument " +
 				"where kundenId = "+user.getKundenId()+ " and standortId = "+user.getStandortId() +
-				"ORDER BY kundenId, standortId, dokumentTyp, dokumentNr, dokumentId");
+				" ORDER BY kundenId, standortId, dokumentTyp, dokumentNr, dokumentId");
 		if(rows.size() == 0)
     	    throw new Exception("Record not Found");
 		for (int i = 0; i < rows.size(); i++){

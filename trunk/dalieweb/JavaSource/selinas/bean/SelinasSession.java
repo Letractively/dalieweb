@@ -12,11 +12,16 @@ import database.dateien.Selinas;
 public class SelinasSession {
 
 	public Selinas session;
+	private String[] columHeader = {"Titel","DV0101"};
     
     public SelinasSession(Selinas session){
     	this.session = session;
     }//Selinas
     
+	/** @return Returns the columHeader.*/
+	public String[] getColumHeader() {
+		return columHeader;
+	}
 }//class selinas
 
 
