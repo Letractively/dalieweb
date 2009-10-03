@@ -28,7 +28,8 @@ public class HinweisOption extends TagSupport {
         this.message = message;
     }//setMessage
     private String typ = "";
-    public void setTyp() {
+    public void setTyp(String typ) {
+    	this.typ = typ;
     }//setTyp
    public int doStartTag() throws JspException {
        try {
@@ -37,7 +38,7 @@ public class HinweisOption extends TagSupport {
                	return Tag.SKIP_BODY; // Ignore body of the tag 
            } else {
                if(typ.equalsIgnoreCase("F")) {
-                   out.println("<FIELDSET><LEGEND>Hinweis</LEGEND>" + message + "</FIELDSET>");
+                   out.println("<fieldset><legend>Hinweis</legend>" + message + "</fieldset>");
                }else {
                    out.println(message);
                }//endif
