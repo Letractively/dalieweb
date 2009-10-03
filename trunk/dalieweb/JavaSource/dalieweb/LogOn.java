@@ -45,7 +45,6 @@ public class LogOn extends HttpServlet implements Servlet {
 	    
 	    HttpSession session = request.getSession();
 	    Message error;      
-	    System.out.println("Dalie:" + request.getParameter("selinas") );
 
         try {
            	session.setAttribute("Database",dbConn);
