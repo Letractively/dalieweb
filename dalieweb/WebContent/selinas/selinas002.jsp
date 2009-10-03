@@ -45,8 +45,9 @@
 		</table>
 	</div><!-- header -->
 	<div id="wrapperContent">
-	<div id="content">		
-		
+	<div id="content">	 	
+		<dalie:DokumentDataTag data="N" columnHeader='<%= show.getColumHeader()%>'></dalie:DokumentDataTag>
+		<iframe src="<%= request.getContextPath()%>/selinas/selinas002F.jsp" width="100%" name="selinas" frameborder="0" marginwidth="1" marginheight="1"></iframe>
 	</div><!-- content -->
 	</div><!-- wrapperContent -->	
 	<div id="footer">
