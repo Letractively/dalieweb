@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/html4/strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
+<head> 
 <%@ page language="java"
 	contentType="text/html; charset=ISO-8859-1" 
 	pageEncoding="ISO-8859-1"%>
@@ -19,7 +19,7 @@
 <!-- Definition RSS Feed -->
 <link rel="alternate" type="application/rss+xml" title="dalieweb.de RSS-Feed" href="http://www.dalieweb.de/dalieweb.xml"/> 
 <!-- Script's  -->
-<script src="<%= request.getContextPath()%>/script/dalieLogo2.js" type="text/javascript"></script>
+<script src="/script/dalieLogo.js" type="text/javascript"></script>
 <title>dalieweb</title>
 </head>
 <body onload="if(document.images) nextimg()">
@@ -50,12 +50,12 @@
 	<div id="contentRight">	
 		<div class="ws-notizen">
 	<h3>Login</h3> 
-	<form name="dokument" id="dokument" method="post" action="/dalieweb/LogOn">
+	<form name="dokument" id="dokument" method="post" action="/dalieweb/LogOnSelina">
 	<table>
 	<tfoot>
 		<tr>
 			<th scope="row"></th>
-			<td colspan="2"><input type="hidden" name="selinas" id="selinas" value="selinas"/><button id="login" name="login" tabindex="3">login</button></td>
+			<td colspan="2"><button id="login" name="login" tabindex="3">login</button></td>
 		</tr>
 	</tfoot>
 		<tr>
@@ -67,6 +67,7 @@
 			<td><input type="password" maxlength="40" name="password" id="password" tabindex="2" /></td>
 		</tr>
 	</table>
+		<dalie:HinweisOption message='${requestScope.Message}' typ="E"></dalie:HinweisOption>
 	</form>
 	</div><!-- div ws-notizen -->
 	<div class="ws-notizen">
