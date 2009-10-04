@@ -3,6 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head> 
 <%@ page language="java"
+	import="database.dateien.Selinas"
+	import="selinas.bean.SelinasSession"
 	contentType="text/html; charset=ISO-8859-1" 
 	pageEncoding="ISO-8859-1"%>
 <!-- onwn TagLib-Direktive -->
@@ -20,10 +22,10 @@
 </head>
 <body>
 <%	
-	String[] columHeader = {"Titel","DV0101"};
+	SelinasSession show = new SelinasSession((Selinas) session.getAttribute("Selinas")); 
 %>
 	<div id="content">	 	
-		<dalie:DokumentDataTag header="N" columnHeader='<%= columHeader %>'></dalie:DokumentDataTag>
+		<dalie:DokumentDataTag columnHeader='<%= show.getColumHeader() %>'></dalie:DokumentDataTag>
 	</div><!-- content -->
 </body>
 </html>

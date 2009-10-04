@@ -42,12 +42,20 @@
 			align="right" class="strapline"><%= user.user.getName() %>, <%= user.user.getVorname() %>&nbsp;
 			<a href="<%= request.getContextPath()%>/LogOffSelina" target="_self">Log off</a></td>
 		</tr>
-		</table>
+		</table> 
 	</div><!-- header -->
 	<div id="wrapperContent">
-	<div id="content">	 	
-		<dalie:DokumentDataTag data="N" columnHeader='<%= show.getColumHeader()%>'></dalie:DokumentDataTag>
-		<iframe src="<%= request.getContextPath()%>/selinas/selinas002F.jsp" width="100%" name="selinas" frameborder="0" marginwidth="1" marginheight="1"></iframe>
+	<div id="content">
+		<form name="dokument" method="post" action="<%= request.getContextPath()%>/DokumentServlet" class="DalieFormular">  
+<label><%= show.session.getDokumentTyp()  %></label>
+	<dalie:Selectbox name="dokumentTyp" argument="KA" ccsStyle="selectbox"></dalie:Selectbox>
+<label><%= show.session.getDokumentNr() %></label>
+<dalie:InputOption name="dokumentNr" tabindex="2" value="1" size="5"></dalie:InputOption>
+<dalie:ButtonOption name="insert" accesskey="a" tabindex="3"><b>Dokument <span style="text-decoration:underline">a</span>nlegen</b></dalie:ButtonOption>
+<!-- CLASS:HinweisOption -->
+<dalie:HinweisOption message='${requestScope.Message}'></dalie:HinweisOption>
+</form>	 	
+		<iframe src="<%= request.getContextPath()%>/selinas/selinas002F.jsp" width="100%" name="selinas" frameborder="0"></iframe>
 	</div><!-- content -->
 	</div><!-- wrapperContent -->	
 	<div id="footer">
