@@ -8,6 +8,7 @@ package database.getDatabase;
 import java.util.Vector;
 
 import database.Database;
+import database.dateien.Dokument;
 import database.dateien.Typ;
 
 /**
@@ -23,7 +24,7 @@ import database.dateien.Typ;
  */
 public class DataSetTyp {
 
-    /**
+        /**
      * <b>Dokumenttyp aus Datenbank Tabelle dokumenttyp</b>
      * <br><b>chain:Key int kundenId, int standortId, String dokumenttyp, String sprachId</b>
      * <br><br><b>public static</b><br>
@@ -42,11 +43,41 @@ public class DataSetTyp {
      */
     public static Typ chain(Database dbConn,int kundenId,int standortId,String dokumenttyp,String sprachId) throws Exception {
         	Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokumenttyp " +
-        	        "where kundenId = "+kundenId + " and standortId = "+standortId+" " +
-        			"and dokumentTyp = '"+dokumenttyp+"'" + " and sprachId = '"+sprachId+"'");
+        	        "where kundenId = "+kundenId+" " +
+        			"and standortId = "+standortId+" " +
+        			"and dokumentTyp = '"+dokumenttyp+"' " +
+        			"and sprachId = '"+sprachId+"'");
         	if(rows.size() == 0)
         	    throw new Exception("Record not Found");
         	return new Typ((Vector)rows.elementAt(0));            
-    }//chain
+    }//getTypOfDokument
+    
+    /**
+     * <b>Dokumenttyp aus Datenbank Tabelle dokumenttyp</b>
+     * <br><b>chain:Key int kundenId, int standortId, String dokumenttyp, String sprachId</b>
+     * <br><br><b>public static</b><br>
+     * @param
+     * <ul>
+     * <li>Database dbConn</li>
+     * <li>int kundenId = 1</li>
+     * <li>int standortId = 1</li>
+     * <li>String dokumentyp = FO = Formular </li>
+     * <li>String sprachId = DE</li>
+     * </ul>
+     * @return
+     * <ul>
+     * <li>Dokumentyp dokumenttyp</li>
+     * </ul>
+     */
+    public static Typ chain(Database dbConn,Dokument dokument) throws Exception {
+        	Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokumenttyp " +
+        	        "where kundenId = "+dokument.getKundenId()+" " +
+        			"and standortId = "+dokument.getStandortId()+" " +
+        			"and dokumentTyp = '"+dokument.getDokumentTyp()+"' " +
+        			"and sprachId = '"+dokument.getSprachId()+"'");
+        	if(rows.size() == 0)
+        	    throw new Exception("Record not Found");
+        	return new Typ((Vector)rows.elementAt(0));            
+    }//getTypOfDokument
     
 }//class DataSetTyp

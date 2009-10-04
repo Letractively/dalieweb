@@ -10,6 +10,7 @@ import java.util.Vector;
 import database.Database;
 import database.dateien.Dokument;
 import database.dateien.User;
+import database.dateien.Typ;
 
 /**
  * Class description goes here.
@@ -109,7 +110,7 @@ public class DataSetDokument {
     public static void insert(Database dbConn, User user, Dokument dokument) throws Exception{
 		dbConn.executeUpdate("insert into "+dbConn.getDbSchema()+".dokument " +
 				"values("+user.getKundenId()+"," +user.getStandortId()+"," +
-				"'"+dokument.getTyp()+"'," +dokument.getNummer()+","
+				"'"+dokument.getDokumentTyp()+"'," +dokument.getNummer()+","
 				+ getNextdokumentId(dbConn,user, dokument)+"," +
 				"'"+dokument.getStatus()+"'," + "'"+dokument.getTitel()+"'," +
 				"'"+dokument.getDescripten()+"'," + "'"+dokument.getContent()+"'," +
@@ -127,7 +128,7 @@ public class DataSetDokument {
                 " archiv = '"+dokument.getArchiv()+"'," + " vorgabe = '"+dokument.getVorgabe()+"',"+
                 " changeUser = '"+user.getUserId()+"'," + " changeDate = now() " +
                 " where kundenId = "+ user.getKundenId() + " and standortId = "+user.getStandortId()+
-                " and dokumentTyp = '"+dokument.getTyp() + "'" + " and dokumentNr = "+dokument.getNummer() +
+                " and dokumentTyp = '"+dokument.getDokumentTyp() + "'" + " and dokumentNr = "+dokument.getNummer() +
                 " and dokumentId = "+ dokument.getId() );
     }//update
     
@@ -147,7 +148,7 @@ public class DataSetDokument {
         Vector rows = dbConn.executeQuery("select * from "
                 + dbConn.getDbSchema() + ".dokument " + " where kundenId = "
                 + user.getKundenId() + " and standortId = " + user.getStandortId() + ""
-                + " and dokumentTyp = '" + dokument.getTyp() + "'" + " and dokumentNr = " + dokument.getNummer()
+                + " and dokumentTyp = '" + dokument.getDokumentTyp() + "'" + " and dokumentNr = " + dokument.getNummer()
                 + " and dokumentId = " + ++id);
         if(rows.size() == 0)
             break;

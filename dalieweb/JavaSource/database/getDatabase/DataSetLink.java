@@ -70,7 +70,7 @@ public class DataSetLink {
     public static void insert(Database dbConn, Dokument dokument,Link link ,User user) throws Exception{
         dbConn.executeUpdate("insert into "+dbConn.getDbSchema()+".dokumentlinks " +
                 "values(" + dokument.getKundenId()+ "," + dokument.getStandortId()+ "," +
-                "'"+dokument.getTyp()+"'," + dokument.getNummer()+ "," + dokument.getId()+ "," +
+                "'"+dokument.getDokumentTyp()+"'," + dokument.getNummer()+ "," + dokument.getId()+ "," +
                 "'"+link.getPfadOfLink()+"'," + "'"+link.getNameOfLink()+"'," +
                 "'"+link.getContentType()+"'," + link.getSizeInBytes()+"," +
                 "'"+user.getUserId()+"'," + "now()," + "'"+user.getUserId()+"'," + "now())");
