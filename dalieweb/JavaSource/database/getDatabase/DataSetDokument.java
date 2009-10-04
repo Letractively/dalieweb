@@ -10,7 +10,6 @@ import java.util.Vector;
 import database.Database;
 import database.dateien.Dokument;
 import database.dateien.User;
-import database.dateien.Typ;
 
 /**
  * Class description goes here.
