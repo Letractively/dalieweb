@@ -27,7 +27,7 @@ public class Dokument {
     /** StandortId */ 
     private int standortId;//Standort 1 zu Kunde 07411
     /** DokuemtenTyp Typ z.b. Arbeitsanweisung */
-    private String typ;//Arbeitsanweisung
+    private String dokumentTyp;//Arbeitsanweisung
     /** Nummer des Dokuments */
     private int nummer;//dokumentNr
     /** DokumentenId */
@@ -85,7 +85,7 @@ public class Dokument {
     public Dokument(Vector columns) throws Exception {
         this.kundenId = Integer.parseInt(columns.elementAt(0).toString());
         this.standortId = Integer.parseInt(columns.elementAt(1).toString());
-        this.typ = columns.elementAt(2).toString();
+        this.dokumentTyp = columns.elementAt(2).toString();
         this.nummer = Integer.parseInt(columns.elementAt(3).toString());
         this.id = Integer.parseInt(columns.elementAt(4).toString());
        
@@ -221,14 +221,15 @@ public class Dokument {
     /**
      * @return Returns the dokumentTyp.
      */
-    public String getTyp() {
-        return typ;
+    public String getDokumentTyp() {
+        return dokumentTyp;
     }
+    
     /**
      * @param dokumentTyp The dokumentTyp to set.
      */
-    public void setTyp(String dokumentTyp) {
-        this.typ = dokumentTyp;
+    public void setDokumentTyp(String dokumentTyp) {
+        this.dokumentTyp = dokumentTyp;
     }
     /**
      * @return Returns the gliederung.
