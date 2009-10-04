@@ -64,4 +64,101 @@
 			<required>true</required>
 			<description>Content of TableHeader</description></attribute>
 	</tag>
+		<tag>
+		<name>Selectbox</name>
+		<tag-class>tagLibrary.SelectboxOption</tag-class>
+		<attribute>
+			<name>name</name>
+		</attribute>
+		<attribute>
+			<name>id</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+		</attribute>
+		<attribute>
+			<name>permitId</name>
+			<!--required = true non compelling(zwingend) argument-->
+			<required>false</required>
+		</attribute>
+		<attribute>
+			<name>tabindex</name>
+		</attribute>
+		<attribute>
+			<name>argument</name>
+			<required>true</required><!--zwingend-->
+			<rtexprvalue>true</rtexprvalue><!--dynamisch durch Skriptteile erlaubt-->
+		</attribute>
+		<attribute>
+			<name>ccsStyle</name>
+			<!--required = true non compelling(zwingend) argument-->
+			<required>false</required>
+		</attribute>
+	</tag>
+<tag>
+		<name>InputOption</name>
+		<tag-class>tagLibrary.InputOption</tag-class>
+		<attribute>
+			<name>type</name>
+			<!--required = false non compelling(zwingend) argument-->
+			<required>false</required>
+		</attribute>
+		<attribute>
+			<name>name</name>
+			<!--required = true compelling(zwingend) argument-->
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>id</name>
+			<!--required = false non compelling(zwingend) argument-->
+			<required>false</required>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<!--rtexprvalue gibt an, ob der Wert des Attributes statisch eingetragen sein muss-->
+			<!--oder auch dynamisch durch Skriptteile ermittelt wird.-->
+			<!--Mögliche Werte sind hierbei true oder false. Der Standwert ist false-->
+			<rtexprvalue>true</rtexprvalue>
+			<description>requestValue</description>
+		</attribute>
+		<attribute>
+			<name>permitId</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>if > 1 without disabeld</description>
+		</attribute>
+		<attribute>
+			<name>tabindex</name>
+			<!--required = true compelling(zwingend) argument-->
+			<required>true</required>
+		</attribute>
+		<attribute>
+			<name>size</name>
+			<!--required = false non compelling(zwingend) argument-->
+			<required>false</required>
+		</attribute>
+	</tag>
+	 <tag>
+		<name>ButtonOption</name>
+		<tag-class>tagLibrary.ButtonOption</tag-class>
+		<attribute>
+			<name>name</name>
+			<required>true</required><!--zwingend-->
+		</attribute>
+		<attribute>
+			<name>permitId</name>
+			<required>false</required><!--n.zwingend-->
+		</attribute>
+		<attribute>
+			<name>accesskey</name>
+			<required>true</required><!--zwingend-->
+		</attribute>
+		<attribute>
+			<name>tabindex</name>
+			<required>false</required><!--n.zwingend-->
+		</attribute>
+	</tag>
 </taglib>
