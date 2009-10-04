@@ -12,7 +12,7 @@ import database.dateien.Selinas;
 public class SelinasSession {
 
 	public Selinas session;
-	private String[] columHeader = {"Titel","DV0101"};
+	private String[] columHeader = {"Typ des Dokuments","","Titel","Beschreibung","Ersteller","",""};
     
     public SelinasSession(Selinas session){
     	this.session = session;
