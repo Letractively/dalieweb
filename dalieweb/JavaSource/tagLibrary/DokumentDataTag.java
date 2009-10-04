@@ -15,7 +15,9 @@ import javax.servlet.jsp.tagext.TagSupport;
 
 import database.Database;
 import database.dateien.Dokument;
+import database.dateien.Typ;
 import database.getDatabase.DataSetDokument;
+import database.getDatabase.DataSetTyp;
 import selinas.SelinasUser;
 
 /**
@@ -103,15 +105,16 @@ public class DokumentDataTag extends TagSupport {
 	   return TableTRTH;
 	}//writeDokumentHeaderToPageContext
     
-	private String writeDokumentDataToPageContext(Vector dokumente) {
+	private String writeDokumentDataToPageContext(Vector dokumente) throws Exception {
 	    String tableTRTD = "";
 	    if (data.equalsIgnoreCase("J"))
 	    for (int i = 0; i < dokumente.size(); i++){         
 			Dokument data  = ((Dokument)dokumente.elementAt(i));
+			Typ dokumentTyp = DataSetTyp.chain(dbConn,data);
 			tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +
-					"<td>" + data.getTyp() +"</td>" +
+					"<td>" + dokumentTyp.getDescription() +"</td>" +
 					"<td>" + data.getGliederung() +"</td>" +
-					"<td><a href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentServlet?dokumentTyp="+data.getTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" target='_parent'>" + data.getTitel()+"</a></td>" +
+					"<td><a href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" target='_parent'>" + data.getTitel()+"</a></td>" +
 					"<td>" + data.getDescripten() + "</td>" +
 					"<td>" + data.getCreateUser() +"<br />"+  data.getCreateDate() +"</td>" +
 					"</tr>";
