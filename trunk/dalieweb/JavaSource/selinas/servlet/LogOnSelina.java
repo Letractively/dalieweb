@@ -44,36 +44,38 @@ public class LogOnSelina extends HttpServlet implements Servlet {
 	    
 	    HttpSession session = request.getSession();
 	    Message error;      
+	    String nextPage = "/selinas/selinas001.jsp";
 	    
-        try {
-           	session.setAttribute("Database",dbConn);
-            session.setAttribute("Speech", "DE");
-           	dbConn.getConnection();//DatabaseConnection open
-           	SelinasUser user = new SelinasUser(DataSetUser.chain(dbConn,request.getParameter("userId")));
-           	if ((user != null) && (user.checkPassword(request.getParameter("password"))) && (user.checkStatus(DataSetStatus.chain(dbConn,"A","DE")))){
-           	    session.setAttribute("User", user);
-           	    session.setAttribute("PermitId",(new Integer(user.user.getPermitId())).toString());
-           	    session.setAttribute("Selinas",DataSetSelinas.chain(dbConn,user.user.getKundenId(),user.user.getStandortId(),"DE"));
-           	    performForward("/selinas/selinas002.jsp",request,response);//JSP- show all Dokuments
-           	} else {
-           	    error = DataSetMessage.chain(dbConn, "Login",(String) session.getAttribute("Speech"));
-                request.setAttribute("Message", error.getErrorMsg());
-           	    performForward("/selinas/selinas001.jsp",request,response);//JSP- User Login
-           	}//endif user!=null
-        } catch (Exception e) {
-            LoggerHelper.log(this.getClass().getName(), "Exception 1 of perForm LoginServlet", e);      
-            try {
-            	if(request.getParameter("userId").toString().equalsIgnoreCase("") ){
-            		request.setAttribute("Message","");
-            	}else{
-            		error = DataSetMessage.chain(dbConn, "Login001",(String) session.getAttribute("Speech"));
-            		request.setAttribute("Message", error.getErrorMsg());
-            	}//endif
+	    if(request.getParameter("userId").toString().equalsIgnoreCase("") ){
+    		request.setAttribute("Message","");
+	    	performForward(nextPage,request,response);//JSP- User Login
+	    }else{
+    		try {
+    			session.setAttribute("Database",dbConn);
+    			session.setAttribute("Speech", "DE");
+    			dbConn.getConnection();//DatabaseConnection open
+    			SelinasUser user = new SelinasUser(DataSetUser.chain(dbConn,request.getParameter("userId")));
+    			if ((user != null) && (user.checkPassword(request.getParameter("password"))) && (user.checkStatus(DataSetStatus.chain(dbConn,"A","DE")))){
+    				session.setAttribute("User", user);
+    				session.setAttribute("PermitId",(new Integer(user.user.getPermitId())).toString());
+    				session.setAttribute("Selinas",DataSetSelinas.chain(dbConn,user.user.getKundenId(),user.user.getStandortId(),"DE"));
+    				performForward("/selinas/selinas002.jsp",request,response);//JSP- show all Dokuments
+    			} else {
+    				error = DataSetMessage.chain(dbConn, "Login",(String) session.getAttribute("Speech"));
+    				request.setAttribute("Message", error.getErrorMsg());
+    				performForward(nextPage,request,response);//JSP- User Login
+    			}//endif user!=null
+    		} catch (Exception e) {
+    			LoggerHelper.log(this.getClass().getName(), "Exception 1 of perForm:", e);      
+    			try {
+    				error = DataSetMessage.chain(dbConn, "Login001",(String) session.getAttribute("Speech"));
+    				request.setAttribute("Message", error.getErrorMsg());
             	} catch (Exception e1) {
-                LoggerHelper.log(this.getClass().getName(), "Exception 2 of perForm LoginServlet", e1);
-            }//catch
-                performForward("/selinas/selinas001.jsp",request,response);//JSP- User Login
-      	}//catch 
+            		LoggerHelper.log(this.getClass().getName(), "Exception 2 of perForm:", e1);
+            	}//catch
+                performForward(nextPage,request,response);//JSP- User Login
+    		}//catch 
+	    }//endif
 	}//perForm  	
 	
 	
@@ -107,7 +109,7 @@ public class LogOnSelina extends HttpServlet implements Servlet {
 	    try {
 	        dbConn.close();//DatabaseConnection close
 	    } catch (Exception e) {
-	        LoggerHelper.log(this.getClass().getName(), "Exception of destroy LoginServlet", e);
+	        LoggerHelper.log(this.getClass().getName(), "Exception of destroy LogOnSelina", e);
 	    }//catch
 	}//destroy
 
