@@ -31,7 +31,7 @@ public class LogOffSelina extends HttpServlet implements Servlet {
     			request.setAttribute("Message", error.getErrorMsg());//Message to RequestAttribute
     		} catch (Exception e) {
     			//put of ErrorMessage
-    			LoggerHelper.log(this.getClass().getName(), "Exception of perForm LogOff", e);
+    			LoggerHelper.log(this.getClass().getName(), "Exception of perForm LogOffSelina", e);
     		}//catch
     	    session.invalidate();
     	    performForward("/selinas/selinas001.jsp", request, response);//go back to User-Login
@@ -65,7 +65,7 @@ public class LogOffSelina extends HttpServlet implements Servlet {
     	    try {
     	        dbConn.close();//DatabaseConnection close
     	    } catch (Exception e) {
-    	        LoggerHelper.log(this.getClass().getName(), "Exception of destroy LogoutServlet", e);
+    	        LoggerHelper.log(this.getClass().getName(), "Exception of destroy LogOffSelina", e);
     	    }//catch
     	}//destroy
 }//class LogOff
