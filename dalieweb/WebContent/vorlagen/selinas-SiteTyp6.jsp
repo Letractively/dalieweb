@@ -39,6 +39,7 @@
 					<li><a class="on" href="selinas-SiteTyp6.jsp">SiteTyp 6</a></li>
 					<li><a href="selinas-SiteTyp7.jsp">SiteTyp 7</a></li>
 					<li><a href="selinas-SiteTyp8.jsp">SiteTyp 8</a></li>
+					<li><a href="selinas-SiteTyp9.jsp">SiteTyp 9</a></li>
 				</ul>
 			</div><!-- headerMenu -->
 	</div><!-- header -->
@@ -61,6 +62,7 @@
 					<li><a href="selinas-SiteTyp6.jsp">SiteTyp 6</a></li>
 					<li><a href="selinas-SiteTyp7.jsp">SiteTyp 7</a></li>
 					<li><a href="selinas-SiteTyp8.jsp">SiteTyp 8</a></li>
+					<li><a href="selinas-SiteTyp9.jsp">SiteTyp 9</a></li>
 				</ul>
 		<h3>Technologien</h3>
 		<p>Java<br />JavaServer Pages/Servlet<br />Benutzerdefinierte Aktion TagSupport<br />JavaScript<br />MySql<br />XML/XSL<br />FOP<br />HTML<br />CSS - Cascading Style Sheets<br /></p>
