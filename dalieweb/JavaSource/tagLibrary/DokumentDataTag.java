@@ -114,7 +114,7 @@ public class DokumentDataTag extends TagSupport {
 			tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +
 					"<td>" + dokumentTyp.getDescription() +"</td>" +
 					"<td>" + data.getGliederung() +"</td>" +
-					"<td><a href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" target='_parent'>" + data.getTitel()+"</a></td>" +
+					"<td><a href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToInitializeServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" target='_parent'>" + data.getTitel()+"</a></td>" +
 					"<td>" + data.getDescripten() + "</td>" +
 					"<td>" + data.getCreateUser() +"<br />"+  data.getCreateDate() +"</td>" +
 					"</tr>";
