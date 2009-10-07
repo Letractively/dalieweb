@@ -42,13 +42,34 @@ public class SelinasSession {
      * @throws Exception
      * @throws NumberFormatException
 	*/
-	public static Dokument getDokumentOfDatabase(Database dbConn,User user,HttpServletRequest request) throws Exception{
+	public Dokument getDokumentOfDatabase(Database dbConn,User user,HttpServletRequest request) throws Exception{
 	    Dokument dokumentOfDatabase = null;
 		dbConn.getConnection();////DataBaseConnection open
 		dokumentOfDatabase = DataSetDokument.chain(dbConn, user,request.getParameter("dokumentTyp"),Integer.parseInt((String)request.getParameter("dokumentNr")),Integer.parseInt((String)request.getParameter("dokumentId")));
 		dbConn.close();////DataBaseConnection close
 		return dokumentOfDatabase;//Return DokumentOfDatabase
 	}//getDokument
+	
+	
+	  public Dokument getDokumentOfInitialize(Database dbConn,User user,HttpServletRequest request)throws Exception{
+        Dokument dokumentOfInitialize = new Dokument();
+        dbConn.getConnection();//Aufbau Dankverbindung
+        dokumentOfInitialize.setDokumentTyp(request.getParameter("dokumentTyp"));
+        dokumentOfInitialize.setDokumentNr(Integer.parseInt(request.getParameter("dokumentNr")));
+        int nextDokumentId = DataSetDokument.getNextdokumentId(dbConn,user,dokumentOfInitialize);
+        dokumentOfInitialize.setGliederung(dokumentOfInitialize.getNummer() + "." + nextDokumentId);//GliederungsVorschlag setzen
+        dokumentOfInitialize.setStatus("A");
+        dokumentOfInitialize.setTitel(session.getTitel());
+        dokumentOfInitialize.setDescripten(session.getDescripten());
+        dokumentOfInitialize.setContent(session.getContent());
+        dokumentOfInitialize.setArchiv(session.getArchiv());
+        dokumentOfInitialize.setSprachId("DE");
+        dokumentOfInitialize.setVorgabe("123");
+        DataSetDokument.insert(dbConn,user,dokumentOfInitialize);//Insert in Datenbank
+        dokumentOfInitialize = DataSetDokument.chain(dbConn,user,dokumentOfInitialize.getDokumentTyp(),dokumentOfInitialize.getNummer(),nextDokumentId);
+        dbConn.close();
+        return  dokumentOfInitialize;
+    }//getDokument
 	
 }//class selinas
 

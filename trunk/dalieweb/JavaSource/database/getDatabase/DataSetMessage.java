@@ -39,15 +39,17 @@ public class DataSetMessage {
      * <ul><li>Message message</li></ul>
      */
     public static Message chain(Database dbConn,String messageId,String sprachId) throws Exception {
-        	Message message = null;
-        	Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".message" +
-        	        " where messageId = '"+messageId+"' and sprachId = '"+sprachId+"'");
-        	if(rows.size() == 0)
-        	    throw new Exception("Record not Found");
-        	for (int i = 0; i < rows.size(); i++){
-        	    return new Message((Vector)rows.elementAt(0));
-        	}//for
-        	return message;
+    	Message message = new Message();
+    	System.out.println("select * from "+dbConn.getDbSchema()+".message " +
+    	        "where messageId = '"+messageId+"' " +
+	        	"and sprachId = '"+sprachId+"'");
+    	Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".message " +
+    	        "where messageId = '"+messageId+"' " +
+    	        	"and sprachId = '"+sprachId+"'");
+    	for (int i = 0; i < rows.size(); i++){
+        return new Message((Vector)rows.elementAt(0));
+    	}
+    	return message;
     }//chain
     
 }//class DataSetMessage
