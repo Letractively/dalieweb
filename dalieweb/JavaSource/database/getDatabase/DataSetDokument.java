@@ -114,8 +114,8 @@ public class DataSetDokument {
 				"'"+dokument.getStatus()+"'," + "'"+dokument.getTitel()+"'," +
 				"'"+dokument.getDescripten()+"'," + "'"+dokument.getContent()+"'," +
 				"'"+dokument.getGliederung()+"'," + "'"+dokument.getArchiv()+"'," +
-				"date_add(now(),interval 1 YEAR)," + "'"+dokument.getArchivDate()+"'," +
-				"'"+dokument.getVorgabe()+"'," + "'"+user.getUserId()+"'," +
+				"date_add(now(),interval 1 YEAR)," + "'"+dokument.getVorgabe()+"'," +
+				"'"+dokument.getSprachId()+"'," + "'"+user.getUserId()+"'," +
 				"now()," + "'"+user.getUserId()+"'," + "now())");
     }//insert
     
@@ -141,7 +141,7 @@ public class DataSetDokument {
     /**
      * @return Returns the nextdokumentId.
      */
-    private static int getNextdokumentId(Database dbConn, User user, Dokument dokument) throws Exception {
+    public static int getNextdokumentId(Database dbConn, User user, Dokument dokument) throws Exception {
         int id = 0;
         while(true) {
         Vector rows = dbConn.executeQuery("select * from "

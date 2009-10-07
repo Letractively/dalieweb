@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import database.Database;
+import database.dateien.Selinas;
 import selinas.SelinasUser;
 import selinas.bean.SelinasSession;
 
@@ -22,8 +23,10 @@ public class DokumentToInitializeServlet extends HttpServlet implements Servlet 
 	        
 	     HttpSession session = request.getSession();
 	     String nextPage = "/selinas/selinas001.jsp";
+	     SelinasSession show = new SelinasSession((Selinas) session.getAttribute("Selinas")); 
 	     SelinasUser selinasuser = (SelinasUser) session.getAttribute("User");
 	     Database dbConn = (Database) session.getAttribute("Database");
+	     
 		 try {
 		     RequestDispatcher displogin =  request.getRequestDispatcher("LogOnCheck");
 	     	 displogin.include(request, response);
@@ -32,11 +35,23 @@ public class DokumentToInitializeServlet extends HttpServlet implements Servlet 
 	     }//catch ServletException
 		    
 		 try {
-		     session.setAttribute("Dokument", SelinasSession.getDokumentOfDatabase(dbConn,selinasuser.user,request));//SessionAttribut:DokumentOfDatabase
-	         performForward("/selinas/selinas0031.jsp", request, response);//JSP- Seite zum Verwalten
-		 } catch (Exception e) {
-		 	performForward(nextPage, request, response);
-        }//catch  
+	         RequestDispatcher errorServlet =  request.getRequestDispatcher("ErrorServlet");
+	         errorServlet.include(request, response);
+	     }catch (ServletException se) {
+	         performForward(nextPage,request,response);//Login 
+	     }//catch ServletException
+	     
+	     String error = (String) session.getAttribute("Error");
+	     if (error.equalsIgnoreCase("yes")) { 
+	     	performForward("/selinas/selinas002.jsp",request,response);
+	     } else {
+	     	try{
+	     		session.setAttribute("Dokument", show.getDokumentOfInitialize(dbConn,selinasuser.user,request));//SessionAttribut:DokumentOfInitialization
+	     		performForward("/selinas/selinas0031.jsp",request,response);
+	     	}catch (Exception e) {
+		         performForward(nextPage,request,response);//Login 
+		     }//catch ServletException
+	     }//endif error.equals
 	}//perForm
 	
 	/** handle the HTTP <code>GET</code> method */
