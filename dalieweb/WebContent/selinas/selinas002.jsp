@@ -46,7 +46,7 @@
 	</div><!-- header -->
 	<div id="wrapperContent">
 	<div id="content">
-		<form name="dokument" method="post" action="<%= request.getContextPath()%>/DokumentServlet" class="DalieFormular">  
+		<form name="dokument" method="post" action="<%= request.getContextPath()%>/DokumentToInitializeServlet" class="DalieFormular">  
 <label><%= show.session.getDokumentTyp()  %></label>
 	<dalie:Selectbox name="dokumentTyp" argument="KA" ccsStyle="selectbox"></dalie:Selectbox>
 <label><%= show.session.getDokumentNr() %></label>
