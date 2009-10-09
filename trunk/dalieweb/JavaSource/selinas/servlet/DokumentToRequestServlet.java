@@ -35,7 +35,7 @@ public class DokumentToRequestServlet extends HttpServlet implements Servlet {
 		    
 		 try {
 		     session.setAttribute("Dokument", show.getDokumentOfDatabase(dbConn,selinasuser.user,request));//SessionAttribut:DokumentOfDatabase
-	         performForward("/selinas/selinas0031.jsp", request, response);//JSP- Seite zum Verwalten
+	         performForward("/selinas/selinas003.jsp", request, response);//JSP- Seite zum Verwalten
 		 } catch (Exception e) {
 		 	performForward(nextPage, request, response);
         }//catch  

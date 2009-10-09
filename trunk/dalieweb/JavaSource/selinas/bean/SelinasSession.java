@@ -19,7 +19,8 @@ public class SelinasSession {
 
 	public Selinas session;
 	private String[] columHeader = {"Typ des Dokuments","","Titel","Beschreibung","Ersteller","",""};
-    
+    private String[] columHeaderLinkTable = {"Links zum Dokument"};
+   
     public SelinasSession(Selinas session){
     	this.session = session;
     }//Selinas
@@ -29,6 +30,10 @@ public class SelinasSession {
 		return columHeader;
 	}
 	
+	/** @return Returns the columHeader.*/
+	public String[] getColumHeaderLinkTable() {
+		return columHeaderLinkTable;
+	}
 	/**
 	* <b>Erzeuge ein Objekt vom Dokument aus Datenbanktabelle Dokument</b>
 	* <br><b>chain:Key user.getKundenId, user.getStandortId, int dokumentNr, dokumentId</b>
