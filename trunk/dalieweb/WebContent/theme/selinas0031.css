@@ -2,7 +2,7 @@
 
 @IMPORT url("Master.css");
 
-@IMPORT url("selinas-SiteTyp9.css");
+@IMPORT url("selinas-SiteTyp8.css");
 
 #pageHeader {
 	border-bottom: 1px dotted #B2BCC6;
@@ -20,6 +20,7 @@
 	font-family: Georgia, "Times New Roman";
 	font-size: 110%;
 }
+
 #pageHeader .logo {
 	float: left; /* Elemente umfließen lassen */
 	margin-left: 1.5em; /* transparenten Abstand von links*/
@@ -27,13 +28,17 @@
 	border: 1px dotted #B2BCC6; /*Rahmen wie Link's */
 	background-color: #006666 /*Hintergrund Farbe Selinas Grün*/
 }
-#pageContentLeft{
+#pageContent{
+	margin-top: 1.3em;
 	clear: left;
 }
-#pageContent{
-	background: #EEE;
+#header {
+	color: #778899;
+	background: transparent;
+	margin: 0px;
+	padding: 0px;
 }
-#content table {
+#contentLeft table {
 	caption-side: bottom;
 	text-align: left;
 	background: #eee;
@@ -41,6 +46,37 @@
 	border: 1px solid #B2BCC6;
 	width: 100%;
 }
+#contentLeft caption {
+	text-align: right;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+#contentLeft th {
+	border-bottom: 1px solid #B2BCC6;
+	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;
+	font-weight: bold;
+}
+
+#contentLeft td {
+	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;
+	border-top: 1px solid #B2BCC6;
+	padding: 3px;
+}
+#contentLeft .selectbox{
+	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;
+}
+
+#content table {
+	caption-side: bottom;
+	width: 100%;
+	text-align: left;
+	margin: 0px 0;
+	background: #eee;
+	padding: 5px;
+	border: 1px solid #B2BCC6;
+}
+
 #content caption {
 	text-align: right;
 	text-transform: uppercase;
@@ -58,42 +94,11 @@
 	border-top: 1px solid #B2BCC6;
 	padding: 3px;
 }
-#content .selectbox{
-	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;
-}
-
-#contentRight table {
-	caption-side: bottom;
-	width: 100%;
-	text-align: left;
-	margin: 0px 0;
-	background: #eee;
-	padding: 5px;
-	border: 1px solid #B2BCC6;
-}
-
-#contentRight caption {
-	text-align: right;
-	text-transform: uppercase;
-	font-weight: bold;
-}
-
-#contentRight th {
-	border-bottom: 1px solid #B2BCC6;
-	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;
-	font-weight: bold;
-}
-
-#contentRight td {
-	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;
-	border-top: 1px solid #B2BCC6;
-	padding: 3px;
-}
-#contentRight iframe{
+#content iframe{
 	border-bottom: 1px solid #B2BCC6;
 	height: 100%
 }
-#contentRight form{
+#content form{
 	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;
 	background: #eee;
 	padding: 5px;;
@@ -102,10 +107,10 @@
 	margin-right: 0;
 	margin-left: 0
 }
-#contentRight textarea{
+#content textarea{
 	width: 100%;
 }
-#contentRight .selectbox{
+#content .selectbox{
 	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;
 }
 #content button {
