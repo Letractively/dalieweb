@@ -17,9 +17,8 @@
 <meta name="keywords" content="dalieweb"/>
 <meta name="author" content="u.dalies"/>
 <!-- CSS und Icons -->
-<link href="<%= request.getContextPath()%>/theme/selinas0031.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="<%= request.getContextPath()%>/theme/selinas003.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="<%= request.getContextPath()%>/theme/selinas-DruckTyp.css" rel="stylesheet" type="text/css" media="print"/>
-<link href="http://www.dalieweb.de/pfeilmit01.ico" rel="shortcut icon" title="dalieweb" type="image/x-icon"/>
 <link href="http://www.dalieweb.de/pfeilmit01.ico" rel="shortcut icon" title="dalieweb" type="image/x-icon"/>
 <!-- Definition RSS Feed -->
 <link rel="alternate" type="application/rss+xml" title="dalieweb.de RSS-Feed" href="http://www.dalieweb.de/dalieweb.xml"/> 
@@ -34,16 +33,14 @@
 	Dokument dokument = (Dokument)session.getAttribute("Dokument");
 %>
 <div id="page">
-	<div id="pageHeader">
-		<a href="http://www.dalieweb.de/" target="_self"><img src="<%= request.getContextPath()%>/bilder/pfeilmit01.gif" width="60" height="60"
-	alt="" name="ani" title="dalieweb" class="logo"/></a><span class="strapline">dalieweb.de</span>
-	</div><!-- pageHeader -->
-		<div id="pageContentLeft">
-			<p>PageContentLeft</p>
-		</div><!-- pageContentLeft -->
+	<div id="pageHeader"><a href="http://www.dalieweb.de/" target="_self"><img src="<%= request.getContextPath()%>/bilder/pfeilmit01.gif" width="60" height="60"
+	alt="" name="ani" title="dalieweb" class="logo"/></a><span class="strapline">dalieweb.de</span></div><!-- pageHeader -->
 	<div id="pageContentWrapper">
-		<div id="pageContent">
-			<table border="0" cellspacing="0" cellpadding="0" width="100%">
+		<div id="pageContent"><p>pageContentLeft</p></div><!-- pageContent -->
+		<div id="pageContentRight">
+		<div id="wrapper">
+		<div id="header">
+		<table border="0" cellspacing="0" cellpadding="0" width="100%">
 		<tr>
 		<td valign="middle" align="left">&nbsp;</td>
 		<td valign="middle" 
@@ -51,9 +48,9 @@
 			<a href="<%= request.getContextPath()%>/LogOffSelina" target="_self">Log off</a></td>
 		</tr>
 		</table> 
-			<div id="wrapperContent">
-	<div id="content">		
-	<table>
+		</div><!-- header -->
+	<div id="contentLeft">		
+		<table>
 			<tr>
 				<td><%= show.session.getGliederung() %></td><td><dalie:InputOption name='<%= show.session.getGliederung() %>' value='<%= dokument.getGliederung() %>' tabindex="1"></dalie:InputOption></td>
 			</tr>
@@ -67,33 +64,44 @@
 				<td><%= show.session.getStatus() %></td><td><dalie:Selectbox name="Status" argument='<%= dokument.getStatus() %>' ccsStyle="selectbox" tabindex="4"></dalie:Selectbox></td>
 			</tr>
 		</table>
-	</div><!-- content -->
-	<div id="contentRight">	
+		</div><!-- contentLeft -->
+	<div id="wrapperContent">
+	<div id="content">		
 		<table>
 			<tr>
-			 <td><%= show.session.getTitel() %></td><td><dalie:InputOption name='<%= show.session.getTitel() %>' value='<%= dokument.getTitel() %>' size="29" tabindex="5"></dalie:InputOption></td>
+			 <td><%= show.session.getTitel() %></td><td><dalie:InputOption name='<%= show.session.getTitel() %>' value='<%= dokument.getTitel() %>' size="26" tabindex="5"></dalie:InputOption></td>
 			</tr>
 			<tr>
-			 <td><%= show.session.getDescripten() %></td><td><dalie:InputOption name='<%= show.session.getDescripten() %>' value='<%= dokument.getDescripten() %>' size="29" tabindex="6"></dalie:InputOption></td>
+			 <td><%= show.session.getDescripten() %></td><td><dalie:InputOption name='<%= show.session.getDescripten() %>' value='<%= dokument.getDescripten() %>' size="26" tabindex="6"></dalie:InputOption></td>
 			</tr>
 			<tr>
 			<td colspan="2"><textarea name='<%= show.session.getContent() %>' rows="30" cols="30"><%= dokument.getContent()%></textarea></td>	
 			</tr>
 		</table>
+	</div><!-- content -->
+	<div id="contentRight">	
+		<h2>Content Right</h2>
+		<ul>
+					<li><a href="selinas-SiteTyp1.jsp">SiteTyp 1</a></li>
+					<li><a href="selinas-SiteTyp2.jsp">SiteTyp 2</a></li>
+					<li><a href="selinas-SiteTyp3.jsp">SiteTyp 3</a></li>
+					<li><a href="selinas-SiteTyp4.jsp">SiteTyp 4</a></li>
+					<li><a href="selinas-SiteTyp5.jsp">SiteTyp 5</a></li>
+					<li><a href="selinas-SiteTyp6.jsp">SiteTyp 6</a></li>
+					<li><a href="selinas-SiteTyp7.jsp">SiteTyp 7</a></li>
+					<li><a href="selinas-SiteTyp8.jsp">SiteTyp 8</a></li>
+				</ul>
+		<h3>Technologien</h3>
+		<p>Java<br />JavaServer Pages/Servlet<br />Benutzerdefinierte Aktion TagSupport<br />JavaScript<br />MySql<br />XML/XSL<br />FOP<br />HTML<br />CSS - Cascading Style Sheets<br /></p>
 	</div><!-- contentRight -->
-	</div><!-- wrapperContent -->
-		<div id="footer">
-			<p>footer</p>
+	</div><!-- wrapperContent -->	
+	<div id="footer">
+	<p>footer</p>
 	</div><!-- footer -->	
-		</div><!-- pageContent -->
-		<div id="pageContentRight">
-			<p>PageContentRight</p>
-		</div><!-- pageContentRight -->
+</div><!-- wrapper -->
+	</div><!-- pageContentRight -->
 	</div><!-- pageContentWrapper -->
-	<div id="pageFooter">
-		<!-- CLASS:FooterLebenslauf -->
-			<dalie:FooterLebenslauf></dalie:FooterLebenslauf>
-	</div><!-- pageFooter -->	
+	<div id="pageFooter"><!-- CLASS:FooterLebenslauf --><dalie:FooterLebenslauf></dalie:FooterLebenslauf></div><!-- pageFooter -->	
 </div><!-- page -->
 </body>
 </html>
