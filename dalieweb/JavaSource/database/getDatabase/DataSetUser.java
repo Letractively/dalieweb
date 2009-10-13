@@ -35,7 +35,7 @@ public class DataSetUser {
      * @return
      * <ul><li>User user</li></ul>
      */
-    public static User chain(Database dbConn,String userId) throws Exception {
+    public static synchronized User chain(Database dbConn,String userId) throws Exception {
         	User user = null;
         	Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".user " +
         			"where userId = '"+userId+"'");

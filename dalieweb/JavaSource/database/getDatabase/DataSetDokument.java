@@ -35,7 +35,7 @@ public class DataSetDokument {
      * @return
      * <ul><li>Dokument dokument</li></ul>
      */
-    public static Dokument chain(Database dbConn,User user,String dokumentTyp,int dokumentNr,int dokumentId) throws Exception {
+    public static synchronized Dokument chain(Database dbConn,User user,String dokumentTyp,int dokumentNr,int dokumentId) throws Exception {
         Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokument " +
         		"where kundenId = "+user.getKundenId() + " and standortId = "+user.getStandortId() +
         			" and dokumentTyp = '"+dokumentTyp+"'" + " and dokumentNr = "+dokumentNr +
@@ -56,7 +56,7 @@ public class DataSetDokument {
      * @return
      * <ul><li> Vector Dokument(e)</li></ul>
      */
-    public static Vector reade(Database dbConn, User user) throws Exception{
+    public static synchronized Vector reade(Database dbConn, User user) throws Exception{
 		Vector liste = new Vector();
 		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokument " +
 				"where kundenId = "+user.getKundenId()+ " and standortId = "+user.getStandortId() +
@@ -80,7 +80,7 @@ public class DataSetDokument {
      * @return
      * <ul><li> Vector Dokument(e)</li></ul>
      */
-    public static Vector reade(Database dbConn, User user, String dokumentTyp) throws Exception{
+    public static synchronized Vector reade(Database dbConn, User user, String dokumentTyp) throws Exception{
 		Vector liste = new Vector();
 		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokument " +
 				"where kundenId = "+user.getKundenId()+ " and standortId = "+user.getStandortId() + 
@@ -106,7 +106,7 @@ public class DataSetDokument {
      * @return
      * <ul><li>none</li></ul>
      */
-    public static void insert(Database dbConn, User user, Dokument dokument) throws Exception{
+    public static synchronized void insert(Database dbConn, User user, Dokument dokument) throws Exception{
 		dbConn.executeUpdate("insert into "+dbConn.getDbSchema()+".dokument " +
 				"values("+user.getKundenId()+"," +user.getStandortId()+"," +
 				"'"+dokument.getDokumentTyp()+"'," +dokument.getNummer()+","
@@ -119,7 +119,7 @@ public class DataSetDokument {
 				"now()," + "'"+user.getUserId()+"'," + "now())");
     }//insert
     
-    public void update(Database dbConn, User user, Dokument dokument) throws Exception {
+    public static synchronized void update(Database dbConn, User user, Dokument dokument) throws Exception {
         dbConn.executeUpdate("update "+dbConn.getDbSchema()+".dokument" +
                 "set dokumentStatus = '"+ dokument.getStatus() + "'," +
                 " titel = '"+dokument.getTitel()+"'," + " descripten = '"+dokument.getDescripten()+"',"+
@@ -131,7 +131,7 @@ public class DataSetDokument {
                 " and dokumentId = "+ dokument.getId() );
     }//update
     
-    public void delete(Database dbConn,int kundenId, int standortId,String dokumentTyp,int dokumentNr, int dokumentId) throws Exception {
+    public static synchronized void delete(Database dbConn,int kundenId, int standortId,String dokumentTyp,int dokumentNr, int dokumentId) throws Exception {
         dbConn.executeUpdate("delete from "+dbConn.getDbSchema()+".dokument " +
                 "where dokumentNr = " + dokumentNr + " and dokumentId = " + dokumentId +
                 " and dokumentTyp = '"+ dokumentTyp + "'" + " and standortId = " + standortId +
@@ -141,7 +141,7 @@ public class DataSetDokument {
     /**
      * @return Returns the nextdokumentId.
      */
-    public static int getNextdokumentId(Database dbConn, User user, Dokument dokument) throws Exception {
+    public static synchronized int getNextdokumentId(Database dbConn, User user, Dokument dokument) throws Exception {
         int id = 0;
         while(true) {
         Vector rows = dbConn.executeQuery("select * from "

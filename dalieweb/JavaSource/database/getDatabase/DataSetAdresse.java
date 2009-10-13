@@ -37,7 +37,7 @@ public class DataSetAdresse {
      * @return
      * <ul><li> Vector Adresse(n)</li></ul>
      */
-    public static Adresse chain(Database dbConn,int adressId,String adressArt) throws Exception {
+    public static synchronized Adresse chain(Database dbConn,int adressId,String adressArt) throws Exception {
         Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".adressen " +
         		"where adressId = "+ adressId + " and adressArt = '"+adressArt+"'");
         if(rows.size() == 0)
@@ -53,7 +53,7 @@ public class DataSetAdresse {
      * @return
      * <ul><li> Vector Adresse(n)</li></ul>
      */
-    public static Vector read(Database dbConn) throws Exception {
+    public static synchronized Vector read(Database dbConn) throws Exception {
         Vector allAdressen = new Vector();
         Vector rows = dbConn.executeQuery("select * from"+dbConn.getDbSchema()+".adressen");
         if(rows.size() == 0)
@@ -75,7 +75,7 @@ public class DataSetAdresse {
      * @return
      * <ul><li> Vector Adresse(n)</li></ul>
      */
-    public static Vector reade(Database dbConn,int adressId) throws Exception {
+    public static synchronized Vector reade(Database dbConn,int adressId) throws Exception {
         Vector allAdressen = new Vector();
         Vector rows = dbConn.executeQuery("select * from"+dbConn.getDbSchema()+".adressen " +
         		"where adressId = "+adressId+"");
@@ -95,7 +95,7 @@ public class DataSetAdresse {
      * @return
      * <ul><li>none</li></ul>
      */
-    public void insert(Database dbConn, User user, Adresse adresse) throws Exception{
+    public static synchronized void insert(Database dbConn, User user, Adresse adresse) throws Exception{
 		dbConn.executeUpdate("insert into "+dbConn.getDbSchema()+".adressen " +
 				"values(" + user.getKundenId()+"," + "'" + adresse.getAdressArt() + "'," +
 		        "'" + adresse.getStrasse() + "'," + "'" + adresse.getNummer() + "'," +

@@ -41,7 +41,7 @@ public class DataSetLink {
      * <li>Vector of DokumentLinks</li>
      * </ul>
      */
-    public static Vector read(Database dbConn,int kundenId,int standortId,String dokumentTyp,int dokumentNr,int dokumentId) throws Exception {
+    public static synchronized Vector read(Database dbConn,int kundenId,int standortId,String dokumentTyp,int dokumentNr,int dokumentId) throws Exception {
         Vector liste = new Vector();
 		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokumentlinks " +
 				"where kundenId = " + kundenId + " and standortId = " + standortId +
@@ -71,7 +71,7 @@ public class DataSetLink {
      * <li>Vector of DokumentLinks</li>
      * </ul>
      */
-    public static Vector read(Database dbConn,Dokument dokument) throws Exception {
+    public static synchronized Vector read(Database dbConn,Dokument dokument) throws Exception {
         Vector liste = new Vector();
 		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokumentlinks " +
 				"where kundenId = " + dokument.getKundenId() + " and standortId = " + dokument.getStandortId() +
@@ -97,7 +97,7 @@ public class DataSetLink {
      * @return
      * <ul><li>none</li></ul>
      */
-    public static void insert(Database dbConn, Dokument dokument,Link link ,User user) throws Exception{
+    public static synchronized void insert(Database dbConn, Dokument dokument,Link link ,User user) throws Exception{
         dbConn.executeUpdate("insert into "+dbConn.getDbSchema()+".dokumentlinks " +
                 "values(" + dokument.getKundenId()+ "," + dokument.getStandortId()+ "," +
                 "'"+dokument.getDokumentTyp()+"'," + dokument.getNummer()+ "," + dokument.getId()+ "," +

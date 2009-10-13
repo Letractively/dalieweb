@@ -38,7 +38,7 @@ public class DataSetMessage {
      * @return
      * <ul><li>Message message</li></ul>
      */
-    public static Message chain(Database dbConn,String messageId,String sprachId) throws Exception {
+    public static synchronized Message chain(Database dbConn,String messageId,String sprachId) throws Exception {
     	Message message = new Message();
     	System.out.println("select * from "+dbConn.getDbSchema()+".message " +
     	        "where messageId = '"+messageId+"' " +

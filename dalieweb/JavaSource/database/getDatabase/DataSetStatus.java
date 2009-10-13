@@ -36,7 +36,7 @@ public class DataSetStatus {
      * @return
      * <ul><li>User user</li></ul>
      */
-    public static Status chain(Database dbConn,String statusId,String sprachId) throws Exception {
+    public static synchronized Status chain(Database dbConn,String statusId,String sprachId) throws Exception {
         	Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".status " +
         			"where statusId = '"+statusId+"'" + " and sprachId = '"+sprachId+"'");
         	if(rows.size() == 0)

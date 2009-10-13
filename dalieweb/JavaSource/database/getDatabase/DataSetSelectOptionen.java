@@ -29,7 +29,7 @@ public class DataSetSelectOptionen {
      * <li><option value='KA'>[Bitte auswählen]</option><option value='AA'>Arbeitsanweisung</option></li>
      * </ul>
      */
-    public static Vector chain(Database dbConn,String nameOfSelectbox,String sprachId,String optionId) throws Exception {
+    public static synchronized Vector chain(Database dbConn,String nameOfSelectbox,String sprachId,String optionId) throws Exception {
         Vector allOptionen = new Vector();
         	Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".selectoptionen " +
         	        "where selectbox = '"+nameOfSelectbox+"' " +

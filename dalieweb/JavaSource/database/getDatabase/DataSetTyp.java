@@ -41,7 +41,7 @@ public class DataSetTyp {
      * <li>Dokumentyp dokumenttyp</li>
      * </ul>
      */
-    public static Typ chain(Database dbConn,int kundenId,int standortId,String dokumenttyp,String sprachId) throws Exception {
+    public static synchronized Typ chain(Database dbConn,int kundenId,int standortId,String dokumenttyp,String sprachId) throws Exception {
         	Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokumenttyp " +
         	        "where kundenId = "+kundenId+" " +
         			"and standortId = "+standortId+" " +
@@ -69,7 +69,7 @@ public class DataSetTyp {
      * <li>Dokumentyp dokumenttyp</li>
      * </ul>
      */
-    public static Typ chain(Database dbConn,Dokument dokument) throws Exception {
+    public static synchronized Typ chain(Database dbConn,Dokument dokument) throws Exception {
         	Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokumenttyp " +
         	        "where kundenId = "+dokument.getKundenId()+" " +
         			"and standortId = "+dokument.getStandortId()+" " +
