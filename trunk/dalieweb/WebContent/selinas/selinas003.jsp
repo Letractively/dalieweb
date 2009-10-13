@@ -5,6 +5,7 @@
 <%@ page language="java"
 	import="database.dateien.Selinas"
 	import="selinas.bean.SelinasSession"
+	import="selinas.ColumHeader"
 	import="selinas.SelinasUser"
 	import="database.dateien.Dokument"
 	contentType="text/html; charset=ISO-8859-1" 
@@ -65,6 +66,9 @@
 			<tr>	
 				<td><%= show.session.getStatus() %></td><td><dalie:Selectbox name="Status" argument='<%= dokument.getStatus() %>' ccsStyle="selectbox" tabindex="4"></dalie:Selectbox></td>
 			</tr>
+			<tr>
+				<td>&nbsp;</td><td>&nbsp;</td>
+			</tr>
 		</table>
 	</div><!-- content -->
 	<div id="contentRight">	
@@ -82,10 +86,11 @@
 	</div><!-- contentRight -->
 	</div><!-- wrapperContent -->
 		<div id="footer">
-			<p>footer</p>
+			
 	</div><!-- footer -->	
 		</div><!-- pageContent -->
 		<div id="pageContentRight">
+			<dalie:DokumentLinkTag data="N" columnHeader='<%= ColumHeader.valueOf("2") %>'></dalie:DokumentLinkTag>
 			<iframe src="<%= request.getContextPath()%>/selinas/selinas003FL.jsp" width="100%" name="selinas" frameborder="0"></iframe>
 		</div><!-- pageContentRight -->
 	</div><!-- pageContentWrapper -->
