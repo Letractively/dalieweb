@@ -55,14 +55,17 @@ public class DokumentDataTag extends TagSupport {
                 selinasuser = (SelinasUser) session.getAttribute("User");
                 
                  try {
-
-                        JspWriter out = pageContext.getOut();
+                 	JspWriter out = pageContext.getOut();
+                 	try{
                         dbConn.getConnection();
-                        out.println("<table>"
+                        out.println("<table class="+ FB+ tableTagClass + FB+ ">"
                                 + writeDokumentHeaderToPageContext(columnHeader)
                                 + writeDokumentDataToPageContext(DataSetDokument.reade(dbConn, selinasuser.user)));
                         dbConn.close();
-                        
+                 	}catch(Exception e){//no DokumentLinks found
+                    	out.println("<table class="+ FB+ tableTagClass + FB+ ">" 
+                    			+ writeDokumentHeaderToPageContext(columnHeader));
+                    }//catch    
                         return EVAL_BODY_INCLUDE;//Evaluate body into existing out stream, and start next with doEndTag()
                     
                     } catch (Exception e) {

@@ -27,7 +27,7 @@ public class DataSetSelectbox {
      * <option value='QMH'>QM Handbuch</option><option value='VA'>Verfahrensanweisung</option></select>
      * </li></ul>
      */
-    public static Selectbox chain(Database dbConn,int kundenId, int standortId, String nameOfSelectbox,String keyOption) throws Exception {
+    public static synchronized Selectbox chain(Database dbConn,int kundenId, int standortId, String nameOfSelectbox,String keyOption) throws Exception {
         	Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".selectbox " +
         	        "where kundenId = "+kundenId+" " +
         			"and standortId = "+standortId+" " +

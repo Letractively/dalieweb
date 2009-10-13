@@ -23,7 +23,7 @@ import database.dateien.Selinas;
  */
 public class DataSetSelinas {
     
-    public static Selinas chain(Database dbConn,int kundenId,int standortId,String sprachId) throws Exception {
+    public static synchronized Selinas chain(Database dbConn,int kundenId,int standortId,String sprachId) throws Exception {
     	Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".selinas " +
     			"where kundenId = "+kundenId+"" +
     			 	" and standortId = "+standortId+""+

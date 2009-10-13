@@ -53,13 +53,17 @@ public class DokumentLinkTag extends TagSupport{
             
                 try {
                     JspWriter out = pageContext.getOut();
-                    dbConn.getConnection();
-                    out.println("<table class="+ FB+ tableTagClass + FB+ ">"
-                    	+ writeDokumentHeaderToPageContext(columnHeader)
-                    	+ writeDokumentDataToPageContext(DataSetLink.read(dbConn,dokument)));   
-                    dbConn.close();
-                    
-                    return EVAL_BODY_INCLUDE;////Start next: doEntTag()              
+                    try{
+                    	dbConn.getConnection();
+                    	out.println("<table class="+ FB+ tableTagClass + FB+ ">"
+                    			+ writeDokumentHeaderToPageContext(columnHeader)
+								+ writeDokumentDataToPageContext(DataSetLink.read(dbConn,dokument)));   
+                    	dbConn.close();
+                    }catch(Exception e){//no DokumentLinks found
+                    	out.println("<table class="+ FB+ tableTagClass + FB+ ">" 
+                    			+ writeDokumentHeaderToPageContext(columnHeader));
+                    }//catch
+                    return EVAL_BODY_INCLUDE;////Start next: doEndTag()              
                 
                 } catch (Exception e) {
                	    throw new JspException("LinksofDokument"
