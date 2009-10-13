@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head> 
 <%@ page language="java"
-	import="database.dateien.Selinas"
-	import="selinas.bean.SelinasSession"
+	import="selinas.ColumHeader"
 	contentType="text/html; charset=ISO-8859-1" 
 	pageEncoding="ISO-8859-1"%>
 <!-- onwn TagLib-Direktive -->
@@ -15,17 +14,14 @@
 <meta name="keywords" content="dalieweb"/>
 <meta name="author" content="u.dalies"/>
 <!-- CSS und Icons -->
-<link href="<%= request.getContextPath()%>/theme/selinas002.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="<%= request.getContextPath()%>/theme/selinas003.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="<%= request.getContextPath()%>/theme/selinas-DruckTyp.css" rel="stylesheet" type="text/css" media="print"/>
 <link href="http://www.dalieweb.de/pfeilmit01.ico" rel="shortcut icon" title="dalieweb" type="image/x-icon"/>
 <title>dalieweb</title>
 </head>
 <body>
-<%	
-	SelinasSession show = new SelinasSession((Selinas) session.getAttribute("Selinas")); 
-%>
-	<div id="pageContentRight">	 	
-		<dalie:DokumentLinkTag columnHeader='<%= show.getColumHeaderLinkTable() %>'></dalie:DokumentLinkTag>
-	</div><!-- pageContentRight -->
+	<div id="pageContentRight">		
+		<dalie:DokumentLinkTag header="N" farbe2="#EEE6D2" columnHeader='<%= ColumHeader.valueOf("2") %>'></dalie:DokumentLinkTag>
+	</div><!-- wrapperContent -->
 </body>
 </html>
