@@ -7,7 +7,7 @@
 	background-color: blue
 }
 #pageContentWrapper{
-	width: 99%;
+	width: 100%;
 }
 #pageContentLeft {
 	width: 20%;	
@@ -20,9 +20,9 @@
 	width: 60%;
 }
 #pageContentRight {
-	width: 19%;	
-	float: left;
 	background-color: gray;
+	float: left;
+	width: 19.5%;	
 }
 #pageFooter {
 	background-color: fuchsia;
