@@ -20,8 +20,8 @@
 <title>dalieweb</title>
 </head>
 <body>
-	<div id="pageContentRight">		
-		<dalie:DokumentLinkTag header="N" farbe2="#EEE6D2" columnHeader='<%= ColumHeader.valueOf("2") %>'></dalie:DokumentLinkTag>
-	</div><!-- wrapperContent -->
+		
+		<dalie:DokumentLinkTag header="N" farbe2="#EEE6D2" columnHeader='<%= ColumHeader.valueOf("2") %>' tableTagClass="linkTable"></dalie:DokumentLinkTag>
+	
 </body>
 </html>

@@ -40,6 +40,8 @@
 	</div><!-- pageHeader -->
 		<div id="pageContentLeft">
 			<p>PageContentLeft</p>
+		<dalie:DokumentTypTag data="N" columnHeader='<%= dokument.getDokumentTyp() %>' tableTagClass="linkTable"></dalie:DokumentTypTag>
+		<iframe src="<%= request.getContextPath()%>/selinas/selinas003FD.jsp" width="100%" name="selinas1" frameborder="0"></iframe>
 		</div><!-- pageContentLeft -->
 	<div id="pageContentWrapper">
 		<div id="pageContent">
@@ -90,8 +92,8 @@
 	</div><!-- footer -->	
 		</div><!-- pageContent -->
 		<div id="pageContentRight">
-			<dalie:DokumentLinkTag data="N" columnHeader='<%= ColumHeader.valueOf("2") %>'></dalie:DokumentLinkTag>
-			<iframe src="<%= request.getContextPath()%>/selinas/selinas003FL.jsp" width="100%" name="selinas" frameborder="0"></iframe>
+			<dalie:DokumentLinkTag data="N" columnHeader='<%= ColumHeader.valueOf("2") %>' tableTagClass="linkTable"></dalie:DokumentLinkTag>
+			<iframe src="<%= request.getContextPath()%>/selinas/selinas003FL.jsp" width="100%" name="selinas2" frameborder="0"></iframe>
 		</div><!-- pageContentRight -->
 	</div><!-- pageContentWrapper -->
 	<div id="pageFooter">
