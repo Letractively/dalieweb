@@ -102,6 +102,44 @@
 			<required>true</required>
 			<description>Content of TableHeader</description></attribute>
 	</tag>
+<tag>
+		<name>DokumentTypTag</name>
+		<tag-class>tagLibrary.DokumentTypTag</tag-class>
+	<attribute>
+			<name>header</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>Yes/No Yes=showCol of Table</description>
+		</attribute>
+		<attribute>
+			<name>data</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>Yes/No Yes=showRow of Table</description>
+		</attribute>
+		<attribute>
+			<name>farbe1</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>color of first row</description>
+		</attribute>
+		<attribute>
+			<name>farbe2</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>color of secound row</description>
+		</attribute>
+		<attribute>
+			<name>tableTagClass</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>Name of TableClass for CSS value</description>
+		</attribute>
+		<attribute><name>columnHeader</name><!--required = true compelling(zwingend) argument-->
+			<rtexprvalue>true</rtexprvalue><!--dynamisch durch Skriptteile erlaubt-->
+			<required>true</required>
+			<description>Content of TableHeader</description></attribute>
+	</tag>
 		<tag>
 		<name>Selectbox</name>
 		<tag-class>tagLibrary.SelectboxOption</tag-class>
