@@ -37,28 +37,33 @@
 	border-left: 1px solid #B2BCC6;
 }
 #pageContentRight{
+	border-top: 1px solid #B2BCC6;
 	background-color: #EEE;
 	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;
 }
-#pageContentRight table {
+.linkTable {
 	caption-side: bottom;
 	text-align: left;
 	background: #eee;
 	padding: 3px;
 	width: 100%;
 }
-#pageContentRight th {
+.linkTable th {
 	font-weight: bold;
 	width: 100%;
 	text-align: center;
 }
-#pageContentRight td {
-	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;
+.linkTable td {
 	border-top: 1px solid #B2BCC6;
+	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;	
 	padding: 3px;
-	width: 30em;
+	width: 0em;
 }
 #pageContentRight iframe{
+	border-bottom: 1px solid #B2BCC6;
+	height: 30em;
+}
+#pageContentLeft iframe{
 	border-bottom: 1px solid #B2BCC6;
 	height: 30em;
 }
