@@ -39,18 +39,24 @@
 	alt="" name="ani" title="dalieweb" class="logo"/></a><span class="strapline">dalieweb.de</span>
 	</div><!-- pageHeader -->
 		<div id="pageContentLeft">
-			<p>PageContentLeft</p>
-		<dalie:DokumentTypTag data="N" columnHeader='<%= dokument.getDokumentTyp() %>' tableTagClass="linkTable"></dalie:DokumentTypTag>
-		<iframe src="<%= request.getContextPath()%>/selinas/selinas003FD.jsp" width="100%" name="selinas1" frameborder="0"></iframe>
-		</div><!-- pageContentLeft -->
-	<div id="pageContentWrapper">
-		<div id="pageContent">
-			<table border="0" cellspacing="0" cellpadding="0" width="100%">
+		<table border="0" cellspacing="0" cellpadding="0" width="100%">
 		<tr>
 		<td valign="middle" align="left">&nbsp;</td>
 		<td valign="middle" 
 			align="right" class="strapline"><%= user.user.getName() %>, <%= user.user.getVorname() %>&nbsp;
 			<a href="<%= request.getContextPath()%>/LogOffSelina" target="_self">Log off</a></td>
+		</tr>
+		</table> 
+		<dalie:DokumentTypTag data="N" columnHeader='<%= dokument.getDokumentTyp() %>' tableTagClass="linkTable"></dalie:DokumentTypTag>
+		<iframe src="<%= request.getContextPath()%>/selinas/selinas003FD.jsp" width="100%" name="selinas1" frameborder="0"></iframe>
+		</div><!-- pageContentLeft -->
+	<div id="pageContentWrapper">
+		<div id="pageContent">
+			<form name="dokument" method="post" action="<%= request.getContextPath()%>/DokumentToProcessServlet">
+			<table border="0" cellspacing="0" cellpadding="0" width="100%">
+		<tr>
+		<td valign="middle" align="left">&nbsp;</td>
+		<td valign="middle" align="right">&nbsp;</td>
 		</tr>
 		</table> 
 			<div id="wrapperContent">
@@ -66,7 +72,7 @@
 				<td><%= show.session.getVorgabe() %></td><td><dalie:InputOption name='<%= show.session.getVorgabe() %>' value='<%= dokument.getVorgabe() %>' tabindex="3"></dalie:InputOption></td>
 			</tr>
 			<tr>	
-				<td><%= show.session.getStatus() %></td><td><dalie:Selectbox name="Status" argument='<%= dokument.getStatus() %>' ccsStyle="selectbox" tabindex="4"></dalie:Selectbox></td>
+				<td><%= show.session.getStatus() %></td><td><dalie:Selectbox name='<%= show.session.getStatus() %>' id='<%= show.session.getStatus() %>' argument='<%= dokument.getStatus() %>' ccsStyle="selectbox" tabindex="4"></dalie:Selectbox></td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td><td>&nbsp;</td>
@@ -82,18 +88,35 @@
 			 <td><%= show.session.getDescripten() %></td><td><dalie:InputOption name='<%= show.session.getDescripten() %>' value='<%= dokument.getDescripten() %>' size="29" tabindex="6"></dalie:InputOption></td>
 			</tr>
 			<tr>
-			<td colspan="2"><textarea name='<%= show.session.getContent() %>' rows="30" cols="30"><%= dokument.getContent()%></textarea></td>	
+			<td colspan="2"><textarea name='<%= show.session.getContent() %>' class="textarea" rows="30" cols="30"><%= dokument.getContent()%></textarea></td>	
 			</tr>
 		</table>
 	</div><!-- contentRight -->
 	</div><!-- wrapperContent -->
 		<div id="footer">
-			
-	</div><!-- footer -->	
+				<dalie:ButtonOption name="submit" accesskey="s" tabindex="8">Verarbeitung <span style="text-decoration:underline">s</span>tarten</dalie:ButtonOption>	
+				<!-- CLASS:HinweisOption --><dalie:HinweisOption message='${requestScope.Message}'></dalie:HinweisOption>
+		</div><!-- footer -->	
+		</form>
 		</div><!-- pageContent -->
 		<div id="pageContentRight">
 			<dalie:DokumentLinkTag data="N" columnHeader='<%= ColumHeader.valueOf("2") %>' tableTagClass="linkTable"></dalie:DokumentLinkTag>
 			<iframe src="<%= request.getContextPath()%>/selinas/selinas003FL.jsp" width="100%" name="selinas2" frameborder="0"></iframe>
+			<form action="<%= request.getContextPath()%>/DokumentUploadServlet" enctype="multipart/form-data" method="post">
+			<table>
+	<tfoot>
+		<tr>
+			<td><dalie:ButtonOption name="submit" accesskey="s" tabindex="8">Upload <span style="text-decoration:underline">s</span>tarten</dalie:ButtonOption>
+			<dalie:ButtonOption name="beenden" accesskey="e" tabindex="9">B<span style="text-decoration:underline">e</span>enden</dalie:ButtonOption></td>
+		</tr>
+	</tfoot>
+		<tr>
+			<td><input type="file" name="myFile" size="15" tabindex='7' maxlength="255"/></td>
+		</tr>
+	</table>
+			<!-- CLASS:HinweisOption -->
+			<dalie:HinweisOption message='${requestScope.upload}'></dalie:HinweisOption>
+			</form>
 		</div><!-- pageContentRight -->
 	</div><!-- pageContentWrapper -->
 	<div id="pageFooter">
