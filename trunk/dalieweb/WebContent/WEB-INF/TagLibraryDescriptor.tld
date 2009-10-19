@@ -145,11 +145,15 @@
 		<tag-class>tagLibrary.SelectboxOption</tag-class>
 		<attribute>
 			<name>name</name>
+			<!--required = true compelling(zwingend) argument-->
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue><!--dynamisch durch Skriptteile erlaubt-->
 		</attribute>
 		<attribute>
 			<name>id</name>
 			<!--required = false non compelling(nicht zwingend) argument-->
 			<required>false</required>
+			<rtexprvalue>true</rtexprvalue><!--dynamisch durch Skriptteile erlaubt-->
 		</attribute>
 		<attribute>
 			<name>permitId</name>
