@@ -21,7 +21,7 @@
 </head>
 <body>
 		
-		<dalie:DokumentLinkTag header="N" farbe2="#EEE6D2" columnHeader='<%= ColumHeader.valueOf("2") %>' tableTagClass="linkTable"></dalie:DokumentLinkTag>
+		<dalie:DokumentLinkTag header="N" farbe1="#EEE6D2" farbe2="#E0D2AB" columnHeader='<%= ColumHeader.valueOf("2") %>' tableTagClass="linkTable"></dalie:DokumentLinkTag>
 	
 </body>
 </html>

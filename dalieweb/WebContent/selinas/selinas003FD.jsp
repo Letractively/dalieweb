@@ -23,6 +23,6 @@
 <%	
 	Dokument dokument = (Dokument)session.getAttribute("Dokument");
 %>
-	<dalie:DokumentTypTag header="N" farbe2="#EEE6D2" columnHeader='<%= dokument.getDokumentTyp() %>' tableTagClass="linkTable"></dalie:DokumentTypTag>
+	<dalie:DokumentTypTag header="N" farbe1="#EEE6D2" farbe2="#E0D2AB" columnHeader='<%= dokument.getDokumentTyp() %>' tableTagClass="linkTable"></dalie:DokumentTypTag>
 </body>
 </html>
