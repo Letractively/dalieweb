@@ -46,7 +46,7 @@ public class DataSetLink {
 		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokumentlinks " +
 				"where kundenId = " + kundenId + " and standortId = " + standortId +
 				" and dokumentTyp = '"+ dokumentTyp+ "'" + " and dokumentNr = "+ dokumentNr + " and dokumentId = "+ dokumentId + 
-				" ORDER BY dokumentTyp, dokumentNr, dokumentId");
+				" ORDER BY dokumentTyp, dokumentNr, dokumentId, pfadOfLink");
 		if(rows.size() == 0)
     	    throw new Exception("Record not Found");
 		for (int i = 0; i < rows.size(); i++){
@@ -76,7 +76,7 @@ public class DataSetLink {
 		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokumentlinks " +
 				"where kundenId = " + dokument.getKundenId() + " and standortId = " + dokument.getStandortId() +
 				" and dokumentTyp = '"+ dokument.getDokumentTyp()+ "'" + " and dokumentNr = "+ dokument.getNummer() + " and dokumentId = "+ dokument.getId() + 
-				" ORDER BY dokumentTyp, dokumentNr, dokumentId");
+				" ORDER BY dokumentTyp, dokumentNr, dokumentId, pfadOfLink");
 		if(rows.size() == 0)
     	    throw new Exception("Record not Found");
 		for (int i = 0; i < rows.size(); i++){

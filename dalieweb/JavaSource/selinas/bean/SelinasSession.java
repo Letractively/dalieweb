@@ -14,7 +14,6 @@ import database.getDatabase.DataSetDokument;
  * selinas.java
  * 
  */
-
 public class SelinasSession {
 
 	
@@ -36,8 +35,8 @@ public class SelinasSession {
 	* </ul>
 	* @return
 	* <ul><li>Dokument dokument</li></ul>
-     * @throws Exception
-     * @throws NumberFormatException
+    * @throws Exception
+    * @throws NumberFormatException
 	*/
 	public Dokument getDokumentOfDatabase(Database dbConn,User user,HttpServletRequest request) throws Exception{
 	    Dokument dokumentOfDatabase = null;
@@ -67,6 +66,41 @@ public class SelinasSession {
         dbConn.close();
         return  dokumentOfInitialize;
     }//getDokument
+	
+	public Dokument getDokumentOfUpdate(Database dbConn,User user,Dokument ofSession, HttpServletRequest request)throws Exception{
+		Dokument dokumentOfUpdate = ofSession;
+		dokumentOfUpdate.setTitel(collapseSpaces(request.getParameter(session.getTitel())));
+		dokumentOfUpdate.setDescripten(request.getParameter(session.getDescripten()));
+		dokumentOfUpdate.setContent(collapseSpaces(request.getParameter(session.getContent())));
+		dokumentOfUpdate.setGliederung(request.getParameter(session.getGliederung()));
+		dokumentOfUpdate.setArchiv(request.getParameter(session.getArchiv()));
+		dokumentOfUpdate.setVorgabe(request.getParameter(session.getVorgabe()));
+		dokumentOfUpdate.setStatus(request.getParameter(session.getStatus()));
+		dbConn.getConnection();//DataBaseConnection open
+		DataSetDokument.update(dbConn, user, dokumentOfUpdate);
+		dokumentOfUpdate = DataSetDokument.chain(dbConn, user, dokumentOfUpdate);
+		dbConn.close();//DataBaseConnection close
+		return dokumentOfUpdate;
+	}//getDokument  
+	
+	/**
+	 * Remove/collapse multiple spaces.
+	 *
+	 * @param argStr string to remove multiple spaces from.
+	 * @return String
+	 */
+	  String collapseSpaces(String argStr){
+	      char last = argStr.charAt(0);
+	      StringBuffer argBuf = new StringBuffer();
+	      for (int cIdx = 0 ; cIdx < argStr.length(); cIdx++){
+	          char ch = argStr.charAt(cIdx);
+	          if (ch != '\''){
+	              argBuf.append(ch);
+	              last = ch;
+	          }//endif
+	      }//for
+	      return argBuf.toString();
+	  }//collapseSpaces
 	
 }//class selinas
 
