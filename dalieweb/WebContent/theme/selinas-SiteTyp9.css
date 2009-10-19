@@ -18,11 +18,14 @@
 	background: #97BEA9;
 	float: left;
 	width: 60%;
+	margin-left: 3px;
 }
 #pageContentRight {
 	background-color: gray;
 	float: left;
-	width: 19.5%;	
+	margin-left: 2px;
+	width: 19.0%;
+	height: 735px;	
 }
 #pageFooter {
 	background-color: fuchsia;
