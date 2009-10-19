@@ -39,5 +39,5 @@ public class InputCheck {
         	    return false;   
       		}//endif    
     }//checkInput
-	
+    
 }//class InputCheck

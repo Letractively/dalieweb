@@ -27,7 +27,7 @@ public class ErrorServlet extends HttpServlet implements Servlet {
             session.setAttribute("Error","no");
             Enumeration eParameters = request.getParameterNames();
             while (eParameters.hasMoreElements()) {
-                	String param = eParameters.nextElement().toString();
+                	String  param =  eParameters.nextElement().toString();
                 	System.out.println("Parameter..: " + param + " = " + "ParameterValue..: "+ request.getParameter(param));
                 	InputCheck test = new InputCheck(dbConn, param, request.getParameter(param),(String) session.getAttribute("Speech"));
                 	if (test.CheckInput()){
