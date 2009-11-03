@@ -27,25 +27,28 @@ body {
 	margin-top: 30px;
 	margin-right: 10px;
 	margin-left: 10px;
+	padding: 2px;
+	height: 26px;
+	vertical-align: middle;
 }
 #navigation table {
 	background: #07565B;
 	border-collapse: collapse;
 	color: gray;
-	margin-top: 5px;
-	margin-bottom: 5px;
-	margin-right: 0px;
-	margin-left: -10px;
+	margin: 4px 0 4px 20px;
+	padding-top: 10px
 }
 
-#navigation td {
+#navigation table td {
 	border-style: dotted;
 	border-width: 1px;
 	border-color: gray;
+	padding: 0px 10px 0px 10px;
 }
 
-#navigation td.aktiv {
+#navigation table td.aktiv {
 	border: 1px solid #d3be92 /*#EDE290*/;
+	margin-bottom: 10px;
 }
 
 #hauptinhalt { /* Foto mit Anschrift */
@@ -87,9 +90,7 @@ h1,
 #hauptinhalt table,
 #inhalt table,
 #inhalt p,
-#inhalt h3,
-#navigation td,
-#navigation {
+#inhalt h3 {
 	padding: 0 30px;
 }
 
