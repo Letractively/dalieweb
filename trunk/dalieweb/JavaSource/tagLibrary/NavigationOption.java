@@ -38,17 +38,17 @@ public class NavigationOption extends TagSupport {
                 	return Tag.SKIP_BODY; // Ignore body of the tag
                 } else {
                     if(navigation.indicator.equalsIgnoreCase("B")) {
-                        out.println("<table><tr><td>PERSONENDATEN</td><td class='aktiv'><span style='font-size:17px'><em>B</em></span>ERUFSLAUFBAHN</td><td>BILDUNBSWEG</td><td>PROJEKTE</td><td>LEHRGÄNGE</td><td>PERSÖHNLICHES</td></tr></table>");
+                        out.println("<table><tr><td>PERSONENDATEN</td><td class='aktiv'><span style='font-size:17px'><em>B</em></span>ERUFSLAUFBAHN</td><td>BILDUNGSWEG</td><td>PROJEKTE</td><td>LEHRGÄNGE</td><td>PERSÖNLICHES</td></tr></table>");
                     } else if(navigation.indicator.equalsIgnoreCase("K")) {
-                        out.println("<table><tr><td class='aktiv'><span style='font-size:17px'><em>P</em></span>ERSONENDATEN</td><td>BERUFSLAUFBAHN</td><td>BILDUNBSWEG</td><td>PROJEKTE</td><td>LEHRGÄNGE</td><td>PERSÖHNLICHES</td></tr></table>");
+                        out.println("<table><tr><td class='aktiv'><span style='font-size:17px'><em>P</em></span>ERSONENDATEN</td><td>BERUFSLAUFBAHN</td><td>BILDUNGSWEG</td><td>PROJEKTE</td><td>LEHRGÄNGE</td><td>PERSÖNLICHES</td></tr></table>");
                     } else if(navigation.indicator.equalsIgnoreCase("P")) {
-                        out.println("<table><tr><td>PERSONENDATEN</td><td>BERUFSLAUFBAHN</td><td>BILDUNBSWEG</td><td class='aktiv'><span style='font-size:17px'><em>P</em></span>ROJEKTE</td><td>LEHRGÄNGE</td><td>PERSÖHNLICHES</td></tr></table>");    
+                        out.println("<table><tr><td>PERSONENDATEN</td><td>BERUFSLAUFBAHN</td><td>BILDUNGSWEG</td><td class='aktiv'><span style='font-size:17px'><em>P</em></span>ROJEKTE</td><td>LEHRGÄNGE</td><td>PERSÖNLICHES</td></tr></table>");    
                     } else if(navigation.indicator.equalsIgnoreCase("L")) {
-                        out.println("<table><tr><td>PERSONENDATEN</td><td>BERUFSLAUFBAHN</td><td>BILDUNBSWEG</td><td>PROJEKTE</td><td class='aktiv'><span style='font-size:17px'><em>L</em></span>EHRGÄNGE</td><td>PERSÖHNLICHES</td></tr></table>");
+                        out.println("<table><tr><td>PERSONENDATEN</td><td>BERUFSLAUFBAHN</td><td>BILDUNGSWEG</td><td>PROJEKTE</td><td class='aktiv'><span style='font-size:17px'><em>L</em></span>EHRGÄNGE</td><td>PERSÖHNLICHES</td></tr></table>");
                     } else if(navigation.indicator.equalsIgnoreCase("S")) {
-                        out.println("<table><tr><td>PERSONENDATEN</td><td>BERUFSLAUFBAHN</td><td>BILDUNBSWEG</td><td>PROJEKTE</td><td>LEHRGÄNGE</td><td class='aktiv'><span style='font-size:17px'><em>P</em></span>ERSÖHNLICHES</td></tr></table>");
+                        out.println("<table><tr><td>PERSONENDATEN</td><td>BERUFSLAUFBAHN</td><td>BILDUNGSWEG</td><td>PROJEKTE</td><td>LEHRGÄNGE</td><td class='aktiv'><span style='font-size:17px'><em>P</em></span>ERSÖNLICHES</td></tr></table>");
                     } else if(navigation.indicator.equalsIgnoreCase("A")) {
-                        out.println("<table><tr><td>PERSONENDATEN</td><td>BERUFSLAUFBAHN</td><td class='aktiv'><span style='font-size:17px'><em>B</em></span>ILDUNBSWEG</td><td>PROJEKTE</td><td>LEHRGÄNGE</td><td>PERSÖHNLICHES</td></tr></table>");
+                        out.println("<table><tr><td>PERSONENDATEN</td><td>BERUFSLAUFBAHN</td><td class='aktiv'><span style='font-size:17px'><em>B</em></span>ILDUNGSWEG</td><td>PROJEKTE</td><td>LEHRGÄNGE</td><td>PERSÖNLICHES</td></tr></table>");
                     }else {
                         out.println("<table><tr><td class='aktiv'>"+navigation.indicator+"</td></tr></table>");
                     }//endif
