@@ -24,6 +24,7 @@
 <title>dalieweb</title>
 </head>
 <body>
+	<p>test</p>
 <div id="wrapper">
 	<div id="header">
 		<h1>Header</h1>
