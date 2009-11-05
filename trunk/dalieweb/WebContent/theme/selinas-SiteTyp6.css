@@ -73,7 +73,7 @@
 	max-width: 70%;
 }
 #contentRight {
-	background: #EEE6D2;
+	background: #E5E5E5;
 	float: right;
 	max-width: 28%;
 }
@@ -89,7 +89,10 @@
 	margin-bottom: 1.8em;
 	padding: 0 20px;
 }
-
+#content h2{
+	font-family: Verdana;
+	color: #003335;
+}
 h1,
 #content h2,
 #content h3,
