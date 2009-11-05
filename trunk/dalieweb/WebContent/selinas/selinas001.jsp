@@ -19,7 +19,7 @@
 <!-- Definition RSS Feed -->
 <link rel="alternate" type="application/rss+xml" title="dalieweb.de RSS-Feed" href="http://www.dalieweb.de/dalieweb.xml"/> 
 <!-- Script's  -->
-<script src="/script/dalieLogo.js" type="text/javascript"></script>
+<script src="<%= request.getContextPath()%>/script/dalieLogo.js" type="text/javascript"></script>
 <title>dalieweb</title>
 </head>
 <body onload="if(document.images) nextimg()">
@@ -28,26 +28,46 @@
 	alt="" name="ani" title="dalieweb" class="logo"/></a><span class="strapline">dalieweb.de</span></div><!-- pageHeader -->
 <div id="wrapper">
 	<div id="header">
-		<h1>Selinas - Onlineverwaltung von Dokumenten</h1>
 	</div><!-- header -->
 	<div id="wrapperContent">
 	<div id="content">		
-		<h2>Beschreibung von Selinas</h2>
-		<p>- Erstellung von verschieden Dokumenttypen z.B. Arbeitsanweisungen, Konzepten oder Formularen.<br /><br />
-			- Metadaten zu einem Dokument können bis zu einen gewissen Grad am Dokument frei definiert werden.<br /><br />
-			- Upload und download Funktion von Office-Dateien, die den Dokumenten zu geteilt werden.<br /><br />
-			- Volle Berechtigungssteuerung anlegen, verändern, löschen, kopieren.<br /><br />
-			- Selinas kann in allen Sprachen der Welt betrieben werden<br /><br />
-			- Dokumente könnten mit einer Struktur über mehrere Standorte eines Mandanten <br />&nbsp;&nbsp;organisiert und verwaltet werden.<br /><br />
-			- Zugriff nur für freigeschaltete User.<br /><br />
-			- Diverse Reportings werden als PDF zur Laufzeit generiert.<br /><br />
-		</p>
-		
-		<p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
-		<h3>Et harum quidem rerum</h3>
-		<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+		<h2>Selinas - Onlineverwaltung ihrer Dokumente</h2>
+		<p><img src="<%= request.getContextPath()%>/bilder/arrow.gif" alt="" /> Erstellung von verschieden Dokumenttypen z.B. Arbeitsanweisungen, Konzepten oder Formularen.</p>
+		<p><img src="<%= request.getContextPath()%>/bilder/arrow.gif" alt="" /> Metadaten zu einem Dokument können bis zu einen gewissen Grad am Dokument frei definiert werden.</p>
+		<p><img src="<%= request.getContextPath()%>/bilder/arrow.gif" alt="" /> Upload und download Funktion von Office-Dateien, die den Dokumenten zu geteilt werden.</p>
+		<p><img src="<%= request.getContextPath()%>/bilder/arrow.gif" alt="" /> Volle Berechtigungssteuerung anlegen, verändern, löschen, kopieren.</p>
+		<p><img src="<%= request.getContextPath()%>/bilder/arrow.gif" alt="" /> Selinas kann in allen Sprachen der Welt betrieben werden</p>
+		<p><img src="<%= request.getContextPath()%>/bilder/arrow.gif" alt="" /> Dokumente könnten mit einer Struktur über mehrere Standorte eines Mandanten <br />&nbsp;&nbsp;organisiert und verwaltet werden.</p>
+		<p><img src="<%= request.getContextPath()%>/bilder/arrow.gif" alt="" /> Zugriff nur für freigeschaltete User.</p>
+		<p><img src="<%= request.getContextPath()%>/bilder/arrow.gif" alt="" /> Diverse Reportings werden als PDF zur Laufzeit generiert.</p>
+		<br />
 	</div><!-- content -->
 	<div id="contentRight">	
+		<div class="titleTabTop">
+			<div>
+				<h4>Quick Start</h4>
+			</div>
+		</div><!-- titleTag -->
+<div class="box afterH4 quickStart">
+<ul class="circle">
+<li>Call 1-877-445-8228</li>
+<li>
+<a href="mailto:info@ingeniux.com">Email Ingeniux</a>
+</li>
+<li>
+<a href="http://www.ingeniux.com/Demo-Request-Form.xml">Online Demo</a>
+</li>
+<li>
+<a href="http://www.ingeniux.com/Request-a-Quote-Form.xml">Request a Quote</a>
+</li>
+<li>
+<a href="http://www.ingeniux.com/Newsletter-SignUp.xml">Sign-Up for Newsletter</a>
+</li>
+<li>
+<a href="http://www.ingeniux.com/Resources/Download-Whitepapers.xml">Download Whitepapers</a>
+</li>
+</ul>
+</div>
 		<div class="ws-notizen">
 	<h3>Login</h3> 
 	<form name="dokument" id="dokument" method="post" action="/dalieweb/LogOnSelina">
@@ -83,10 +103,24 @@
 	</div><!-- contentRight -->
 	</div><!-- wrapperContent -->	
 	<div id="footer">
-	<p>&nbsp;</p>
 	</div><!-- footer -->	
 </div><!-- wrapper -->
-<div id="pageFooter"><!-- CLASS:FooterLebenslauf --><dalie:FooterLebenslauf></dalie:FooterLebenslauf></div><!-- pageFooter -->	
+<div id="pageFooter"><!-- CLASS:FooterLebenslauf --><dalie:FooterLebenslauf></dalie:FooterLebenslauf>
+<div id="meta-wrap">
+<div class="vcard">
+ <a class="url" href="http://www.dalieonline.de/"></a>
+ <div class="org fn">dalieweb.de<br /></div>
+ <div class="adr">
+  <div class="street-address">Vogelsangstraße 9</div>
+  <span class="locality">Stuttgart</span> 
+  <span class="region">DE</span>
+  <span class="postal-code">70176</span>
+ </div>
+ <div class="tel"></div>
+	<a href="http://www.humboldt.edu/humboldt/contact">Contact Us.</a> | <a href="mailto:dalie@dalieweb.de">Schreiben</a>&nbsp;Sie mir!
+</div><!-- vcard -->
+</div><!-- meta-wrap -->
+</div><!-- pageFooter -->	
 </div><!-- page -->
 </body>
 </html>
