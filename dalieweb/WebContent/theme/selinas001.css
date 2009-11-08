@@ -1,7 +1,6 @@
 @CHARSET "ISO-8859-1" ;
 
 @IMPORT url("Master.css");
-
 @IMPORT url("selinas-SiteTyp6.css");
 
 #page {
@@ -52,6 +51,7 @@
 	border-top: 1px solid #e0d0b0;
 	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;
 	margin: 14px 10px;
+	overflow: hidden;
 }
 
 .ws-notizen input {
@@ -93,14 +93,17 @@ div .titleTabTop h4 {
 	color: #fff;
 	background: url(../bilder/title-tab-right.gif) no-repeat right top;
 }
+.quickStart {font-family: Arial, Verdana, Sans-Serif; font-size: 1.2em; color: #333;}
+.quickStart .circle li {background-position: 0px 9px; padding-top: 2px; padding-bottom: 2px;}
+.quickStart a {color: #333;}
+.quickStart a:hover {color: #2f66b0; text-decoration: underline;}
 
 #footer {
 	background-color: #FFFFFF;
 }
 
 #pageFooter {
-	background-image: url("../bilder/footer.jpg"); border-top : 1px dotted
-	#AAAAAA;
+	background-image: url("../bilder/footer.jpg"); border-top : 1px dotted #AAAAAA;
 	background-color: #7D9796;
 	color: #626262;
 	height: 12em;

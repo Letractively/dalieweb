@@ -1,122 +1,120 @@
 @CHARSET "ISO-8859-1" ;
 
 @IMPORT url("Master.css");
+@IMPORT url("selinas-SiteTyp10.css");
 
-@IMPORT url("selinas-SiteTyp9.css");
-
-#pageHeader {
-	border-bottom: 1px dotted #B2BCC6;
-	background-color: #FFFFFF;
-	border-top: 1px solid #778899;
-	height: 3em;
+.fontNormal {
+	color: #000;
+	font: normal 11px Verdana, Arial, Helvetica, sans-serif !important;
+}
+.fontBlackBold {
+	font-family: Verdana;
+	font-weight: bold;
+	font-size: 10px;
+	color: #000;
+}
+.fontBlack {
+	color: #000 !important;
+	font-weight: normal;
+	font-size: 10px;
+	padding-left: 5px;
+	font-family: Verdana;
+}
+.fontMediumBold {
+	font: bold 12px Verdana, Arial, Helvetica, sans-serif;
+	color: #2D5893;
+}
+.subheading {
+	border-bottom: 1px dotted;
+	padding-left: 3px;
+}
+.requestBox {
+	background-color: #FFFFF4;
+	border-color: #EAEAD4 #C3C39B #C3C39B #EAEAD4;
+	border-style: solid;
+	border-width: 3px;
+}
+.requestBox #topbg {
+	background-color: #D4D4AC;
+	border-bottom: 1px solid #999;
+	padding: 4px;
+}
+.requestBox #bottombg {
+	background-color: #EFEFD3
+}
+img.requests {
+	background: url(../bilder/sdp-icons-pack1.gif) -382px -48px no-repeat;
+	width: 21px;
+	height: 22px;
 }
 
+#pageHeader {
+	background-image: url("../bilder/header.jpg");
+	border-bottom: 1px dotted #B2BCC6;
+	background-color: #FFFFFF;
+	height: 8em;
+}
 #pageHeader .strapline {
 	color: #778899;
 	background: transparent;
 	float: right; /* Elemente umfließen lassen */
 	margin-right: 2em; /* transparenten Abstand von rechts */
 	margin-top: 0.5em /* transparenten Abstand von oben */;
-	font-family: Georgia, "Times New Roman";
-	font-size: 110%;
+	font-family: Arial Unicode MS, Georgia, "Times New Roman";
+	letter-spacing: 0.9px;
+	line-height: 0.8em;
+	font-size: large;
+	font-variant: small-caps;
 }
 #pageHeader .logo {
 	float: left; /* Elemente umfließen lassen */
 	margin-left: 1.5em; /* transparenten Abstand von links*/
 	margin-top: 0.5em; /* transparenten Abstand von oben */
-	border: 1px dotted #B2BCC6; /*Rahmen wie Link's */
-	background-color: #006666 /*Hintergrund Farbe Selinas Grün*/
+	border: 1px #B2BCC6; /*Rahmen wie Link's */
+	background-color: #234F4E /*Hintergrund Farbe Selinas Grün*/
 }
-#pageContentLeft{
-	border-top: 1px solid #B2BCC6;
-	background-color: #EEE;
-	clear: left;
+#pageWrapper{
+	width: 99%;
+	margin-right: 0.5%;
+	margin-left: 0.5%;
 }
-#pageContent{
-	background: #D1D1D1;
-	border-top: 1px solid #B2BCC6;
-	border-right: 1px solid #B2BCC6;
-	border-left: 1px solid #B2BCC6;
+.logOf {
+	background-image: url("../bilder/columnheadbg.gif"); 
+	border-color: #7992B8;
+	border-style: solid;
+	border-width: 1px;
+	margin-top: 0.5em;
+	padding-right: 0.5em;
 }
-#pageContentRight{
-	border-top: 1px solid #B2BCC6;
-	background-color: #EEE;
-	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;
-}
-.linkTable {
-	caption-side: bottom;
+#dokumentHeader{
+	background-color: #DEDEDE;
 	text-align: left;
-	background: #EEE6D2;
-	padding: 3px;
-	width: 100%;
 }
-.linkTable th {
-	font-weight: bold;
-	width: 100%;
-	text-align: center;
-}
-.linkTable td {
-	border-top: 1px solid #B2BCC6;
-	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;	
-	padding: 3px;
-	width: 0em;
-}
-a:link, a:visited {
-	text-decoration: none;
-	color: #2A4F6F;
-	background-color: transparent;
-	border-bottom: 1px dotted #B2BCC6
-}
-a:hover {
-	color: #778899;
-}
-
-#pageContentRight iframe{
-	border-bottom: 1px solid #B2BCC6;
-	height: 30em;
-}
-#pageContentLeft iframe{
-	border-bottom: 1px solid #B2BCC6;
-	height: 30em;
-}
-#wrapperContent table {
-	caption-side: bottom;
-	text-align: left;
-	background-color: #D1D1D1;
-	padding: 3px;
-	width: 100%;
-}
-#wrapperContent td {
-	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;
-	border-top: 1px solid #7F9DB9;
-	padding: 3px;
-}
-#contentRight{
-	border-left: 1px solid #7F9DB9;
-}
-.textarea {
-	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;
-	border: 1px solid #7F9DB9;
-	background-color: #E4E4E4;
-	margin-left: -2px;
-	padding-left: 3px;
-	width: 100%;
-}
-#footer {
-	background-color: #D1D1D1;
-	border-top: 1px solid #7F9DB9;
-	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;
+#dokumentHeader p {
+	margin-top: 5px;
+	padding-left: 10px; 
+	padding-right: 20px;
+	padding-top: 0px;
+	clear: none;
 }
 #pageFooter {
-	border-top: 1px dotted #AAAAAA;
-	background-color: #CCCCCC;
+	border-top : 1px dotted #AAAAAA;
+	background-image: url("../bilder/footer.jpg"); 
+	background-color: #7D9796;
 	color: #626262;
-	height: 3em;
-	width: 100%;
+	height: 12em;
+	width: 100%;;
+	border-top: 1px dotted #AAAAAA;
 }
-button {
-	font: 0.8em Arial, Tahoma, Verdana, sans-serif;
-	height: 2.0em;
-	text-align: center;
-	text-transform: uppercase;
+#meta-wrap {
+	text-align: left;
+	margin: 0 auto;
+	padding: 20px 0 0 410px;
+	width: 350px;
+}
+#vcard {
+	float: right;
+	clear: both;
+	width: 100px;
+	margin: 10px 0;
 }
