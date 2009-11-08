@@ -60,8 +60,8 @@
 			<description>Name of TableClass for CSS value</description>
 		</attribute>
 		<attribute><name>columnHeader</name><!--required = true compelling(zwingend) argument-->
-			<rtexprvalue>true</rtexprvalue><!--dynamisch durch Skriptteile erlaubt-->
 			<required>true</required>
+			<rtexprvalue>true</rtexprvalue><!--dynamisch durch Skriptteile erlaubt-->
 			<description>Content of TableHeader</description></attribute>
 	</tag>
 <tag>
@@ -98,8 +98,8 @@
 			<description>Name of TableClass for CSS value</description>
 		</attribute>
 		<attribute><name>columnHeader</name><!--required = true compelling(zwingend) argument-->
-			<rtexprvalue>true</rtexprvalue><!--dynamisch durch Skriptteile erlaubt-->
 			<required>true</required>
+			<rtexprvalue>true</rtexprvalue><!--dynamisch durch Skriptteile erlaubt-->
 			<description>Content of TableHeader</description></attribute>
 	</tag>
 <tag>
@@ -136,8 +136,8 @@
 			<description>Name of TableClass for CSS value</description>
 		</attribute>
 		<attribute><name>columnHeader</name><!--required = true compelling(zwingend) argument-->
-			<rtexprvalue>true</rtexprvalue><!--dynamisch durch Skriptteile erlaubt-->
 			<required>true</required>
+			<rtexprvalue>true</rtexprvalue><!--dynamisch durch Skriptteile erlaubt-->
 			<description>Content of TableHeader</description></attribute>
 	</tag>
 		<tag>
