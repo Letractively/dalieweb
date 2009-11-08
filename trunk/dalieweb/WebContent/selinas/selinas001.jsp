@@ -25,7 +25,7 @@
 <body onload="if(document.images) nextimg()">
 <div id="page">
 	<div id="pageHeader"><a href="http://www.dalieweb.de/" target="_self"><img src="<%= request.getContextPath()%>/bilder/pfeilmit01.gif" width="60" height="60"
-	alt="" name="ani" title="dalieweb" class="logo"/></a><span class="strapline">dalieweb.de</span></div><!-- pageHeader -->
+	alt="" name="ani" title="dalieweb" class="logo"/></a><span class="strapline">dalieweb.de</span></div><!-- /pageHeader -->
 <div id="wrapper">
 	<div id="header">
 	</div><!-- header -->
@@ -47,7 +47,7 @@
 			<div>
 				<h4>Quick Start</h4>
 			</div>
-		</div><!-- titleTag -->
+		</div><!-- /titleTag -->
 <div class="box afterH4 quickStart">
 <ul class="circle">
 <li>Call 1-877-445-8228</li>
@@ -55,19 +55,19 @@
 <a href="mailto:info@ingeniux.com">Email Ingeniux</a>
 </li>
 <li>
-<a href="http://www.ingeniux.com/Demo-Request-Form.xml">Online Demo</a>
+<a href="http://www.ingeniux.com/Demo-Request-Form.xms">Online Demo</a>
 </li>
 <li>
-<a href="http://www.ingeniux.com/Request-a-Quote-Form.xml">Request a Quote</a>
+<a href="http://www.ingeniux.com/Request-a-Quote-Form.xms">Request a Quote</a>
 </li>
 <li>
-<a href="http://www.ingeniux.com/Newsletter-SignUp.xml">Sign-Up for Newsletter</a>
+<a href="http://www.ingeniux.com/Newsletter-SignUp.xms">Sign-Up for Newsletter</a>
 </li>
 <li>
-<a href="http://www.ingeniux.com/Resources/Download-Whitepapers.xml">Download Whitepapers</a>
+<a href="http://www.ingeniux.com/Resources/Download-Whitepapers.xms">Download Whitepapers</a>
 </li>
 </ul>
-</div>
+</div><!-- /box afterH4 quickStart -->
 		<div class="ws-notizen">
 	<h3>Login</h3> 
 	<form name="dokument" id="dokument" method="post" action="/dalieweb/LogOnSelina">
@@ -117,7 +117,7 @@
   <span class="postal-code">70176</span>
  </div>
  <div class="tel"></div>
-	<a href="http://www.humboldt.edu/humboldt/contact">Contact Us.</a> | <a href="mailto:dalie@dalieweb.de">Schreiben</a>&nbsp;Sie mir!
+	<a href="http://www.dalieonline.de">Contact Us.</a> | <a href="mailto:dalie@dalieweb.de">Schreiben</a>&nbsp;Sie mir!
 </div><!-- vcard -->
 </div><!-- meta-wrap -->
 </div><!-- pageFooter -->	
