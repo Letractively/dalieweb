@@ -35,94 +35,94 @@
 %>
 <div id="page">
 	<div id="pageHeader">
-		<a href="http://www.dalieweb.de/" target="_self"><img src="<%= request.getContextPath()%>/bilder/pfeilmit01.gif" width="60" height="60"
-	alt="" name="ani" title="dalieweb" class="logo"/></a><span class="strapline">dalieweb.de</span>
-	</div><!-- pageHeader -->
-		<div id="pageContentLeft">
+		<a href="http://www.dalieweb.de/" target="_self">
+		<img src="<%= request.getContextPath()%>/bilder/pfeilmit01.gif" width="60" height="60" alt="" name="ani" title="dalieweb" class="logo"/></a>
+		<span class="strapline">dalieweb.de</span>
+	</div><!-- /pageHeader -->
+	<div id="pageWrapper">
+		<div class="logOf">
 		<table border="0" cellspacing="0" cellpadding="0" width="100%">
 		<tr>
-		<td valign="middle" align="left">&nbsp;</td>
-		<td valign="middle" 
-			align="right" class="strapline"><%= user.user.getName() %>, <%= user.user.getVorname() %>&nbsp;
-			<a href="<%= request.getContextPath()%>/LogOffSelina" target="_self">Log off</a></td>
+			<td valign="middle" align="left">&nbsp;</td>
+			<td valign="middle" align="right" class="strapline"><%= user.user.getName() %>, <%= user.user.getVorname() %>&nbsp; <a href="<%= request.getContextPath()%>/LogOffSelina" target="_self">Log off</a></td>
 		</tr>
-		</table> 
-		<dalie:DokumentTypTag data="N" columnHeader='<%= dokument.getDokumentTyp() %>' tableTagClass="linkTable"></dalie:DokumentTypTag>
-		<iframe src="<%= request.getContextPath()%>/selinas/selinas003FD.jsp" width="100%" name="selinas1" frameborder="0"></iframe>
-		</div><!-- pageContentLeft -->
-	<div id="pageContentWrapper">
-		<div id="pageContent">
-			<form name="dokument" method="post" action="<%= request.getContextPath()%>/DokumentToProcessServlet">
-			<table border="0" cellspacing="0" cellpadding="0" width="100%">
-		<tr>
-		<td valign="middle" align="left">&nbsp;</td>
-		<td valign="middle" align="right">&nbsp;</td>
-		</tr>
-		</table> 
-			<div id="wrapperContent">
-	<div id="content">		
-	<table>
+		</table>
+	</div>
+		<div id="dokumentHeader">
+			<br />
+			<table width='100%' border="0" cellspacing="0" cellpadding="5">
 			<tr>
-				<td><%= show.session.getGliederung() %></td><td><dalie:InputOption name='<%= show.session.getGliederung() %>' value='<%= dokument.getGliederung() %>' tabindex="1"></dalie:InputOption></td>
-			</tr>
-			<tr>	
-				<td><%= show.session.getArchiv() %></td><td><dalie:InputOption name='<%= show.session.getArchiv() %>' value='<%= dokument.getArchiv() %>' tabindex="2"></dalie:InputOption></td>
-			</tr>
-			<tr>	
-				<td><%= show.session.getVorgabe() %></td><td><dalie:InputOption name='<%= show.session.getVorgabe() %>' value='<%= dokument.getVorgabe() %>' tabindex="3"></dalie:InputOption></td>
-			</tr>
-			<tr>	
-				<td><%= show.session.getStatus() %></td><td><dalie:Selectbox name='<%= show.session.getStatus() %>' id='<%= show.session.getStatus() %>' argument='<%= dokument.getStatus() %>' ccsStyle="selectbox" tabindex="4"></dalie:Selectbox></td>
+				<td align="left" valign="top" width="2%" rowspan="2">&nbsp;<img src="<%= request.getContextPath()%>/bilder/spacer.gif" class="requests" width="21" height="22" hspace="8" vspace="8" alt="requests"/></td>
+				<td align="left" valign="middle"> <span class='fontMediumBold'><%= dokument.getTitel() %> </span></td>
 			</tr>
 			<tr>
-				<td>&nbsp;</td><td>&nbsp;</td>
+				<td><span class='fontNormal'><em>Dokumenten-Nr. : </em><%= dokument.getNummer() %>.<%= dokument.getId() %></span></td>
 			</tr>
 		</table>
-	</div><!-- content -->
-	<div id="contentRight">	
-		<table>
-			<tr>
-			 <td><%= show.session.getTitel() %></td><td><dalie:InputOption name='<%= show.session.getTitel() %>' value='<%= dokument.getTitel() %>' size="29" tabindex="5"></dalie:InputOption></td>
-			</tr>
-			<tr>
-			 <td><%= show.session.getDescripten() %></td><td><dalie:InputOption name='<%= show.session.getDescripten() %>' value='<%= dokument.getDescripten() %>' size="29" tabindex="6"></dalie:InputOption></td>
-			</tr>
-			<tr>
-			<td colspan="2"><textarea name='<%= show.session.getContent() %>' class="textarea" rows="30" cols="30"><%= dokument.getContent()%></textarea></td>	
-			</tr>
-		</table>
-	</div><!-- contentRight -->
-	</div><!-- wrapperContent -->
-		<div id="footer">
-				<dalie:ButtonOption name="submit" accesskey="s" tabindex="8">Verarbeitung <span style="text-decoration:underline">s</span>tarten</dalie:ButtonOption>	
-				<!-- CLASS:HinweisOption --><dalie:HinweisOption message='${requestScope.Message}'></dalie:HinweisOption>
-		</div><!-- footer -->	
-		</form>
-		</div><!-- pageContent -->
-		<div id="pageContentRight">
-			<dalie:DokumentLinkTag data="N" columnHeader='<%= ColumHeader.valueOf("2") %>' tableTagClass="linkTable"></dalie:DokumentLinkTag>
-			<iframe src="<%= request.getContextPath()%>/selinas/selinas003FL.jsp" width="100%" name="selinas2" frameborder="0"></iframe>
-			<form action="<%= request.getContextPath()%>/DokumentUploadServlet" enctype="multipart/form-data" method="post">
-			<table>
-	<tfoot>
-		<tr>
-			<td><dalie:ButtonOption name="submit" accesskey="s" tabindex="8">Upload <span style="text-decoration:underline">s</span>tarten</dalie:ButtonOption>
-			<dalie:ButtonOption name="beenden" accesskey="e" tabindex="9">B<span style="text-decoration:underline">e</span>enden</dalie:ButtonOption></td>
-		</tr>
-	</tfoot>
-		<tr>
-			<td><input type="file" name="myFile" size="15" tabindex='7' maxlength="255"/></td>
+			<br />
+		</div><!-- /dokumentHeader -->
+		<div id="wrapper">
+			 <table width="100%" border="0" cellspacing="0" cellpadding="0"  class="requestBox">
+                <tr>
+                  <td id="topbg"><span class="fontBlack"> Requested by </span><span class="fontBlackBold">Uwe Dalies</span></td>
+              </tr>
+              <tr>
+        	<td height="0" valign="top">
+                <table width="100%" border="0" cellpadding="4" cellspacing="0">
+                     <tr>
+                      	<td class="subheading"><strong>Betreff:</strong></td>
+                     </tr>
+					<tr>
+                	    <td colspan="3" valign="middle" class="fontBlack"><p><%= dokument.getDescripten() %></p></td>
+                    </tr>
+                    <tr>
+            	        <td class="subheading"><strong>Inhalt:</strong></td>
+      				</tr>
+        			<tr>
+        				<td colspan="3" valign="middle" class="fontBlack"> <p><%= dokument.getContent() %></p></td>
+       				</tr>
+					<tr>
+        				<td colspan="3" valign="top" id="bottombg">Hallo</td>
+					</tr>
+				</table>
+			</td>
 		</tr>
 	</table>
-			<!-- CLASS:HinweisOption -->
-			<dalie:HinweisOption message='${requestScope.upload}'></dalie:HinweisOption>
-			</form>
-		</div><!-- pageContentRight -->
-	</div><!-- pageContentWrapper -->
-	<div id="pageFooter">
-		<!-- CLASS:FooterLebenslauf -->
-			<dalie:FooterLebenslauf></dalie:FooterLebenslauf>
-	</div><!-- pageFooter -->	
+		<br />
+			<div id="content">	
+				<p>content </p>	
+			</div><!-- /content -->
+			<div id="contentRight">	
+				<p>contentRight</p>
+			</div><!-- /contentRight -->
+		</div><!-- wrapper -->
+		<div id="footer">
+			<dalie:DokumentTypTag data="N" columnHeader='<%= dokument.getDokumentTyp() %>' tableTagClass="linkTable"></dalie:DokumentTypTag>
+			<iframe src="<%= request.getContextPath()%>/selinas/selinas003FD.jsp" width="100%" name="selinas1" frameborder="0"></iframe>
+		</div><!-- /footer -->	
+	</div><!-- /pageWrapper -->
+		<div id="pageFooter">
+			<dalie:FooterLebenslauf></dalie:FooterLebenslauf><!-- CLASS:FooterLebenslauf -->
+			<div id="meta-wrap">
+				<div class="vcard">
+ 					<a class="url" href="http://www.dalieonline.de/"></a>
+ 					<div class="org fn">
+						dalieweb.de<br />
+					</div><!-- /org fn -->
+ 					<div class="adr">
+ 						<div class="street-address">
+							Vogelsangstraﬂe 9
+						</div><!-- street-address -->
+  						<span class="locality">Stuttgart</span> 
+  						<span class="region">DE</span>
+  						<span class="postal-code">70176</span>
+				 	</div><!-- /adr -->
+ 					<div class="tel">
+					</div><!-- /tel -->
+					<a href="http://www.dalieonline.de">Contact Us.</a> | <a href="mailto:dalie@dalieweb.de">Schreiben</a>&nbsp;Sie mir!
+				</div><!-- /vcard -->
+			</div><!-- /meta-wrap -->
+		</div><!-- /pageFooter -->	
 </div><!-- page -->
 </body>
 </html>
