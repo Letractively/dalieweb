@@ -90,7 +90,19 @@
 	</table>
 		<br />
 			<div id="content">	
-				<p>content </p>	
+				<dalie:DokumentLinkTag data="N" columnHeader='<%= ColumHeader.valueOf("2") %>' tableTagClass="linkTable"></dalie:DokumentLinkTag>
+					<iframe src="<%= request.getContextPath()%>/selinas/selinas003FL.jsp" width="100%" name="selinas2" frameborder="0"></iframe>
+				<form action="<%= request.getContextPath()%>/DokumentUploadServlet" enctype="multipart/form-data" method="post">
+					<table>
+						<tr>
+							<th><input type="file" name="myFile" tabindex='7' maxlength="255"/></th>
+						<th>
+							<dalie:ButtonOption name="submit" accesskey="s" tabindex="8">Upload <span style="text-decoration:underline">s</span>tarten</dalie:ButtonOption>		
+						</th>
+					</tr>
+				</table>
+				<dalie:HinweisOption message='${requestScope.upload}'></dalie:HinweisOption><!-- CLASS:HinweisOption -->
+				</form>
 			</div><!-- /content -->
 			<div id="contentRight">	
 				<p>contentRight</p>
