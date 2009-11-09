@@ -19,9 +19,9 @@
 <link href="http://www.dalieweb.de/pfeilmit01.ico" rel="shortcut icon" title="dalieweb" type="image/x-icon"/>
 <title>dalieweb</title>
 </head>
-<body>
-		
-		<dalie:DokumentLinkTag header="N" farbe1="#EEE6D2" farbe2="#E0D2AB" columnHeader='<%= ColumHeader.valueOf("2") %>' tableTagClass="linkTable"></dalie:DokumentLinkTag>
-	
+<body>	
+	<div id="contents">
+	<dalie:DokumentLinkTag header="N" farbe1="#EEEEEE" farbe2="#DEDEDE" columnHeader='<%= ColumHeader.valueOf("2") %>' tableTagClass="linkTable"></dalie:DokumentLinkTag>
+	</div>
 </body>
 </html>
