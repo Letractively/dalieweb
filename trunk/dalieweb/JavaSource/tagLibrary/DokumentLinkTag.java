@@ -55,7 +55,7 @@ public class DokumentLinkTag extends TagSupport{
                     JspWriter out = pageContext.getOut();
                     try{
                     	dbConn.getConnection();
-                    	out.println("<table class="+ FB+ tableTagClass + FB+ ">"
+                    	out.println("<table width='100%' border='0' cellspacing='0' cellpadding='5' class="+ FB+ tableTagClass + FB+ ">"
                     			+ writeDokumentHeaderToPageContext(columnHeader)
 								+ writeDokumentDataToPageContext(DataSetLink.read(dbConn,dokument)));   
                     	dbConn.close();
