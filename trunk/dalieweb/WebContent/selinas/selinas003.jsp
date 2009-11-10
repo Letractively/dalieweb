@@ -32,6 +32,7 @@
 	SelinasSession show = new SelinasSession((Selinas) session.getAttribute("Selinas")); 
     SelinasUser user = (SelinasUser) session.getAttribute("User");
 	Dokument dokument = (Dokument)session.getAttribute("Dokument");
+	String language = (String)session.getAttribute("Speech");
 %>
 <div id="page">
 	<div id="pageHeader">
@@ -40,10 +41,10 @@
 		<span class="strapline">dalieweb.de</span>
 	</div><!-- /pageHeader -->
 	<div id="pageWrapper">
-		<div class="logOf">
+		<div id="navigation">
 		<table border="0" cellspacing="0" cellpadding="0" width="100%">
 		<tr>
-			<td valign="middle" align="left">&nbsp;</td>
+			<td valign="middle" align="left"><dalie:DokumentNavTag current="<%= dokument.getDokumentTyp() %>"></dalie:DokumentNavTag></td>
 			<td valign="middle" align="right" class="strapline"><%= user.user.getName() %>, <%= user.user.getVorname() %>&nbsp; <a href="<%= request.getContextPath()%>/LogOffSelina" target="_self">Log off</a></td>
 		</tr>
 		</table>
@@ -52,7 +53,7 @@
 			<br />
 			<table width='100%' border="0" cellspacing="0" cellpadding="5">
 			<tr>
-				<td align="left" valign="top" width="2%" rowspan="2">&nbsp;<img src="<%= request.getContextPath()%>/bilder/spacer.gif" class="requests" width="21" height="22" hspace="8" vspace="8" alt="requests"/></td>
+				<td align="left" valign="top" width="2%" rowspan="3">&nbsp;<img src="<%= request.getContextPath()%>/bilder/spacer.gif" class="requests" width="21" height="22" hspace="8" vspace="8" alt="dokument"/></td>
 				<td align="left" valign="middle"> <span class='fontMediumBold'><%= dokument.getTitel() %> </span></td>
 			</tr>
 			<tr>
@@ -90,7 +91,7 @@
 	</table>
 		<br />
 			<div id="content">	
-				<dalie:DokumentLinkTag data="N" columnHeader='<%= ColumHeader.valueOf("2") %>' tableTagClass="linkTable"></dalie:DokumentLinkTag>
+				<dalie:DokumentLinkTag data="N" columnHeader='<%= ColumHeader.valueOf("2",language) %>' tableTagClass="linkTable"></dalie:DokumentLinkTag>
 					<iframe src="<%= request.getContextPath()%>/selinas/selinas003FL.jsp" width="100%" name="selinas2" frameborder="0"></iframe>
 				<form action="<%= request.getContextPath()%>/DokumentUploadServlet" enctype="multipart/form-data" method="post">
 					<table>
@@ -109,7 +110,7 @@
 			</div><!-- /contentRight -->
 		</div><!-- wrapper -->
 		<div id="footer">
-			<dalie:DokumentTypTag data="N" columnHeader='<%= dokument.getDokumentTyp() %>' tableTagClass="linkTable"></dalie:DokumentTypTag>
+			<dalie:DokumentTypTag data="N" columnHeader='<%= ColumHeader.valueOf("1",language) %>' typ='<%= dokument.getDokumentTyp() %>' tableTagClass="linkTable"></dalie:DokumentTypTag>
 			<iframe src="<%= request.getContextPath()%>/selinas/selinas003FD.jsp" width="100%" name="selinas1" frameborder="0"></iframe>
 		</div><!-- /footer -->	
 	</div><!-- /pageWrapper -->

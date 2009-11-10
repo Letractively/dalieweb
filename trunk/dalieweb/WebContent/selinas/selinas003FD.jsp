@@ -4,6 +4,7 @@
 <head> 
 <%@ page language="java"
 	import="database.dateien.Dokument"
+	import="selinas.ColumHeader"
 	contentType="text/html; charset=ISO-8859-1" 
 	pageEncoding="ISO-8859-1"%>
 <!-- onwn TagLib-Direktive -->
@@ -21,8 +22,11 @@
 </head>
 <body>
 <%	
-	Dokument dokument = (Dokument)session.getAttribute("Dokument");
+	Dokument dokument = (Dokument)session.getAttribute("Dokument");	
+	String language = (String)session.getAttribute("Speech");
 %>
-	<dalie:DokumentTypTag header="N" farbe1="#EEE6D2" farbe2="#E0D2AB" columnHeader='<%= dokument.getDokumentTyp() %>' tableTagClass="linkTable"></dalie:DokumentTypTag>
+	<div id="footers">
+	<dalie:DokumentTypTag header="N" farbe1="#EEEEEE" farbe2="#DEDEDE" columnHeader='<%= ColumHeader.valueOf("1",language) %>' typ='<%= dokument.getDokumentTyp() %>' tableTagClass="linkTable"></dalie:DokumentTypTag>
+	</div><!-- /footer -->
 </body>
 </html>
