@@ -15,15 +15,17 @@ import java.util.Hashtable;
  */
 public class ColumHeader {
 
-	public static final String[] columsOfTyp_0 = {"Typ des Dokuments","","Titel","Beschreibung","Ersteller","",""};
+	public static final String[] columsOfTyp_0 = {"Gliederung","21%","Titel","20%","Beschreibung","27%","Erstellt","18%","Geändert","24%"};
 	public static final String[] columsOfTyp_1 = {"Links zum Dokument"};
+	public static final String[] columsOfTyp_2 = {"Typ des Dokuments","15%","Gliederung","15%","Titel","15%","Beschreibung","25%","erstellt","15%","letzte Änderung","25"};
 	
 	private static Hashtable memberTable = init();
 	
 	private static Hashtable init() {
         Hashtable members = new Hashtable();
-        members.put("1",columsOfTyp_0);
-        members.put("2",columsOfTyp_1);
+        members.put("1DE",columsOfTyp_0);
+        members.put("2DE",columsOfTyp_1);
+        members.put("3DE",columsOfTyp_2);
         return members;
     }//init
 	
@@ -31,12 +33,12 @@ public class ColumHeader {
      * Returns a new ColumHeader based on the given String value.
      * @param string
     */
-    public static String[] valueOf(String string){
+    public static String[] valueOf(String typ, String sprache){
         String[] obj = null;
-        if (string != null) 
-            obj = (String[]) memberTable.get(string);
+        if (typ != null) 
+            obj = (String[]) memberTable.get(typ + sprache);
         if (obj == null) {
-            String err = "'" + string + "' is not a valid";
+            String err = "'" + typ + "' is not a valid";
             throw new IllegalArgumentException(err);
         }//endif
         return obj;
