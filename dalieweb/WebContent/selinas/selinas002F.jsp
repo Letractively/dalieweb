@@ -20,9 +20,12 @@
 <title>dalieweb</title>
 </head>
 <body>
-	<div id="content">	 	
-		<dalie:DokumentDataTag columnHeader='<%= ColumHeader.valueOf("1") %>'></dalie:DokumentDataTag>
-	</div><!-- content -->
+<%	
+	String language = (String)session.getAttribute("Speech");
+%>
+	<div id="wrappers">
+	<dalie:DokumentDataTag header="N" columnHeader='<%= ColumHeader.valueOf("1",language) %>'></dalie:DokumentDataTag>
+	</div>
 </body>
 </html>
 
