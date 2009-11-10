@@ -58,12 +58,12 @@ public class DokumentDataTag extends TagSupport {
                  	JspWriter out = pageContext.getOut();
                  	try{
                         dbConn.getConnection();
-                        out.println("<table class="+ FB+ tableTagClass + FB+ ">"
+                        out.println("<table width='100%' border='0' cellspacing='0' cellpadding='5' class="+ FB+ tableTagClass + FB+ ">"
                                 + writeDokumentHeaderToPageContext(columnHeader)
                                 + writeDokumentDataToPageContext(DataSetDokument.reade(dbConn, selinasuser.user)));
                         dbConn.close();
                  	}catch(Exception e){//no DokumentLinks found
-                    	out.println("<table class="+ FB+ tableTagClass + FB+ ">" 
+                    	out.println("<table width='100%' border='0' cellspacing='0' cellpadding='5' class="+ FB+ tableTagClass + FB+ ">" 
                     			+ writeDokumentHeaderToPageContext(columnHeader));
                     }//catch    
                         return EVAL_BODY_INCLUDE;//Evaluate body into existing out stream, and start next with doEndTag()
@@ -100,8 +100,8 @@ public class DokumentDataTag extends TagSupport {
 	    String TableTRTH = "";
         if (header.equalsIgnoreCase("J")){
         	TableTRTH = "<tr>";
-        	for(int i = 0; i < columnHeader.length; i++){
-        		TableTRTH = TableTRTH + "<th>"+ columnHeader[i].toString() +"</th>";
+        	for(int i = 0; i < columnHeader.length; i+=2){
+        		TableTRTH = TableTRTH + "<th width='"+ columnHeader[i+1].toString() +"'>"+ columnHeader[i].toString() +"</th>";
         	}//for
         TableTRTH = TableTRTH + "</tr>";
         }//endif
@@ -115,11 +115,12 @@ public class DokumentDataTag extends TagSupport {
 			Dokument data  = ((Dokument)dokumente.elementAt(i));
 			Typ dokumentTyp = DataSetTyp.chain(dbConn,data);
 			tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +
-					"<td>" + dokumentTyp.getDescription() +"</td>" +
-					"<td>" + data.getGliederung() +"</td>" +
-					"<td><a href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" target='_parent'>" + data.getTitel()+"</a></td>" +
-					"<td>" + data.getDescripten() + "</td>" +
-					"<td>" + data.getCreateUser() +"<br />"+  data.getCreateDate() +"</td>" +
+					"<td width='15%'>" + dokumentTyp.getDescription() +"</td>" +
+					"<td width='15%'>" + data.getGliederung() +"</td>" +
+					"<td width='15%'><a href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" target='_parent' class='link'>" + data.getTitel()+"</a></td>" +
+					"<td width='25%'>" + data.getDescripten() + "</td>" +
+					"<td width='15%'>" + data.getCreateUser() +"<br />"+  data.getCreateDate() +"</td>" +
+					"<td width='25%'>" + data.getChangeUser() +"<br />"+  data.getChangeDate() +"</td>" +
 					"</tr>";
 		}//for	
 	    return tableTRTD;	

@@ -44,8 +44,9 @@ public class DokumentTypTag extends TagSupport{
 	/** join for ccsValue  */
 	private String tableTagClass = "";
 	/** List of ColumnHeader */
-	private String columnHeader;
-	
+	private String[] columnHeader;
+	/** Typ of Dokument*/
+	private String typ;//AA=Arbeitsanweisung
 	
 	
 	public int doStartTag() throws JspException {
@@ -59,10 +60,9 @@ public class DokumentTypTag extends TagSupport{
                  	JspWriter out = pageContext.getOut();
                  	try{
                         dbConn.getConnection();
-                        Typ dokumentTyp = DataSetTyp.chain(dbConn,selinasuser.user.getKundenId(),selinasuser.user.getStandortId(),columnHeader,"DE");
-                        out.println("<table class="+ FB+ tableTagClass + FB+ ">"
-                                + writeDokumentHeaderToPageContext(dokumentTyp.getDescription())
-                                + writeDokumentDataToPageContext(DataSetDokument.reade(dbConn, selinasuser.user,dokumentTyp.getTyp())));
+                        out.println("<table cellspacing='0' cellpadding='0' width='100%' class="+ FB+ tableTagClass + FB+ ">"                       		
+                        		+ writeDokumentHeaderToPageContext(columnHeader)
+                                + writeDokumentDataToPageContext(DataSetDokument.reade(dbConn, selinasuser.user,typ)));
                         dbConn.close();
                  	}catch(Exception e){//no DokumentLinks found
                     	out.println("<table class="+ FB+ tableTagClass + FB+ ">" 
@@ -99,28 +99,39 @@ public class DokumentTypTag extends TagSupport{
             }//catch
     }//doEndTag
 	
-	
-	 private String writeDokumentHeaderToPageContext(String columnHeader) throws Exception {
+	 private String writeDokumentHeaderToPageContext(String[] columnHeader) throws Exception {
 	    String TableTRTH = "";
         if (header.equalsIgnoreCase("J")){
-        	TableTRTH = "<tr><th>"+ columnHeader +"</th></tr>";
+        	TableTRTH = "<tr>";
+        	for(int i = 0; i < columnHeader.length; i+=2){
+        		TableTRTH = TableTRTH + "<th width='"+ columnHeader[i+1].toString() +"'>"+ columnHeader[i].toString() +"</th>";
+        	}//for
+        TableTRTH = TableTRTH + "</tr>";
         }//endif
 	   return TableTRTH;
 	}//writeDokumentHeaderToPageContext
+	
+	 
 	 
 	 private String writeDokumentDataToPageContext(Vector dokumente) throws Exception {
 	    String tableTRTD = "";
 	    if (data.equalsIgnoreCase("J"))
-	    for (int i = 0; i < dokumente.size(); i++){  
+	    for (int i = 0; i < dokumente.size(); i++){         
 			Dokument data  = ((Dokument)dokumente.elementAt(i));
+			Typ dokumentTyp = DataSetTyp.chain(dbConn,data);
 			tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +
-					"<td><a href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" target='_parent'>" + data.getGliederung()+"&nbsp;"+data.getTitel()+"</a></td>" +
+					/*"<td>" + dokumentTyp.getDescription() +"</td>" +*/
+					"<td width='15%'>" + data.getGliederung() +"</td>" +
+					"<td width='15%'><a href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" target='_parent'>" + data.getTitel()+"</a></td>" +
+					"<td width='30%'>" + data.getDescripten() + "</td>" +
+					"<td width='20%'>" + data.getCreateUser() +"<br />"+  data.getCreateDate() +"</td>" +
+					"<td width='20%'>" + data.getChangeUser() +"<br />"+  data.getChangeDate() +"</td>" +
 					"</tr>";
 		}//for	
 	    return tableTRTD;	
 	}//writeDokumentDataToPageContext
-	 
 	
+	 
 	/** To find the internal state */
     public void release() {
         /* Der JSP-Container ruft die Methode release() auf, um den  */
@@ -153,8 +164,11 @@ public class DokumentTypTag extends TagSupport{
 		tableTagClass = css;
 	}//setTABLE
 	/** @param Vector columnHeader */
-	public void setColumnHeader(String columnHeader){
+	public void setColumnHeader(String[] columnHeader){
 		this.columnHeader = columnHeader;
 	}//setColumnHeader
-	
+	/** @param Typ DokumentTyp to set. */
+	public void setTyp(String typ) {
+		this.typ = typ;
+	}//setTyp
 }//class DokumentTypTag
