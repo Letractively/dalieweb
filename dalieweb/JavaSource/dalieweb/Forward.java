@@ -34,7 +34,7 @@ public class Forward extends HttpServlet implements Servlet {
             performForward("/lebenslauf/lebenslauf001.jsp", request, response);//Login
         }//catch
         
-        performForward("lebenslauf/lebenslauf002.jsp", request, response);//JSP- show all Dokuments
+        performForward("/lebenslauf/lebenslauf002.jsp", request, response);//JSP- show all Dokuments
     
 	}//perForm
     
