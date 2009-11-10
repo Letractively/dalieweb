@@ -80,4 +80,35 @@ public class DataSetTyp {
         	return new Typ((Vector)rows.elementAt(0));            
     }//getTypOfDokument
     
+    /**
+     * <b>Dokumenttyp aus Datenbank Tabelle dokumenttyp</b>
+     * <br><b>chain:Key int kundenId, int standortId, String sprachId</b>
+     * <br><br><b>public static</b><br>
+     * @param
+     * <ul>
+     * <li>Database dbConn</li>
+     * <li>int kundenId = 1</li>
+     * <li>int standortId = 1</li>
+     * <li>String dokumentyp = FO = Formular </li>
+     * <li>String sprachId = DE</li>
+     * </ul>
+     * @return
+     * <ul>
+     * <li>Dokumentyp dokumenttyp</li>
+     * </ul>
+     */
+    public static synchronized Vector reade(Database dbConn,int kundenId,int standortId,String sprachId) throws Exception {
+    	Vector liste = new Vector();
+    	Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokumenttyp " +
+                "where kundenId = "+kundenId+" " +
+        		"and standortId = "+standortId+" " +
+        		"and sprachId = '"+sprachId+"'");
+        if(rows.size() == 0)
+            throw new Exception("Record not Found");
+        for (int i = 0; i < rows.size(); i++){
+    		liste.addElement(new Typ((Vector) rows.elementAt(i)));
+    	}//for
+    	return liste;        
+    }//getTypOfDokument
+    
 }//class DataSetTyp
