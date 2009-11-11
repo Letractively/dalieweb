@@ -18,6 +18,7 @@ import database.dateien.Dokument;
 import database.dateien.Typ;
 import database.getDatabase.DataSetDokument;
 import database.getDatabase.DataSetTyp;
+import selinas.ColumHeader;
 import selinas.SelinasUser;
 
 /**
@@ -32,6 +33,7 @@ public class DokumentDataTag extends TagSupport {
     	
     private Database dbConn;
     private SelinasUser selinasuser;
+    private String language;
 
 	
 	/** separator " */
@@ -51,16 +53,24 @@ public class DokumentDataTag extends TagSupport {
         HttpSession session = pageContext.getSession();
         if (session.getAttribute("Database") != null) {
             dbConn = (Database) session.getAttribute("Database");
-            if (session.getAttribute("User") != null) {
-                selinasuser = (SelinasUser) session.getAttribute("User");
+            if(session.getAttribute("Speech") != null){
+            	language = (String)session.getAttribute("Speech");  
+            	if (session.getAttribute("User") != null) {
+            		selinasuser = (SelinasUser) session.getAttribute("User");
                 
                  try {
                  	JspWriter out = pageContext.getOut();
                  	try{
                         dbConn.getConnection();
-                        out.println("<table width='100%' border='0' cellspacing='0' cellpadding='5' class="+ FB+ tableTagClass + FB+ ">"
-                                + writeDokumentHeaderToPageContext(columnHeader)
-                                + writeDokumentDataToPageContext(DataSetDokument.reade(dbConn, selinasuser.user)));
+                        if(((String)session.getAttribute("SelectTyp")).equalsIgnoreCase("UB")){//Element Übersicht is aktiv
+                        	out.println("<table width='100%' border='0' cellspacing='0' cellpadding='5' class="+ FB+ tableTagClass + FB+ ">"
+                        	    + writeDokumentHeaderToPageContext(columnHeader)
+							    + writeDokumentDataToPageContext(DataSetDokument.reade(dbConn, selinasuser.user)));
+                        }else{
+                        	out.println("<table width='100%' border='0' cellspacing='0' cellpadding='5' class="+ FB+ tableTagClass + FB+ ">"
+                        		+ writeDokumentHeaderToPageContext(ColumHeader.valueOf("1",language))
+                                + writeDokumentDataToPageContextTyp(DataSetDokument.reade(dbConn, selinasuser.user,(String)session.getAttribute("SelectTyp"))));	
+                        }//endif
                         dbConn.close();
                  	}catch(Exception e){//no DokumentLinks found
                     	out.println("<table width='100%' border='0' cellspacing='0' cellpadding='5' class="+ FB+ tableTagClass + FB+ ">" 
@@ -74,15 +84,20 @@ public class DokumentDataTag extends TagSupport {
                                 + " is not vaild");
                     }//try 
       
+            	} else {
+            		throw new JspException("User object in session "
+            			+ session.getAttribute("User")
+						+ " has not the valid type");
+            	}//session.getAttribute("User")
             } else {
-                throw new JspException("User object in session "
-                        + session.getAttribute("User")
-                        + " has not the valid type");
-            }//session.getAttribute("User")
+                throw new JspException("Speech object in session "
+                    + session.getAttribute("Speech")
+                    + " has not the valid type");
+            }//session.getAttribute("Speech")
         } else {
             throw new JspException("Database object in session "
-                    + session.getAttribute("Database")
-                    + " has not the valid type");
+                + session.getAttribute("Database")
+                + " has not the valid type");
         }//session.getAttribute("Database")
     }//doStartTag
     
@@ -126,6 +141,22 @@ public class DokumentDataTag extends TagSupport {
 	    return tableTRTD;	
 	}//writeDokumentDataToPageContext
 	
+	private String writeDokumentDataToPageContextTyp(Vector dokumente) throws Exception {
+	    String tableTRTD = "";
+	    if (data.equalsIgnoreCase("J"))
+	    for (int i = 0; i < dokumente.size(); i++){         
+			Dokument data  = ((Dokument)dokumente.elementAt(i));
+			tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +
+					"<td width='15%'>" + data.getGliederung() +"</td>" +
+					"<td width='15%'><a href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" target='_parent' class='link'>" + data.getTitel()+"</a></td>" +
+					"<td width='25%'>" + data.getDescripten() + "</td>" +
+					"<td width='25%'>" + data.getCreateUser() +"<br />"+  data.getCreateDate() +"</td>" +
+					"<td width='25%'>" + data.getChangeUser() +"<br />"+  data.getChangeDate() +"</td>" +
+					"</tr>";
+		}//for	
+	    return tableTRTD;	
+	}//writeDokumentDataToPageContext
+	
 	/** To find the internal state */
     public void release() {
         /* Der JSP-Container ruft die Methode release() auf, um den  */
@@ -134,6 +165,7 @@ public class DokumentDataTag extends TagSupport {
       selinasuser = null;
       farbe = null;
       columnHeader = null;
+      language = null;
       super.release();
     }//release
     
