@@ -15,7 +15,7 @@ import java.util.Hashtable;
  */
 public class ColumHeader {
 
-	public static final String[] columsOfTyp_0 = {"Gliederung","21%","Titel","20%","Beschreibung","27%","Erstellt","18%","Geändert","24%"};
+	public static final String[] columsOfTyp_0 = {"Gliederung","15%","Titel","15%","Beschreibung","25%","erstellt","25%","letzte Änderung","25%"};
 	public static final String[] columsOfTyp_1 = {"Links zum Dokument"};
 	public static final String[] columsOfTyp_2 = {"Typ des Dokuments","15%","Gliederung","15%","Titel","15%","Beschreibung","25%","erstellt","15%","letzte Änderung","25"};
 	

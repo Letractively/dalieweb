@@ -45,7 +45,7 @@ public class DokumentToProcessServlet extends HttpServlet implements Servlet {
 	     
 	     String error = (String) session.getAttribute("Error");
 	     if (error.equalsIgnoreCase("yes")) { 
-	     	performForward("/selinas/selinas003.jsp",request,response);
+	     	performForward("/selinas/selinas004.jsp",request,response);
 	     } else {
 	     	try{
 	     		session.setAttribute("Dokument", show.getDokumentOfUpdate(dbConn,selinasuser.user,dokumentOfSession,request));//SessionAttribut:DokumentOfInitialization
