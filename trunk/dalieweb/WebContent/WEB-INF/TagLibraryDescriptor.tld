@@ -261,4 +261,8 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
+	<tag>
+		<name>StartNavTag</name>
+		<tag-class>tagLibrary.StartNavTag</tag-class>
+	</tag>
 </taglib>
