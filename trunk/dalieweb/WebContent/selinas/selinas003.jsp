@@ -45,7 +45,7 @@
 		<table border="0" cellspacing="0" cellpadding="0" width="100%">
 		<tr>
 			<td valign="middle" align="left"><dalie:DokumentNavTag current="<%= dokument.getDokumentTyp() %>"></dalie:DokumentNavTag></td>
-			<td valign="middle" align="right" class="strapline"><%= user.user.getName() %>, <%= user.user.getVorname() %>&nbsp; <a href="<%= request.getContextPath()%>/LogOffSelina" target="_self">Log off</a></td>
+			<td valign="middle" align="right" class="strapline"><%= user.user.getName() %>, <%= user.user.getVorname() %>&nbsp; <a href="<%= request.getContextPath()%>/LogOffSelina" target="_self" class="link">Log off</a></td>
 		</tr>
 		</table>
 	</div>
@@ -83,7 +83,14 @@
         				<td colspan="3" valign="middle" class="fontBlack"> <p><%= dokument.getContent() %></p></td>
        				</tr>
 					<tr>
-        				<td colspan="3" valign="top" id="bottombg">Hallo</td>
+        				<td colspan="3" valign="top" id="bottombg">
+							<form action="/dalieweb/DokumentToWorkServlet" method="post">
+								<input type="hidden" name="dokumentTyp" value="<%= dokument.getDokumentTyp() %>" />
+								<input type="hidden" name="dokumentNr" value="<%= dokument.getNummer() %>" />
+								<input type="hidden" name="dokumentId" value="<%= dokument.getId() %>" />
+								<dalie:ButtonOption name="submit" accesskey="b" tabindex="1">Dokument <span style="text-decoration:underline">b</span>earbeiten</dalie:ButtonOption>		
+							</form>
+						</td>
 					</tr>
 				</table>
 			</td>
@@ -92,21 +99,21 @@
 		<br />
 			<div id="content">	
 				<dalie:DokumentLinkTag data="N" columnHeader='<%= ColumHeader.valueOf("2",language) %>' tableTagClass="linkTable"></dalie:DokumentLinkTag>
-					<iframe src="<%= request.getContextPath()%>/selinas/selinas003FL.jsp" width="100%" name="selinas2" frameborder="0"></iframe>
+					<iframe src="<%= request.getContextPath()%>/selinas/selinas003FL.jsp" width="100%" name="selinas2" frameborder="0" height="100"></iframe>
 				<form action="<%= request.getContextPath()%>/DokumentUploadServlet" enctype="multipart/form-data" method="post">
 					<table>
 						<tr>
-							<th><input type="file" name="myFile" tabindex='7' maxlength="255"/></th>
-						<th>
-							<dalie:ButtonOption name="submit" accesskey="s" tabindex="8">Upload <span style="text-decoration:underline">s</span>tarten</dalie:ButtonOption>		
-						</th>
+							<td><input type="file" name="myFile" tabindex='2' maxlength="255"/></td>
+						<td>
+							<dalie:ButtonOption name="submit" accesskey="s" tabindex="3">Upload <span style="text-decoration:underline">s</span>tarten</dalie:ButtonOption>		
+						</td>
 					</tr>
 				</table>
 				<dalie:HinweisOption message='${requestScope.upload}'></dalie:HinweisOption><!-- CLASS:HinweisOption -->
 				</form>
 			</div><!-- /content -->
 			<div id="contentRight">	
-				<p>contentRight</p>
+				<p>&nbsp;</p>
 			</div><!-- /contentRight -->
 		</div><!-- wrapper -->
 		<div id="footer">

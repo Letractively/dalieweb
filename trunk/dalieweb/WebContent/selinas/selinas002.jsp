@@ -43,8 +43,8 @@
 		<div id="navigation">
 		<table border="0" cellspacing="0" cellpadding="0" width="100%">
 		<tr>
-			<td valign="middle" align="left"><dalie:DokumentNavTag current="AA"></dalie:DokumentNavTag></td>
-			<td valign="middle" align="right" class="strapline"><%= user.user.getName() %>, <%= user.user.getVorname() %>&nbsp; <a href="<%= request.getContextPath()%>/LogOffSelina" target="_self" class="link"><span class="link">Log off</span></a></td>
+			<td valign="middle" align="left"><dalie:StartNavTag></dalie:StartNavTag></td>
+			<td valign="middle" align="right" class="strapline"><%= user.user.getName() %>, <%= user.user.getVorname() %>&nbsp; <a href="<%= request.getContextPath()%>/LogOffSelina" target="_self" class="link">Log off</a></td>
 		</tr>
 		</table>
 	</div>
