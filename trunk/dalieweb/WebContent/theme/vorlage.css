@@ -1,0 +1,252 @@
+@CHARSET "ISO-8859-1";
+
+#page{
+	background: #fff;
+	width: 100%;
+}
+#pageHeader{
+	background-color: blue
+}
+#header {
+	background: #97BEA9;
+	color: #fff;
+	padding: 20px 0;
+}
+#wrapper {
+	background: #fff;
+	margin: 0 auto;
+	max-width: 100%;
+	text-align: center;
+	width: 100%;
+}
+#contentLeft {
+	background: #fff;
+	float: left;
+	width: 65%;
+}
+#contentRight {
+	background: #C6B8AF;	
+	float: right;
+	width: 35%;
+}
+#footer {
+	background: #39747A;
+	clear: both;
+	color: #eee;
+	padding: 20px 0;
+}
+#footer p {
+	font: 0.83em/ 1.8em Arial, Tahoma, Verdana, sans-serif;
+	margin-top: 1.8em;
+	margin-bottom: 1.8em;
+	padding: 0 20px;
+}
+#pageFooter {
+	background-color: fuchsia;
+	clear: both;
+	color: #fff;
+	padding: 2px 0;
+	text-align: left;
+}
+#pageFooter p {
+	font: 0.83em/ 1.8em Arial, Tahoma, Verdana, sans-serif;
+	margin:	0 3em;
+}
+#pageHeader {
+	background-image: url("../bilder/header.jpg");
+	border-bottom: 1px dotted #B2BCC6;
+	background-color: #FFFFFF;
+	height: 8em;
+}
+#pageHeader .strapline {
+	color: #778899;
+	background: transparent;
+	float: right; /* Elemente umfließen lassen */
+	margin-right: 2em; /* transparenten Abstand von rechts */
+	margin-top: 0.5em /* transparenten Abstand von oben */;
+	font-family: Arial Unicode MS, Georgia, "Times New Roman";
+	letter-spacing: 0.9px;
+	line-height: 0.8em;
+	font-size: large;
+	font-variant: small-caps;
+}
+#pageHeader .logo {
+	float: left; /* Elemente umfließen lassen */
+	margin-left: 1.5em; /* transparenten Abstand von links*/
+	margin-top: 0.5em; /* transparenten Abstand von oben */
+	border: 1px #B2BCC6; /*Rahmen wie Link's */
+	background-color: #234F4E /*Hintergrund Farbe Selinas Grün*/
+}
+#pageWrapper{
+	width: 99%;
+	margin-right: 0.5%;
+	margin-left: 0.5%;
+}
+#pageFooter {
+	border-top : 1px dotted #AAAAAA;
+	background-image: url("../bilder/footer.jpg"); 
+	background-color: #7D9796;
+	color: #626262;
+	height: 12em;
+	width: 100%;;
+	border-top: 1px dotted #AAAAAA;
+}
+#meta-wrap {
+	text-align: left;
+	margin: 0 auto;
+	padding: 20px 0 0 410px;
+	width: 350px;
+}
+#vcard {
+	float: right;
+	clear: both;
+	width: 100px;
+	margin: 10px 0;
+}
+/* ***************************************************************************** */
+/* General */
+body {
+	padding: 17px 0px 17px 0px; 
+	font-family: Verdana, Arial, Sans-Serif; 
+	font-size: 62.5%; 
+	color: #666;
+}
+
+.clearBoth {clear: both; height: 0px; font-size: 1px; line-height: 0px; display: block;}
+.hiddenItem {display:none;}
+.hiddenItem h2 {margin:0px;}
+
+#content {
+	float: left; 
+	/*width: 696px;*/
+}
+#homeFeatures{
+	padding: 0 20px;
+}
+#homeFeatures .tabs .firstItem a {
+	width: 176px;
+}
+
+#homeFeatures .content {
+	width: 661px;
+	font-size: 1.2em;
+	line-height: 1.5em;
+	padding: 20px 15px 15px 20px;
+	color: #666;
+}
+
+#homeFeatures .content strong {
+	color: #333;
+}
+
+#homeFeatures .content p {
+	margin-bottom: 10px;
+}
+
+#homeFeatures .leftContent {
+	float: left;
+	width: 480px;
+}
+
+#homeFeatures .rightContent {
+	float: right;
+	width: 150px;
+	font-size: 0.92em;
+	line-height: 1.64em;
+}
+ul.tabs {
+	height: 30px;
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+	font-family: Arial, Verdana, Sans-Serif;
+	font-size: 1.4em;
+	line-height: 2.14em;
+}
+
+ul.tabs li {
+	float: left;
+	border-bottom: solid 1px #c8c7c7;
+	text-align: center;;
+	background-position: left bottom;
+	background-repeat: repeat-x;
+	background-image: url("../bilder/shared/tabs/bg.gif")
+}
+
+ul.tabs li span {
+	display: block;
+	height: 30px;
+	background: url(../bilder/shared/tabs/left.gif) no-repeat;
+}
+
+ul.tabs li a {
+	display: block;
+	width: 174px;
+	height: 30px;
+	background: url(../bilder/shared/tabs/right.gif) no-repeat right top;
+	color: #555;
+	text-decoration: none;
+}
+
+ul.tabs li a:hover {
+	color: #1169ac;
+}
+
+ul.tabs li.adjacentOn a {
+	background-image: url(../bilder/shared/tabs/right-adjacent-on.gif);
+}
+
+ul.tabs li.on {
+	background-image: url(../bilder/shared/tabs/on-bg.gif);
+	border-bottom-color: #fff;
+}
+
+ul.tabs li.on span {
+	background-image: url(../bilder/shared/tabs/on-left.gif);
+}
+
+ul.tabs li.on a {
+	color: #1169ac;
+	background-image: url(../bilder/shared/tabs/on-right.gif);
+}
+
+ul.tabs li.firstItem span {
+	background-image: url(../bilder/shared/tabs/left-first.gif);
+}
+
+ul.tabs li.lastItem a {
+	background-image: url(../bilder/shared/tabs/right-last.gif);
+}
+
+ul.tabs li.firstItemOn span {
+	background-image: url(../bilder/shared/tabs/on-left-first.gif);
+}
+
+ul.tabs li.lastItemOn a {
+	background-image: url(../bilder/shared/tabs/on-right-last.gif);
+}
+
+/* Box w/ Rounded Bottom Corners */
+div.roundedBottom {
+	position: relative; 
+	border: solid 1px #c8c7c7; 
+	border-width: 0px 1px 0px 1px; 
+	background: url(../bilder/shared/border-bottom.gif) repeat-x left bottom;
+}
+div.roundedBottom .leftCorner {
+	position: absolute; 
+	left: -1px; 
+	bottom: 0px; 
+	width: 11px; 
+	height: 11px; 
+	background: url(../bilder/shared/bottom-left-corner-shadow.gif) no-repeat;
+}
+div.roundedBottom .rightCorner {
+	position: absolute; 
+	right: -1px; 
+	bottom: 0px; 
+	width: 11px; 
+	height: 11px; 
+	background: url(../bilder/shared/bottom-right-corner-shadow.gif) no-repeat;
+}
+/* ***************************************************************************** */
