@@ -153,10 +153,12 @@ body {
 	margin: 10px 0;
 }
 button {
-	display: inline;  /*über ganze breite */
+	display: inline; /* über ganze breite */
 	font: 0.8em Arial, Tahoma, Verdana, sans-serif;
-	height: 2.0em;
+	height: 2.2em;
 	text-align: center;
 	text-transform: uppercase;
-	width: auto;
+	padding-left: 3px;
+	padding-right: 3px;
+	vertical-align: middle;
 }
