@@ -35,7 +35,7 @@
 %>
 <div id="page">
 	<div id="pageHeader">
-		<a href="http://www.dalieweb.de/" target="_self">
+		<a href="<%= request.getContextPath()%>/dalieweb.jsp" target="_top">
 		<img src="<%= request.getContextPath()%>/bilder/pfeilmit01.gif" width="60" height="60" alt="" name="ani" title="dalieweb" class="logo"/></a>
 		<span class="strapline">dalieweb.de</span>
 	</div><!-- /pageHeader -->

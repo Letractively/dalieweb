@@ -24,7 +24,7 @@
 </head>
 <body onload="if(document.images) nextimg()">
 <div id="page">
-	<div id="pageHeader"><a href="http://www.dalieweb.de/" target="_self"><img src="<%= request.getContextPath()%>/bilder/pfeilmit01.gif" width="60" height="60"
+	<div id="pageHeader"><a href="<%= request.getContextPath()%>/dalieweb.jsp" target="_top"><img src="<%= request.getContextPath()%>/bilder/pfeilmit01.gif" width="60" height="60"
 	alt="" name="ani" title="dalieweb" class="logo"/></a><span class="strapline">dalieweb.de</span></div><!-- /pageHeader -->
 <div id="wrapper">
 	<div id="header">
@@ -52,19 +52,19 @@
 <ul class="circle">
 <li>Call 1-877-445-8228</li>
 <li>
-<a href="mailto:info@ingeniux.com">Email Ingeniux</a>
+<a href="mailto:dalie@dalieweb.de">Email dalieweb</a>
 </li>
 <li>
-<a href="http://www.ingeniux.com/Demo-Request-Form.xms">Online Demo</a>
+<a href="http://www.dalieonline.de/Demo-Request-Form.xms">Online Demo</a>
 </li>
 <li>
-<a href="http://www.ingeniux.com/Request-a-Quote-Form.xms">Request a Quote</a>
+<a href="http://www.dalieonline.de/Request-a-Quote-Form.xms">Request a Quote</a>
 </li>
 <li>
-<a href="http://www.ingeniux.com/Newsletter-SignUp.xms">Sign-Up for Newsletter</a>
+<a href="http://www.dalieonline.de/Newsletter-SignUp.xms">Sign-Up for Newsletter</a>
 </li>
 <li>
-<a href="http://www.ingeniux.com/Resources/Download-Whitepapers.xms">Download Whitepapers</a>
+<a href="http://www.dalieonline.com/Resources/Download-Whitepapers.xms">Download Whitepapers</a>
 </li>
 </ul>
 </div><!-- /box afterH4 quickStart -->
