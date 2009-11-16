@@ -22,8 +22,8 @@
 <body>
 <%	
 	String language = (String)session.getAttribute("Speech");
-%>
-	<div id="wrappers">
+%> 
+	<div id="wrappers"> 
 	<dalie:DokumentDataTag header="N" columnHeader='<%= ColumHeader.valueOf("1",language) %>'></dalie:DokumentDataTag>
 	</div>
 </body>

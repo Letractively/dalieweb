@@ -34,7 +34,7 @@
 	Dokument dokument = (Dokument)session.getAttribute("Dokument");
 	String language = (String)session.getAttribute("Speech");
 %>
-<div id="page">
+<div id="page"> 
 	<div id="pageHeader">
 		<a href="http://www.dalieweb.de/" target="_self">
 		<img src="<%= request.getContextPath()%>/bilder/pfeilmit01.gif" width="60" height="60" alt="" name="ani" title="dalieweb" class="logo"/></a>
@@ -83,13 +83,22 @@
         				<td colspan="3" valign="middle" class="fontBlack"> <p><%= dokument.getContent() %></p></td>
        				</tr>
 					<tr>
-        				<td colspan="3" valign="top" id="bottombg">
-							<form action="/dalieweb/DokumentToWorkServlet" method="post">
-								<input type="hidden" name="dokumentTyp" value="<%= dokument.getDokumentTyp() %>" />
-								<input type="hidden" name="dokumentNr" value="<%= dokument.getNummer() %>" />
-								<input type="hidden" name="dokumentId" value="<%= dokument.getId() %>" />
-								<dalie:ButtonOption name="submit" accesskey="b" tabindex="1">Dokument <span style="text-decoration:underline">b</span>earbeiten</dalie:ButtonOption>		
-							</form>
+        				<td colspan="3" valign="top"  id="bottombg">
+							<table width="23%" border="0" cellpadding="4" cellspacing="1">
+                     			<tr>
+                      				<td><form action="/dalieweb/DokumentToWorkServlet" method="post">
+										<input type="hidden" name="dokumentTyp" value="<%= dokument.getDokumentTyp() %>" />
+										<input type="hidden" name="dokumentNr" value="<%= dokument.getNummer() %>" />
+										<input type="hidden" name="dokumentId" value="<%= dokument.getId() %>" />
+										<dalie:ButtonOption name="submit" accesskey="b" tabindex="1">Dokument <span style="text-decoration:underline">b</span>earbeiten</dalie:ButtonOption>		
+										</form>
+									</td>
+									<td><form action="/dalieweb/DokumentToReportServlet" method="post">
+										<dalie:ButtonOption name="print" accesskey="d" tabindex="1">Dokument <span style="text-decoration:underline">d</span>rucken</dalie:ButtonOption>		
+										</form>
+									</td>
+                     			</tr>
+							</table>
 						</td>
 					</tr>
 				</table>
@@ -99,17 +108,15 @@
 		<br />
 			<div id="content">	
 				<dalie:DokumentLinkTag data="N" columnHeader='<%= ColumHeader.valueOf("2",language) %>' tableTagClass="linkTable"></dalie:DokumentLinkTag>
-					<iframe src="<%= request.getContextPath()%>/selinas/selinas003FL.jsp" width="100%" name="selinas2" frameborder="0" height="100"></iframe>
+				<iframe src="<%= request.getContextPath()%>/selinas/selinas003FL.jsp" width="100%" name="selinas2" frameborder="0" height="100"></iframe>
 				<form action="<%= request.getContextPath()%>/DokumentUploadServlet" enctype="multipart/form-data" method="post">
-					<table>
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
 						<tr>
-							<td><input type="file" name="myFile" tabindex='2' maxlength="255"/></td>
-						<td>
-							<dalie:ButtonOption name="submit" accesskey="s" tabindex="3">Upload <span style="text-decoration:underline">s</span>tarten</dalie:ButtonOption>		
-						</td>
-					</tr>
-				</table>
-				<dalie:HinweisOption message='${requestScope.upload}'></dalie:HinweisOption><!-- CLASS:HinweisOption -->
+							<td colspan="1" valign="top"><input type="file" name="myFile" tabindex='2' maxlength="255" id="button"/></td>
+							<td valign="top"><dalie:ButtonOption name="submit" accesskey="s" tabindex="3">Upload <span style="text-decoration:underline">s</span>tarten</dalie:ButtonOption></td>
+						</tr>
+					</table>
+					<dalie:HinweisOption message='${requestScope.upload}'></dalie:HinweisOption><!-- CLASS:HinweisOption -->
 				</form>
 			</div><!-- /content -->
 			<div id="contentRight">	

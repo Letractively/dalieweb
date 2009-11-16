@@ -20,7 +20,7 @@
 <link href="http://www.dalieweb.de/pfeilmit01.ico" rel="shortcut icon" title="dalieweb" type="image/x-icon"/>
 <title>dalieweb</title>
 </head>
-<body>
+<body> 
 <%	
 	Dokument dokument = (Dokument)session.getAttribute("Dokument");	
 	String language = (String)session.getAttribute("Speech");

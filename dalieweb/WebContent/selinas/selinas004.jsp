@@ -18,7 +18,7 @@
 <meta http-equiv="Content-Style-Type" content="text/css"/>
 <meta name="keywords" content="dalieweb"/>
 <meta name="author" content="u.dalies"/>
-<!-- CSS und Icons -->
+<!-- CSS und Icons --> 
 <link href="<%= request.getContextPath()%>/theme/selinas004.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="<%= request.getContextPath()%>/theme/selinas-DruckTyp.css" rel="stylesheet" type="text/css" media="print"/>
 <link href="http://www.dalieweb.de/pfeilmit01.ico" rel="shortcut icon" title="dalieweb" type="image/x-icon"/>
@@ -37,7 +37,7 @@
 %>
 <div id="page">
 	<div id="pageHeader">
-		<a href="http://www.dalieweb.de/" target="_self">
+		<a href="<%= request.getContextPath()%>/dalieweb.jsp" target="_top">
 		<img src="<%= request.getContextPath()%>/bilder/pfeilmit01.gif" width="60" height="60" alt="" name="ani" title="dalieweb" class="logo"/></a>
 		<span class="strapline">dalieweb.de</span>
 	</div><!-- /pageHeader -->
@@ -90,12 +90,14 @@
 					<td width="15%" align="left">&nbsp;</td>
 					<td width="85%" align="left">
 			<dalie:ButtonOption name="submit" accesskey="s" tabindex="8">Verarbeitung <span style="text-decoration:underline">s</span>tarten</dalie:ButtonOption>
+			<a href="/dalieweb/DokumentToReportServlet"/>
+				<dalie:ButtonOption name="print" accesskey="d" tabindex="1">Dokument <span style="text-decoration:underline">d</span>rucken</dalie:ButtonOption></a>		
 			<dalie:ButtonOption name="delete" accesskey="l" tabindex="9">Dokument <span style="text-decoration:underline">l</span>öschen</dalie:ButtonOption>
-			<dalie:ButtonOption name="download" accesskey="l" tabindex="10">Dokumente <span style="text-decoration:underline">d</span>ownloaden</dalie:ButtonOption>
-			<dalie:ButtonOption name="beenden" accesskey="e" tabindex="11" permitId="2">B<span style="text-decoration:underline">e</span>enden</dalie:ButtonOption>
+			<a href="/dalieweb/DokumentToProcessServlet?beenden=1"/>
+				<dalie:ButtonOption name="beenden" accesskey="e" tabindex="11" permitId="2">B<span style="text-decoration:underline">e</span>enden</dalie:ButtonOption></a>
 				</td>
 				</tr>
-				<tr>
+				<tr> 
 					<td width="15%" align="left">&nbsp;</td>
 					<td width="85%" align="left"><!-- CLASS:HinweisOption --><dalie:HinweisOption message='${requestScope.Message}'></dalie:HinweisOption></td>
 				</tr>
