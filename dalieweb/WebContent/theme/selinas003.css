@@ -1,4 +1,4 @@
-@CHARSET "ISO-8859-1" ;
+@CHARSET"ISO-8859-1";
 
 @IMPORT url("Master.css");
 @IMPORT url("selinas-SiteTyp10.css");
@@ -323,8 +323,10 @@ a:hover.link {
 button {
 	display: block; /* über ganze breite */
 	font: 0.8em Arial, Tahoma, Verdana, sans-serif;
-	height: 2.0em;
+	height: 2.2em;
 	text-align: center;
 	text-transform: uppercase;
-	width: auto;
+	padding-left: 3px;
+	padding-right: 3px;
+	vertical-align: middle;
 }
