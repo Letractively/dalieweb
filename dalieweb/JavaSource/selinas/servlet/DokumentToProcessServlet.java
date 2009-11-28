@@ -1,5 +1,7 @@
 package selinas.servlet;
 
+import help.LoggerHelper;
+
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -21,39 +23,55 @@ public class DokumentToProcessServlet extends HttpServlet implements Servlet {
 	
 	/** perform for both HTTP <code>GET</code> and <code>POST</code> methods  */
 	protected void perForm(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-	        
-	     HttpSession session = request.getSession();
-	     String nextPage = "/selinas/selinas001.jsp";
-	     SelinasSession show = new SelinasSession((Selinas) session.getAttribute("Selinas"));
-	     SelinasUser selinasuser = (SelinasUser) session.getAttribute("User");
-	     Dokument dokumentOfSession = (Dokument)session.getAttribute("Dokument");
-	     Database dbConn = (Database) session.getAttribute("Database");
+		HttpSession session = request.getSession();
+	    String nextPage = "/selinas/selinas001.jsp";
+	    SelinasSession show = new SelinasSession((Selinas) session.getAttribute("Selinas"));
+	    SelinasUser selinasuser = (SelinasUser) session.getAttribute("User");
+	    Dokument dokumentOfSession = (Dokument)session.getAttribute("Dokument");
+	    Database dbConn = (Database) session.getAttribute("Database");
 	     
-		 try {
-		     RequestDispatcher displogin =  request.getRequestDispatcher("LogOnCheck");
-	     	 displogin.include(request, response);
-		 }catch (ServletException se) {
+		try{
+		    RequestDispatcher displogin =  request.getRequestDispatcher("LogOnCheck");
+	    	displogin.include(request, response);
+		}catch (ServletException se) {
 		    performForward(nextPage,request,response);//Login 
 	     }//catch ServletException
-		    
-		 try {
-	         RequestDispatcher errorServlet =  request.getRequestDispatcher("ErrorServlet");
-	         errorServlet.include(request, response);
-	     }catch (ServletException se) {
-	         performForward(nextPage,request,response);//Login 
-	     }//catch ServletException
+		 
+		 try{
+		 	RequestDispatcher errorServlet =  request.getRequestDispatcher("ErrorServlet");
+		 	errorServlet.include(request, response);
+		 }catch (ServletException se) {
+		 	performForward(nextPage,request,response);//Login 
+		 }//catch ServletException
 	     
-	     String error = (String) session.getAttribute("Error");
-	     if (error.equalsIgnoreCase("yes")) { 
-	     	performForward("/selinas/selinas004.jsp",request,response);
-	     } else {
-	     	try{
-	     		session.setAttribute("Dokument", show.getDokumentOfUpdate(dbConn,selinasuser.user,dokumentOfSession,request));//SessionAttribut:DokumentOfInitialization
-	     		performForward("/selinas/selinas003.jsp",request,response);
-	     	}catch (Exception e) {
-		         performForward(nextPage,request,response);//Login 
-		     }//catch ServletException
-	     }//endif error.equals
+	 	 String error = (String) session.getAttribute("Error");
+	 	 if(request.getParameter("beenden") == null){//button beendet
+	 	 	try{
+	 	 		if(error.equalsIgnoreCase("yes")) { 
+	 	 			session.setAttribute("Dokument", show.getDokumentOfUpdate(dbConn,selinasuser.user,dokumentOfSession,request));//SessionAttribut:DokumentOfInitialization
+	 	 			performForward("/selinas/selinas004.jsp",request,response);
+	 	 		}else{
+	 	 			session.setAttribute("Dokument", show.getDokumentOfUpdate(dbConn,selinasuser.user,dokumentOfSession,request));//SessionAttribut:DokumentOfInitialization
+	 	 			performForward("/selinas/selinas003.jsp",request,response);
+	 	 		}//endif error.equals
+	 	 	}catch (Exception e) {
+	 	 		LoggerHelper.log(this.getClass().getName(), "Exception of perForm Verarbeitung", e);
+	 	 		performForward(nextPage,request,response);//Login 
+	 	 	}//catch ServletException
+	 	 }else{//button beendet
+ 	 		try {
+ 	 			if(error.equalsIgnoreCase("yes")) { 
+					session.setAttribute("Dokument", show.getDokumentOfUpdate(dbConn,selinasuser.user,dokumentOfSession,request));//SessionAttribut:DokumentOfInitialization
+					performForward("/selinas/selinas004.jsp",request,response);
+ 	 			}else{
+ 	 				session.setAttribute("Dokument", show.getDokumentOfDatabase(dbConn,selinasuser.user,request));//SessionAttribut:DokumentOfDatabase
+ 	 	 			performForward("/selinas/selinas003.jsp",request,response);
+ 	 			}//endif error.equals
+			} catch (Exception e) {
+				LoggerHelper.log(this.getClass().getName(), "Exception of perForm Beenden", e);
+				performForward(nextPage,request,response);//Login 
+			}//
+	 	 }//endif
 	}//perForm
 	
 	/** handle the HTTP <code>GET</code> method */

@@ -64,5 +64,5 @@ public class DokumentToWorkServlet extends HttpServlet implements Servlet {
 	public String getServletInfo() {
 	    return "work with UserBean Selinas";
 	}//getServletInfo
-
+	
 }//class DokumentToWorkServlet
