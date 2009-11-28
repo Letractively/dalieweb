@@ -44,6 +44,8 @@ public class DataSetAdresse {
     	    throw new Exception("Record not Found");
         return new Adresse((Vector)rows.elementAt(0));
     }//chain
+    
+    
     /**
      * <b>alle Adresse aus der Datenbank</b>
      * <br><b>read:Key none</b>
@@ -55,16 +57,16 @@ public class DataSetAdresse {
      */
     public static synchronized Vector read(Database dbConn) throws Exception {
         Vector allAdressen = new Vector();
-        Vector rows = dbConn.executeQuery("select * from"+dbConn.getDbSchema()+".adressen");
+        Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".adressen");
         if(rows.size() == 0)
     	    throw new Exception("Record not Found");
         for(int i = 0;i < rows.size();i++) {
-            allAdressen.addElement((Adresse)rows.elementAt(1));
+        	allAdressen.addElement(new Adresse((Vector) rows.elementAt(i)));
         }//for
         return allAdressen;
     }//read
     /**
-    * <b>alle Adresse(n) aus der Datenbank </b>
+     * <b>alle Adresse(n) aus der Datenbank </b>
      * <br><b>reade:Key adressId</b>
      * <br><b>public</b><br>
      * @param
@@ -77,15 +79,26 @@ public class DataSetAdresse {
      */
     public static synchronized Vector reade(Database dbConn,int adressId) throws Exception {
         Vector allAdressen = new Vector();
-        Vector rows = dbConn.executeQuery("select * from"+dbConn.getDbSchema()+".adressen " +
+        Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".adressen " +
         		"where adressId = "+adressId+"");
         if(rows.size() == 0)
     	    throw new Exception("Record not Found");
         for(int i = 0;i < rows.size();i++) {
-            allAdressen.addElement((Adresse)rows.elementAt(i));
+        	allAdressen.addElement(new Adresse((Vector) rows.elementAt(i)));
         }//for
         return allAdressen;
     }//reade
+    
+    public static synchronized void update(Database dbConn, User user, Adresse adress) throws Exception {
+        dbConn.executeUpdate("update "+dbConn.getDbSchema()+".adressen " +
+                "set strasse = '"+ adress.getStrasse() + "'," +
+                " nummer = '"+ adress.getNummer() + "'," + " plz = '"+ adress.getPlz() +"',"+
+                " ort = '"+ adress.getOrt() +"'," + " telefon = '"+ adress.getTelefon()  +"',"+
+                " fax = '"+ adress.getFax() +"'," + " mail = '"+ adress.getMail() +"',"+
+                " changeUser = '"+user.getUserId()+"'," + " changeDate = now() " +
+                " where adressId = "+ user.getKundenId() + " and adressArt = '"+ adress.getAdressArt()+"'");
+    }//update
+    
     /**
      * <b>insert Adresse on Datenbank </b>
      * <br><b>insert:Key none </b>

@@ -5,6 +5,7 @@
  */
 package database.getDatabase;
 
+import java.util.Hashtable;
 import java.util.Vector;
 
 import database.Database;
@@ -22,6 +23,29 @@ import database.dateien.User;
  * private   = "false" nur sichtbar innerhalb der Klasse<br>
  */
 public class DataSetDokument {
+	
+	
+	 /** oderByTypOf_0 = Table dokument by*/
+	public static final String orderByTypOf_0 = "kundenId, standortId, dokumentTyp, gliederung";
+	/** oderByTypOf_1 = Table dokument by*/
+	public static final String orderByTypOf_1 = "kundenId, standortId, dokumentTyp, titel";
+	/** oderByTypOf_2 = Table dokument by*/
+	public static final String orderByTypOf_2 = "kundenId, standortId, dokumentTyp, descripten";
+	/** oderByTypOf_3 = Table dokument by*/
+	public static final String orderByTypOf_3 = "kundenId, standortId, dokumentTyp, createDate desc";
+	/** oderByTypOf_4 = Table dokument by*/
+	public static final String orderByTypOf_4 = "kundenId, standortId, dokumentTyp, changeDate desc";
+	
+	private static Hashtable memberTable = init();
+	private static Hashtable init() {
+        Hashtable members = new Hashtable();
+        members.put("G",orderByTypOf_0);//order by gliederung
+        members.put("T",orderByTypOf_1);//order by titel
+        members.put("D",orderByTypOf_2);//order by descripten
+        members.put("CREATEDATE",orderByTypOf_3);//order by createDate
+        members.put("CHANGEDATE",orderByTypOf_4);//order by changeDate
+        return members;
+    }//init
 
     /**
      * <b>Dokument aus Datenbank Tabelle Dokument</b>
@@ -115,6 +139,19 @@ public class DataSetDokument {
 		return liste;
 	}//query	
     
+    public static synchronized Vector reade(Database dbConn, User user, String dokumentTyp,String oderBy) throws Exception{
+		Vector liste = new Vector();
+		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokument " +
+				"where kundenId = "+user.getKundenId()+ " and standortId = "+user.getStandortId() + 
+				" and dokumentTyp = '"+ dokumentTyp +"'" +
+				" ORDER BY "+valueOf(oderBy)+"");
+		if(rows.size() == 0)
+    	    throw new Exception("Record not Found");
+		for (int i = 0; i < rows.size(); i++){
+			liste.addElement(new Dokument((Vector) rows.elementAt(i)));
+		}//for
+		return liste;
+	}//query	
     /**
      * <b>insert Dokument on Datenbank </b>
      * <br><b>insert:Key none </b>
@@ -175,5 +212,20 @@ public class DataSetDokument {
         }//while
         return id;
     }//getNextdokumentId
+    
+    /**
+     * Returns a String with order by value based on the given String value.
+     * @param string
+    */ 
+    private static String valueOf(String typOf){
+        String obj = null;
+        if (typOf != null) 
+            obj = (String) memberTable.get(typOf);
+        if (obj == null) {
+            String err = "'" + typOf + "' is not a valid";
+            	throw new IllegalArgumentException(err);
+        }//endif
+        return obj;
+    }//valueOf 
     
 }//class DataSetDokument
