@@ -15,7 +15,8 @@ import javax.servlet.jsp.tagext.TagSupport;
 import database.Database;
 import database.dateien.Link;
 import database.dateien.Dokument;
-import database.getDatabase.DataSetLink;;
+import database.getDatabase.DataSetLink;
+;
 
 /**
  * <b>Class</b>DokumentLinkTag:<br>descripten<br>
@@ -41,7 +42,8 @@ public class DokumentLinkTag extends TagSupport{
 	private String tableTagClass = "";
 	/** List of ColumnHeader */
 	private String[] columnHeader;
-	
+	/** value of order by  */
+	private String orderByTyp = "N";//default orderTyp is order by Name
 	
 	
     public int doStartTag() throws JspException {
@@ -51,16 +53,19 @@ public class DokumentLinkTag extends TagSupport{
             if(session.getAttribute("Dokument") != null){
             	dokument = (Dokument) session.getAttribute("Dokument");
             
+            	if(session.getAttribute("LinkOrderByTyp") != null)
+            		orderByTyp = (String) session.getAttribute("LinkOrderByTyp");
+            	
                 try {
                     JspWriter out = pageContext.getOut();
                     try{
                     	dbConn.getConnection();
-                    	out.println("<table width='100%' border='0' cellspacing='0' cellpadding='5' class="+ FB+ tableTagClass + FB+ ">"
+                    	out.println("<table width='100%' border='0' cellspacing='0' cellpadding='0' class="+ FB+ tableTagClass + FB+ ">"
                     			+ writeDokumentHeaderToPageContext(columnHeader)
-								+ writeDokumentDataToPageContext(DataSetLink.read(dbConn,dokument)));   
+								+ writeDokumentDataToPageContext(DataSetLink.read(dbConn,dokument,orderByTyp)));   
                     	dbConn.close();
                     }catch(Exception e){//no DokumentLinks found
-                    	out.println("<table class="+ FB+ tableTagClass + FB+ ">" 
+                    	out.println("<table width='100%' border='0' cellspacing='0' cellpadding='0' class="+ FB+ tableTagClass + FB+ ">" 
                     			+ writeDokumentHeaderToPageContext(columnHeader));
                     }//catch
                     return EVAL_BODY_INCLUDE;////Start next: doEndTag()              
@@ -96,14 +101,13 @@ public class DokumentLinkTag extends TagSupport{
 	    String TableTRTH = "";
         if (header.equalsIgnoreCase("J")){
         	TableTRTH = "<tr>";
-        	for(int i = 0; i < columnHeader.length; i++){
-        		TableTRTH = TableTRTH + "<th>"+ columnHeader[i].toString() +"</th>";
-        	}//for
+        	for(int i = 0; i < columnHeader.length; i+=2){
+        		TableTRTH = TableTRTH + "<th width='"+ columnHeader[i+1].toString() +"'>"+ columnHeader[i].toString() +"</th>";
+        	}//for    	
         TableTRTH = TableTRTH + "</tr>";
         }//endif
 	   return TableTRTH;
 	}//writeDokumentHeaderToPageContext
-    
     
     /**
      * Writes Dokument-Informations for one Dokument to the page body
@@ -114,7 +118,8 @@ public class DokumentLinkTag extends TagSupport{
 	    for (int i = 0; i < dokumentLinks.size(); i++){         
 			Link link  = ((Link)dokumentLinks.elementAt(i));
 			tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +
-					"<td class="+FB+FB+"><a href='"+((HttpServletResponse) pageContext.getResponse()).encodeURL(link.getPfadOfLink())+"' target='_blank'>" + link.getNameOfLink() +"</a></td>" +
+					"<td width='70%' class="+FB+FB+"><a href='"+((HttpServletResponse) pageContext.getResponse()).encodeURL(link.getPfadOfLink())+"' target='_blank'>" + link.getNameOfLink() +"</a></td>" +
+					"<td width='30%' class="+FB+FB+">"+ link.getCreateDate() + "</td>" +
 					"</tr>";
 		}//for	
 	    return tableTRTD;	

@@ -84,11 +84,14 @@ public class StartNavTag extends TagSupport {
                         }//for
                         dbConn.close();
                  	}catch(Exception e){//no DokumentTypen found
-                    	out.println("<ul><li><a href='/dalieweb/GoToStartServlet' title='zurück zur Übersicht'><span>"+ show.session.getLink1() +"</span></a></li><li><a href='#' title='zurück zur Startseite'><span>noch ein test</span></a></li>");
+                    	out.println("<ul><li><a href='/dalieweb/GoToStartServlet' title='zurück zur Übersicht'><span>"+ show.session.getLink1() +"</span></a></li><li><a href='/dalieweb/AdminOfSelina' title='Administration von Selinas'><span>Administration</span></a></li>");
                     }//catch    
                  	
-                        out.println(ulli + "<li><a href='#' title='muss noch programmiert werden'><span>Support</span></a></li>");
-                 		return EVAL_BODY_INCLUDE;//Evaluate body into existing out stream, and start next with doEndTag()
+                 	if(((String)session.getAttribute("SelectTyp")).equalsIgnoreCase("UB"))
+                 		ulli += "<li><a href='/dalieweb/AdminOfSelina' title='Administration von Selinas'><span>Administration</span></a></li>";
+                    
+                 	out.println(ulli);
+                 	return EVAL_BODY_INCLUDE;//Evaluate body into existing out stream, and start next with doEndTag()
                  		
                 } catch (Exception e) {
                     throw new JspException("Create of ListContent "

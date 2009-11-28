@@ -84,7 +84,7 @@ public class DokumentNavTag extends TagSupport {
                     	out.println("<ul><li><a href='/dalieweb/GoToStartServlet?selectTyp=UB' title='zurück zur Übersicht'><span>"+ show.session.getLink1() +"</span></a></li><li><a href='#' title='zurück zur Startseite'><span>noch ein test</span></a></li>");
                     }//catch    
                  	
-                        out.println(ulli + "<li><a href='#' title='muss noch programmiert werden'><span>Support</span></a></li>");
+                        out.println(ulli);
                  		return EVAL_BODY_INCLUDE;//Evaluate body into existing out stream, and start next with doEndTag()
                  		
                 } catch (Exception e) {

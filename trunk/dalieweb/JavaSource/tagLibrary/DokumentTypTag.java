@@ -47,7 +47,8 @@ public class DokumentTypTag extends TagSupport{
 	private String[] columnHeader;
 	/** Typ of Dokument*/
 	private String typ;//AA=Arbeitsanweisung
-	
+	/** value of order by  */
+	private String orderByTyp = "G";//default orderTyp is order by gliederung
 	
 	public int doStartTag() throws JspException {
         HttpSession session = pageContext.getSession();
@@ -56,13 +57,18 @@ public class DokumentTypTag extends TagSupport{
             if (session.getAttribute("User") != null) {
                 selinasuser = (SelinasUser) session.getAttribute("User");
                 
+                if(session.getAttribute("DokumentOrderByTyp") != null)
+            		orderByTyp = (String) session.getAttribute("DokumentOrderByTyp");
+                
                  try {
                  	JspWriter out = pageContext.getOut();
                  	try{
                         dbConn.getConnection();
+                        Vector temp = DataSetDokument.reade(dbConn, selinasuser.user,typ);
+                        temp = null;
                         out.println("<table cellspacing='0' cellpadding='0' width='100%' class="+ FB+ tableTagClass + FB+ ">"                       		
                         		+ writeDokumentHeaderToPageContext(columnHeader)
-                                + writeDokumentDataToPageContext(DataSetDokument.reade(dbConn, selinasuser.user,typ)));
+                                + writeDokumentDataToPageContext(DataSetDokument.reade(dbConn, selinasuser.user,typ,orderByTyp)));
                         dbConn.close();
                  	}catch(Exception e){//no DokumentLinks found
                     	out.println("<table class="+ FB+ tableTagClass + FB+ ">" 

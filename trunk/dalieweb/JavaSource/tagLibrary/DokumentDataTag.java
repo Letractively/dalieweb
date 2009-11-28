@@ -48,6 +48,8 @@ public class DokumentDataTag extends TagSupport {
 	private String tableTagClass = "";
 	/** List of ColumnHeader */
 	private String[] columnHeader;
+	/** value of order by  */
+	private String orderByTyp = "G";//default orderTyp is order by gliederung
 	
     public int doStartTag() throws JspException {
         HttpSession session = pageContext.getSession();
@@ -58,6 +60,8 @@ public class DokumentDataTag extends TagSupport {
             	if (session.getAttribute("User") != null) {
             		selinasuser = (SelinasUser) session.getAttribute("User");
                 
+            		if(session.getAttribute("OrderByTyp") != null)
+                		orderByTyp = (String) session.getAttribute("OrderByTyp");
                  try {
                  	JspWriter out = pageContext.getOut();
                  	try{
