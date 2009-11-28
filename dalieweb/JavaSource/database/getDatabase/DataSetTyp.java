@@ -24,7 +24,7 @@ import database.dateien.Typ;
  */
 public class DataSetTyp {
 
-        /**
+    /**
      * <b>Dokumenttyp aus Datenbank Tabelle dokumenttyp</b>
      * <br><b>chain:Key int kundenId, int standortId, String dokumenttyp, String sprachId</b>
      * <br><br><b>public static</b><br>

@@ -5,6 +5,8 @@
  */
 package database.dateien;
 
+import help.HelpDate;
+
 import java.util.Vector;
 
 /**
@@ -39,6 +41,15 @@ public class Adresse {
     /** @MailAdresse */
     private String mail = "";//xyz@mailto.de
     
+    /** Kennzeichen des User der Typ erstellt hat */
+    private String createUserId;//DV0101 AnmeldeKennnung am System
+    /** Timestamp der Erstellung */
+    private String createDate;//Datum der Erstellung
+    /** Kennzeichen des User der letzten Aenderung */
+    private String changeUserId;//DV0101 AnmeldeKennnung am System
+    /** Timestamp der letzten Aenderung */
+    private String changeDate;//Datum der letzten Änderung
+    
     /**
      * <b>Adresse</b><br><br>
      * private String adressId<br>
@@ -62,6 +73,11 @@ public class Adresse {
         this.telefon = columns.elementAt(6).toString();
         this.fax = columns.elementAt(7).toString();
         this.mail = columns.elementAt(8).toString();
+        
+        this.createUserId = columns.elementAt(9).toString();
+        this.createDate = HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(10).toString());
+        this.changeUserId = columns.elementAt(11).toString();
+        this.changeDate = HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(12).toString());
     }//construktor
     
     
@@ -174,4 +190,53 @@ public class Adresse {
     public void setTelefon(String telefon) {
         this.telefon = telefon;
     }
+    
+	/**
+	 * @return Returns the changeDate.
+	 */
+	public String getChangeDate() {
+		return changeDate;
+	}
+	/**
+	 * @param changeDate The changeDate to set.
+	 */
+	public void setChangeDate(String changeDate) {
+		this.changeDate = changeDate;
+	}
+	/**
+	 * @return Returns the changeUserId.
+	 */
+	public String getChangeUserId() {
+		return changeUserId;
+	}
+	/**
+	 * @param changeUserId The changeUserId to set.
+	 */
+	public void setChangeUserId(String changeUserId) {
+		this.changeUserId = changeUserId;
+	}
+	/**
+	 * @return Returns the createDate.
+	 */
+	public String getCreateDate() {
+		return createDate;
+	}
+	/**
+	 * @param createDate The createDate to set.
+	 */
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
+	/**
+	 * @return Returns the createUserId.
+	 */
+	public String getCreateUserId() {
+		return createUserId;
+	}
+	/**
+	 * @param createUserId The createUserId to set.
+	 */
+	public void setCreateUserId(String createUserId) {
+		this.createUserId = createUserId;
+	}
 }//class Adresse

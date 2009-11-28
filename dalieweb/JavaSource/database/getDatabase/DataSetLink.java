@@ -5,6 +5,7 @@
  */
 package database.getDatabase;
 
+import java.util.Hashtable;
 import java.util.Vector;
 
 import database.Database;
@@ -25,7 +26,20 @@ import database.dateien.User;
  */
 public class DataSetLink {
 
-    /**
+    /** oderByTypOf_0 = Table dokumentLinks by*/
+	public static final String orderByTypOf_0 = "dokumentTyp, dokumentNr, dokumentId, createDate desc, nameOfLink";
+	/** oderByTypOf_0 = Table dokumentLinks by*/
+	public static final String orderByTypOf_1 = "dokumentTyp, dokumentNr, dokumentId, nameOfLink, createDate desc";
+	
+	private static Hashtable memberTable = init();
+	private static Hashtable init() {
+        Hashtable members = new Hashtable();
+        members.put("D",orderByTypOf_0);//order by Date
+        members.put("N",orderByTypOf_1);//order by NameOfLink
+        return members;
+    }//init
+
+	/**
      * <b>get DokumentLinks of Database Table dokumentlink</b>
      * <br><b>read:Key String dokumentTyp,int dokumentNr , int dokumentId</b>
      * <br><br><b>public static</b><br>
@@ -46,7 +60,7 @@ public class DataSetLink {
 		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokumentlinks " +
 				"where kundenId = " + kundenId + " and standortId = " + standortId +
 				" and dokumentTyp = '"+ dokumentTyp+ "'" + " and dokumentNr = "+ dokumentNr + " and dokumentId = "+ dokumentId + 
-				" ORDER BY dokumentTyp, dokumentNr, dokumentId, pfadOfLink");
+				" ORDER BY dokumentTyp, dokumentNr, dokumentId, nameOfLink, createDate desc");
 		if(rows.size() == 0)
     	    throw new Exception("Record not Found");
 		for (int i = 0; i < rows.size(); i++){
@@ -76,7 +90,37 @@ public class DataSetLink {
 		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokumentlinks " +
 				"where kundenId = " + dokument.getKundenId() + " and standortId = " + dokument.getStandortId() +
 				" and dokumentTyp = '"+ dokument.getDokumentTyp()+ "'" + " and dokumentNr = "+ dokument.getNummer() + " and dokumentId = "+ dokument.getId() + 
-				" ORDER BY dokumentTyp, dokumentNr, dokumentId, pfadOfLink");
+				" ORDER BY dokumentTyp, dokumentNr, dokumentId, nameOfLink, createDate desc");
+		if(rows.size() == 0)
+    	    throw new Exception("Record not Found");
+		for (int i = 0; i < rows.size(); i++){
+			liste.addElement(new Link((Vector) rows.elementAt(i)));
+		}//for
+		return liste;
+    }//read
+    
+    /**
+     * <b>get DokumentLinks of Database Table dokumentlink</b>
+     * <br><b>read:Key String dokumentTyp,int dokumentNr , int dokumentId</b>
+     * <br><br><b>public static</b><br>
+     * @param
+     * <ul>
+     * <li>Database dbConn</li>
+     * <li>int dokumentTyp = 'AA'</li>
+     * <li>int dokumentNr = 1</li>
+     * <li>int dokumentId = 1</li>
+     * </ul>
+     * @return
+     * <ul>
+     * <li>Vector of DokumentLinks</li>
+     * </ul>
+     */
+    public static synchronized Vector read(Database dbConn,Dokument dokument, String oderBy) throws Exception {
+        Vector liste = new Vector();
+		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokumentlinks " +
+				"where kundenId = " + dokument.getKundenId() + " and standortId = " + dokument.getStandortId() +
+				" and dokumentTyp = '"+ dokument.getDokumentTyp()+ "'" + " and dokumentNr = "+ dokument.getNummer() + " and dokumentId = "+ dokument.getId() + 
+				" ORDER BY "+valueOf(oderBy)+"");
 		if(rows.size() == 0)
     	    throw new Exception("Record not Found");
 		for (int i = 0; i < rows.size(); i++){
@@ -105,5 +149,21 @@ public class DataSetLink {
                 "'"+link.getContentType()+"'," + link.getSizeInBytes()+"," +
                 "'"+user.getUserId()+"'," + "now()," + "'"+user.getUserId()+"'," + "now())");
     }//insert
+    
+	
+	/**
+     * Returns a String with order by value based on the given String value.
+     * @param string
+    */ 
+    private static String valueOf(String typOf){
+        String obj = null;
+        if (typOf != null) 
+            obj = (String) memberTable.get(typOf);
+        if (obj == null) {
+            String err = "'" + typOf + "' is not a valid";
+            	throw new IllegalArgumentException(err);
+        }//endif
+        return obj;
+    }//valueOf 
     
 }//class DataSetLink
