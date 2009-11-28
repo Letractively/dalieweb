@@ -47,7 +47,7 @@ public class DokumentToInitializeServlet extends HttpServlet implements Servlet 
 	     } else {
 	     	try{
 	     		session.setAttribute("Dokument", show.getDokumentOfInitialize(dbConn,selinasuser.user,request));//SessionAttribut:DokumentOfInitialization
-	     		performForward("/selinas/selinas003.jsp",request,response);
+	     		performForward("/selinas/selinas004.jsp",request,response);
 	     	}catch (Exception e) {
 		         performForward(nextPage,request,response);//Login 
 		     }//catch ServletException
