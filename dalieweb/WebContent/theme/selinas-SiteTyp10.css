@@ -12,24 +12,26 @@
 	padding: 10px 0;
 }
 #wrapper {
-	background: #fff;
+	background: #FFFFFF;
 	margin: 0 auto;
 	max-width: 100%;
 	text-align: left;
 	width: 100%;
 }
 #content {
-	background: #C6B8AF;
+	background: #FFFFFF;
 	float: left;
-	width: 35%;
+	padding-top: 10px;
+	width: 50%;
 }
 #contentRight {
-	background: #C6B8AF;	
-	float: right;
-	width: 35%;
+	background: #FFFFFF;	
+	float: left;
+	padding-top: 10px;
+	width: 50%;
 }
 #footer {
-	background: #39747A;
+	background: #FFFFFF;
 	clear: both;
 	color: #eee;
 	padding: 10px 0;
