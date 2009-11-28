@@ -23,8 +23,8 @@
 <%	
 	String language = (String)session.getAttribute("Speech");
 %>
-<div id="contents">
-	<dalie:DokumentLinkTag header="N" farbe1="#EEEEEE" farbe2="#DEDEDE" columnHeader='<%= ColumHeader.valueOf("2",language) %>' tableTagClass="linkTable"></dalie:DokumentLinkTag>
+<div id="contentRights">
+	<dalie:DokumentLinkTag header="N" farbe1="#FFFFFF" farbe2="#DEDEDE" columnHeader='<%= ColumHeader.valueOf("2",language) %>' tableTagClass="linkTable"></dalie:DokumentLinkTag>
 </div>
 </body>
 </html>
