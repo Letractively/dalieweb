@@ -30,7 +30,7 @@
 
 <title>dalieweb</title>
 </head>
-<body onload="if(document.images) nextimg(); cleanForm()">
+<body onload="if(document.images) nextimg()">
 <%	
 	SelinasSession show = new SelinasSession((Selinas) session.getAttribute("Selinas")); 
     SelinasUser user = (SelinasUser) session.getAttribute("User");

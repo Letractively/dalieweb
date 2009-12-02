@@ -22,10 +22,10 @@
 <body>
 <%	
 	String language = (String)session.getAttribute("Speech");
-%> 
+%> 	
 	<div id="wrappers"> 
-	<dalie:DokumentDataTag header="N" columnHeader='<%= ColumHeader.valueOf("1",language) %>'></dalie:DokumentDataTag>
-	</div>
+		<dalie:DokumentDataTag header="N" farbe2="#D6D8BA" columnHeader='<%= ColumHeader.valueOf("1",language) %>'></dalie:DokumentDataTag>
+	</div><!-- wrappers -->
 </body>
 </html>
 
