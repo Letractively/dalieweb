@@ -40,41 +40,38 @@
 		<span class="strapline">dalieweb.de</span>
 	</div><!-- /pageHeader -->
 	<div id="pageWrapper">
-		<div id="navigation">
-		<table border="0" cellspacing="0" cellpadding="0" width="100%">
+		<table border="0" cellspacing="0" cellpadding="0" width="99%">
 		<tr>
-			<td valign="middle" align="left"><dalie:StartNavTag></dalie:StartNavTag></td>
-			<td valign="middle" align="right" class="strapline"><%= user.user.getName() %>, <%= user.user.getVorname() %>&nbsp; <a href="<%= request.getContextPath()%>/LogOffSelina" target="_self" class="link">Log off</a></td>
+			<td valign="middle" align="left"></td>
+			<td valign="middle" align="right" class="strapline"><%= user.user.getName()%>, <%= user.user.getVorname()%>&nbsp; <a href="<%= request.getContextPath()%>/LogOffSelina" target="_self" class="link">Log off</a></td>
 		</tr>
 		</table>
-	</div>
-		<div id="dokumentHeader">
-		 <br />
+		<div id="navigation">
+			<dalie:StartNavTag></dalie:StartNavTag>
+		</div><!-- /navigation -->
+		<div id="header">
 			<form name="dokument" method="post" action="<%= request.getContextPath()%>/DokumentToInitializeServlet" class="formular">
-<table border="0" cellpadding="0" cellspacing="0">
-	<tbody>
-		<tr>
-			<td><label><%= show.session.getDokumentTyp()  %></label>
-	<dalie:Selectbox name="dokumentTyp" argument="KA" ccsStyle="selectbox"></dalie:Selectbox></td>
-			<td><label>&nbsp;<%= show.session.getDokumentNr() %></label>
-<dalie:InputOption name="dokumentNr" tabindex="2" value="1" size="5"></dalie:InputOption></td>
-			<td><dalie:ButtonOption name="insert" accesskey="a" tabindex="1">
-	<b>Dokument <span style="text-decoration:underline">a</span>nlegen</b>
-</dalie:ButtonOption></td>
-		</tr>
-	</tbody>
-</table>
-</form>	 	
-<!-- CLASS:HinweisOption -->
-<dalie:HinweisOption message='${requestScope.Message}'></dalie:HinweisOption>
-		</div><!-- /dokumentHeader -->
+				<table border="0" cellpadding="0" cellspacing="0">
+					<tbody>
+						<tr>
+							<td><label><%= show.session.getDokumentTyp()  %></label>
+								<dalie:Selectbox name="dokumentTyp" argument="KA" ccsStyle="selectbox"></dalie:Selectbox></td>
+							<td><label>&nbsp;<%= show.session.getDokumentNr() %></label>
+								<dalie:InputOption name="dokumentNr" tabindex="2" value="1" size="5"></dalie:InputOption></td>
+							<td><dalie:ButtonOption name="insert" accesskey="a" tabindex="1"><b>Dokument <span style="text-decoration:underline">a</span>nlegen</b></dalie:ButtonOption></td>
+						</tr>
+					</tbody>
+				</table>
+			</form>	 	
+			<!-- CLASS:HinweisOption -->
+			<dalie:HinweisOption message='${requestScope.Message}'></dalie:HinweisOption>
+		</div><!-- /header -->
 		<div id="wrapper">
 			<dalie:DokumentDataTag data="N" columnHeader='<%= ColumHeader.valueOf("3",language) %>'></dalie:DokumentDataTag>
-			<iframe src="<%= request.getContextPath()%>/selinas/selinas002F.jsp" width="100%" name="selinas" frameborder="0" height="460"></iframe>
-		</div><!-- wrapper -->
+			<iframe src="<%= request.getContextPath()%>/selinas/selinas002F.jsp" width="100%" name="selinas" frameborder="0" height="100%"></iframe>
+		</div><!-- /wrapper -->
 		<div id="footer">
-	
-	</div><!-- /footer -->
+		</div><!-- /footer -->
 	</div><!-- /pageWrapper -->
 		<div id="pageFooter">
 			<dalie:FooterLebenslauf></dalie:FooterLebenslauf><!-- CLASS:FooterLebenslauf -->
@@ -98,6 +95,6 @@
 				</div><!-- /vcard -->
 			</div><!-- /meta-wrap -->
 		</div><!-- /pageFooter -->	
-</div><!-- page -->
+</div><!-- /page -->
 </body>
 </html>

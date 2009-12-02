@@ -93,7 +93,7 @@
 					<td width="15%" align="left">&nbsp;</td>
 					<td width="85%" align="left">
 			<dalie:ButtonOption name="submit" accesskey="s" tabindex="8">Verarbeitung <span style="text-decoration:underline">s</span>tarten</dalie:ButtonOption>
-			<a href="/dalieweb/DokumentToReportServlet"/><dalie:ButtonOption name="print" accesskey="d" tabindex="1">Dokument <span style="text-decoration:underline">d</span>rucken</dalie:ButtonOption></a>		
+			<a href="/dalieweb/DokumentToReportServlet"><dalie:ButtonOption name="print" accesskey="d" tabindex="1">Dokument <span style="text-decoration:underline">d</span>rucken</dalie:ButtonOption></a>		
 			<dalie:ButtonOption name="delete" accesskey="l" tabindex="9">Dokument <span style="text-decoration:underline">l</span>öschen</dalie:ButtonOption>
 			<dalie:ButtonOption name="beenden" accesskey="e" tabindex="11" permitId="2">B<span style="text-decoration:underline">e</span>enden</dalie:ButtonOption>
 				</td> 
