@@ -14,7 +14,7 @@ Letzte Aenderung: 00.00.20xx
 }
 
 html {
-	font-size: 75%;
+	/*font-size: 75%;*/
 }
 
 html>body {
@@ -22,7 +22,7 @@ html>body {
 }
 
 body {
-	text-align: center; /* Textausrichtung */
+	text-align: left; /* Textausrichtung */
 }
 
 ul,li {

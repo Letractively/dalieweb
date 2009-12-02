@@ -6,16 +6,16 @@
 
 #navigation {
 	background-color:#BBBBBB;
-	margin-left: 2em;
-	margin-top:	2em;
+	margin-left: 3em;
+	margin-top:	1em;
 	width:	10em;
 }
 #navigation ul {
 	background-color:#D6D8BA;
 	border:	1px solid #000000;
 	bottom:	1em;
-	position:	relative;
-	right:	1em;
+	position: relative;
+	right: 1em;
 	padding: 5px;
 	list-style: none;
 }
@@ -38,7 +38,7 @@
 }
 .fontMediumBold {
 	/* Beschriftung: Titel dokument */
-	font: bold 14px Verdana, Arial, Helvetica, sans-serif;
+	font: bold 20px Helvetica, sans-serif;
 	color: #2D5893;
 }
 .subheading {
@@ -318,7 +318,8 @@ button {
 	height: 2.2em;
 	text-align: center;
 	text-transform: uppercase;
-	padding-left: 3px;
-	padding-right: 3px;
+	padding-left: 0px;
+	padding-right: 0px;
+	marign: 0px;
 	vertical-align: middle;
 }
