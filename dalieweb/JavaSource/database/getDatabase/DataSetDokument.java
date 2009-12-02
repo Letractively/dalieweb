@@ -26,15 +26,17 @@ public class DataSetDokument {
 	
 	
 	 /** oderByTypOf_0 = Table dokument by*/
-	public static final String orderByTypOf_0 = "kundenId, standortId, dokumentTyp, gliederung";
+	public static final String orderByTypOf_0 = "kundenId, standortId, dokumenttyp, gliederung";
 	/** oderByTypOf_1 = Table dokument by*/
-	public static final String orderByTypOf_1 = "kundenId, standortId, dokumentTyp, titel";
+	public static final String orderByTypOf_1 = "kundenId, standortId, titel";
 	/** oderByTypOf_2 = Table dokument by*/
-	public static final String orderByTypOf_2 = "kundenId, standortId, dokumentTyp, descripten";
+	public static final String orderByTypOf_2 = "kundenId, standortId, descripten";
 	/** oderByTypOf_3 = Table dokument by*/
-	public static final String orderByTypOf_3 = "kundenId, standortId, dokumentTyp, createDate desc";
+	public static final String orderByTypOf_3 = "kundenId, standortId, createDate desc";
 	/** oderByTypOf_4 = Table dokument by*/
-	public static final String orderByTypOf_4 = "kundenId, standortId, dokumentTyp, changeDate desc";
+	public static final String orderByTypOf_4 = "kundenId, standortId, changeDate desc";
+	/** oderByTypOf_4 = Table dokument by*/
+	public static final String orderByTypOf_5 = "kundenId, standortId, gliederung";
 	
 	private static Hashtable memberTable = init();
 	private static Hashtable init() {
@@ -44,6 +46,7 @@ public class DataSetDokument {
         members.put("D",orderByTypOf_2);//order by descripten
         members.put("CREATEDATE",orderByTypOf_3);//order by createDate
         members.put("CHANGEDATE",orderByTypOf_4);//order by changeDate
+        members.put("OG",orderByTypOf_5);//order by only by gliederung
         return members;
     }//init
 
@@ -115,6 +118,30 @@ public class DataSetDokument {
 	}//query	
     /**
      * <b>alle Dokument(e) aus Datenbank Tabelle Dokument</b>
+     * <br><b>reade:Key User.getKundenId, User.getStandortId</b>
+     * <br><b>public static</b><br>
+     * @param
+     * <ul>	
+     * <li>Database dbConn	</li>
+     * <li>User user	</li>
+     * </ul>
+     * @return
+     * <ul><li> Vector Dokument(e)</li></ul>
+     */
+    public static synchronized Vector readeO(Database dbConn, User user,String orderBy) throws Exception{
+		Vector liste = new Vector();
+		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokument " +
+				"where kundenId = "+user.getKundenId()+ " and standortId = "+user.getStandortId() +
+				" ORDER BY "+valueOf(orderBy)+"");
+		if(rows.size() == 0)
+    	    throw new Exception("Record not Found");
+		for (int i = 0; i < rows.size(); i++){
+			liste.addElement(new Dokument((Vector) rows.elementAt(i)));
+		}//for
+		return liste;
+	}//query	
+    /**
+     * <b>alle Dokument(e) aus Datenbank Tabelle Dokument</b>
      * <br><b>reade:Key User.getKundenId, User.getStandortId String dokumentTypKey</b>
      * <br><b>public static</b><br>
      * @param
@@ -139,12 +166,12 @@ public class DataSetDokument {
 		return liste;
 	}//query	
     
-    public static synchronized Vector reade(Database dbConn, User user, String dokumentTyp,String oderBy) throws Exception{
+    public static synchronized Vector reade(Database dbConn, User user, String dokumentTyp,String orderBy) throws Exception{
 		Vector liste = new Vector();
 		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokument " +
 				"where kundenId = "+user.getKundenId()+ " and standortId = "+user.getStandortId() + 
 				" and dokumentTyp = '"+ dokumentTyp +"'" +
-				" ORDER BY "+valueOf(oderBy)+"");
+				" ORDER BY "+valueOf(orderBy)+"");
 		if(rows.size() == 0)
     	    throw new Exception("Record not Found");
 		for (int i = 0; i < rows.size(); i++){
