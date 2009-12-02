@@ -60,24 +60,24 @@ public class DokumentDataTag extends TagSupport {
             	if (session.getAttribute("User") != null) {
             		selinasuser = (SelinasUser) session.getAttribute("User");
                 
-            		if(session.getAttribute("OrderByTyp") != null)
-                		orderByTyp = (String) session.getAttribute("OrderByTyp");
+            		if(session.getAttribute("DokumentOrderByTyp") != null)
+                		orderByTyp = (String) session.getAttribute("DokumentOrderByTyp");
                  try {
                  	JspWriter out = pageContext.getOut();
                  	try{
                         dbConn.getConnection();
                         if(((String)session.getAttribute("SelectTyp")).equalsIgnoreCase("UB")){//Element Übersicht is aktiv
-                        	out.println("<table width='100%' border='0' cellspacing='0' cellpadding='5' class="+ FB+ tableTagClass + FB+ ">"
+                        	out.println("<table width='100%' border='0' cellspacing='0' cellpadding='0' class="+ FB+ tableTagClass + FB+ ">"
                         	    + writeDokumentHeaderToPageContext(columnHeader)
-							    + writeDokumentDataToPageContext(DataSetDokument.reade(dbConn, selinasuser.user)));
+							    + writeDokumentDataToPageContext(DataSetDokument.readeO(dbConn, selinasuser.user,orderByTyp)));
                         }else{
-                        	out.println("<table width='100%' border='0' cellspacing='0' cellpadding='5' class="+ FB+ tableTagClass + FB+ ">"
-                        		+ writeDokumentHeaderToPageContext(ColumHeader.valueOf("1",language))
-                                + writeDokumentDataToPageContextTyp(DataSetDokument.reade(dbConn, selinasuser.user,(String)session.getAttribute("SelectTyp"))));	
+                        	out.println("<table width='100%' border='0' cellspacing='0' cellpadding='0' class="+ FB+ tableTagClass + FB+ ">"
+                        		+ writeDokumentHeaderToPageContext(ColumHeader.valueOf("4",language))
+                                + writeDokumentDataToPageContextTyp(DataSetDokument.reade(dbConn, selinasuser.user,(String)session.getAttribute("SelectTyp"),orderByTyp)));	
                         }//endif
                         dbConn.close();
                  	}catch(Exception e){//no DokumentLinks found
-                    	out.println("<table width='100%' border='0' cellspacing='0' cellpadding='5' class="+ FB+ tableTagClass + FB+ ">" 
+                    	out.println("<table width='100%' border='0' cellspacing='0' cellpadding='0' class="+ FB+ tableTagClass + FB+ ">" 
                     			+ writeDokumentHeaderToPageContext(columnHeader));
                     }//catch    
                         return EVAL_BODY_INCLUDE;//Evaluate body into existing out stream, and start next with doEndTag()
@@ -135,11 +135,11 @@ public class DokumentDataTag extends TagSupport {
 			Typ dokumentTyp = DataSetTyp.chain(dbConn,data);
 			tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +
 					"<td width='15%'>" + dokumentTyp.getDescription() +"</td>" +
-					"<td width='15%'>" + data.getGliederung() +"</td>" +
-					"<td width='15%'><a href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" target='_parent' class='link'>" + data.getTitel()+"</a></td>" +
+					"<td width='10%'>" + data.getGliederung() +"</td>" +
+					"<td width='20%'><a href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" title='Auswahl Dokument: "+data.getTitel()+" ' target='_parent' class='link'>" + collapseSpaces(data.getTitel())+"</a></td>" +
 					"<td width='25%'>" + data.getDescripten() + "</td>" +
 					"<td width='15%'>" + data.getCreateUser() +"<br />"+  data.getCreateDate() +"</td>" +
-					"<td width='25%'>" + data.getChangeUser() +"<br />"+  data.getChangeDate() +"</td>" +
+					"<td width='15%'>" + data.getChangeUser() +"<br />"+  data.getChangeDate() +"</td>" +
 					"</tr>";
 		}//for	
 	    return tableTRTD;	
@@ -151,15 +151,33 @@ public class DokumentDataTag extends TagSupport {
 	    for (int i = 0; i < dokumente.size(); i++){         
 			Dokument data  = ((Dokument)dokumente.elementAt(i));
 			tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +
-					"<td width='15%'>" + data.getGliederung() +"</td>" +
-					"<td width='15%'><a href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" target='_parent' class='link'>" + data.getTitel()+"</a></td>" +
+					"<td width='10%'>" + data.getGliederung() +"</td>" +
+					"<td width='25%'><a href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" title='Auswahl Dokument: "+data.getTitel()+" ' target='_parent' class='link'>" + collapseSpaces(data.getTitel())+"</a></td>" +
 					"<td width='25%'>" + data.getDescripten() + "</td>" +
-					"<td width='25%'>" + data.getCreateUser() +"<br />"+  data.getCreateDate() +"</td>" +
-					"<td width='25%'>" + data.getChangeUser() +"<br />"+  data.getChangeDate() +"</td>" +
+					"<td width='15%'>" + data.getCreateUser() +"<br />"+  data.getCreateDate() +"</td>" +
+					"<td width='15%'>" + data.getChangeUser() +"<br />"+  data.getChangeDate() +"</td>" +
 					"</tr>";
 		}//for	
 	    return tableTRTD;	
 	}//writeDokumentDataToPageContext
+	
+	/**
+	 * Remove spaces.
+	 *
+	 * @param argStr string to remove over spaces from.
+	 * @return String
+	 */
+	private String collapseSpaces(String argStr){
+		if(argStr.length() > 20){
+			StringBuffer argBuf = new StringBuffer();
+			for (int cIdx = 0 ; cIdx < 20; cIdx++){
+	            argBuf.append(argStr.charAt(cIdx));
+			}//for
+			return argBuf.toString();
+		}else{
+			return argStr;
+		}//endif
+	}//collapseSpaces
 	
 	/** To find the internal state */
     public void release() {
