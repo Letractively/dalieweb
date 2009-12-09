@@ -37,6 +37,8 @@ public class DataSetDokument {
 	public static final String orderByTypOf_4 = "kundenId, standortId, changeDate desc";
 	/** oderByTypOf_4 = Table dokument by*/
 	public static final String orderByTypOf_5 = "kundenId, standortId, gliederung";
+	/** oderByTypOf_4 = Table dokument by*/
+	public static final String orderByTypOf_6 = "kundenId, standortId, dokumentNr, dokumentId";
 	
 	private static Hashtable memberTable = init();
 	private static Hashtable init() {
@@ -47,6 +49,7 @@ public class DataSetDokument {
         members.put("CREATEDATE",orderByTypOf_3);//order by createDate
         members.put("CHANGEDATE",orderByTypOf_4);//order by changeDate
         members.put("OG",orderByTypOf_5);//order by only by gliederung
+        members.put("N",orderByTypOf_6);//order by only dokumentNr
         return members;
     }//init
 
@@ -92,6 +95,16 @@ public class DataSetDokument {
     	    throw new Exception("Record not Found");
         return new Dokument((Vector)rows.elementAt(0));
     }//chain
+    
+    public static synchronized Dokument chain(Database dbConn, User user, String dokumentTyp) throws Exception{
+		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokument " +
+				"where kundenId = "+user.getKundenId()+ " and standortId = "+user.getStandortId() + 
+				" and dokumentTyp = '"+ dokumentTyp +"'");
+		if(rows.size() == 0)
+    	    throw new Exception("Record not Found");
+		 return new Dokument((Vector)rows.elementAt(0));
+	}//chain
+    
     /**
      * <b>alle Dokument(e) aus Datenbank Tabelle Dokument</b>
      * <br><b>reade:Key User.getKundenId, User.getStandortId</b>
@@ -216,12 +229,48 @@ public class DataSetDokument {
                 " and dokumentId = "+ dokument.getId() );
     }//update
     
+    /**
+     * <b>delete Dokument on Datenbank </b>
+     * <br><b>delete:Key kundenId, standortId, dokumenttyp, dokumentNr, dokumentId </b>
+     * <br><b>public</b><br>
+     * @param
+     * <ul>	
+     * <li>Database dbConn</li>
+     * <li>String kundenId</li>
+     * <li>String standortId</li>
+     * <li>String dokumentTyp</li>
+     * <li>String dokumentNr</li>
+     * <li>String dokunetId</li>
+     * </ul>
+     * @return
+     * <ul><li>none</li></ul>
+     */
     public static synchronized void delete(Database dbConn,int kundenId, int standortId,String dokumentTyp,int dokumentNr, int dokumentId) throws Exception {
         dbConn.executeUpdate("delete from "+dbConn.getDbSchema()+".dokument" +
                 " where dokumentNr = " + dokumentNr + " and dokumentId = " + dokumentId +
                 " and dokumentTyp = '"+ dokumentTyp + "'" + " and standortId = " + standortId +
                 " and kundenId = " + kundenId);
     }//delete
+    /**
+     * <b>delete Dokument on Datenbank </b>
+     * <br><b>delete:Key User, Dokument </b>
+     * <br><b>public</b><br>
+     * @param
+     * <ul>	
+     * <li>Database dbConn</li>
+     * <li>User user</li>
+     * <li>Dokument dokument</li>
+     * </ul>
+     * @return
+     * <ul><li>none</li></ul>
+     */
+    public static synchronized void delete(Database dbConn,User user, Dokument dokument) throws Exception {
+        dbConn.executeUpdate("delete from "+dbConn.getDbSchema()+".dokument" +
+        		 " where kundenId = "+ user.getKundenId() + " and standortId = "+user.getStandortId()+
+	             " and dokumentTyp = '"+dokument.getDokumentTyp() + "'" + " and dokumentNr = "+dokument.getNummer() +
+	             " and dokumentId = "+ dokument.getId() );
+    }//delete
+    
     
     /**
      * @return Returns the nextdokumentId.

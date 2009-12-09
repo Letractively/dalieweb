@@ -45,6 +45,26 @@ public class DokumentToProcessServlet extends HttpServlet implements Servlet {
 		 }//catch ServletException
 	     
 	 	 String error = (String) session.getAttribute("Error");
+	 	 if(request.getParameter("delete") != null){
+	 	 	try{
+	 			RequestDispatcher displogin =  request.getRequestDispatcher("DeleteServlet");
+	      		displogin.include(request, response);
+	        } catch (Exception e) {
+	        	LoggerHelper.log(this.getClass().getName(),"Exception of perForm..:", e);
+	        }//try
+	 		
+	        session.setAttribute("SelectTyp","UB");
+			session.setAttribute("UpLoadOn","0");
+	 		performForward("/selinas/selinas002.jsp", request, response);
+	 	 }else{//endif
+	 	 	if(request.getParameter("print") != null){
+		 	 	try{
+		 			RequestDispatcher displogin =  request.getRequestDispatcher("DokumentToReportServlet");
+		      		displogin.include(request, response);
+		        } catch (Exception e) {
+		        	LoggerHelper.log(this.getClass().getName(),"Exception of perForm..:", e);
+		        }//try
+		 	 }else{//endif
 	 	 if(request.getParameter("beenden") == null){//button beendet
 	 	 	try{
 	 	 		if(error.equalsIgnoreCase("yes")) { 
@@ -64,13 +84,15 @@ public class DokumentToProcessServlet extends HttpServlet implements Servlet {
 					session.setAttribute("Dokument", show.getDokumentOfUpdate(dbConn,selinasuser.user,dokumentOfSession,request));//SessionAttribut:DokumentOfInitialization
 					performForward("/selinas/selinas004.jsp",request,response);
  	 			}else{
- 	 				session.setAttribute("Dokument", show.getDokumentOfDatabase(dbConn,selinasuser.user,request));//SessionAttribut:DokumentOfDatabase
+ 	 				session.setAttribute("Dokument", show.getDokumentOfDatabase(dbConn,selinasuser.user,dokumentOfSession));//SessionAttribut:DokumentOfDatabase
  	 	 			performForward("/selinas/selinas003.jsp",request,response);
  	 			}//endif error.equals
 			} catch (Exception e) {
 				LoggerHelper.log(this.getClass().getName(), "Exception of perForm Beenden", e);
 				performForward(nextPage,request,response);//Login 
 			}//
+	 	 }//endif
+	 	 }//endif
 	 	 }//endif
 	}//perForm
 	

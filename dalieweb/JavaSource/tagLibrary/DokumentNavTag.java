@@ -146,7 +146,7 @@ public class DokumentNavTag extends TagSupport {
      */
 	private String writeDokumentDataToPageContext(Typ typ,Dokument dokument,String current) {
 			if(typ.getTyp().equalsIgnoreCase(current)){
-				ulli = ulli + "<li class='current'><a href='/dalieweb/DokumentToRequestServlet?dokumentTyp="+typ.getTyp()+"&amp;dokumentNr="+dokument.getNummer()+"&amp;dokumentId="+dokument.getId()+"' target='_parent'>"+ typ.getDescription() + "</a></li>";
+				ulli = ulli + "<li class='current'> >>"+ typ.getDescription() + "</li>";
 			}else{
 				ulli = ulli + "<li><a href='/dalieweb/DokumentToRequestServlet?dokumentTyp="+typ.getTyp()+"&amp;dokumentNr="+dokument.getNummer()+"&amp;dokumentId="+dokument.getId()+"' target='_parent'>"+ typ.getDescription() + "</a></li>";
 			}

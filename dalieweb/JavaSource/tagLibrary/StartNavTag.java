@@ -74,18 +74,18 @@ public class StartNavTag extends TagSupport {
                         	
                         	try{
                         		/* Suche Dokumente zum DokumentTyp  */
-                        		Vector dokuments  = DataSetDokument.reade(dbConn, selinasuser.user,typOfDokument.getTyp());
+                        		DataSetDokument.chain(dbConn, selinasuser.user,typOfDokument.getTyp());
                         		/* gefunden -> schreibe ein Listenelemente an den htmlContent */
-                				writeDokumentDataToPageContext(typOfDokument,(String) session.getAttribute("SelectTyp"));	
+                				writeDokumentDataToPageContext(typOfDokument,(String)session.getAttribute("SelectTyp"));	
                         	}catch(Exception e){
-                        		System.out.println("Hinweis: keine Dokumente zum Dokumenttyp gefunden");
+                        		System.out.println("Hinweis: kein Dokument zum Dokumenttyp gefunden");
                         	}//try
                         	
                         }//for
                         dbConn.close();
                  	}catch(Exception e){//no DokumentTypen found
-                    	out.println("<ul><li><a href='/dalieweb/GoToStartServlet' title='zurück zum Überblick'><span>"+ show.session.getLink1() +"</span></a></li><li><a href='/dalieweb/AdminOfSelina' title='Administration von Selinas'><span>Administration</span></a></li>");
-                    }//catch    
+                    	out.println("<ul><li><a href='/dalieweb/GoToStartServlet' title='zurück zum Test'><span>"+ show.session.getLink1() +"</span></a></li><li><a href='/dalieweb/AdminOfSelina' title='Administration von Selinas'><span>Administration</span></a></li>");
+                 	}//catch    
                  	
                  	if(((String)session.getAttribute("SelectTyp")).equalsIgnoreCase("UB"))
                  		ulli += "<li><a href='/dalieweb/AdminOfSelina' title='Administration von Selinas'><span>Administration</span></a></li>";
@@ -130,6 +130,17 @@ public class StartNavTag extends TagSupport {
                 return SKIP_PAGE;//Skip the rest of the page.
             }//catch
     }//doEndTag
+	
+	/** To find the internal state */
+    public void release() {
+    	dbConn = null;
+    	selinasuser = null;
+    	show = null;
+    	selectTyp = null;
+    	language = null;
+    	ulli = null;
+       super.release();
+    }//release
 	
 	 /**
      * Writes Dokument-Informations for one Dokument to the page body

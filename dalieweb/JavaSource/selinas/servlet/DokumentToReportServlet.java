@@ -92,7 +92,7 @@ public class DokumentToReportServlet extends HttpServlet implements Servlet {
 			LoggerHelper.log(this.getClass().getName(),"FOPException of perForm..:", e1);
 		}//
         
- 		performForward("/selinas/selinas002.jsp", request, response);
+ 		//performForward("/selinas/selinas002.jsp", request, response);
 	}//perForm
     
 	/** handle the HTTP <code>GET</code> method */

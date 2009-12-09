@@ -126,12 +126,12 @@ public class DokumentTypTag extends TagSupport{
 			Dokument data  = ((Dokument)dokumente.elementAt(i));
 			Typ dokumentTyp = DataSetTyp.chain(dbConn,data);
 			tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +
-					/*"<td>" + dokumentTyp.getDescription() +"</td>" +*/
-					"<td width='15%'>" + data.getGliederung() +"</td>" +
-					"<td width='15%'><a class='link' href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" target='_parent'>" + data.getTitel()+"</a></td>" +
+					"<td width='25%'>" + data.getTitel() +"</td>" +
+					"<td width='10%'><a class='link' href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" target='_parent'>"+ "&nbsp;" + data.getNummer()+ "." +data.getId()+"&nbsp;"+"</a></td>" +
 					"<td width='25%'>" + data.getDescripten() + "</td>" +
-					"<td width='25%'>" + data.getCreateUser() +"<br />"+  data.getCreateDate() +"</td>" +
-					"<td width='25%'>" + data.getChangeUser() +"<br />"+  data.getChangeDate() +"</td>" +
+					"<td width='10%'>" + data.getGliederung() +"</td>" +
+					"<td width='15%'>" + data.getCreateUser() +"<br />"+  data.getCreateDate() +"</td>" +
+					"<td width='15%'>" + data.getChangeUser() +"<br />"+  data.getChangeDate() +"</td>" +
 					"</tr>";
 		}//for	
 	    return tableTRTD;	

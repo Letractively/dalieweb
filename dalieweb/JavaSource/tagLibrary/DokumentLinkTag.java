@@ -12,6 +12,8 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 
+import selinas.UploadApplication;
+
 import database.Database;
 import database.dateien.Link;
 import database.dateien.Dokument;
@@ -118,8 +120,8 @@ public class DokumentLinkTag extends TagSupport{
 	    for (int i = 0; i < dokumentLinks.size(); i++){         
 			Link link  = ((Link)dokumentLinks.elementAt(i));
 			tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +
-					"<td width='70%' class="+FB+FB+"><a href='"+((HttpServletResponse) pageContext.getResponse()).encodeURL(link.getPfadOfLink())+"' target='_blank'>" + link.getNameOfLink() +"</a></td>" +
-					"<td width='30%' class="+FB+FB+">"+ link.getCreateDate() + "</td>" +
+					"<td width='60%' class="+FB+FB+"><a href='"+((HttpServletResponse) pageContext.getResponse()).encodeURL("../LinkToGetServlet?ApplicationsId="+link.getApplicationsId()+ UploadApplication.getApplicationsKz(link.getContentType()))+"' target='_blank'>" + link.getNameOfLinkUn() +"</a></td>" +
+					"<td width='40%' class="+FB+FB+">"+ link.getCreateDate() + "</td>" +
 					"</tr>";
 		}//for	
 	    return tableTRTD;	

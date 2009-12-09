@@ -24,9 +24,12 @@ public class UploadApplication {
      * <B>FieldName=</B>myFile <br>
      * */
     FileItem element;
+    private String applicationsKz;
+    
     /** Typ of Element<BR>Datei ist .pdf or .doc or .xls  */
     private String application = "";//Typ of Element
     
+    public UploadApplication(){}
     public UploadApplication(FileItem element){
         this.element = element;
     }//UploadApplication
@@ -46,7 +49,15 @@ public class UploadApplication {
         return false;
     }//checkUploadApplikation
     
-    
+    public static String getApplicationsKz(String kz){
+    	if(kz.equalsIgnoreCase("application/msword"))
+      		return ".doc";
+    	if(kz.equalsIgnoreCase("application/vnd.ms-excel"))
+      		return ".xls";
+    	if(kz.equalsIgnoreCase("application/pdf"))
+      		return ".pdf";
+    	return "";
+    }//getApplicationsKz
     /**
      * @return Returns the String of application.
      * <br> ".pdf or .xls or .doc

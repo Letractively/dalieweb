@@ -55,6 +55,33 @@ public class DataSetLink {
      * <li>Vector of DokumentLinks</li>
      * </ul>
      */
+    public static synchronized Link chain(Database dbConn,Dokument dokument,int applicationsId) throws Exception {
+		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokumentlinks " +
+				"where kundenId = " + dokument.getKundenId() + " and standortId = " + dokument.getStandortId() +
+				" and dokumentTyp = '"+ dokument.getDokumentTyp()+ "'" + " and dokumentNr = "+ dokument.getNummer() + 
+				" and dokumentId = "+ dokument.getId() + " and applicationsId = " + applicationsId + 
+				" ORDER BY dokumentTyp, dokumentNr, dokumentId, nameOfLink, createDate desc");
+		if(rows.size() == 0)
+    	    throw new Exception("Record not Found");
+        return new Link((Vector)rows.elementAt(0));
+    }//chain
+    
+	/**
+     * <b>get DokumentLinks of Database Table dokumentlink</b>
+     * <br><b>read:Key String dokumentTyp,int dokumentNr , int dokumentId</b>
+     * <br><br><b>public static</b><br>
+     * @param
+     * <ul>
+     * <li>Database dbConn</li>
+     * <li>int dokumentTyp = 'AA'</li>
+     * <li>int dokumentNr = 1</li>
+     * <li>int dokumentId = 1</li>
+     * </ul>
+     * @return
+     * <ul>
+     * <li>Vector of DokumentLinks</li>
+     * </ul>
+     */
     public static synchronized Vector read(Database dbConn,int kundenId,int standortId,String dokumentTyp,int dokumentNr,int dokumentId) throws Exception {
         Vector liste = new Vector();
 		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokumentlinks " +
@@ -99,6 +126,25 @@ public class DataSetLink {
 		return liste;
     }//read
     
+    /**
+     * <b>delete DokumentLinks on Datenbank </b>
+     * <br><b>delete:Key User, Dokument </b>
+     * <br><b>public</b><br>
+     * @param
+     * <ul>	
+     * <li>Database dbConn</li>
+     * <li>User user</li>
+     * <li>Dokument dokument</li>
+     * </ul>
+     * @return
+     * <ul><li>none</li></ul>
+     */
+    public static synchronized void delete(Database dbConn,User user, Dokument dokument) throws Exception {
+        dbConn.executeUpdate("delete from "+dbConn.getDbSchema()+".dokumentlinks" +
+        		 " where kundenId = "+ user.getKundenId() + " and standortId = "+user.getStandortId()+
+	             " and dokumentTyp = '"+dokument.getDokumentTyp() + "'" + " and dokumentNr = "+dokument.getNummer() +
+	             " and dokumentId = "+ dokument.getId() );
+    }//delete
     /**
      * <b>get DokumentLinks of Database Table dokumentlink</b>
      * <br><b>read:Key String dokumentTyp,int dokumentNr , int dokumentId</b>
@@ -146,7 +192,8 @@ public class DataSetLink {
                 "values(" + dokument.getKundenId()+ "," + dokument.getStandortId()+ "," +
                 "'"+dokument.getDokumentTyp()+"'," + dokument.getNummer()+ "," + dokument.getId()+ "," +
                 "'"+link.getPfadOfLink()+"'," + "'"+link.getNameOfLink()+"'," +
-                "'"+link.getContentType()+"'," + link.getSizeInBytes()+"," +
+                "'"+link.getContentType()+"',"+ link.getApplicationsId()+","+
+                "'applicationspfad'" + "," + link.getSizeInBytes()+"," +
                 "'"+user.getUserId()+"'," + "now()," + "'"+user.getUserId()+"'," + "now())");
     }//insert
     

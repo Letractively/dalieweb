@@ -35,6 +35,7 @@ public class DokumentToWorkServlet extends HttpServlet implements Servlet {
 		    
 		 try {
 		     session.setAttribute("Dokument", show.getDokumentOfDatabase(dbConn,selinasuser.user,request));//SessionAttribut:DokumentOfDatabase
+		     session.setAttribute("Typ",show.getDokumentTypOfDatabase(dbConn,request));//SessionAttribut:DokumentTypOfDatabase
 	         performForward("/selinas/selinas004.jsp", request, response);//JSP- Seite zum Verwalten
 		 } catch (Exception e) {
 		 	performForward(nextPage, request, response);

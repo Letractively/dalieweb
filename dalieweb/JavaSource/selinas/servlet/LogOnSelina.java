@@ -60,6 +60,7 @@ public class LogOnSelina extends HttpServlet implements Servlet {
     				session.setAttribute("PermitId",(new Integer(user.user.getPermitId())).toString());
     				session.setAttribute("Selinas",DataSetSelinas.chain(dbConn,user.user.getKundenId(),user.user.getStandortId(),"DE"));
     				session.setAttribute("SelectTyp","UB");
+    				session.setAttribute("UpLoadOn","0");
     				performForward("/selinas/selinas002.jsp",request,response);//JSP- show all Dokuments
     			} else {
     				error = DataSetMessage.chain(dbConn, "Login",(String) session.getAttribute("Speech"));

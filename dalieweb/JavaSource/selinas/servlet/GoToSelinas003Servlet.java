@@ -40,10 +40,18 @@ public class GoToSelinas003Servlet extends HttpServlet implements Servlet {
 	 	try{
 	 		session.setAttribute("Dokument", show.getDokumentOfDatabase(dbConn,selinasuser.user,dokumentOfSession));//SessionAttribut:DokumentOfDatabase
 	 		if(request.getParameter("linkOrderByTyp") != null)//
-	 		session.setAttribute("LinkOrderByTyp",request.getParameter("linkOrderByTyp"));//SessionAttribut:DokumentOfInitialization
+	 			session.setAttribute("LinkOrderByTyp",request.getParameter("linkOrderByTyp"));//SessionAttribut:DokumentOfInitialization
+ 			if(request.getParameter("upLoadOn")!= null){
+ 				if((session.getAttribute("UpLoadOn").toString()).equalsIgnoreCase("1")){
+ 					session.setAttribute("UpLoadOn","0");//SessionAttribut:UplaodTabelle nicht anzeigen
+ 				}else{
+ 					session.setAttribute("UpLoadOn","1");//SessionAttribut:UplaodTabelle anzeigen
+ 					}//endif
+ 			}//endif
 	 		if(request.getParameter("dokumentOrderByTyp") != null)//
-	 		session.setAttribute("DokumentOrderByTyp",request.getParameter("dokumentOrderByTyp"));//SessionAttribut:DokumentOfInitialization
- 			performForward("/selinas/selinas003.jsp",request,response);
+	 			session.setAttribute("DokumentOrderByTyp",request.getParameter("dokumentOrderByTyp"));//SessionAttribut:DokumentOfInitialization
+	 			
+	 		performForward("/selinas/selinas003.jsp",request,response); 			
 	 		}catch (Exception e) {
 	 			performForward(nextPage,request,response);//Login 
 	 		}//catch ServletException
