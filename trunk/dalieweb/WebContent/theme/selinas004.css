@@ -3,17 +3,22 @@
 @IMPORT url("Master.css");
 body {
 	padding: 1px 0px 1px 0px; 
-	font-family: Verdana, Arial, Sans-Serif; 
-	/*font-size: 62.5%; 
-	color: #666;*/
+	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;
 }
-#pageHeader{
-	background-color: blue
+#page a:link.link, a:visited.link {
+	/* LogOff Link */
+	color: #2A4F6F;
+	background-color: transparent;
+	border-bottom: 1px dotted #B2BCC6;
+	text-decoration: none;
+}
+#page a:hover.link {
+	/* LogOff Link */
+	color: #778899;
 }
 #pageHeader {
 	background-image: url("../bilder/header.jpg");
 	border-bottom: 1px dotted #B2BCC6;
-	background-color: #FFFFFF;
 	height: 8em;
 }
 #pageHeader .strapline {
@@ -36,21 +41,17 @@ body {
 	background-color: #234F4E /*Hintergrund Farbe Selinas Grün*/
 }
 #pageWrapper{
-	background-color: #EEEEEE;
-	margin-right: 0.5%;
-	margin-left: 0.5%;;
-	border-style: solid;
+	border-color: #557AA6;
 	border-top-width: 0px;
 	border-right-width: 2px;
+	border-bottom-width: 3px;
 	border-left-width: 2px;
-	border-color: #557AA6;
-	border-bottom-width: 3px
+	border-style: solid;
+	margin-right: 0.5%;
+	margin-left: 0.5%;
 	width: 99%;
 }
-#page{
-	background: #fff;
-	width: 100%;
-}
+
 #header {
 	padding: 0px 0;
 }
