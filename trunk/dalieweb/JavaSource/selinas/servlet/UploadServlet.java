@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.Servlet;
@@ -37,22 +38,25 @@ public class UploadServlet extends HttpServlet implements Servlet {
 	Database dbConn;
 	Dokument dokument;
 	Message error;
-	final 	String sUploadDir = "/upload/";
+    final String FB = "/";//wird als " interpretiert
+	String sUploadDir;
     String sRet = "";
     String feldName = "";
     String fileName = "";
     String contenType = "";
     long sizeInBytes = 0;
+    int applicationsId;
     
 
     /** perform for both HTTP <code>GET</code> and <code>POST</code> methods  */
 	protected void perForm(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-	    
+	                        	
 		HttpSession session = request.getSession();
         dbConn = (Database) session.getAttribute("Database");
         dokument = (Dokument) session.getAttribute("Dokument");
         SelinasUser selinasuser = (SelinasUser) session.getAttribute("User");
         Link dokumentlink = new Link();
+        Random generator = new Random();
         try {
              ServletFileUpload upload = new ServletFileUpload(new DiskFileItemFactory());
              try {
@@ -72,20 +76,17 @@ public class UploadServlet extends HttpServlet implements Servlet {
                                 fileName = fileName.substring(fileName.lastIndexOf('/') + 1);
                                 InputStream is = element.getInputStream();
 
-                                String 	ksdni = (new Integer(dokument.getKundenId())).toString();
-        						ksdni += (new Integer(dokument.getStandortId())).toString();
-        						ksdni += (new Integer(dokument.getNummer())).toString();
-        					   	ksdni += (new Integer(dokument.getId())).toString();
+                                String 	first = (new Integer(generator.nextInt(999) + 1)).toString();
         					   	try{
-        					   		ksdni += (DataSetLink.read(dbConn,dokument).size());
+        					   		applicationsId += (DataSetLink.read(dbConn,dokument).size());
         					   	}catch(Exception e){
-        					   		ksdni += (0);
+        					   		applicationsId += (0);
         					   		}
-        					   	ksdni += dokument.getDokumentTyp().toString() + uploadApplication.getApplication();
-        						
-                                FileOutputStream fos = new FileOutputStream(
-                                        new File(getServletContext()
-                                                .getRealPath(sUploadDir), ksdni));
+        					   	first += dokument.getDokumentTyp().toString(); //+ uploadApplication.getApplication();
+        					   	sUploadDir = "/upload/" + (generator.nextInt(9) + 1) + FB;
+        						String next = (new Integer(generator.nextInt(999) + 1)).toString();
+        					   	
+        					   	FileOutputStream fos = new FileOutputStream( new File(getServletContext().getRealPath(sUploadDir), first + applicationsId + next));
                                 int len = 0;
                                 while ((len = is.read(buffer)) > 0) {
                                     fos.write(buffer, 0, len);
@@ -94,12 +95,14 @@ public class UploadServlet extends HttpServlet implements Servlet {
                                 fos.close();
                                 is.close();
                                 dbConn.getConnection();
-                                dokumentlink.setPfadOfLink(request.getContextPath() + sUploadDir + ksdni);
+                                dokumentlink.setPfadOfLink(request.getContextPath() + sUploadDir + first + applicationsId + next);
                                 dokumentlink.setNameOfLink(fileName);
                                 dokumentlink.setContentType(contenType);
+                                dokumentlink.setApplicationsId(applicationsId);
                                 dokumentlink.setSizeInBytes(sizeInBytes);
                                 DataSetLink.insert(dbConn,dokument,dokumentlink,selinasuser.user);
-                                request.setAttribute("upload",getResult(ksdni,request,response));
+                                request.setAttribute("upload",getResult(first + applicationsId + next,dokumentlink,request,response));
+                                
                                 
                             } else {//keine gültige PC Anwendung
                                 System.out.println(element.getName());
@@ -123,7 +126,7 @@ public class UploadServlet extends HttpServlet implements Servlet {
         }//catch
     }//doPerForm
 
-	protected String getResult(String ksdni,HttpServletRequest request, HttpServletResponse response) {
+	protected String getResult(String ksdni,Link link,HttpServletRequest request, HttpServletResponse response) {
 	    sRet = "<table><tr>";
     	sRet += "<td>&nbsp;contenType&nbsp;</td>";
     	sRet += "<td>"+ contenType + "</td></tr>";
@@ -134,8 +137,9 @@ public class UploadServlet extends HttpServlet implements Servlet {
     	sRet += "<tr><td>&nbsp;Server Dokument&nbsp;</td>";
     	sRet += "<td>"+ ksdni + "</td></tr>";
 		sRet += "<tr><td>&nbsp;starten&nbsp;</td>";
-		sRet += "<td><a href='"+ request.getContextPath()+ sUploadDir.toString()+ksdni.toString()+"'";
-		sRet +=	"target='_blank'>"+ksdni+"</a></td></tr></table></ br>";	
+		sRet += "<td><a href='/dalieweb/LinkToGetServlet?ApplicationsId="+link.getApplicationsId()+UploadApplication.getApplicationsKz(link.getContentType())+"'";
+		//sRet += "<td><a href='"+ request.getContextPath()+ sUploadDir.toString()+ksdni.toString()+uploadApplication.getApplication()+"'";
+		sRet +=	" target='_blank'>"+fileName+"</a></td></tr></table></ br>";	
     	
 		//sRet += "<HR><TABLE><TR>";
 		//sRet += "<TD><A HREF='"+response.encodeURL(request.getContextPath()+"/DokumentServlet?dokumentTyp="+dokument.getDokumentenTypTyp()+"&amp;dokumentNr="+dokument.getDokumentNr()+"&amp;dokumentId="+dokument.getDokumentId())+"' target='_parent'>Fertig</A>";

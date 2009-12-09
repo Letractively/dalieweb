@@ -29,8 +29,9 @@ public class Link {
     /** contentType = application of UploadFile */
     private String contentType;//application/pdf
     /** sizeInBytes = the value of bytes */
-    private long sizeInBytes;//1789 bytes 
-    
+    private long sizeInBytes;//1789 bytes
+    /** applicationsId = rrn of Table*/
+    private int applicationsId;
     
     /** User of create this Objekt*/
     private String createUserId;//DV0101 AnmeldeKennnung am System
@@ -47,11 +48,12 @@ public class Link {
         this.pfadOfLink = columns.elementAt(5).toString();
         this.nameOfLink = columns.elementAt(6).toString();
         this.contentType = columns.elementAt(7).toString();
-        this.sizeInBytes = Long.parseLong(columns.elementAt(8).toString());
-        this.createUserId = columns.elementAt(9).toString();
-        this.createDate = HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(10).toString());
-        this.changeUserId = columns.elementAt(11).toString();
-        this.changeDate = HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(12).toString());
+        this.sizeInBytes = Long.parseLong(columns.elementAt(10).toString());
+        this.applicationsId = Integer.parseInt(columns.elementAt(8).toString());
+        this.createUserId = columns.elementAt(11).toString();
+        this.createDate = HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(12).toString());
+        this.changeUserId = columns.elementAt(13).toString();
+        this.changeDate = HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(14).toString());
     }//Link
     
     /**
@@ -121,6 +123,18 @@ public class Link {
         return nameOfLink;
     }
     /**
+	 * /**
+     * <b>example dateiname.pdf return dateiname</b>
+     * <br>
+     * <br><b>private</b><br>
+	 * @param String nameOfLink
+	 * @return String sting */
+	public String getNameOfLinkUn() {
+		StringBuffer temp = new StringBuffer(this.nameOfLink);
+		temp.delete(this.nameOfLink.lastIndexOf("."), this.nameOfLink.length());
+		return temp.toString();
+	}//getNameOfLink
+    /**
      * @param nameOfLink The nameOfLink to set.
      */
     public void setNameOfLink(String nameOfLink) {
@@ -150,5 +164,17 @@ public class Link {
     public void setSizeInBytes(long sizeInBytes) {
         this.sizeInBytes = sizeInBytes;
     }
-    
+
+	/**
+	 * @return Returns the applicationsId.
+	 */
+	public int getApplicationsId() {
+		return applicationsId;
+	}
+	/**
+	 * @param applicationsId The applicationsId to set.
+	 */
+	public void setApplicationsId(int applicationsId) {
+		this.applicationsId = applicationsId;
+	}
 }//class Link

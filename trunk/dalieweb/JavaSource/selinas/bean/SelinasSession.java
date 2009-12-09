@@ -6,9 +6,11 @@ import database.Database;
 import database.dateien.Adresse;
 import database.dateien.Dokument;
 import database.dateien.Selinas;
+import database.dateien.Typ;
 import database.dateien.User;
 import database.getDatabase.DataSetAdresse;
 import database.getDatabase.DataSetDokument;
+import database.getDatabase.DataSetTyp;
 
 /**
  * @author dv0101 am 29.12.2008 um 09:15:45
@@ -128,6 +130,26 @@ public class SelinasSession {
 	   dbConn.close();//DataBaseConnection close
 	   return dokumentOfUpdate;
 	}//getDokument  
+	
+	/**
+	* <b>Erzeuge ein Objekt vom Dokument aus Datenbanktabelle Dokument</b>
+	* <br><b>chain:Key user.getKundenId, user.getStandortId, int dokumentNr, dokumentId</b>
+	* <br><b>protected</b><br>
+	* @param
+	* <ul>
+	* <li>HttpServletRequest request</li>
+	* </ul>
+	* @return
+	* <ul><li>Dokument dokument</li></ul>
+    * @throws Exception
+	*/
+	public Typ getDokumentTypOfDatabase(Database dbConn,HttpServletRequest request) throws Exception{
+	    Typ dokumentTypOfDatabase = null;
+		dbConn.getConnection();////DataBaseConnection open
+		dokumentTypOfDatabase = DataSetTyp.chain(dbConn,Integer.parseInt(request.getParameter("kundenId")),Integer.parseInt(request.getParameter("standortId")),request.getParameter("dokumentTyp"),"DE");
+		dbConn.close();////DataBaseConnection close
+		return dokumentTypOfDatabase;//Return DokumentTypOfDatabase
+	}//getDokument
 	
 	/**
 	 * Remove/collapse multiple spaces.

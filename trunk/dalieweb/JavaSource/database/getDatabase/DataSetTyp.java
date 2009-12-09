@@ -42,14 +42,14 @@ public class DataSetTyp {
      * </ul>
      */
     public static synchronized Typ chain(Database dbConn,int kundenId,int standortId,String dokumenttyp,String sprachId) throws Exception {
-    		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokumenttyp " +
-        	        "where kundenId = "+kundenId+" " +
-        			"and standortId = "+standortId+" " +
-        			"and dokumentTyp = '"+dokumenttyp+"' " +
-        			"and sprachId = '"+sprachId+"'");
-        	if(rows.size() == 0)
-        	    throw new Exception("Record not Found");
-        	return new Typ((Vector)rows.elementAt(0));            
+    	Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokumenttyp " +
+    			"where kundenId = "+kundenId+" " +
+        		"and standortId = "+standortId+" " +
+        		"and dokumentTyp = '"+dokumenttyp+"' " +
+        		"and sprachId = '"+sprachId+"'");
+        if(rows.size() == 0)
+            throw new Exception("Record not Found");
+        return new Typ((Vector)rows.elementAt(0));            
     }//getTypOfDokument
     
     /**
