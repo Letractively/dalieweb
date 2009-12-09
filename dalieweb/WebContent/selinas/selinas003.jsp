@@ -33,6 +33,7 @@
 		SelinasUser user = (SelinasUser) session.getAttribute("User");
 		Dokument dokument = (Dokument) session.getAttribute("Dokument");
 		String language = (String) session.getAttribute("Speech");
+		String upload = (String) session.getAttribute("UpLoadOn");
 %>
 <div id="page"> 
 	<div id="pageHeader">
@@ -50,50 +51,56 @@
 		<div id="navigation">
 			<dalie:DokumentNavTag current="<%= dokument.getDokumentTyp() %>"></dalie:DokumentNavTag>
 		</div><!-- /navigation -->
-		<div id="dokumentHeader">
-			<br />
-			<table width='100%' border="0" cellspacing="0" cellpadding="5">
+		<div id="header">
+			<table width='100%' border="0" cellspacing="0" cellpadding="0">
 			<tr>
-				<td align="left" valign="top" width="2%" rowspan="3">&nbsp;<img src="<%= request.getContextPath()%>/bilder/spacer.gif" class="requests" width="21" height="22" hspace="8" vspace="8" alt="dokument"/></td>
-				<td align="left" valign="middle"> <span class='fontMediumBold'><%= dokument.getTitel()%> </span></td>
+				<td align="right" valign="middle" width="3%" rowspan="3">&nbsp;<img src="<%= request.getContextPath()%>/bilder/spacer.gif" class="requests" width="21" height="22" hspace="8" vspace="8" alt="dokument"/></td>
+				<td align="left" valign="top"> <span class='fontMediumBold'><%= dokument.getTitel()%> </span></td>
 			</tr>
 			<tr>
 				<td><span class='fontNormal'><em>Dokumenten-Nr. : </em><%= dokument.getNummer()%>.<%= dokument.getId()%></span></td>
 			</tr>
 		</table>
-		</div><!-- /dokumentHeader -->
+		</div><!-- /header -->
 		<div id="wrapper">
-			<div id="content">	
-			<table width="100%" border="0" cellspacing="0" cellpadding="0"  class="requestBox">
+			<div id="contentLeft">	
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
             	<tr>
-					<td id="topbg"><span class="fontBlack"> Requested by </span><span class="fontBlackBold">Uwe Dalies</span></td>
+					<th><span class="fontBlack"> Requested by </span><span class="fontBlackBold">Uwe Dalies</span></th>
             	</tr>
               	<tr>
         			<td height="0" valign="top">
                 		<table width="100%" border="0" cellpadding="0" cellspacing="0">
                      		<tr>
-                      			<td class="subheading"><strong>Betreff:</strong></td>
+                      			<td class="subheading1"><strong>Beschreibung:</strong></td>
+								<td class="subheading1"><strong>Gliederung:</strong></td>
                      		</tr>
 							<tr>
-                	    		<td colspan="3" valign="middle" class="fontBlack"><%= dokument.getDescripten()%></td>
+                	    		<td valign="middle" class="fontBlack"><%= dokument.getDescripten()%></td>
+								<td valign="middle" class="fontBlack"><%= dokument.getGliederung() %></td>
                     		</tr>
                     		<tr>
-            	        		<td class="subheading"><strong>Inhalt:</strong></td>
+            	        		<td class="subheading1"><strong>Inhalt:</strong></td>
+								<td class="subheading1">&nbsp;</td>
       						</tr>
+						</table>
+						<table width="100%" border="0" cellpadding="0" cellspacing="0">
         					<tr>
-        						<td><textarea name="text" class="requestText" style="overflow:hidden;" readonly="readonly" rows="10" cols="10"><%= dokument.getContent()%></textarea></td>
+        						<td><textarea name="text" class="requestText" readonly="readonly" ><%= dokument.getContent()%></textarea></td>
 							</tr>
 						</table>
 					</td>
 				</tr>
 			</table>
-			<table border="0" cellpadding="0" cellspacing="0" width="100%" class="uploadDokumente">
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
 				<tr>
-					<td>
+					<td class="subheading2">
 						<table border="0" cellpadding="0" cellspacing="0">
 							<tr>
 								<td>
-									<form action="/dalieweb/DokumentToWorkServlet" method="post">
+									<form action="<%= request.getContextPath()%>/DokumentToWorkServlet" method="post">
+									<input type="hidden" name="kundenId" value="<%= dokument.getKundenId() %>" />
+									<input type="hidden" name="standortId" value="<%= dokument.getStandortId() %>" />
 									<input type="hidden" name="dokumentTyp" value="<%= dokument.getDokumentTyp() %>" /> 
 									<input type="hidden" name="dokumentNr" value="<%= dokument.getNummer() %>" /> 
 									<input type="hidden" name="dokumentId" value="<%= dokument.getId() %>" /> 
@@ -110,27 +117,47 @@
 					</td>
 				</tr>
 			</table>
-			</div><!-- /content -->
+			</div><!-- /contentLeft -->
 			<div id="contentRight">	
 				<dalie:DokumentLinkTag data="N" columnHeader='<%= ColumHeader.valueOf("2",language) %>' tableTagClass="linkTable"></dalie:DokumentLinkTag>
-				<iframe src="<%= request.getContextPath()%>/selinas/selinas003FL.jsp" width="100%" name="selinas2" frameborder="0" height="197"></iframe>						
-				<form action="<%= request.getContextPath()%>/DokumentUploadServlet" enctype="multipart/form-data" method="post">
-					<table border="0" cellpadding="0" cellspacing="0" width="100%" class="uploadDokument">
-						<tr>							
-							<th>
-								<input type="file" name="myFile" tabindex='2' maxlength="255" class="file"/>
-								<dalie:ButtonOption name="submit" accesskey="s" tabindex="3">Upload <span style="text-decoration:underline">s</span>tarten</dalie:ButtonOption>
-							</th>
+				<iframe src="<%= request.getContextPath()%>/selinas/selinas003FL.jsp" width="100%" name="selinas2" frameborder="0" height="221"></iframe>						
+					<table border="0" cellpadding="0" cellspacing="0" width="100%">	
+						<tr>
+							<td class="subheading3">
+								<form action="<%= request.getContextPath()%>/GoToSelinas003Servlet" method="post">
+									<input type="hidden" name="upLoadOn" value="1" />
+									<% if(upload.equalsIgnoreCase("0")){ %> 
+										<dalie:ButtonOption name="upload" accesskey="s" tabindex="3">Upload <span style="text-decoration:underline">s</span>tarten</dalie:ButtonOption>
+									<% }else{%>
+										<dalie:ButtonOption name="upload" accesskey="e" tabindex="3">Be<span style="text-decoration:underline">e</span>nden</dalie:ButtonOption>
+									<% }/*endif*/ %>
+								</form>		
+							</td>
 						</tr>
-					<dalie:HinweisOption message='${requestScope.upload}'></dalie:HinweisOption><!-- CLASS:HinweisOption -->
 					</table>		
-				</form>		
 			</div><!-- /contentRight -->
 		</div><!-- wrapper -->
 		<div id="footer">
-			<dalie:DokumentTypTag data="N" columnHeader='<%= ColumHeader.valueOf("1",language) %>' typ='<%= dokument.getDokumentTyp() %>' tableTagClass="linkTable"></dalie:DokumentTypTag>
-			<iframe src="<%= request.getContextPath()%>/selinas/selinas003FD.jsp" width="100%" name="selinas1" frameborder="0"></iframe>
+			<% if(upload.equalsIgnoreCase("1")){ %> 
+			<table border="0" cellpadding="0" cellspacing="0" width="99%">	
+				<tr>
+					<td>
+								<form action="<%= request.getContextPath()%>/DokumentUploadServlet" enctype="multipart/form-data" method="post">
+								<input type="file" name="myFile" tabindex='2' maxlength="255" class="file"/>
+								<dalie:ButtonOption name="submit" accesskey="s" tabindex="3">Upload <span style="text-decoration:underline">s</span>tarten</dalie:ButtonOption>
+								</form>		
+					</td>
+				</tr>
+				<tr>
+					<td><dalie:HinweisOption message='${requestScope.upload}'></dalie:HinweisOption><!-- CLASS:HinweisOption --></td>
+				</tr>
+			</table>
+			<% }/*endif*/ %>	
 		</div><!-- /footer -->	
+		<div id="navigationDetail">
+			<dalie:DokumentTypTag data="N" columnHeader='<%= ColumHeader.valueOf("1",language) %>' typ='<%= dokument.getDokumentTyp() %>' tableTagClass="linkTable"></dalie:DokumentTypTag>
+			<iframe src="<%= request.getContextPath()%>/selinas/selinas003FD.jsp" width="100%" name="selinas1" frameborder="0" height="100"></iframe>
+		</div><!-- /navigationDetail -->
 	</div><!-- /pageWrapper -->
 		<div id="pageFooter">
 			<dalie:FooterLebenslauf></dalie:FooterLebenslauf><!-- CLASS:FooterLebenslauf -->
