@@ -9,6 +9,7 @@
 	import="selinas.ColumHeader"
 	import="selinas.SelinasUser"
 	import="database.dateien.Dokument"
+	import="database.dateien.Typ"
 	contentType="text/html; charset=ISO-8859-1" 
 	pageEncoding="ISO-8859-1"%>
 <!-- onwn TagLib-Direktive -->
@@ -34,6 +35,7 @@
 	SelinasSession show = new SelinasSession((Selinas) session.getAttribute("Selinas")); 
     SelinasUser user = (SelinasUser) session.getAttribute("User");
 	Dokument dokument = (Dokument)session.getAttribute("Dokument");
+	Typ typ = (Typ)session.getAttribute("Typ");
 %>
 <div id="page">
 	<div id="pageHeader">
@@ -41,22 +43,31 @@
 		<img src="<%= request.getContextPath()%>/bilder/pfeilmit01.gif" width="60" height="60" alt="" name="ani" title="dalieweb" class="logo"/></a>
 		<span class="strapline">dalieweb.de</span>
 	</div><!-- /pageHeader -->
-<br />
-<form action="/dalieweb/DokumentToProcessServlet" method="post">
-<input type="hidden" name="dokumentTyp" value="<%= dokument.getDokumentTyp() %>" />
-<input type="hidden" name="dokumentNr" value="<%= dokument.getNummer() %>" />
-<input type="hidden" name="dokumentId" value="<%= dokument.getId() %>" />
+		<table border="0" cellspacing="0" cellpadding="0" width="99%">
+			<tr>
+				<td valign="middle" align="left"></td>
+				<td valign="middle" align="right" class="strapline"><%= user.user.getName()%>, <%= user.user.getVorname()%>&nbsp; <a href="<%= request.getContextPath()%>/LogOffSelina" target="_self" class="link">Log off</a></td>
+			</tr>
+		</table>
+	<br />
 	<div id="pageWrapper">
+		<form action="<%= request.getContextPath()%>/DokumentToProcessServlet" method="post">
+		<input type="hidden" name="dokumentTyp" value="<%= dokument.getDokumentTyp() %>" />
+		<input type="hidden" name="dokumentNr" value="<%= dokument.getNummer() %>" />
+		<input type="hidden" name="dokumentId" value="<%= dokument.getId() %>" />
 		<div id="header">
 			<table width="100%" border="0" cellpadding="0" cellspacing="0">
 				<tr>
 					<th width="100%" align="left" valign="middle">Anforderung</th>
 				</tr>
 			</table>
-			<table width="100%" border="0" cellpadding="0" cellspacing="0">
+			<table width="100%" border="0" cellpadding="0" cellspacing="3">
 				<tr>
-					<td width="15%" align="left">&nbsp;</td><td width="35%" align="left">&nbsp;</td>
-					<td width="15%" align="left"><%= show.session.getStatus() %></td><td width="35%" align="left"><dalie:Selectbox name="Status" argument='<%=dokument.getStatus()%>' tabindex="7" ccsStyle="BOX"></dalie:Selectbox></td>
+					<td width="15%" align="left"><strong><%= show.session.getDokumentTyp() %></strong></td><td width="35%" align="left"><%= typ.getDescription() %></td>
+					<td width="15%" align="left"><strong><%= show.session.getStatus() %></strong></td><td width="35%" align="left"><dalie:Selectbox name="Status" argument='<%=dokument.getStatus()%>' tabindex="7" ccsStyle="BOX"></dalie:Selectbox></td>
+				</tr>
+				<tr>
+					<td width="15%" align="left"><strong><%= show.session.getDokumentNr() %></strong></td><td width="35%" align="left"><%= dokument.getNummer() %>.<%= dokument.getId() %></td>
 				</tr>
 			</table>
 		</div><!-- /header -->
@@ -74,10 +85,10 @@
 			</table> 
 			<table width="99%" border="0" cellpadding="0" cellspacing="3" class="details">
 				<tr>
-					<td width="15%" align="left"><%= show.session.getTitel() %></td><td width="85%" align="left"><dalie:InputOption name='<%= show.session.getTitel() %>' value='<%=dokument.getTitel() %>' tabindex="3" size="30"></dalie:InputOption></td>
+					<td width="15%" align="left"><%= show.session.getTitel() %></td><td width="85%" align="left"><dalie:InputOption name='<%= show.session.getTitel() %>' value='<%=dokument.getTitel() %>' tabindex="3" size="50"></dalie:InputOption></td>
 				</tr>
 				<tr>
-					<td width="15%" align="left"><%= show.session.getDescripten() %></td><td width="85%" align="left"><dalie:InputOption name='<%= show.session.getDescripten() %>' value='<%=dokument.getDescripten() %>' tabindex="3" size="30"></dalie:InputOption></td>
+					<td width="15%" align="left"><%= show.session.getDescripten() %></td><td width="85%" align="left"><dalie:InputOption name='<%= show.session.getDescripten() %>' value='<%=dokument.getDescripten() %>' tabindex="3" size="50"></dalie:InputOption></td>
 				</tr>
 			</table> 
 			<div id="contentLeft">
@@ -93,8 +104,8 @@
 					<td width="15%" align="left">&nbsp;</td>
 					<td width="85%" align="left">
 			<dalie:ButtonOption name="submit" accesskey="s" tabindex="8">Verarbeitung <span style="text-decoration:underline">s</span>tarten</dalie:ButtonOption>
-			<a href="/dalieweb/DokumentToReportServlet"><dalie:ButtonOption name="print" accesskey="d" tabindex="1">Dokument <span style="text-decoration:underline">d</span>rucken</dalie:ButtonOption></a>		
-			<dalie:ButtonOption name="delete" accesskey="l" tabindex="9">Dokument <span style="text-decoration:underline">l</span>öschen</dalie:ButtonOption>
+			<dalie:ButtonOption name="print" accesskey="d" tabindex="1">Dokument <span style="text-decoration:underline">d</span>rucken</dalie:ButtonOption>
+		 	<dalie:ButtonOption name="delete" accesskey="l" tabindex="9">Dokument <span style="text-decoration:underline">l</span>öschen</dalie:ButtonOption>
 			<dalie:ButtonOption name="beenden" accesskey="e" tabindex="11" permitId="2">B<span style="text-decoration:underline">e</span>enden</dalie:ButtonOption>
 				</td> 
 				</tr>
@@ -102,10 +113,10 @@
 					<td width="15%" align="left">&nbsp;</td>
 					<td width="85%" align="left"><!-- CLASS:HinweisOption --><dalie:HinweisOption message='${requestScope.Message}'></dalie:HinweisOption></td>
 				</tr>
-			</table> 			
+			</table> 	
 		</div><!-- /footer -->	
+</form>		
 	</div><!-- /pageWrapper -->
-</form>
 		<br />
 		<div id="pageFooter">
 			<dalie:FooterLebenslauf></dalie:FooterLebenslauf><!-- CLASS:FooterLebenslauf -->

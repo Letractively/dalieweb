@@ -25,8 +25,8 @@
 	Dokument dokument = (Dokument)session.getAttribute("Dokument");	
 	String language = (String)session.getAttribute("Speech");
 %>
-	<div id="footers">
+	<div id="navigationDetails">
 	<dalie:DokumentTypTag header="N" farbe2="#D6D8BA" columnHeader='<%= ColumHeader.valueOf("1",language) %>' typ='<%= dokument.getDokumentTyp() %>' tableTagClass="linkTable"></dalie:DokumentTypTag>
-	</div><!-- /footer -->
+	</div><!-- /navigationDetails -->
 </body>
 </html>
