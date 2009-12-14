@@ -26,7 +26,7 @@
 	String language = (String)session.getAttribute("Speech");
 %>
 	<div id="navigationDetails">
-	<dalie:DokumentTypTag header="N" farbe2="#D6D8BA" columnHeader='<%= ColumHeader.valueOf("1",language) %>' typ='<%= dokument.getDokumentTyp() %>' tableTagClass="linkTable"></dalie:DokumentTypTag>
+	<dalie:DokumentTypTag header="N" farbe2="#D6D8BA" columnHeader='<%= ColumHeader.valueOf("1",language) %>' tableTagClass="linkTable"></dalie:DokumentTypTag>
 	</div><!-- /navigationDetails -->
 </body>
 </html>

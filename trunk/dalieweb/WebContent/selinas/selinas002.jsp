@@ -50,6 +50,7 @@
 			<dalie:StartNavTag></dalie:StartNavTag>
 		</div><!-- /navigation -->
 		<div id="header">
+			<br />
 			<form name="dokument" method="post" action="<%= request.getContextPath()%>/DokumentToInitializeServlet" class="formular">
 				<input type="hidden" name="kundenId" value="<%= user.user.getKundenId() %>" />
 				<input type="hidden" name="standortId" value="<%= user.user.getStandortId() %>" />

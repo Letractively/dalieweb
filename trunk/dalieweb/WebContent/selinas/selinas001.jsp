@@ -25,7 +25,7 @@
 <body onload="if(document.images) nextimg()">
 <div id="page">
 	<div id="pageHeader"><a href="<%= request.getContextPath()%>/dalieweb.jsp" target="_top"><img src="<%= request.getContextPath()%>/bilder/pfeilmit01.gif" width="60" height="60"
-	alt="" name="ani" title="dalieweb" class="logo"/></a><span class="strapline">dalieweb.de</span></div><!-- /pageHeader -->
+	alt="dalieweb" name="ani" title="dalieweb" class="logo"/></a><span class="strapline">dalieweb.de</span></div><!-- /pageHeader -->
 <div id="wrapper">
 	<div id="header">
 	</div><!-- header -->
