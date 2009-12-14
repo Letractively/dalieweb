@@ -49,8 +49,7 @@ public class UploadServlet extends HttpServlet implements Servlet {
     
 
     /** perform for both HTTP <code>GET</code> and <code>POST</code> methods  */
-	protected void perForm(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-	                        	
+	protected void perForm(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {             	
 		HttpSession session = request.getSession();
         dbConn = (Database) session.getAttribute("Database");
         dokument = (Dokument) session.getAttribute("Dokument");
