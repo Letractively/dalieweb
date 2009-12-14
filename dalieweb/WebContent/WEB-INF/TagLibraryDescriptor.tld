@@ -141,12 +141,6 @@
 			<rtexprvalue>true</rtexprvalue><!--dynamisch durch Skriptteile erlaubt-->
 			<description>Content of TableHeader</description>
 		</attribute>
-		<attribute>
-			<name>typ</name><!--required = true compelling(zwingend) argument-->
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue><!--dynamisch durch Skriptteile erlaubt-->
-			<description>Typ of Dokument</description>
-		</attribute>
 	</tag>
 		<tag>
 		<name>Selectbox</name>
@@ -253,7 +247,7 @@
 		<name>DokumentNavTag</name>
 		<tag-class>tagLibrary.DokumentNavTag</tag-class>
 		<attribute>
-			<name>current</name>
+			<name>current</name><type>Dokument</type>
 			<required>true</required><!--zwingend-->
 			<!--rtexprvalue gibt an, ob der Wert des Attributes statisch eingetragen sein muss-->
 			<!--oder auch dynamisch durch Skriptteile ermittelt wird.-->
