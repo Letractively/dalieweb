@@ -48,25 +48,34 @@
 			<td valign="middle" align="right" class="strapline"><%= user.user.getName()%>, <%= user.user.getVorname()%>&nbsp; <a href="<%= request.getContextPath()%>/LogOffSelina" target="_self" class="link">Log off</a></td>
 		</tr>
 		</table>
-		<div id="navigation">
-			<dalie:DokumentNavTag current="<%= dokument.getDokumentTyp() %>"></dalie:DokumentNavTag>
-		</div><!-- /navigation -->
-		<div id="header">
+		<div id="navigationWrapper">
+		<div id="navigationLeft">
+			<div id="navigation">
+				<dalie:DokumentNavTag current="<%= dokument %>"></dalie:DokumentNavTag>
+			</div><!-- /navigation -->
+		</div><!-- /navigationLeft -->
+		<div id="navigationRight">
 			<table width='100%' border="0" cellspacing="0" cellpadding="0">
 			<tr>
-				<td align="right" valign="middle" width="3%" rowspan="3">&nbsp;<img src="<%= request.getContextPath()%>/bilder/spacer.gif" class="requests" width="21" height="22" hspace="8" vspace="8" alt="dokument"/></td>
-				<td align="left" valign="top"> <span class='fontMediumBold'><%= dokument.getTitel()%> </span></td>
+				<td align="right" valign="top" width="3%" rowspan="2">&nbsp;<img src="<%= request.getContextPath()%>/bilder/spacer.gif" class="requests" width="21" height="22" hspace="8" vspace="8" alt="dokument"/></td>
+				<td align="left" valign="bottom"> <span class='fontMediumBold'><%= dokument.getTitel()%> </span></td>
 			</tr>
 			<tr>
 				<td><span class='fontNormal'><em>Dokumenten-Nr. : </em><%= dokument.getNummer()%>.<%= dokument.getId()%></span></td>
 			</tr>
 		</table>
+		</div><!-- /navigationRight -->
+		<div id="navigationFooter">
+			
+		</div><!-- navigationFooter -->
+		</div><!-- /navigationWrapper -->
+		<div id="header">
 		</div><!-- /header -->
 		<div id="wrapper">
 			<div id="contentLeft">	
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
             	<tr>
-					<th><span class="fontBlack"> Requested by </span><span class="fontBlackBold">Uwe Dalies</span></th>
+					<th>&nbsp;<img src='/dalieweb/bilder/arrow.gif'alt="Ihre Angaben zum Dokument" title="Ihre Angaben zum Dokument"/><span class="fontBlack">Details</span></th>
             	</tr>
               	<tr>
         			<td height="0" valign="top">
@@ -98,18 +107,38 @@
 						<table border="0" cellpadding="0" cellspacing="0">
 							<tr>
 								<td>
+									<form action="<%= request.getContextPath()%>/GoToSelinas003Servlet" method="post">
+									<input type="hidden" name="kundenId" value="<%= dokument.getKundenId() %>" />
+									<input type="hidden" name="standortId" value="<%= dokument.getStandortId() %>" />
+									<input type="hidden" name="dokumentTyp" value="<%= dokument.getDokumentTyp() %>" /> 
+									<input type="hidden" name="dokumentNr" value="<%= dokument.getNummer() %>" /> 
+									<input type="hidden" name="dokumentId" value="<%= dokument.getId() %>" /> 
+									<dalie:ButtonOption name="back" accesskey="r" tabindex="1"><< <span style="text-decoration:underline">z</span>urück</dalie:ButtonOption>
+									</form>		
+								</td>
+								<td>
 									<form action="<%= request.getContextPath()%>/DokumentToWorkServlet" method="post">
 									<input type="hidden" name="kundenId" value="<%= dokument.getKundenId() %>" />
 									<input type="hidden" name="standortId" value="<%= dokument.getStandortId() %>" />
 									<input type="hidden" name="dokumentTyp" value="<%= dokument.getDokumentTyp() %>" /> 
 									<input type="hidden" name="dokumentNr" value="<%= dokument.getNummer() %>" /> 
 									<input type="hidden" name="dokumentId" value="<%= dokument.getId() %>" /> 
-									<dalie:ButtonOption name="submit" accesskey="b" tabindex="1">Dokument <span style="text-decoration:underline">b</span>earbeiten</dalie:ButtonOption>
+									<dalie:ButtonOption name="submit" accesskey="b" tabindex="2">Dokument <span style="text-decoration:underline">b</span>earbeiten</dalie:ButtonOption>
 									</form>
 								</td>
 								<td>
+									<form action="<%= request.getContextPath()%>/GoToSelinas003Servlet" method="post">
+									<input type="hidden" name="kundenId" value="<%= dokument.getKundenId() %>" />
+									<input type="hidden" name="standortId" value="<%= dokument.getStandortId() %>" />
+									<input type="hidden" name="dokumentTyp" value="<%= dokument.getDokumentTyp() %>" /> 
+									<input type="hidden" name="dokumentNr" value="<%= dokument.getNummer() %>" /> 
+									<input type="hidden" name="dokumentId" value="<%= dokument.getId() %>" /> 
+									<dalie:ButtonOption name="next" accesskey="n" tabindex="3"><span style="text-decoration:underline">v</span>orwärts >></dalie:ButtonOption>
+									</form>		
+								</td>
+								<td>
 									<form action="/dalieweb/DokumentToReportServlet" method="post">
-									<dalie:ButtonOption name="print" accesskey="d" tabindex="1">Dokument <span style="text-decoration:underline">d</span>rucken</dalie:ButtonOption>
+									<dalie:ButtonOption name="print" accesskey="d" tabindex="4">Dokument <span style="text-decoration:underline">d</span>rucken</dalie:ButtonOption>
 									</form>
 								</td>
 							</tr>
@@ -155,7 +184,7 @@
 			<% }/*endif*/ %>	
 		</div><!-- /footer -->	
 		<div id="navigationDetail">
-			<dalie:DokumentTypTag data="N" columnHeader='<%= ColumHeader.valueOf("1",language) %>' typ='<%= dokument.getDokumentTyp() %>' tableTagClass="linkTable"></dalie:DokumentTypTag>
+			<dalie:DokumentTypTag data="N" columnHeader='<%= ColumHeader.valueOf("1",language) %>' tableTagClass="linkTable"></dalie:DokumentTypTag>
 			<iframe src="<%= request.getContextPath()%>/selinas/selinas003FD.jsp" width="100%" name="selinas1" frameborder="0" height="100"></iframe>
 		</div><!-- /navigationDetail -->
 	</div><!-- /pageWrapper -->
