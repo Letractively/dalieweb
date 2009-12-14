@@ -27,6 +27,10 @@ public class GoToSelinas003Servlet extends HttpServlet implements Servlet {
 	    SelinasUser selinasuser = (SelinasUser) session.getAttribute("User");
 	    Dokument dokumentOfSession = (Dokument)session.getAttribute("Dokument");
 	    Database dbConn = (Database) session.getAttribute("Database");
+	    String lastDokumentOrderByTyp = (String)session.getAttribute("DokumentOrderByTyp");
+	    String currentDokumentOrderByTyp = request.getParameter("dokumentOrderByTyp");
+	    String lastLinkOrderByTyp = (String)session.getAttribute("LinkOrderByTyp");
+		String currentLinkOrderByTyp = request.getParameter("linkOrderByTyp");
 		String nextPage = "/selinas/selinas001.jsp";
 		
  		try {
@@ -36,25 +40,44 @@ public class GoToSelinas003Servlet extends HttpServlet implements Servlet {
  		   performForward(nextPage,request,response);//Login 
      	}//catch ServletException
 		
- 		
 	 	try{
 	 		session.setAttribute("Dokument", show.getDokumentOfDatabase(dbConn,selinasuser.user,dokumentOfSession));//SessionAttribut:DokumentOfDatabase
-	 		if(request.getParameter("linkOrderByTyp") != null)//
-	 			session.setAttribute("LinkOrderByTyp",request.getParameter("linkOrderByTyp"));//SessionAttribut:DokumentOfInitialization
- 			if(request.getParameter("upLoadOn")!= null){
+	 		
+	 		if(request.getParameter("upLoadOn")!= null){//Button: Download zeigen
  				if((session.getAttribute("UpLoadOn").toString()).equalsIgnoreCase("1")){
- 					session.setAttribute("UpLoadOn","0");//SessionAttribut:UplaodTabelle nicht anzeigen
+ 					session.setAttribute("UpLoadOn","0");//SessionAttribut:UploadTable don't show
  				}else{
- 					session.setAttribute("UpLoadOn","1");//SessionAttribut:UplaodTabelle anzeigen
+ 					session.setAttribute("UpLoadOn","1");//SessionAttribut:UploadTable show
  					}//endif
  			}//endif
-	 		if(request.getParameter("dokumentOrderByTyp") != null)//
-	 			session.setAttribute("DokumentOrderByTyp",request.getParameter("dokumentOrderByTyp"));//SessionAttribut:DokumentOfInitialization
-	 			
-	 		performForward("/selinas/selinas003.jsp",request,response); 			
-	 		}catch (Exception e) {
-	 			performForward(nextPage,request,response);//Login 
-	 		}//catch ServletException
+	 		
+	 		if(request.getParameter("dokumentOrderByTyp") != null){//Table-Link:sort by Dokument
+	 			if(lastDokumentOrderByTyp.equalsIgnoreCase(currentDokumentOrderByTyp)){
+	 				lastDokumentOrderByTyp = lastDokumentOrderByTyp + "D";
+	 				session.setAttribute("DokumentOrderByTyp",lastDokumentOrderByTyp);//SessionAttribut:sort by Dokument
+	 			}else{
+	 				session.setAttribute("DokumentOrderByTyp",request.getParameter("dokumentOrderByTyp"));//SessionAttribut:sort by Dokument
+	 			}//endif
+	 		}//endif
+	 		
+	 		if(request.getParameter("linkOrderByTyp") != null){//Table-Link:sort by Dokument
+	 			if(lastLinkOrderByTyp.equalsIgnoreCase(currentLinkOrderByTyp)){
+	 				lastLinkOrderByTyp = lastLinkOrderByTyp + "D";
+	 				session.setAttribute("LinkOrderByTyp",lastLinkOrderByTyp);//SessionAttribut:sort by Link
+	 			}else{
+	 				session.setAttribute("LinkOrderByTyp",currentLinkOrderByTyp);//SessionAttribut:sort by Link
+	 			}//endif
+	 		}//endif
+	 		
+	 		if(request.getParameter("back") != null)//Button:back 
+	 			session.setAttribute("Dokument", show.getBackDokumentOfDatabase(dbConn,selinasuser.user,dokumentOfSession));//SessionAttribut:DokumentOfDatabase
+	 		if(request.getParameter("next") != null)//Button:forward
+	 			session.setAttribute("Dokument", show.getNextDokumentOfDatabase(dbConn,selinasuser.user,dokumentOfSession));//SessionAttribut:DokumentOfDatabase
+	 		
+	 		performForward("/selinas/selinas003.jsp",request,response);//show Page selinas003.jsp 			
+	 	}catch (Exception e) {
+	 		performForward(nextPage,request,response);//Login 
+	 	}//catch ServletException
 	 	
 	}//perForm
     

@@ -95,6 +95,26 @@ public class SelinasSession {
 		return dokumentOfDatabase;//Return DokumentOfDatabase
 	}//getDokument
 	
+	public Dokument getBackDokumentOfDatabase(Database dbConn,User user,Dokument dokument) throws Exception{
+	    Dokument dokumentOfDatabase = null;
+		dbConn.getConnection();////DataBaseConnection open
+		int nextDokumentId = DataSetDokument.getBackdokument(dbConn,user,dokument);
+		dokument.setId(nextDokumentId);
+		dokumentOfDatabase = DataSetDokument.chain(dbConn, user,dokument);
+		dbConn.close();////DataBaseConnection close
+		return dokumentOfDatabase;//Return DokumentOfDatabase
+	}//getDokument
+	
+	public Dokument getNextDokumentOfDatabase(Database dbConn,User user,Dokument dokument) throws Exception{
+	    Dokument dokumentOfDatabase = null;
+		dbConn.getConnection();////DataBaseConnection open
+		int nextDokumentId = DataSetDokument.getNextdokument(dbConn,user,dokument);
+		dokument.setId(nextDokumentId);
+		dokumentOfDatabase = DataSetDokument.chain(dbConn, user,dokument);
+		dbConn.close();////DataBaseConnection close
+		return dokumentOfDatabase;//Return DokumentOfDatabase
+	}//getDokument
+	
 	public Dokument getDokumentOfInitialize(Database dbConn,User user,HttpServletRequest request)throws Exception{
        Dokument dokumentOfInitialize = new Dokument();
        dbConn.getConnection();//Aufbau Dankverbindung
@@ -130,6 +150,18 @@ public class SelinasSession {
 	   dbConn.close();//DataBaseConnection close
 	   return dokumentOfUpdate;
 	}//getDokument  
+	
+	public Dokument getDokumentOfRequest(Dokument ofSession, HttpServletRequest request)throws Exception{
+		   Dokument dokumentOfRequest = ofSession;
+		   dokumentOfRequest.setTitel(collapseSpaces(request.getParameter(session.getTitel())));
+		   dokumentOfRequest.setDescripten(request.getParameter(session.getDescripten()));
+		   dokumentOfRequest.setContent(collapseSpaces(request.getParameter(session.getContent())));
+		   dokumentOfRequest.setGliederung(request.getParameter(session.getGliederung()));
+		   dokumentOfRequest.setArchiv(request.getParameter(session.getArchiv()));
+		   dokumentOfRequest.setVorgabe(request.getParameter(session.getVorgabe()));
+		   dokumentOfRequest.setStatus(request.getParameter(session.getStatus()));
+		   return dokumentOfRequest;
+		}//getDokument  
 	
 	/**
 	* <b>Erzeuge ein Objekt vom Dokument aus Datenbanktabelle Dokument</b>

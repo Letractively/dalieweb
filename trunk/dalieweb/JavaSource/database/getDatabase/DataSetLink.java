@@ -29,13 +29,19 @@ public class DataSetLink {
     /** oderByTypOf_0 = Table dokumentLinks by*/
 	public static final String orderByTypOf_0 = "dokumentTyp, dokumentNr, dokumentId, createDate desc, nameOfLink";
 	/** oderByTypOf_0 = Table dokumentLinks by*/
-	public static final String orderByTypOf_1 = "dokumentTyp, dokumentNr, dokumentId, nameOfLink, createDate desc";
+	public static final String orderByTypOf_1 = "dokumentTyp, dokumentNr, dokumentId, nameOfLink";
+	 /** oderByTypOf_0 = Table dokumentLinks by*/
+	public static final String orderByTypOf_2 = "dokumentTyp, dokumentNr, dokumentId, createDate, nameOfLink";
+	/** oderByTypOf_0 = Table dokumentLinks by*/
+	public static final String orderByTypOf_3 = "dokumentTyp, dokumentNr, dokumentId, nameOfLink desc";
 	
 	private static Hashtable memberTable = init();
 	private static Hashtable init() {
         Hashtable members = new Hashtable();
-        members.put("D",orderByTypOf_0);//order by Date
+        members.put("D",orderByTypOf_0);//order by createDate desc
         members.put("N",orderByTypOf_1);//order by NameOfLink
+        members.put("DD",orderByTypOf_2);//order by createDate 
+        members.put("ND",orderByTypOf_3);//order by NameOfLink desc
         return members;
     }//init
 

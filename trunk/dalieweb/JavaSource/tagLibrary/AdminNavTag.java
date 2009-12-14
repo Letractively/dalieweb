@@ -26,6 +26,8 @@ import database.dateien.Selinas;
 public class AdminNavTag extends TagSupport {
 	 /* this Objekt create a <hmtl-list> to use of navitation on administration selinas  */
 	
+	/* ohne Verwendung bisher */
+	
 	private Database dbConn;
     private SelinasUser selinasuser;
     private SelinasSession show;
