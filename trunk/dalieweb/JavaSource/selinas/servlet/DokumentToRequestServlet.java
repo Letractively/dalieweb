@@ -17,6 +17,9 @@ import selinas.SelinasUser;
 import selinas.bean.SelinasSession;
 
 public class DokumentToRequestServlet extends HttpServlet implements Servlet {
+	/* DokumentToRequestServlet: - Verwendung in DokumentTypTag (JSP Custom Tag) Dokument wurde per Maus ausgewählt  */
+	/*                           - sessionAttribute Dokument wird per Request Parameter geladen  */
+	/*                           - Weiterleitung auf Site selinas003.jsp Präsentationsmodus  Dokumente  erfolgt  */
 	
 	/** perform for both HTTP <code>GET</code> and <code>POST</code> methods  */
 	protected void perForm(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {

@@ -74,30 +74,39 @@ public class DokumentToProcessServlet extends HttpServlet implements Servlet {
 			        	LoggerHelper.log(this.getClass().getName(),"Exception of perForm..:", e);
 			        }//catch
 			 	 }else{//endif
-			 	 	if(request.getParameter("beenden") == null){//Button: Verarbeitung starten
+			 	 	if(request.getParameter("copy") != null){//Button: Dokument kopieren
 			 	 		try{
-			 	 			if(error.equalsIgnoreCase("yes")) {//Eingabe fehlerhaft 
-			 	 				session.setAttribute("Dokument", show.getDokumentOfRequest(dokumentOfSession,request));//SessionAttribut:DokumentOfInitialization
-			 	 				performForward("/selinas/selinas004.jsp",request,response);
-			 	 			}else{
-			 	 				session.setAttribute("Dokument", show.getDokumentOfUpdate(dbConn,selinasuser.user,dokumentOfSession,request));//SessionAttribut:DokumentOfInitialization
-			 	 				performForward("/selinas/selinas003.jsp",request,response);
-			 	 			}//endif error.equals
+			 	 			session.setAttribute("Dokument", show.getDokumentOfCopy(dbConn,selinasuser.user,dokumentOfSession));//SessionAttribut:DokumentOfCopy
+			 	 			performForward("/selinas/selinas004.jsp",request,response);
 			 	 		}catch (Exception e) {
-			 	 			LoggerHelper.log(this.getClass().getName(), "Exception of perForm Verarbeitung", e);
-			 	 			performForward(nextPage,request,response);//Login 
+			 	 			LoggerHelper.log(this.getClass().getName(),"Exception of perForm..:", e);
 			 	 		}//catch
-			 	 	}else{//Button: Beenden
-			 	 		try {
-			 	 			session.setAttribute("Dokument", show.getDokumentOfDatabase(dbConn,selinasuser.user,dokumentOfSession));//SessionAttribut:DokumentOfDatabase
-			 	 			performForward("/selinas/selinas003.jsp",request,response);
-			 	 		} catch (Exception e) {
-			 	 			LoggerHelper.log(this.getClass().getName(), "Exception of perForm Beenden", e);
-			 	 			performForward(nextPage,request,response);//Login 
-			 	 		}//catch
+			 	 	}else{//endif
+			 	 		if(request.getParameter("beenden") == null){//Button: Verarbeitung starten
+			 	 			try{
+			 	 				if(error.equalsIgnoreCase("yes")) {//Eingabe fehlerhaft 
+			 	 					session.setAttribute("Dokument", show.getDokumentOfRequest(dokumentOfSession,request));//SessionAttribut:DokumentOfInitialization
+			 	 					performForward("/selinas/selinas004.jsp",request,response);
+			 	 				}else{
+			 	 					session.setAttribute("Dokument", show.getDokumentOfUpdate(dbConn,selinasuser.user,dokumentOfSession,request));//SessionAttribut:DokumentOfInitialization
+			 	 					performForward("/selinas/selinas003.jsp",request,response);
+			 	 				}//endif error.equals
+			 	 			}catch (Exception e) {
+			 	 				LoggerHelper.log(this.getClass().getName(), "Exception of perForm Verarbeitung", e);
+			 	 				performForward(nextPage,request,response);//Login 
+			 	 			}//catch
+			 	 		}else{//Button: Beenden
+			 	 			try {
+			 	 				session.setAttribute("Dokument", show.getDokumentOfDatabase(dbConn,selinasuser.user,dokumentOfSession));//SessionAttribut:DokumentOfDatabase
+			 	 				performForward("/selinas/selinas003.jsp",request,response);
+			 	 			} catch (Exception e) {
+			 	 				LoggerHelper.log(this.getClass().getName(), "Exception of perForm Beenden", e);
+			 	 				performForward(nextPage,request,response);//Login 
+			 	 			}//catch
 			 	 		}//endif Dokument verarbeiten
-			 	 	}//endif Links bearbeiten
-		 	 	}//endif Dokument drucken
+				 	}//endif Dokument kopieren	
+			 	 }//endif Links bearbeiten
+		 	 }//endif Dokument drucken
 	 	 }//endif Dokument löschen
 	}//perForm
 	
