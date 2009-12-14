@@ -35,10 +35,26 @@ public class DataSetDokument {
 	public static final String orderByTypOf_3 = "kundenId, standortId, createDate desc";
 	/** oderByTypOf_4 = Table dokument by*/
 	public static final String orderByTypOf_4 = "kundenId, standortId, changeDate desc";
-	/** oderByTypOf_4 = Table dokument by*/
+	/** oderByTypOf_5 = Table dokument by*/
 	public static final String orderByTypOf_5 = "kundenId, standortId, gliederung";
-	/** oderByTypOf_4 = Table dokument by*/
+	/** oderByTypOf_6 = Table dokument by*/
 	public static final String orderByTypOf_6 = "kundenId, standortId, dokumentNr, dokumentId";
+	/** oderByTypOf_7 = Table dokument by*/
+	public static final String orderByTypOf_7 = "kundenId, standortId, dokumenttyp, dokumentNr, dokumentId";
+	/** oderByTypOf_6 = Table dokument by*/
+	public static final String orderByTypOf_8 = "kundenId, standortId, dokumentNr, dokumentId desc";
+	 /** oderByTypOf_0 = Table dokument by*/
+	public static final String orderByTypOf_9 = "kundenId, standortId, dokumenttyp, gliederung desc";
+	/** oderByTypOf_1 = Table dokument by*/
+	public static final String orderByTypOf_10 = "kundenId, standortId, titel desc";
+	/** oderByTypOf_2 = Table dokument by*/
+	public static final String orderByTypOf_11 = "kundenId, standortId, descripten desc";
+	/** oderByTypOf_5 = Table dokument by*/
+	public static final String orderByTypOf_12 = "kundenId, standortId, gliederung desc";
+	/** oderByTypOf_3 = Table dokument by*/
+	public static final String orderByTypOf_13 = "kundenId, standortId, createDate";
+	/** oderByTypOf_4 = Table dokument by*/
+	public static final String orderByTypOf_14 = "kundenId, standortId, changeDate";
 	
 	private static Hashtable memberTable = init();
 	private static Hashtable init() {
@@ -50,6 +66,15 @@ public class DataSetDokument {
         members.put("CHANGEDATE",orderByTypOf_4);//order by changeDate
         members.put("OG",orderByTypOf_5);//order by only by gliederung
         members.put("N",orderByTypOf_6);//order by only dokumentNr
+        members.put("TNI",orderByTypOf_7);//order by only dokumentTyp,Nummer,Id
+        members.put("ND",orderByTypOf_8);//order by only dokumentNr desc
+        members.put("GD",orderByTypOf_9);//order by gliederung desc
+        members.put("TD",orderByTypOf_10);//order by titel desc
+        members.put("DD",orderByTypOf_11);//order by descripten desc
+        members.put("OGD",orderByTypOf_12);//order by only by gliederung desc
+        members.put("CREATEDATED",orderByTypOf_13);//order by createDate
+        members.put("CHANGEDATED",orderByTypOf_14);//order by changeDate
+        members.put("TNID",orderByTypOf_7);//order by only dokumentTyp,Nummer,Id
         return members;
     }//init
 
@@ -155,6 +180,7 @@ public class DataSetDokument {
 	}//query	
     /**
      * <b>alle Dokument(e) aus Datenbank Tabelle Dokument</b>
+     * <br>finde alle Dokumente zum DokumentTyp
      * <br><b>reade:Key User.getKundenId, User.getStandortId String dokumentTypKey</b>
      * <br><b>public static</b><br>
      * @param
@@ -178,12 +204,50 @@ public class DataSetDokument {
 		}//for
 		return liste;
 	}//query	
-    
+    /**
+     * <b>alle Dokument(e) aus Datenbank Tabelle Dokument</b>
+     * <br>finde alle Dokumente zum DokumentTyp, lesen nach oderBy Key
+     * <br><b>reade:Key User.getKundenId, User.getStandortId String dokumentTypKey</b>
+     * <br><b>public static</b><br>
+     * @param
+     * <ul>	
+     * <li>Database dbConn	</li>
+     * <li>User user	</li>
+     * </ul>
+     * @return
+     * <ul><li> Vector Dokument(e)</li></ul>
+     */
     public static synchronized Vector reade(Database dbConn, User user, String dokumentTyp,String orderBy) throws Exception{
 		Vector liste = new Vector();
 		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokument " +
 				"where kundenId = "+user.getKundenId()+ " and standortId = "+user.getStandortId() + 
 				" and dokumentTyp = '"+ dokumentTyp +"'" +
+				" ORDER BY "+valueOf(orderBy)+"");
+		if(rows.size() == 0)
+    	    throw new Exception("Record not Found");
+		for (int i = 0; i < rows.size(); i++){
+			liste.addElement(new Dokument((Vector) rows.elementAt(i)));
+		}//for
+		return liste;
+	}//query	
+    /**
+     * <b>alle Dokument(e) aus Datenbank Tabelle Dokument</b>
+     * <br>finde alle Dokumente zum DokumentTyp, lesen nach oderBy Key
+     * <br><b>reade:Key User.getKundenId, User.getStandortId String dokumentTypKey</b>
+     * <br><b>public static</b><br>
+     * @param
+     * <ul>	
+     * <li>Database dbConn	</li>
+     * <li>User user	</li>
+     * </ul>
+     * @return
+     * <ul><li> Vector Dokument(e)</li></ul>
+     */
+    public static synchronized Vector reade(Database dbConn, User user, String dokumentTyp,int dokumentNr,String orderBy) throws Exception{
+		Vector liste = new Vector();
+		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokument " +
+				"where kundenId = "+user.getKundenId()+ " and standortId = "+user.getStandortId() + 
+				" and dokumentTyp = '"+ dokumentTyp +"' and dokumentNr = " + dokumentNr + 
 				" ORDER BY "+valueOf(orderBy)+"");
 		if(rows.size() == 0)
     	    throw new Exception("Record not Found");
@@ -285,6 +349,50 @@ public class DataSetDokument {
                 + " and dokumentId = " + ++id);
         if(rows.size() == 0)
             break;
+        }//while
+        return id;
+    }//getNextdokumentId
+    
+    /**
+     * @return Returns the nextdokumentId.
+     */
+    public static synchronized int getBackdokument(Database dbConn, User user, Dokument dokument) throws Exception {
+        int id = dokument.getId();
+        while(true) {   
+        Vector rows = dbConn.executeQuery("select * from "
+                + dbConn.getDbSchema() + ".dokument " + " where kundenId = "
+                + user.getKundenId() + " and standortId = " + user.getStandortId() + ""
+                + " and dokumentTyp = '" + dokument.getDokumentTyp() + "'" + " and dokumentNr = " + dokument.getNummer()
+                + " and dokumentId = " + --id);
+        if(rows.size() == 1){
+        	break;
+        }
+        if(rows.size() == 0){
+        	id++;
+        	break;
+        }
+        }//while
+        return id;
+    }//getNextdokumentId
+    
+    /**
+     * @return Returns the nextdokumentId.
+     */
+    public static synchronized int getNextdokument(Database dbConn, User user, Dokument dokument) throws Exception {
+        int id = dokument.getId();
+        while(true) {   
+        Vector rows = dbConn.executeQuery("select * from "
+                + dbConn.getDbSchema() + ".dokument " + " where kundenId = "
+                + user.getKundenId() + " and standortId = " + user.getStandortId() + ""
+                + " and dokumentTyp = '" + dokument.getDokumentTyp() + "'" + " and dokumentNr = " + dokument.getNummer()
+                + " and dokumentId = " + ++id);
+        if(rows.size() == 1){
+        	break;
+        }
+        if(rows.size() == 0){
+        	id--;
+        	break;
+        }
         }//while
         return id;
     }//getNextdokumentId

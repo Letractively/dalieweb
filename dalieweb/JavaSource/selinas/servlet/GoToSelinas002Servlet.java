@@ -11,11 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import selinas.SelinasUser;
-import selinas.bean.SelinasSession;
-import database.Database;
-import database.dateien.Dokument;
-import database.dateien.Selinas;
 
 public class GoToSelinas002Servlet extends HttpServlet implements Servlet {
 	
@@ -23,10 +18,8 @@ public class GoToSelinas002Servlet extends HttpServlet implements Servlet {
 	protected void perForm(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 	    
 		HttpSession session = request.getSession();
-		SelinasSession show = new SelinasSession((Selinas) session.getAttribute("Selinas"));
-	    SelinasUser selinasuser = (SelinasUser) session.getAttribute("User");
-	    Dokument dokumentOfSession = (Dokument)session.getAttribute("Dokument");
-	    Database dbConn = (Database) session.getAttribute("Database");
+	    String lastDokumentOrderByTyp = (String)session.getAttribute("DokumentOrderByTyp");
+	    String currentDokumentOrderByTyp = request.getParameter("dokumentOrderByTyp");
 		String nextPage = "/selinas/selinas001.jsp";
 		
  		try {
@@ -36,16 +29,19 @@ public class GoToSelinas002Servlet extends HttpServlet implements Servlet {
  		   performForward(nextPage,request,response);//Login 
      	}//catch ServletException
 		
- 		
 	 	try{
-	 		if(request.getParameter("linkOrderByTyp") != null)//
-	 		session.setAttribute("LinkOrderByTyp",request.getParameter("linkOrderByTyp"));//SessionAttribut:DokumentOfInitialization
-	 		if(request.getParameter("dokumentOrderByTyp") != null)//
-	 		session.setAttribute("DokumentOrderByTyp",request.getParameter("dokumentOrderByTyp"));//SessionAttribut:DokumentOfInitialization
- 			performForward("/selinas/selinas002.jsp",request,response);
-	 		}catch (Exception e) {
-	 			performForward(nextPage,request,response);//Login 
-	 		}//catch ServletException
+	 		if(request.getParameter("dokumentOrderByTyp") != null){//Sortierung nach Dokument
+	 			if(lastDokumentOrderByTyp.equalsIgnoreCase(currentDokumentOrderByTyp)){
+	 				lastDokumentOrderByTyp = lastDokumentOrderByTyp + "D";
+	 				session.setAttribute("DokumentOrderByTyp",lastDokumentOrderByTyp);//SessionAttribut:sort by Dokument
+	 			}else{
+	 				session.setAttribute("DokumentOrderByTyp",currentDokumentOrderByTyp);//SessionAttribut:sort by Dokument
+	 			}//endif
+	 		}//endif	
+ 			performForward("/selinas/selinas002.jsp",request,response);//show page
+	 	}catch (Exception e) {
+	 		performForward(nextPage,request,response);//Login 
+	 	}//catch ServletException
 	 	
 	}//perForm
     

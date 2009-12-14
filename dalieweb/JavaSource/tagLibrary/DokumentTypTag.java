@@ -45,10 +45,10 @@ public class DokumentTypTag extends TagSupport{
 	private String tableTagClass = "";
 	/** List of ColumnHeader */
 	private String[] columnHeader;
-	/** Typ of Dokument*/
-	private String typ;//AA=Arbeitsanweisung
 	/** value of order by  */
-	private String orderByTyp = "G";//default orderTyp is order by gliederung
+	private String orderByTyp = "TNI";//default orderTyp is order by gliederung
+	/** Dokument of Session*/
+	private Dokument dokumentOfSession;
 	
 	public int doStartTag() throws JspException {
         HttpSession session = pageContext.getSession();
@@ -60,15 +60,17 @@ public class DokumentTypTag extends TagSupport{
                 if(session.getAttribute("DokumentOrderByTyp") != null)
             		orderByTyp = (String) session.getAttribute("DokumentOrderByTyp");
                 
+                if (session.getAttribute("Dokument") != null)
+    				dokumentOfSession = (Dokument)session.getAttribute("Dokument");
+                
                  try {
                  	JspWriter out = pageContext.getOut();
+                 	
                  	try{
                         dbConn.getConnection();
-                        Vector temp = DataSetDokument.reade(dbConn, selinasuser.user,typ);
-                        temp = null;
                         out.println("<table cellspacing='0' cellpadding='0' width='100%' class="+ FB+ tableTagClass + FB+ ">"                       		
                         		+ writeDokumentHeaderToPageContext(columnHeader)
-                                + writeDokumentDataToPageContext(DataSetDokument.reade(dbConn, selinasuser.user,typ,orderByTyp)));
+                                + writeDokumentDataToPageContext(DataSetDokument.reade(dbConn, selinasuser.user,dokumentOfSession.getDokumentTyp(),dokumentOfSession.getNummer(),orderByTyp)));
                         dbConn.close();
                  	}catch(Exception e){//no DokumentLinks found
                     	out.println("<table class="+ FB+ tableTagClass + FB+ ">" 
@@ -125,14 +127,25 @@ public class DokumentTypTag extends TagSupport{
 	    for (int i = 0; i < dokumente.size(); i++){         
 			Dokument data  = ((Dokument)dokumente.elementAt(i));
 			Typ dokumentTyp = DataSetTyp.chain(dbConn,data);
-			tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +
-					"<td width='25%'>" + data.getTitel() +"</td>" +
-					"<td width='10%'><a class='link' href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" target='_parent'>"+ "&nbsp;" + data.getNummer()+ "." +data.getId()+"&nbsp;"+"</a></td>" +
-					"<td width='25%'>" + data.getDescripten() + "</td>" +
-					"<td width='10%'>" + data.getGliederung() +"</td>" +
-					"<td width='15%'>" + data.getCreateUser() +"<br />"+  data.getCreateDate() +"</td>" +
-					"<td width='15%'>" + data.getChangeUser() +"<br />"+  data.getChangeDate() +"</td>" +
-					"</tr>";
+			if(data.getId() == dokumentOfSession.getId()){
+				tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +
+				"<td class='aktiv' width='25%'>" + data.getTitel() +"</td>" +
+				"<td class='aktiv' width='10%'><a class='link' href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" target='_parent'>"+ "<strong>&nbsp;" + data.getNummer()+ "." +data.getId()+"&nbsp;</strong>"+"</a></td>" +
+				"<td class='aktiv' width='25%'>" + data.getDescripten() + "</td>" +
+				"<td class='aktiv' width='8%'>" + data.getGliederung() +"</td>" +
+				"<td class='aktiv' width='16%'>" + data.getCreateUser() +"<br />"+  data.getCreateDate() +"</td>" +
+				"<td class='aktiv' width='16%'>" + data.getChangeUser() +"<br />"+  data.getChangeDate() +"</td>" +
+				"</tr>";
+			}else{
+				tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +
+				"<td width='25%'>" + data.getTitel() +"</td>" +
+				"<td width='10%'><a class='link' href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" target='_parent'>"+ "&nbsp;" + data.getNummer()+ "." +data.getId()+"&nbsp;"+"</a></td>" +
+				"<td width='25%'>" + data.getDescripten() + "</td>" +
+				"<td width='8%'>" + data.getGliederung() +"</td>" +
+				"<td width='16%'>" + data.getCreateUser() +"<br />"+  data.getCreateDate() +"</td>" +
+				"<td width='16%'>" + data.getChangeUser() +"<br />"+  data.getChangeDate() +"</td>" +
+				"</tr>";
+			}//endif i == 0 
 		}//for	
 	    return tableTRTD;	
 	}//writeDokumentDataToPageContext
@@ -173,8 +186,5 @@ public class DokumentTypTag extends TagSupport{
 	public void setColumnHeader(String[] columnHeader){
 		this.columnHeader = columnHeader;
 	}//setColumnHeader
-	/** @param Typ DokumentTyp to set. */
-	public void setTyp(String typ) {
-		this.typ = typ;
-	}//setTyp
+	
 }//class DokumentTypTag

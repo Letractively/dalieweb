@@ -53,17 +53,19 @@ public class StartNavTag extends TagSupport {
             		selinasuser = (SelinasUser) session.getAttribute("User");
             		if (session.getAttribute("Selinas") != null) {
             			show = new SelinasSession((Selinas) session.getAttribute("Selinas")); 
-            			
-            			if(((String)session.getAttribute("SelectTyp")).equalsIgnoreCase("UB")){//Element Übersicht is aktiv
-            				/* Initialize of String */
-            				ulli = "<ul><li class='current'><span> >>"+ show.session.getLink1() +"</span></li>";
-            			}else{
-            				ulli = "<ul><li><a href='/dalieweb/GoToStartServlet?selectTyp=UB' title='zurück zum Überblick'><span>"+ show.session.getLink1() +"</span></a></li>";
-            				}//endif
-            			
+            			            			
                 try {
                  	JspWriter out = pageContext.getOut();
-           
+            		int counter = 0;
+            		if(((String)session.getAttribute("SelectTyp")).equalsIgnoreCase("UB")){//Element Übersicht is aktiv
+            			/* Initialize of String */
+            			ulli = "<ul><li class='current'><img src='/dalieweb/bilder/arrow.gif'/>&nbsp;&nbsp;<span>"+ show.session.getLink1() +"</span></li>";
+            			counter = 2;
+            		}else{
+            			ulli = "<ul><li><a href='/dalieweb/GoToStartServlet?selectTyp=UB' " +
+            					"title='zurück zum Überblick'><span>"+ show.session.getLink1() +"</span></a></li>";
+            			counter = 1;
+            		}//endif
                  	try{
                         dbConn.getConnection();
                         /* finde alle DokumentTypen zum User */
@@ -76,17 +78,22 @@ public class StartNavTag extends TagSupport {
                         		/* Suche Dokumente zum DokumentTyp  */
                         		DataSetDokument.chain(dbConn, selinasuser.user,typOfDokument.getTyp());
                         		/* gefunden -> schreibe ein Listenelemente an den htmlContent */
-                				writeDokumentDataToPageContext(typOfDokument,(String)session.getAttribute("SelectTyp"));	
+                				writeDokumentDataToPageContext(typOfDokument,(String)session.getAttribute("SelectTyp"));
+                				counter ++;
                         	}catch(Exception e){
                         		System.out.println("Hinweis: kein Dokument zum Dokumenttyp gefunden");
                         	}//try
-                        	
                         }//for
                         dbConn.close();
                  	}catch(Exception e){//no DokumentTypen found
-                    	out.println("<ul><li><a href='/dalieweb/GoToStartServlet' title='zurück zum Test'><span>"+ show.session.getLink1() +"</span></a></li><li><a href='/dalieweb/AdminOfSelina' title='Administration von Selinas'><span>Administration</span></a></li>");
+                    	out.println("<li><a href='/dalieweb/AdminOfSelina' title='Administration von Selinas'><span>Administration</span></a></li>");
                  	}//catch    
                  	
+                       	while(counter <= 8) {//minimum 8 ListenElemente
+                       		ulli = ulli + "<li>&nbsp;</li>";
+                       		counter ++;
+                       	}//while
+                       	
                  	if(((String)session.getAttribute("SelectTyp")).equalsIgnoreCase("UB"))
                  		ulli += "<li><a href='/dalieweb/AdminOfSelina' title='Administration von Selinas'><span>Administration</span></a></li>";
                     
@@ -147,7 +154,7 @@ public class StartNavTag extends TagSupport {
      */
 	private String writeDokumentDataToPageContext(Typ typ,String current) {
 		if(typ.getTyp().equalsIgnoreCase(current)){
-			ulli = ulli + "<li class='current'> >>"+ typ.getDescription() + "</li>";
+			ulli = ulli + "<li class='current'><img src='/dalieweb/bilder/arrow.gif'/>&nbsp;&nbsp;"+ typ.getDescription() + "</li>";
 		}else{
 			ulli = ulli + "<li><a href='/dalieweb/GoToStartServlet?selectTyp="+typ.getTyp()+"' title='Auswahl nach Dokumenttyp: "+typ.getDescription()+"' target='_parent'>"+ typ.getDescription() + "</a></li>";
 		}

@@ -49,7 +49,7 @@ public class DokumentDataTag extends TagSupport {
 	/** List of ColumnHeader */
 	private String[] columnHeader;
 	/** value of order by  */
-	private String orderByTyp = "G";//default orderTyp is order by gliederung
+	private String orderByTyp = "TNI";//default orderTyp is: DokumentTyp,Number and Id
 	
     public int doStartTag() throws JspException {
         HttpSession session = pageContext.getSession();
@@ -135,9 +135,10 @@ public class DokumentDataTag extends TagSupport {
 			Typ dokumentTyp = DataSetTyp.chain(dbConn,data);
 			tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +
 					"<td width='15%'>" + dokumentTyp.getDescription() +"</td>" +
-					"<td width='10%'>" + data.getGliederung() +"</td>" +
-					"<td width='20%'><a href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" title='Auswahl Dokument: "+data.getTitel()+" ' target='_parent' class='link'>" + collapseSpaces(data.getTitel())+"</a></td>" +
+					"<td width='5%'><a href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" title='Auswahl Dokument: "+data.getTitel()+" ' target='_parent' class='link'>" + data.getNummer()+"."+ data.getId() +"</a></td>" +
+					"<td width='20%'>" + collapseSpaces(data.getTitel()) +"</td>" +
 					"<td width='25%'>" + data.getDescripten() + "</td>" +
+					"<td width='5%'>" + data.getGliederung() +"</td>" +
 					"<td width='15%'>" + data.getCreateUser() +"<br />"+  data.getCreateDate() +"</td>" +
 					"<td width='15%'>" + data.getChangeUser() +"<br />"+  data.getChangeDate() +"</td>" +
 					"</tr>";
@@ -151,12 +152,13 @@ public class DokumentDataTag extends TagSupport {
 	    for (int i = 0; i < dokumente.size(); i++){         
 			Dokument data  = ((Dokument)dokumente.elementAt(i));
 			tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +
-					"<td width='10%'>" + data.getGliederung() +"</td>" +
-					"<td width='25%'><a href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" title='Auswahl Dokument: "+data.getTitel()+" ' target='_parent' class='link'>" + collapseSpaces(data.getTitel())+"</a></td>" +
-					"<td width='25%'>" + data.getDescripten() + "</td>" +
-					"<td width='15%'>" + data.getCreateUser() +"<br />"+  data.getCreateDate() +"</td>" +
-					"<td width='15%'>" + data.getChangeUser() +"<br />"+  data.getChangeDate() +"</td>" +
-					"</tr>";
+				"<td width='10%'>" + data.getNummer()+"."+ data.getId() +"</a></td>" +
+				"<td width='20%'><a href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" title='Auswahl Dokument: "+data.getTitel()+" ' target='_parent' class='link'>" + collapseSpaces(data.getTitel())+"</a></td>" +
+				"<td width='30%'>" + data.getDescripten() + "</td>" +
+				"<td width='10%'>" + data.getGliederung() +"</td>" +
+				"<td width='15%'>" + data.getCreateUser() +"<br />"+  data.getCreateDate() +"</td>" +
+				"<td width='15%'>" + data.getChangeUser() +"<br />"+  data.getChangeDate() +"</td>" +
+				"</tr>";
 		}//for	
 	    return tableTRTD;	
 	}//writeDokumentDataToPageContext
@@ -168,7 +170,7 @@ public class DokumentDataTag extends TagSupport {
 	 * @return String
 	 */
 	private String collapseSpaces(String argStr){
-		if(argStr.length() > 20){
+		if(argStr.length() > 25){
 			StringBuffer argBuf = new StringBuffer();
 			for (int cIdx = 0 ; cIdx < 20; cIdx++){
 	            argBuf.append(argStr.charAt(cIdx));

@@ -38,7 +38,7 @@ public class AdminOfSelina extends HttpServlet implements Servlet {
  		
  		try{
      		session.setAttribute("Adresse", show.getAdressOfDatabase(dbConn,selinasuser.user));//SessionAttribut:AdressOfDatabase
-     		performForward("/selinas/selinas005.jsp", request, response);
+     		performForward("/selinas/selinas020.jsp", request, response);
      	}catch (Exception e) {
      		LoggerHelper.log(this.getClass().getName(), "Exception of perForm getAdressOfDatabase", e);
 	        performForward(nextPage,request,response);//Login 

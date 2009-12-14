@@ -59,8 +59,10 @@ public class LogOnSelina extends HttpServlet implements Servlet {
     				session.setAttribute("User", user);
     				session.setAttribute("PermitId",(new Integer(user.user.getPermitId())).toString());
     				session.setAttribute("Selinas",DataSetSelinas.chain(dbConn,user.user.getKundenId(),user.user.getStandortId(),"DE"));
-    				session.setAttribute("SelectTyp","UB");
-    				session.setAttribute("UpLoadOn","0");
+    				session.setAttribute("SelectTyp","UB");////SessionAttribut:CCS <LI>.Element current is on
+    				session.setAttribute("UpLoadOn","0");////SessionAttribut:UploadTable don't show
+    				session.setAttribute("DokumentOrderByTyp","TNI");//SessionAttribut:sort by Dokument
+    				session.setAttribute("LinkOrderByTyp","D");//SessionAttribut:sort by Link
     				performForward("/selinas/selinas002.jsp",request,response);//JSP- show all Dokuments
     			} else {
     				error = DataSetMessage.chain(dbConn, "Login",(String) session.getAttribute("Speech"));
