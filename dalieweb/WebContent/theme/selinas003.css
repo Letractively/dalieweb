@@ -1,6 +1,5 @@
 @CHARSET"ISO-8859-1";
 @IMPORT url("Master.css");
-
 body {
 	padding: 1px 0px 1px 0px; 
 	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;
@@ -61,10 +60,18 @@ body {
 #pageWrapper a:hover {
 	color: #778899;
 }
-#navigation {
+#navigationWrapper{
+	background: #fff;
+	margin: 0 auto;
+	max-width: 100%;
+	text-align: left;
+	width: 100%;
+}
+#navigationLeft{
 	background-color:#BBBBBB;
+	float: left;
+	margin-top:	0em;
 	margin-left: 3em;
-	margin-top:	1em;
 	width:	10em;
 }
 #navigation ul {
@@ -79,6 +86,16 @@ body {
 #navigation li.current{
 	color: black;
 }
+#navigationRight {
+	float: left;
+	margin-top: 10em;
+	margin-left: 0.5em;
+	width:	auto;
+}
+#navigationFooter {
+	clear: both;
+	padding: 0px 0px;
+}
 #header{
 	border-style: solid;
 	border-width: 1px;
@@ -86,9 +103,9 @@ body {
 	margin-top: 15px;
 	margin-left: 5px;
 	margin-right: 3px;
-	padding-top: 10px;
+	padding-top: 1px;
 	padding-left: 0px;
-	padding-bottom: 3px;
+	padding-bottom: 0px;
 }
 .fontNormal {
 	color: #000;
@@ -109,8 +126,13 @@ body {
 }
 .fontMediumBold {
 	/* Beschriftung: Titel dokument */
-	font: bold 20px Helvetica, sans-serif;
 	color: #2D5893;
+	font-family: Helvetica, sans-serif;
+	font-size: 22px;
+	font-weight: bolder;
+	font-variant: small-caps;
+	font-style: italic;
+	margin-left: 3px;
 }
 .subheading1 {
 	border-bottom: 1px solid;
@@ -145,10 +167,11 @@ img.requests {
 	background: url(../bilder/dalie-icons-pack.gif) -382px -48px no-repeat;
 	height: 22px;
 	width: 21px;
+	margin-right: 3px;
 }
 #wrapper{
 	margin-left: 5px;
-	padding: 0px 0;
+	padding: 0px;
 	width: 99.4%;
 }
 #contentLeft {
@@ -251,7 +274,6 @@ img.requests {
 }
 #contentRights td a:link, a:visited {
 	/* Link's of Table */
-	background-color: transparent;
 	color: black;
 	text-decoration: none;
 }
@@ -281,6 +303,9 @@ img.requests {
 	margin-left: 3px;
 	margin-right: 3px;
 	width: 99.5%;
+}
+#navigationDetail iframe{
+	height: 12em;
 }
 #navigationDetail table {
 	border-color: #B2BCC6;
@@ -320,12 +345,31 @@ img.requests {
 }
 #navigationDetails td {
 	border-bottom: 1px solid #B2BCC6;
-	text-align: left;;
+	text-align: left;
 	padding-top: 0px;
 	padding-right: 0px;
 	padding-bottom: 0px;
 	padding-left: 3px;
 	overflow: hidden;
+}
+#navigationDetails td.aktiv{
+	border-top: 2px solid #2D5893;
+	border-right: 0px solid black;
+	border-bottom: 2px solid #2D5893;
+	border-left: 0px solid black;
+	text-align: left;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 10px;
+	overflow: hidden;
+	/*font: bold 10px Helvetica, sans-serif;
+	color: #2D5893;*/
+	font-family: Verdana, Arial, Tahoma, sans-serif;
+	font-size: 1em;
+	line-height: 1.5em;
+	font-style: italic;
+	font-weight: bold;
 }
 #navigationDetails td a:link, a:visited {
 	/* Link's of Table */
