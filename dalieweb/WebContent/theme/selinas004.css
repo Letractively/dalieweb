@@ -54,6 +54,7 @@ body {
 	padding: 0px 0;
 }
 #header table th{
+	/*  */
 	background-position: left top;
 	background-repeat: repeat;
 	background-image: url("../bilder/title-tab-bg.gif");
