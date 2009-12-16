@@ -86,6 +86,10 @@
 			<td><label for="password">Passwort:</label></td>
 			<td><input type="password" maxlength="40" name="password" id="password" tabindex="2" /></td>
 		</tr>
+		<tr>
+			<td><label>&nbsp;&nbsp;Sprache</label></td>
+			<td><dalie:LanguageOption name="speech" permitId="2" tabindex="3"></dalie:LanguageOption></td>
+			</tr>
 	</table>
 		<dalie:HinweisOption message='${requestScope.Message}' typ="E"></dalie:HinweisOption>
 	</form>

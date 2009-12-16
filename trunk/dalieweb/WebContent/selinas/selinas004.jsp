@@ -24,7 +24,7 @@
 <link href="<%= request.getContextPath()%>/theme/selinas-DruckTyp.css" rel="stylesheet" type="text/css" media="print"/>
 <link href="http://www.dalieweb.de/pfeilmit01.ico" rel="shortcut icon" title="dalieweb" type="image/x-icon"/>
 <!-- Definition RSS Feed -->
-<link rel="alternate" type="application/rss+xml" title="dalieweb.de RSS-Feed" href="http://www.dalieweb.de/dalieweb.xml"/> 
+<link rel="alternate" type="application/rss+xml" title="dalieweb.de RSS-Feed" href="http://www.dalieweb.de/dalieweb.xml"/>
 <!-- Script's  -->
 <script src="<%= request.getContextPath()%>/script/dalieLogo.js" type="text/javascript"></script>
 <title>dalieweb</title>
@@ -37,6 +37,9 @@
 	Typ typ = (Typ)session.getAttribute("Typ");
 	String language = (String) session.getAttribute("Speech");
 	String modus = (String)session.getAttribute("Modus");
+	String upload = (String) session.getAttribute("UpLoadOn");
+	String dokumentOrderByTyp = (String)session.getAttribute("DokumentOrderByTyp");//SessionAttribut:sort by Dokument
+	String linkOrderByTyp = (String)session.getAttribute("LinkOrderByTyp");//SessionAttribut:sort by Link
 %>
 <div id="page">
 	<div id="pageHeader">
@@ -44,37 +47,35 @@
 		<img src="<%= request.getContextPath()%>/bilder/pfeilmit01.gif" width="60" height="60" alt="" name="ani" title="dalieweb" class="logo"/></a>
 		<span class="strapline">dalieweb.de</span>
 	</div><!-- /pageHeader -->
-	<br />
 	<div id="pageWrapper">
-<form action="<%= request.getContextPath()%>/DokumentToProcessServlet" method="post">
-<input type="hidden" name="dokumentTyp" value="<%= dokument.getDokumentTyp() %>" />
-<input type="hidden" name="dokumentNr" value="<%= dokument.getNummer() %>" />
-<input type="hidden" name="dokumentId" value="<%= dokument.getId() %>" />
 		<table border="0" cellspacing="0" cellpadding="0" width="99%">
 			<tr>
 				<td valign="middle" align="left"></td>
 				<td valign="middle" align="right" class="strapline"><%= user.user.getName()%>, <%= user.user.getVorname()%>&nbsp; <a href="<%= request.getContextPath()%>/LogOffSelina" target="_self" class="link">Log off</a></td>
 			</tr>
 		</table>
-		<br /> 
 		<table border="0" cellspacing="0" cellpadding="0" width="100%">
 			<tr>
 				<td>&nbsp;</td>
 			</tr>
 		</table>
+<form action="<%= request.getContextPath()%>/DokumentToProcessServlet" method="post">
+<input type="hidden" name="dokumentTyp" value="<%= dokument.getDokumentTyp() %>" />
+<input type="hidden" name="dokumentNr" value="<%= dokument.getNummer() %>" />
+<input type="hidden" name="dokumentId" value="<%= dokument.getId() %>" />
 		<div id="header">
 			<table width="100%" border="0" cellpadding="0" cellspacing="0">
 				<tr>
-					<th width="100%" align="left" valign="middle">Anforderung</th>
+					<th width="100%" align="left" valign="middle">&nbsp;</th>
 				</tr>
 			</table>
 			<table width="100%" border="0" cellpadding="0" cellspacing="3">
 				<tr>
-					<td width="15%" align="left"><strong><%= show.session.getDokumentTyp() %></strong></td><td width="35%" align="left"><%= typ.getDescription() %></td>
-					<td width="15%" align="left"><strong><%= show.session.getStatus() %></strong></td><td width="35%" align="left"><dalie:Selectbox name="Status" argument='<%=dokument.getStatus()%>' tabindex="7" ccsStyle="BOX"></dalie:Selectbox></td>
+					<td width="15%" align="left">&nbsp;&nbsp;<em><%= show.session.getDokumentTyp() %> :</em></td><td width="35%" align="left"><strong><%= typ.getDescription() %></strong></td>
+					<td width="15%" align="left"><em><%= show.session.getStatus() %> :</em></td><td width="35%" align="left"><dalie:Selectbox name="Status" argument='<%=dokument.getStatus()%>' tabindex="7" ccsStyle="BOX"></dalie:Selectbox></td>
 				</tr>
 				<tr>
-					<td width="15%" align="left"><strong><%= show.session.getDokumentNr() %></strong></td><td width="35%" align="left"><%= dokument.getNummer() %>.<%= dokument.getId() %></td>
+					<td width="15%" align="left">&nbsp;&nbsp;<em>Dokumenten-Nr. : </em></td><td width="35%" align="left"><strong><%= dokument.getNummer() %>.<%= dokument.getId() %></strong></td>
 				</tr>
 			</table>
 		</div><!-- /header -->
@@ -92,43 +93,88 @@
 			</table> 
 			<table width="99%" border="0" cellpadding="0" cellspacing="3" class="details">
 				<tr>
-					<td width="15%" align="left"><%= show.session.getTitel() %></td><td width="85%" align="left"><dalie:InputOption name='<%= show.session.getTitel() %>' value='<%=dokument.getTitel() %>' tabindex="1" size="50"></dalie:InputOption></td>
+					<td width="15%" align="left"><%= show.session.getTitel() %></td><td width="85%" align="left"><dalie:InputOption name='<%= show.session.getTitel() %>' value='<%=dokument.getTitel() %>' tabindex="1" size="35"></dalie:InputOption></td>
 				</tr>
 				<tr>
-					<td width="15%" align="left"><%= show.session.getDescripten() %></td><td width="85%" align="left"><dalie:InputOption name='<%= show.session.getDescripten() %>' value='<%=dokument.getDescripten() %>' tabindex="2" size="50"></dalie:InputOption></td>
+					<td width="15%" align="left"><%= show.session.getDescripten() %></td><td width="85%" align="left"><dalie:InputOption name='<%= show.session.getDescripten() %>' value='<%=dokument.getDescripten() %>' tabindex="2" size="35"></dalie:InputOption></td>
 				</tr>
 			</table> 
 			<div id="contentLeft">
 				<span>&nbsp;<%= show.session.getContent() %></span>
 			</div><!-- /contentLeft -->
 			<div id="contentRight">	
-					<textarea name='<%= show.session.getContent() %>' class="requestText" tabindex="3"><%= dokument.getContent()%></textarea>
+				<textarea name='<%= show.session.getContent() %>' rows="7" cols="80" class="requestText" tabindex="3"><%= dokument.getContent()%></textarea>
+				<table border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td><dalie:ButtonOption name="submit" accesskey="v" tabindex="8"><!-- Button:Dokument verarbeiten --><%= show.session.getButton8() %></dalie:ButtonOption></td>
+						<td><dalie:ButtonOption name="copy" accesskey="k" tabindex="9"><!-- Button:Dokument verarbeiten --><%= show.session.getButton9() %></dalie:ButtonOption></td>
+				   <!-- <td><dalie:ButtonOption name="link" accesskey="A" tabindex="10">Ihre <span style="text-decoration:underline">A</span>nlagen bearbeiten</dalie:ButtonOption></td> -->
+						<td><dalie:ButtonOption name="print" accesskey="d" tabindex="11"><!-- Button:drucken --><%= show.session.getButton6() %></dalie:ButtonOption></td>
+		 				<td><dalie:ButtonOption name="delete" accesskey="l" tabindex="12"><!-- Button:Dokument löschen --><%= show.session.getButton10() %></dalie:ButtonOption></td>
+						<% if(modus.equalsIgnoreCase("Update")){ %>
+							<td><dalie:ButtonOption name="beenden" accesskey="e" tabindex="13" permitId="2"><!-- Button:beenden --><%= show.session.getButton2() %></dalie:ButtonOption></td>
+						<% }/*endif*/ %>	
+					</tr>
+					<tr> 
+						<td align="left"><!-- CLASS:HinweisOption --><dalie:HinweisOption message='${requestScope.Message}'></dalie:HinweisOption></td>
+					</tr>
+				</table>
 			</div><!-- /contentRight -->
 		</div><!-- /wrapper -->
-		<div id="footer">
+</form>	
+		<div id="upload">
 			<table width="99%" border="0" cellpadding="0" cellspacing="3" class="details">
 				<tr>
-					<td width="15%" align="left">&nbsp;</td>
+					<td width="15%" align="left" valign="top">Anlagen</td>
 					<td width="85%" align="left">
-						<dalie:ButtonOption name="submit" accesskey="v" tabindex="8">Dokument <span style="text-decoration:underline">v</span>erarbeiten</dalie:ButtonOption>
-						<dalie:ButtonOption name="link" accesskey="A" tabindex="9">Ihre <span style="text-decoration:underline">A</span>nlagen bearbeiten</dalie:ButtonOption>
-						<dalie:ButtonOption name="print" accesskey="d" tabindex="10">Dokument <span style="text-decoration:underline">d</span>rucken</dalie:ButtonOption>
-		 				<dalie:ButtonOption name="delete" accesskey="l" tabindex="11">Dokument <span style="text-decoration:underline">l</span>öschen</dalie:ButtonOption>
-					<% if(modus.equalsIgnoreCase("Update")){ %>
-						<dalie:ButtonOption name="beenden" accesskey="e" tabindex="12" permitId="2">B<span style="text-decoration:underline">e</span>enden</dalie:ButtonOption>
-					<% }/*endif*/ %>	
-				</td> 
+						<dalie:selinas004FLTag data="N" columnHeader='<%= ColumHeader.valueOf("6",language,linkOrderByTyp) %>' tableTagClass="linkTable"></dalie:selinas004FLTag>
+						<iframe src="<%= request.getContextPath()%>/selinas/selinas004FL.jsp" width="100%" name="selinas1" frameborder="0" height="100"></iframe>						
+					</td>
 				</tr>
-				<tr> 
-					<td width="15%" align="left">&nbsp;</td>
-					<td width="85%" align="left"><!-- CLASS:HinweisOption --><dalie:HinweisOption message='${requestScope.Message}'></dalie:HinweisOption></td>
+				<% if(upload.equalsIgnoreCase("0")){ %> 
+				<tr>
+					<td width="15%" align="left" valign="top">&nbsp;</td>
+					<td width="85%" align="left">
+						<form action="<%= request.getContextPath()%>/GoToSelinas004Servlet" method="post">
+							<dalie:ButtonOption name="upLoadOn" accesskey="s" tabindex="3"><!-- Button:upload starten --><%= show.session.getButton7() %></dalie:ButtonOption>
+						</form>							
+					</td>
 				</tr>
-			</table> 	
+				<% }/*endif*/ %>				
+				<% if(upload.equalsIgnoreCase("1")){ %> 
+				<tr>
+					<td width="15%" align="left">Anlagen auswählen</td>
+					<td width="85%" align="left" valign="bottom">
+						<table width="99%" border="0" cellpadding="0" cellspacing="3" class="details">
+							<tr>
+								<td nowrap="nowrap"  valign="bottom">
+									<form action="<%= request.getContextPath()%>/Selinas004Upload" enctype="multipart/form-data" method="post">
+									<input type="file" name="myFile" tabindex='2' maxlength="255" class="file"/>
+									<dalie:ButtonOption name="submit" accesskey="s" tabindex="3"><!-- Button:upload starten --><%= show.session.getButton7() %></dalie:ButtonOption>
+									</form>
+								</td>	
+								<td align="left" valign="bottom">
+									<form action="<%= request.getContextPath()%>/GoToSelinas004Servlet" method="post">
+									<dalie:ButtonOption name="upLoadOn" accesskey="s" tabindex="3"><!-- Button:beenden --><%= show.session.getButton2() %></dalie:ButtonOption>
+									</form>
+								</td>	
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td width="15%" align="left" valign="top">&nbsp;</td>
+					<td width="85%" align="left">
+						<dalie:HinweisOption message='${requestScope.upload}'></dalie:HinweisOption><!-- CLASS:HinweisOption --></td>
+				</tr>
+				<% }/*endif*/ %>
+			</table> 
+		</div><!-- /upload -->
+		<div id="footer">
 		</div><!-- /footer -->	
-</form>		
 		<div id="navigationDetail">
-			<dalie:DokumentTypTag data="N" columnHeader='<%= ColumHeader.valueOf("1",language) %>' tableTagClass="linkTable"></dalie:DokumentTypTag>
-			<iframe src="<%= request.getContextPath()%>/selinas/selinas003FD.jsp" width="100%" name="selinas1" frameborder="0" height="100"></iframe>
+			<dalie:selinas004FDTag data="N" columnHeader='<%= ColumHeader.valueOf("5",language,dokumentOrderByTyp) %>' tableTagClass="linkTable"></dalie:selinas004FDTag>
+			<iframe src="<%= request.getContextPath()%>/selinas/selinas004FD.jsp" width="100%" name="selinas2" frameborder="0" height="100"></iframe>
 		</div><!-- /navigationDetail -->
 	</div><!-- /pageWrapper -->
 		<br />

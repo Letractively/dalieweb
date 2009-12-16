@@ -24,8 +24,8 @@
 <%	
 	String language = (String)session.getAttribute("Speech");
 %> 
-	<div id="navigationDetails"> 
+<div id="navigationDetails"> 
 	<dalie:AdressDataTag header="N" columnHeader='<%= ColumHeader.valueOf("A",language) %>'></dalie:AdressDataTag>
-	</div>
+</div><!-- /navigationsDetails -->
 </body>
 </html>
