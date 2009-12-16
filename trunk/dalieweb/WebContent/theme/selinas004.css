@@ -7,7 +7,6 @@ body {
 #pageHeader {
 	background-image: url("../bilder/header.jpg");
 	border-bottom: 1px dotted #B2BCC6;
-	background-color: #FFFFFF;
 	height: 8em;
 }
 #pageHeader .strapline {
@@ -56,15 +55,22 @@ body {
 }
 #header table th{
 	background-position: left top;
-	background-repeat: repeat-x;
+	background-repeat: repeat;
 	background-image: url("../bilder/title-tab-bg.gif");
+	border-style: solid;
+	border-top-width: 1px;
+	border-right-width: 2px;
+	border-left-width: 1px;
+	border-color: #557AA6;
+	border-bottom-width: 2px;
 	margin: 0px;
-	padding: 0px 15px 0px 15px;
-	font-family: Arial, Verdana, Sans-Serif;
+	padding: 0px 1px 0px 15px;
+	font-family: Helvetica, Verdana, Sans-Serif;
+	line-height: 1.9em;
 	font-size: 1.4em;
 	font-weight: normal;
-	line-height: 2.14em;
 	color: #fff;
+	font-style: italic;
 } 
 #wrapper {
 	background: #fff;
@@ -80,13 +86,15 @@ body {
 	margin-left: 5px;
 }
 .anforderungsdetails #caption{
-	background-color: #9AB5D4;
+	background-position: left top;
+	background-repeat: repeat;
+	background-image: url("../bilder/title-tab-bg.gif");
 	border-style: solid;
 	border-top-width: 1px;
-	border-right-width: 2px;
-	border-left-width: 1px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-bottom-width: 1px;
 	border-color: #557AA6;
-	border-bottom-width: 2px;
 
 	padding-top: 2px;
 	padding-bottom: 2px;
@@ -120,17 +128,110 @@ body {
 	width:99.5%;
 	height: 12.5em;
 }
+img.requests {
+	background: url(../bilder/dalie-icons-pack.gif) -226px -341px no-repeat;
+	height: 32px;
+	width: 35px;
+	margin-right: 3px;
+}
+#upload {
+	clear: both;
+	padding: 0px 0;
+}
+#uploads a:link, a:visited {
+	/* Link's zur Auswahl der Dokumente */
+	background-color: transparent;
+	color: #2D5893;
+	text-decoration: none;
+}
+#uploads img{
+	border: 1px #B2BCC6; /*Rahmen wie Link's */	
+}
+#uploads a:hover {
+	/* Link's zur Auswahl der Dokumente*/
+	color: #778899;
+}
+#upload table {
+	border-color: #B2BCC6;
+	border-bottom-width: 0px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-top-width: 0px;
+	border-style: solid;
+	margin: 0px 0px;
+	padding: 0px;
+	text-align: left;
+	table-layout: fixed;
+	overflow: hidden;
+}
+#upload th {
+	background-position: left top;
+	background-repeat: repeat;
+	background-image: url("../bilder/title-tab-bg.gif");
+	border-style: solid;
+	border-top-width: 1px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-bottom-width: 1px;
+	border-color: #557AA6;
+	color: #2D5893;
+	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;
+	padding: 3px;
+	text-align: left;
+}
+#upload th a:link, a:visited {
+	/* Link's zur Sortierung der Anhänge */
+	background-color: transparent;
+	text-decoration: none;
+	border-bottom-style: dotted;
+	border-bottom-width: 1px;
+}
+#upload iframe{
+	border-color: #B2BCC6;
+	border-bottom-width: 1px;
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-top-width: 1px;
+	border-style: solid;
+}
+#uploads table {
+	border-color: #B2BCC6;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	border-style: solid;
+	margin: 0px 0px;
+	padding: 0px;
+	text-align: left;
+	table-layout: fixed;
+}
+#uploads td {
+	border-bottom: 1px solid #B2BCC6;
+	text-align: left;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 3px;
+	overflow: hidden;
+}
 #footer {
 	clear: both;
 	padding: 0px 0;
 }
 #navigationDetail{
+	/* Div: Table zur Auswahl von Dokumenten */
 	padding: 5px 0;
 	margin-left: 3px;
 	margin-right: 3px;
 	width: 99.5%;
 }
+#navigationDetail iframe{
+	/* IFRAME: zur Auswahl von Dokumenten */
+	height: 12em;
+}
 #navigationDetail table {
+	/* TABLE: Anzeige der Dokumente */
 	border-color: #B2BCC6;
 	border-bottom-width: 1px;
 	border-right-width: 0px;
@@ -144,17 +245,30 @@ body {
 	overflow: hidden;
 }
 #navigationDetail th {
-	background-color: #C1C496;
-	/*background-color: #D0D0A2;*/
+	/* TABLE TH: Anzeige der Dokumente*/
+	background-position: left top;
+	background-repeat: repeat;
+	background-image: url("../bilder/title-tab-bg.gif");
+	border-style: solid;
+	border-top-width: 1px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-bottom-width: 1px;
+	border-color: #557AA6;
 	color: #2D5893;
 	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;
-	border-bottom-color: #7992B8;
-	border-bottom-style: solid;
-	border-bottom-width: 1px;
 	padding: 3px;
 	text-align: left;
 }
+#navigationDetail th a:link, a:visited {
+	/* Link's zur Sortierung der Dokumente */
+	background-color: transparent;
+	text-decoration: none;
+	border-bottom-style: dotted;
+	border-bottom-width: 1px;
+}
 #navigationDetails table {
+	/* TABLE: Anzeige der Datentable bei Dokumenten*/
 	border-color: #B2BCC6;
 	border-top-width: 0px;
 	border-right-width: 1px;
@@ -167,22 +281,44 @@ body {
 	table-layout: fixed;
 }
 #navigationDetails td {
+	/* TABLE TD: Anzeige der Datentable bei den Dokumente*/
 	border-bottom: 1px solid #B2BCC6;
-	text-align: left;;
+	text-align: left;
 	padding-top: 0px;
 	padding-right: 0px;
 	padding-bottom: 0px;
 	padding-left: 3px;
 	overflow: hidden;
 }
+#navigationDetails td.aktiv{
+	/* TABELE TD: Anzeige der Dokumentendaten die gerade aktiv sind.*/
+	border-top: 2px solid #2D5893;
+	border-right: 0px solid black;
+	border-bottom: 2px solid #2D5893;
+	border-left: 0px solid black;
+	font-family: Verdana, Arial, Tahoma, sans-serif;
+	font-size: 1em;
+	line-height: 1.5em;
+	font-style: italic;
+	font-weight: bold;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 10px;
+	overflow: hidden;
+	text-align: left;
+	/*font: bold 10px Helvetica, sans-serif;
+	color: #2D5893;*/
+}
 #navigationDetails td a:link, a:visited {
-	/* Link's of Table */
+	/* Link's zur Auswahl der Dokumente */
 	background-color: transparent;
 	color: #2D5893;
 	border-bottom: 1px dotted #2D5893;
 	text-decoration: none;
 }
 #navigationDetails td a:hover {
+	/* Link's zur Auswahl der Dokumente*/
 	color: #778899;
 }
 #pageFooter {
