@@ -301,4 +301,112 @@
 			<rtexprvalue>true</rtexprvalue><!--dynamisch durch Skriptteile erlaubt-->
 			<description>Content of TableHeader</description></attribute>
 	</tag>
+	<tag>
+		<name>selinas004FDTag</name>
+		<tag-class>tagLibrary.selinas004FDTag</tag-class>
+	<attribute>
+			<name>header</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>Yes/No Yes=showCol of Table</description>
+		</attribute>
+		<attribute>
+			<name>data</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>Yes/No Yes=showRow of Table</description>
+		</attribute>
+		<attribute>
+			<name>farbe1</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>color of first row</description>
+		</attribute>
+		<attribute>
+			<name>farbe2</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>color of secound row</description>
+		</attribute>
+		<attribute>
+			<name>tableTagClass</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>Name of TableClass for CSS value</description>
+		</attribute>
+		<attribute>
+			<name>columnHeader</name><!--required = true compelling(zwingend) argument-->
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue><!--dynamisch durch Skriptteile erlaubt-->
+			<description>Content of TableHeader</description>
+		</attribute>
+	</tag>
+	<tag>
+		<name>selinas004FLTag</name>
+		<tag-class>tagLibrary.selinas004FLTag</tag-class>
+	<attribute>
+			<name>header</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>Yes/No Yes=showCol of Table</description>
+		</attribute>
+		<attribute>
+			<name>data</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>Yes/No Yes=showRow of Table</description>
+		</attribute>
+		<attribute>
+			<name>farbe1</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>color of first row</description>
+		</attribute>
+		<attribute>
+			<name>farbe2</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>color of secound row</description>
+		</attribute>
+		<attribute>
+			<name>tableTagClass</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>Name of TableClass for CSS value</description>
+		</attribute>
+		<attribute><name>columnHeader</name><!--required = true compelling(zwingend) argument-->
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue><!--dynamisch durch Skriptteile erlaubt-->
+			<description>Content of TableHeader</description></attribute>
+	</tag>
+	<tag>
+		<name>LanguageOption</name>
+		<tag-class>tagLibrary.LanguageOption</tag-class>
+		<attribute>
+			<name>name</name>
+			<!--required = true compelling(zwingend) argument-->
+			<required>false</required>
+		</attribute>
+		<attribute>
+			<name>id</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+		</attribute>
+		<attribute>
+			<name>permitId</name>
+			<!--required = true non compelling(zwingend) argument-->
+			<required>false</required>
+		</attribute>
+		<attribute>
+			<name>tabindex</name>
+			<!--required = true compelling(zwingend) argument-->
+			<required>true</required>
+		</attribute>
+		<attribute>
+			<name>option</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>default attribute is DE</description>
+		</attribute>
+	</tag>
 </taglib>
