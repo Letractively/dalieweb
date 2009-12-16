@@ -34,6 +34,8 @@
 		Dokument dokument = (Dokument) session.getAttribute("Dokument");
 		String language = (String) session.getAttribute("Speech");
 		String upload = (String) session.getAttribute("UpLoadOn");
+		String dokumentOrderByTyp = (String)session.getAttribute("DokumentOrderByTyp");//SessionAttribut:sort by Dokument
+		String linkOrderByTyp = (String)session.getAttribute("LinkOrderByTyp");//SessionAttribut:sort by Link
 %>
 <div id="page"> 
 	<div id="pageHeader">
@@ -81,15 +83,15 @@
         			<td height="0" valign="top">
                 		<table width="100%" border="0" cellpadding="0" cellspacing="0">
                      		<tr>
-                      			<td class="subheading1"><strong>Beschreibung:</strong></td>
-								<td class="subheading1"><strong>Gliederung:</strong></td>
+                      			<td class="subheading1"><strong><%= show.session.getDescripten() %>:</strong></td>
+								<td class="subheading1"><strong><%= show.session.getGliederung() %>:</strong></td>
                      		</tr>
 							<tr>
                 	    		<td valign="middle" class="fontBlack"><%= dokument.getDescripten()%></td>
 								<td valign="middle" class="fontBlack"><%= dokument.getGliederung() %></td>
                     		</tr>
                     		<tr>
-            	        		<td class="subheading1"><strong>Inhalt:</strong></td>
+            	        		<td class="subheading1"><strong><%= show.session.getContent() %>:</strong></td>
 								<td class="subheading1">&nbsp;</td>
       						</tr>
 						</table>
@@ -113,7 +115,7 @@
 									<input type="hidden" name="dokumentTyp" value="<%= dokument.getDokumentTyp() %>" /> 
 									<input type="hidden" name="dokumentNr" value="<%= dokument.getNummer() %>" /> 
 									<input type="hidden" name="dokumentId" value="<%= dokument.getId() %>" /> 
-									<dalie:ButtonOption name="back" accesskey="r" tabindex="1"><< <span style="text-decoration:underline">z</span>urück</dalie:ButtonOption>
+									<dalie:ButtonOption name="back" accesskey="r" tabindex="1"><!-- Button:backward --><%= show.session.getButton3() %></dalie:ButtonOption>
 									</form>		
 								</td>
 								<td>
@@ -123,7 +125,7 @@
 									<input type="hidden" name="dokumentTyp" value="<%= dokument.getDokumentTyp() %>" /> 
 									<input type="hidden" name="dokumentNr" value="<%= dokument.getNummer() %>" /> 
 									<input type="hidden" name="dokumentId" value="<%= dokument.getId() %>" /> 
-									<dalie:ButtonOption name="submit" accesskey="b" tabindex="2">Dokument <span style="text-decoration:underline">b</span>earbeiten</dalie:ButtonOption>
+									<dalie:ButtonOption name="submit" accesskey="b" tabindex="2"><!-- Button:bearbeiten --><%= show.session.getButton4() %></dalie:ButtonOption>
 									</form>
 								</td>
 								<td>
@@ -133,12 +135,12 @@
 									<input type="hidden" name="dokumentTyp" value="<%= dokument.getDokumentTyp() %>" /> 
 									<input type="hidden" name="dokumentNr" value="<%= dokument.getNummer() %>" /> 
 									<input type="hidden" name="dokumentId" value="<%= dokument.getId() %>" /> 
-									<dalie:ButtonOption name="next" accesskey="n" tabindex="3"><span style="text-decoration:underline">v</span>orwärts >></dalie:ButtonOption>
+									<dalie:ButtonOption name="next" accesskey="n" tabindex="3"><!-- Button:forward --><%= show.session.getButton5() %></dalie:ButtonOption>
 									</form>		
 								</td>
 								<td>
 									<form action="/dalieweb/DokumentToReportServlet" method="post">
-									<dalie:ButtonOption name="print" accesskey="d" tabindex="4">Dokument <span style="text-decoration:underline">d</span>rucken</dalie:ButtonOption>
+									<dalie:ButtonOption name="print" accesskey="d" tabindex="4"><!-- Button:drucken --><%= show.session.getButton6() %></dalie:ButtonOption>
 									</form>
 								</td>
 							</tr>
@@ -148,7 +150,7 @@
 			</table>
 			</div><!-- /contentLeft -->
 			<div id="contentRight">	
-				<dalie:DokumentLinkTag data="N" columnHeader='<%= ColumHeader.valueOf("2",language) %>' tableTagClass="linkTable"></dalie:DokumentLinkTag>
+				<dalie:DokumentLinkTag data="N" columnHeader='<%= ColumHeader.valueOf("2",language,linkOrderByTyp) %>' tableTagClass="linkTable"></dalie:DokumentLinkTag>
 				<iframe src="<%= request.getContextPath()%>/selinas/selinas003FL.jsp" width="100%" name="selinas2" frameborder="0" height="221"></iframe>						
 					<table border="0" cellpadding="0" cellspacing="0" width="100%">	
 						<tr>
@@ -156,9 +158,9 @@
 								<form action="<%= request.getContextPath()%>/GoToSelinas003Servlet" method="post">
 									<input type="hidden" name="upLoadOn" value="1" />
 									<% if(upload.equalsIgnoreCase("0")){ %> 
-										<dalie:ButtonOption name="upload" accesskey="s" tabindex="3">Upload <span style="text-decoration:underline">s</span>tarten</dalie:ButtonOption>
+										<dalie:ButtonOption name="upload" accesskey="s" tabindex="3"><!-- Button:Upload starten --><%= show.session.getButton7() %></dalie:ButtonOption>
 									<% }else{%>
-										<dalie:ButtonOption name="upload" accesskey="e" tabindex="3">Be<span style="text-decoration:underline">e</span>nden</dalie:ButtonOption>
+										<dalie:ButtonOption name="upload" accesskey="e" tabindex="3"><!-- Button:beenden --><%= show.session.getButton2() %></dalie:ButtonOption>
 									<% }/*endif*/ %>
 								</form>		
 							</td>
@@ -171,9 +173,9 @@
 			<table border="0" cellpadding="0" cellspacing="0" width="99%">	
 				<tr>
 					<td>
-								<form action="<%= request.getContextPath()%>/DokumentUploadServlet" enctype="multipart/form-data" method="post">
+								<form action="<%= request.getContextPath()%>/Selinas003Upload" enctype="multipart/form-data" method="post">
 								<input type="file" name="myFile" tabindex='2' maxlength="255" class="file"/>
-								<dalie:ButtonOption name="submit" accesskey="s" tabindex="3">Upload <span style="text-decoration:underline">s</span>tarten</dalie:ButtonOption>
+								<dalie:ButtonOption name="submit" accesskey="s" tabindex="3"><%= show.session.getButton7() %></dalie:ButtonOption>
 								</form>		
 					</td>
 				</tr>
@@ -184,7 +186,7 @@
 			<% }/*endif*/ %>	
 		</div><!-- /footer -->	
 		<div id="navigationDetail">
-			<dalie:DokumentTypTag data="N" columnHeader='<%= ColumHeader.valueOf("1",language) %>' tableTagClass="linkTable"></dalie:DokumentTypTag>
+			<dalie:DokumentTypTag data="N" columnHeader='<%= ColumHeader.valueOf("1",language,dokumentOrderByTyp) %>' tableTagClass="linkTable"></dalie:DokumentTypTag>
 			<iframe src="<%= request.getContextPath()%>/selinas/selinas003FD.jsp" width="100%" name="selinas1" frameborder="0" height="100"></iframe>
 		</div><!-- /navigationDetail -->
 	</div><!-- /pageWrapper -->

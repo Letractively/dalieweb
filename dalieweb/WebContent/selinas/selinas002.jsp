@@ -43,7 +43,7 @@
 		<table border="0" cellspacing="0" cellpadding="0" width="99%">
 		<tr>
 			<td valign="middle" align="left"></td>
-			<td valign="middle" align="right" class="strapline"><%= user.user.getName()%>, <%= user.user.getVorname()%>&nbsp; <a href="<%= request.getContextPath()%>/LogOffSelina" target="_self" class="link">Log off</a></td>
+			<td valign="middle" align="right" class="strapline"><%= user.user.getName()%>, <%= user.user.getVorname()%>&nbsp;<a name="logOFF" id="logOFF" href="<%= request.getContextPath()%>/LogOffSelina" class="logOFF" title="Logout on dalieweb" target="_self">&nbsp;Log off&nbsp;</a></td>
 		</tr>
 		</table>
 		<div id="navigation">
