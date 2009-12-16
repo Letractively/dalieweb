@@ -1,4 +1,4 @@
-@CHARSET"ISO-8859-1";
+@CHARSET "ISO-8859-1";
 @IMPORT url("Master.css");
 body {
 	padding: 1px 0px 1px 0px; 
@@ -286,6 +286,7 @@ img.requests {
 	padding: 3px 5px;
 }
 #footer table {
+	/* Table: Uploadfunktion */
 	border-color: #B2BCC6;
 	border-bottom-width: 1px;
 	border-right-width: 0px;
@@ -299,6 +300,7 @@ img.requests {
 	overflow: hidden;
 }
 #navigationDetail{
+	/* Div: Table zur Auswahl von Dokumenten */
 	padding: 5px 0;
 	margin-left: 3px;
 	margin-right: 3px;
@@ -357,28 +359,29 @@ img.requests {
 	border-right: 0px solid black;
 	border-bottom: 2px solid #2D5893;
 	border-left: 0px solid black;
-	text-align: left;
-	padding-top: 0px;
-	padding-right: 0px;
-	padding-bottom: 0px;
-	padding-left: 10px;
-	overflow: hidden;
-	/*font: bold 10px Helvetica, sans-serif;
-	color: #2D5893;*/
 	font-family: Verdana, Arial, Tahoma, sans-serif;
 	font-size: 1em;
 	line-height: 1.5em;
 	font-style: italic;
 	font-weight: bold;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 10px;
+	overflow: hidden;
+	text-align: left;
+	/*font: bold 10px Helvetica, sans-serif;
+	color: #2D5893;*/
 }
 #navigationDetails td a:link, a:visited {
-	/* Link's of Table */
+	/* Link's zur Auswahl der Dokumente */
 	background-color: transparent;
 	color: #2D5893;
 	border-bottom: 1px dotted #2D5893;
 	text-decoration: none;
 }
 #navigationDetails td a:hover {
+	/* Link's zur Auswahl der Dokumente*/
 	color: #778899;
 }
 #pageFooter {
