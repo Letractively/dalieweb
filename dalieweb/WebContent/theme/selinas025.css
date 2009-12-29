@@ -1,0 +1,299 @@
+@CHARSET "ISO-8859-1";
+@IMPORT url("Master.css");
+body {
+	padding: 1px 0px 1px 0px; 
+	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;
+}
+#pageHeader {
+	background-image: url("../bilder/header.jpg");
+	border-bottom: 1px dotted #B2BCC6;
+	height: 8em;
+}
+#pageHeader .strapline {
+	color: #778899;
+	background: transparent;
+	float: right; /* Elemente umfließen lassen */
+	margin-right: 2em; /* transparenten Abstand von rechts */
+	margin-top: 0.5em /* transparenten Abstand von oben */;
+	font-family: Arial Unicode MS, Georgia, "Times New Roman";
+	letter-spacing: 0.9px;
+	line-height: 0.8em;
+	font-size: large;
+	font-variant: small-caps;
+}
+#pageHeader .logo {
+	float: left; /* Elemente umfließen lassen */
+	margin-left: 1.5em; /* transparenten Abstand von links*/
+	margin-top: 0.5em; /* transparenten Abstand von oben */
+	border: 1px #B2BCC6; /*Rahmen wie Link's */
+	background-color: #234F4E /*Hintergrund Farbe Selinas Grün*/
+}
+#pageWrapper{
+	border-color: #557AA6;
+	border-top-width: 1px;
+	border-right-width: 2px;
+	border-bottom-width: 3px;
+	border-left-width: 2px;
+	border-style: solid;
+	margin-right: 0.5%;
+	margin-left: 0.5%;
+	width: 99%;
+	min-height: 50em;
+}
+#pageWrapper a:link.link, a:visited.link {
+	/* LogOff Link */
+	color: #2A4F6F;
+	background-color: transparent;
+	border-bottom: 1px dotted #B2BCC6;
+	text-decoration: none;
+}
+#pageWrapper a:hover.link {
+	/* LogOff Link */
+	color: #778899;
+}
+img.admin1{
+	/* zurück zur Übersicht */
+	background: url(../bilder/dalie-icons-pack.gif) -159px -118px no-repeat;
+	height: 32px;
+	width: 33px;
+}
+img.admin2{
+	/* dokumentverwaltung */
+	background: url(../bilder/dalie-icons-pack.gif) -96px -211px no-repeat;
+	height: 32px;
+	width: 33px;
+}
+img.admin3{
+	/* adressverwaltung */
+	background: url(../bilder/dalie-icons-pack.gif) -224px -118px no-repeat;
+	height: 32px;
+	width: 33px;
+}
+img.admin4{
+	/* userverwaltung */
+	background: url(../bilder/dalie-icons-pack.gif) -450px -118px no-repeat;
+	height: 32px;
+	width: 33px;
+}
+.linkNav {
+	font: bold 10px Helvetica, sans-serif;
+	color: #2D5893;
+	border-bottom: 1px dotted #2D5893;
+	text-decoration: none;
+}
+.linkNav a:link, a:visited {
+	border-bottom: 1px dotted #2D5893;
+	text-decoration: none;
+}
+#header {
+	padding: 0px 0;
+}
+#header table th{
+	/*  */
+	background-position: left top;
+	background-repeat: repeat;
+	background-image: url("../bilder/title-tab-bg.gif");
+	border-style: solid;
+	border-top-width: 1px;
+	border-right-width: 2px;
+	border-left-width: 1px;
+	border-color: #557AA6;
+	border-bottom-width: 2px;
+	margin: 0px;
+	padding: 0px 1px 0px 15px;
+	font-family: Helvetica, Verdana, Sans-Serif;
+	line-height: 1.9em;
+	font-size: 1.4em;
+	font-weight: normal;
+	color: #fff;
+	font-style: italic;
+} 
+#wrapper {
+	background: #E6EBF2;
+	margin: 0 auto;
+	max-width: 100%;
+	text-align: center;
+	width: 100%;
+}
+.anforderungsdetails{
+	border-style: solid;
+	border-width: 1px;
+	border-color: #9AB5D4;
+	margin-left: 5px;
+}
+.anforderungsdetails #caption{
+	background-position: left top;
+	background-repeat: repeat;
+	background-image: url("../bilder/title-tab-bg.gif");
+	border-style: solid;
+	border-top-width: 1px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-bottom-width: 1px;
+	border-color: #557AA6;
+
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 10px;
+	text-align: left;
+}
+.details{
+	margin-left: 5px;
+}
+#contentLeft {
+	float: left;
+	margin-left: 5px;
+	text-align: left;
+	vertical-align: top;
+	width: 15%;
+}
+#contentRight {
+	float: left;
+	padding-left: 2px;
+	width: 83.5%;
+}
+#footer {
+	clear: both;
+	padding: 0px 0;
+}
+#navigationDetail{
+	/* Div: Table zur Auswahl von Dokumenten */
+	padding: 5px 0;
+	margin-left: 3px;
+	margin-right: 3px;
+	width: 99.5%;
+}
+#navigationDetail table {
+	/* TABLE: Anzeige der Dokumente */
+	border-color: #B2BCC6;
+	border-bottom-width: 1px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-top-width: 0px;
+	border-style: solid;
+	margin: 0px 0px;
+	padding: 0px;
+	text-align: left;
+	table-layout: fixed;
+	overflow: hidden;
+}
+#navigationDetail th {
+	/* TABLE TH: Anzeige der Dokumente*/
+	background-position: left top;
+	background-repeat: repeat;
+	background-image: url("../bilder/title-tab-bg.gif");
+	border-style: solid;
+	border-top-width: 1px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-bottom-width: 1px;
+	border-color: #557AA6;
+	color: #2D5893;
+	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;
+	padding: 3px;
+	text-align: left;
+}
+#navigationDetail th a:link, a:visited {
+	/* Link's zur Sortierung der Dokumente */
+	background-color: transparent;
+	text-decoration: none;
+	border-bottom-style: dotted;
+	border-bottom-width: 1px;
+}
+
+#navigationDetails table {
+	/* TABLE: Anzeige der Datentable bei Dokumenten*/
+	border-color: #B2BCC6;
+	border-top-width: 0px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-style: solid;
+	margin: 0px 0px;
+	padding: 0px;
+	text-align: left;
+	table-layout: fixed;
+}
+#navigationDetails td {
+	/* TABLE TD: Anzeige der Datentable bei den Dokumente*/
+	border-bottom: 1px solid #B2BCC6;
+	text-align: left;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 3px;
+	overflow: hidden;
+}
+#navigationDetails td.aktiv{
+	/* TABELE TD: Anzeige der Dokumentendaten die gerade aktiv sind.*/
+	border-top: 2px solid #2D5893;
+	border-right: 0px solid black;
+	border-bottom: 2px solid #2D5893;
+	border-left: 0px solid black;
+	font-family: Verdana, Arial, Tahoma, sans-serif;
+	font-size: 1em;
+	line-height: 1.5em;
+	font-style: italic;
+	font-weight: bold;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 10px;
+	overflow: hidden;
+	text-align: left;
+	/*font: bold 10px Helvetica, sans-serif;
+	color: #2D5893;*/
+}
+#navigationDetails td a:link, a:visited {
+	/* Link's zur Auswahl der Dokumente */
+	background-color: transparent;
+	color: #2D5893;
+	border-bottom: 1px dotted #2D5893;
+	text-decoration: none;
+}
+#navigationDetails td a:hover {
+	/* Link's zur Auswahl der Dokumente*/
+	color: #778899;
+}
+#pageFooter {
+	background-color: fuchsia;
+	clear: both;
+	color: #fff;
+	padding: 2px 0;
+	text-align: left;
+}
+#pageFooter p {
+	font: 0.83em/ 1.8em Arial, Tahoma, Verdana, sans-serif;
+	margin:	0 3em;
+}
+#pageFooter {
+	border-top : 1px dotted #AAAAAA;
+	background-image: url("../bilder/footer.jpg"); 
+	background-color: #7D9796;
+	color: #626262;
+	height: 12em;
+	width: 100%;;
+	border-top: 1px dotted #AAAAAA;
+}
+#meta-wrap {
+	text-align: left;
+	margin: 0 auto;
+	padding: 20px 0 0 410px;
+	width: 350px;
+}
+#vcard {
+	float: right;
+	clear: both;
+	width: 100px;
+	margin: 10px 0;
+}
+button {
+	display: inline; /* über ganze breite */
+	font: 0.8em Arial, Tahoma, Verdana, sans-serif;
+	height: 2.2em;
+	text-align: center;
+	text-transform: uppercase;
+	padding-left: 3px;
+	padding-right: 3px;
+	vertical-align: middle;
+}
