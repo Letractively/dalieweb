@@ -247,12 +247,13 @@
 		<name>DokumentNavTag</name>
 		<tag-class>tagLibrary.DokumentNavTag</tag-class>
 		<attribute>
-			<name>current</name><type>Dokument</type>
+			<name>current</name>
 			<required>true</required><!--zwingend-->
 			<!--rtexprvalue gibt an, ob der Wert des Attributes statisch eingetragen sein muss-->
 			<!--oder auch dynamisch durch Skriptteile ermittelt wird.-->
 			<!--Mögliche Werte sind hierbei true oder false. Der Standwert ist false-->
 			<rtexprvalue>true</rtexprvalue>
+			<type>database.dateien.Dokument</type>
 		</attribute>
 	</tag>
 	<tag>
@@ -408,5 +409,43 @@
 			<required>false</required>
 			<description>default attribute is DE</description>
 		</attribute>
+	</tag>
+	<tag>
+		<name>selinas025FTTag</name>
+		<tag-class>tagLibrary.selinas025FTTag</tag-class>
+	<attribute>
+			<name>header</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>Yes/No Yes=showCol of Table</description>
+		</attribute>
+		<attribute>
+			<name>data</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>Yes/No Yes=showRow of Table</description>
+		</attribute>
+		<attribute>
+			<name>farbe1</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>color of first row</description>
+		</attribute>
+		<attribute>
+			<name>farbe2</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>color of secound row</description>
+		</attribute>
+		<attribute>
+			<name>tableTagClass</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>Name of TableClass for CSS value</description>
+		</attribute>
+		<attribute><name>columnHeader</name><!--required = true compelling(zwingend) argument-->
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue><!--dynamisch durch Skriptteile erlaubt-->
+			<description>Content of TableHeader</description></attribute>
 	</tag>
 </taglib>
