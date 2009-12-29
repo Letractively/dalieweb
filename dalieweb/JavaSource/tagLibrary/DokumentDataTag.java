@@ -15,11 +15,13 @@ import javax.servlet.jsp.tagext.TagSupport;
 
 import database.Database;
 import database.dateien.Dokument;
+import database.dateien.Selinas;
 import database.dateien.Typ;
 import database.getDatabase.DataSetDokument;
 import database.getDatabase.DataSetTyp;
 import selinas.ColumHeader;
 import selinas.SelinasUser;
+import selinas.bean.SelinasSession;
 
 /**
  * <b>Class</b> DokumentDataTag<br>Table of Dokument<br>
@@ -33,6 +35,7 @@ public class DokumentDataTag extends TagSupport {
     	
     private Database dbConn;
     private SelinasUser selinasuser;
+    private SelinasSession show;
     private String language;
 
 	
@@ -59,7 +62,9 @@ public class DokumentDataTag extends TagSupport {
             	language = (String)session.getAttribute("Speech");  
             	if (session.getAttribute("User") != null) {
             		selinasuser = (SelinasUser) session.getAttribute("User");
-                
+            		if (session.getAttribute("Selinas") != null) {
+            			show = new SelinasSession((Selinas) session.getAttribute("Selinas")); 
+            			
             		if(session.getAttribute("DokumentOrderByTyp") != null)
                 		orderByTyp = (String) session.getAttribute("DokumentOrderByTyp");
                  try {
@@ -87,7 +92,12 @@ public class DokumentDataTag extends TagSupport {
                                 + " Exception " + e.getMessage()
                                 + " is not vaild");
                     }//try 
-      
+                    
+            		} else {
+                    	throw new JspException("SelinasSession object in session "
+                    		+ session.getAttribute("Dokument")
+                            + " has not the valid type");
+                	}//session.getAttribute("Selinas") 
             	} else {
             		throw new JspException("User object in session "
             			+ session.getAttribute("User")
@@ -135,7 +145,7 @@ public class DokumentDataTag extends TagSupport {
 			Typ dokumentTyp = DataSetTyp.chain(dbConn,data);
 			tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +
 					"<td width='15%'>" + dokumentTyp.getDescription() +"</td>" +
-					"<td width='5%'><a href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" title='Auswahl Dokument: "+data.getTitel()+" ' target='_parent' class='link'>" + data.getNummer()+"."+ data.getId() +"</a></td>" +
+					"<td width='5%'><a href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" title='"+show.session.getLink2() + data.getTitel()+" ' target='_parent' class='link'>" + data.getNummer()+"."+ data.getId() +"</a></td>" +
 					"<td width='20%'>" + collapseSpaces(data.getTitel()) +"</td>" +
 					"<td width='25%'>" + data.getDescripten() + "</td>" +
 					"<td width='5%'>" + data.getGliederung() +"</td>" +
@@ -152,8 +162,8 @@ public class DokumentDataTag extends TagSupport {
 	    for (int i = 0; i < dokumente.size(); i++){         
 			Dokument data  = ((Dokument)dokumente.elementAt(i));
 			tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +
-				"<td width='10%'>" + data.getNummer()+"."+ data.getId() +"</a></td>" +
-				"<td width='20%'><a href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" title='Auswahl Dokument: "+data.getTitel()+" ' target='_parent' class='link'>" + collapseSpaces(data.getTitel())+"</a></td>" +
+				"<td width='10%'>" + data.getNummer()+"."+ data.getId() +"</td>" +
+				"<td width='20%'><a href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" title='" +show.session.getLink2() + data.getTitel()+" ' target='_parent' class='link'>" + collapseSpaces(data.getTitel())+"</a></td>" +
 				"<td width='30%'>" + data.getDescripten() + "</td>" +
 				"<td width='10%'>" + data.getGliederung() +"</td>" +
 				"<td width='15%'>" + data.getCreateUser() +"<br />"+  data.getCreateDate() +"</td>" +
@@ -187,6 +197,7 @@ public class DokumentDataTag extends TagSupport {
         /* internen Zustand der Aktionsklasse zurückzusetzen. */
       dbConn = null;
       selinasuser = null;
+      show = null;
       farbe = null;
       columnHeader = null;
       language = null;

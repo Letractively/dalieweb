@@ -4,6 +4,7 @@ import java.util.Vector;
 
 import database.Database;
 import database.dateien.SelectboxOptionen;
+import database.dateien.User;
 
 /**
  * @author DV0101
@@ -32,13 +33,51 @@ public class DataSetSelectOptionen {
     public static synchronized Vector chain(Database dbConn,String nameOfSelectbox,String sprachId,String optionId) throws Exception {
         Vector allOptionen = new Vector();
         	Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".selectoptionen " +
-        	        "where selectbox = '"+nameOfSelectbox+"' " +
-        	        "and sprachId = '"+sprachId+"' "+
-        			"and optionId = '"+optionId+"' ");
+        	        "where selectbox = '"+nameOfSelectbox+"'" +
+        	        " and sprachId = '"+sprachId+"'"+
+        			" and optionId = '"+optionId+"'" +
+        			" ORDER BY selectbox, sprachId, optionId, optionDescripten desc");
         	 for(int i = 0;i < rows.size();i++) {
                  allOptionen.addElement(new SelectboxOptionen((Vector) rows.elementAt(i)));
              }//for
              return allOptionen;
     }//chain
 	
+    /**
+     * <b>insert Typ on Datenbank </b>
+     * <br><b>insert:Key none </b>
+     * <br><b>public</b><br>
+     * @param
+     * <ul>	
+     * <li>Database dbConn</li>
+     * <li>User user</li>
+     * </ul>
+     * @return
+     * <ul><li>none</li></ul>
+     */
+    public static synchronized void insert(Database dbConn,User user,String nameOfSelectbox,String sprachId,SelectboxOptionen option) throws Exception{
+		dbConn.executeUpdate("insert into "+dbConn.getDbSchema()+".selectoptionen " +
+				"values('"+nameOfSelectbox+"','" +sprachId+"'," +
+				"'"+option.getOptionId()+"','"+option.getOptionValue()+"'," + 
+				"'"+option.getOptionDescription()+"',"+
+				"'"+user.getUserId()+"'," + "now()," + 
+				"'"+user.getUserId()+"'," + "now())");
+    }//insert
+    
+    public static synchronized void update(Database dbConn,User user,String nameOfSelectbox,String sprachId,SelectboxOptionen option) throws Exception {
+        dbConn.executeUpdate("update "+dbConn.getDbSchema()+".selectoptionen " +
+                "set" +
+				" optionDescripten = '"+ option.getOptionDescription()+"'," +
+                " changeUser = '"+ user.getUserId()+ "'," + " changeDate = now() " +
+                " where selectbox = '"+ nameOfSelectbox + "' and sprachId = '"+sprachId +"'" +
+                " and optionId = '"+option.getOptionId() + "' and optionValue = '"+option.getOptionValue()+"'");
+    }//update
+    
+    public static synchronized void delete(Database dbConn,String nameOfSelectbox,String sprachId,String optionId,String optionValue) throws Exception {
+    	dbConn.executeUpdate("delete from "+dbConn.getDbSchema()+".selectoptionen " +
+        		"where selectbox = '"+nameOfSelectbox+"'" +
+    	        " and sprachId = '"+sprachId+"'"+
+    			" and optionId = '"+optionId+"'" +
+    			" and optionValue = '"+optionValue+"'");
+    }//delete
 }//class DataSetSelectOptionen

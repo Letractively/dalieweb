@@ -31,16 +31,16 @@ public class ButtonOption extends TagSupport{
         setId(name);
     }//setName
     private String permitId="0";//deaktiviert
-    private String permitAttribut = " disabled";
+    private String permitAttribut = " disabled='disabled'";
     public void setPermitId(String id){
         if(Integer.parseInt(permitId)== 9) {
-    	    this.permitAttribut = " disabled";
+    	    this.permitAttribut = " disabled='disabled'";
     	}else {
     	    this.permitId = id;
         	if(Integer.parseInt(id) >= 2)
         	    this.permitAttribut = "";
         	if(Integer.parseInt(id) == 9)
-        	    this.permitAttribut = " disabled";
+        	    this.permitAttribut = " disabled='disabled'";
         	}//endif
     }//setPermitId
     

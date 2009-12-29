@@ -58,20 +58,20 @@ public class InputOption extends TagSupport{
         return value;
     }//getValue
     private String permitId="0";//deaktiviert
-    private String permitAttribut = " readonly disabled";
+    private String permitAttribut = " readonly='readonly' disabled='disabled'";
     public void setPermitId(String id){
         	if(Integer.parseInt(permitId)== 9) {
-        	    this.permitAttribut = " readonly disabled";
+        	    this.permitAttribut = " readonly='readonly' disabled='disabled'";
         	}else {
         		this.permitId = id;
         	if(Integer.parseInt(id) >= 3) {
         	    this.permitAttribut = "";
         	} else if(Integer.parseInt(id) == 2) {
         	    this.permitAttribut = "";
-        	    this.permitAttribut = " readonly";
+        	    this.permitAttribut = " readonly='readonly'";
         	} else if(Integer.parseInt(id) == 9) {
         	    this.permitAttribut = "";
-        	    this.permitAttribut = " readonly disabled";
+        	    this.permitAttribut = " readonly='readonly' disabled='disabled'";
         	}//endif
         	}//endif
     }//setPermitId

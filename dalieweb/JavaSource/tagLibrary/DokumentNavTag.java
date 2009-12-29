@@ -66,7 +66,7 @@ public class DokumentNavTag extends TagSupport {
                         dbConn.getConnection();
                         /* finde den DokumentTyp zum Dokument aus der UserSession */
                         Typ typOfDokument = DataSetTyp.chain(dbConn,dokumentOfSession);
-                        ulli = "<ul><li><a href='/dalieweb/GoToStartServlet?selectTyp=UB' title='zurück zur Übersicht'>" +
+                        ulli = "<ul><li><a href='/dalieweb/GoToStartServlet?selectTyp=UB' title='"+ show.session.getLink1t() +"'>" +
                         		"<span>"+ show.session.getLink1() +"</span></a></li> " +
                         		"<li>"+ typOfDokument.getDescription() +"</li>";
                         int counter = 2;
@@ -100,7 +100,7 @@ public class DokumentNavTag extends TagSupport {
                         }//try
                         dbConn.close();
                  		}catch(Exception e){//no DokumentTypen found
-                 			out.println("<ul><li><a href='/dalieweb/GoToStartServlet?selectTyp=UB' title='zurück zur Übersicht'><span>"+ show.session.getLink1() +"</span></a></li>");
+                 			out.println("<ul><li><a href='/dalieweb/GoToStartServlet?selectTyp=UB' title='"+ show.session.getLink1t() +"'><span>"+ show.session.getLink1() +"</span></a></li>");
                  		}//catch    
                         out.println(ulli);
                  		return EVAL_BODY_INCLUDE;//Evaluate body into existing out stream, and start next with doEndTag()
@@ -167,7 +167,7 @@ public class DokumentNavTag extends TagSupport {
     /** Writes Dokument-Informations for one Dokument to the page body */
 	private String writeDokumentDataToPageContext1(Typ typ,Dokument dokument,Dokument current) {
 		if(dokument.getNummer() == current.getNummer()){
-			ulli = ulli + "<li class='current'><img src='/dalieweb/bilder/arrow.gif'/>&nbsp;"+ dokument.getNummer()+"." + dokument.getId() + ".&nbsp;&nbsp;"+ dokument.getTitel() + "</li>";
+			ulli = ulli + "<li class='current'><img src='/dalieweb/bilder/arrow.gif' title='"+show.session.getImage1()+"' alt='"+show.session.getImage1()+"' />&nbsp;"+ dokument.getNummer()+"." + dokument.getId() + ".&nbsp;&nbsp;"+ dokument.getTitel() + "</li>";
 		}else{
 			ulli = ulli + "<li><a href='/dalieweb/DokumentToRequestServlet?dokumentTyp="+dokument.getDokumentTyp()+"&amp;dokumentNr="+dokument.getNummer()+"&amp;dokumentId="+dokument.getId()+"' target='_parent'>"+ + dokument.getNummer() +"."+ dokument.getId()+ "&nbsp;&nbsp;"+ dokument.getTitel()  + "</a></li>";
 		}//endif
@@ -177,7 +177,7 @@ public class DokumentNavTag extends TagSupport {
 	/** Writes Dokument-Informations for one Dokument to the page body */
 	private String writeDokumentDataToPageContext(Dokument dokument, Dokument current) {
 		if(dokument.getNummer() == current.getNummer()){	
-			ulli = ulli + "<li class='current'><img src='/dalieweb/bilder/arrow.gif' title='standpunkt' alt='standpunkt'/>&nbsp;&nbsp;"+ dokument.getNummer()+ "." + dokument.getId()+ "&nbsp;&nbsp;"+ dokument.getTitel()  + "</li>";
+			ulli = ulli + "<li class='current'><img src='/dalieweb/bilder/arrow.gif' title='"+show.session.getImage1()+"' alt='"+show.session.getImage1()+"'/>&nbsp;&nbsp;"+ dokument.getNummer()+ "." + dokument.getId()+ "&nbsp;&nbsp;"+ dokument.getTitel()  + "</li>";
 		}else{
 			ulli = ulli + "<li><a href='/dalieweb/DokumentToRequestServlet?dokumentTyp="+dokument.getDokumentTyp()+"&amp;dokumentNr="+dokument.getNummer()+"&amp;dokumentId="+dokument.getId()+"' target='_parent'>"+ + dokument.getNummer() +"."+ dokument.getId()+ "&nbsp;&nbsp;"+ dokument.getTitel()  + "</a></li>";
 		}

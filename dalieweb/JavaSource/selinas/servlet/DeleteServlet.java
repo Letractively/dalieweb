@@ -37,7 +37,6 @@ public class DeleteServlet extends HttpServlet implements Servlet {
 		SelinasUser selinasuser = (SelinasUser) session.getAttribute("User");
 	    Dokument dokumentOfDelete = (Dokument)session.getAttribute("Dokument");
 	    dbConn = (Database) session.getAttribute("Database");
-	    String language = (String)session.getAttribute("Speech");
 		
  		try{//first -> delete File's 
  			dbConn.getConnection();/* open Databaseconnection */
@@ -54,8 +53,8 @@ public class DeleteServlet extends HttpServlet implements Servlet {
  		}//try
 
  		try{//second -> delete database
-      		DataSetLink.delete(dbConn,selinasuser.user,dokumentOfDelete);//delete all Records on Database Table of DokumentLink
-      		DataSetDokument.delete(dbConn,selinasuser.user,dokumentOfDelete);//delete all Records on Database Table of Dokument
+      		DataSetLink.delete(dbConn,dokumentOfDelete);//delete all Records on Database Table of DokumentLink
+      		DataSetDokument.delete(dbConn,dokumentOfDelete);//delete all Records on Database Table of Dokument
         } catch (Exception e) {
         	LoggerHelper.log(this.getClass().getName(),"Exception of perForm..:", e);
             throw new ServletException("Error");

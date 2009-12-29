@@ -101,10 +101,7 @@ public class UploadServlet extends HttpServlet implements Servlet {
                                 dokumentlink.setSizeInBytes(sizeInBytes);
                                 DataSetLink.insert(dbConn,dokument,dokumentlink,selinasuser.user);
                                 request.setAttribute("upload",getResult(first + applicationsId + next,dokumentlink,request,response));
-                                
-                                
                             } else {//keine gültige PC Anwendung
-                                System.out.println(element.getName());
                                 if(element.getSize() != 0 ) {
                                     request.setAttribute("upload", "Keine zulässige "
                                         + element.getContentType().toString()

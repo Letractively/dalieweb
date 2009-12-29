@@ -30,7 +30,7 @@ public class ErrorServlet extends HttpServlet implements Servlet {
                 	String  param =  eParameters.nextElement().toString();
                 	System.out.println("Parameter..: " + param + " = " + "ParameterValue..: "+ request.getParameter(param));
                 	InputCheck test = new InputCheck(dbConn, param, request.getParameter(param),(String) session.getAttribute("Speech"));
-                	if (test.CheckInput()){
+                	if (test.checkInput()){
                 	    request.setAttribute("Message", test.error.getErrorMsg());
                 	    session.setAttribute("Error","yes");
                 	    break;

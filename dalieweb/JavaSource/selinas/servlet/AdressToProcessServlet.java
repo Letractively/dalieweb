@@ -45,14 +45,14 @@ public class AdressToProcessServlet extends HttpServlet implements Servlet {
 		 }//catch ServletException
 	     
 	 	 String error = (String) session.getAttribute("Error");
-	 	 if(request.getParameter("beenden") == null){//button beendet
+	 	 if(request.getParameter("beenden")!= null){//button beendet
 	 	 	try{
 	 	 		if(error.equalsIgnoreCase("yes")) { 
 	 	 			session.setAttribute("Adresse", show.getAdressOfUpdate(dbConn,selinasuser.user,adressOfSession,request));//SessionAttribut:AdressOfUpdate
-	 	 			performForward("/selinas/selinas005.jsp",request,response);
+	 	 			performForward("/selinas/selinas020.jsp",request,response);
 	 	 		}else{
 	 	 			session.setAttribute("Adresse", show.getAdressOfUpdate(dbConn,selinasuser.user,adressOfSession,request));//SessionAttribut:AdressOfUpdate
-	 	 			performForward("/selinas/selinas005.jsp",request,response);
+	 	 			performForward("/selinas/selinas002.jsp",request,response);
 	 	 		}//endif error.equals
 	 	 	}catch (Exception e) {
 	 	 		LoggerHelper.log(this.getClass().getName(), "Exception of perForm Verarbeitung", e);
@@ -60,13 +60,8 @@ public class AdressToProcessServlet extends HttpServlet implements Servlet {
 	 	 	}//catch ServletException
 	 	 }else{//button beendet
  	 		try {
- 	 			if(error.equalsIgnoreCase("yes")) { 
-					session.setAttribute("Adresse", show.getAdressOfUpdate(dbConn,selinasuser.user,adressOfSession,request));//SessionAttribut:AdressOfUpdate
-					performForward("/selinas/selinas005.jsp",request,response);
- 	 			}else{
- 	 				session.setAttribute("Adresse", show.getAdressOfDatabase(dbConn,selinasuser.user));//SessionAttribut:AdressOfUpdate
- 	 	 			performForward("/selinas/selinas002.jsp",request,response);
- 	 			}//endif error.equals
+ 	 			session.setAttribute("Adresse", show.getAdressOfUpdate(dbConn,selinasuser.user,adressOfSession,request));//SessionAttribut:AdressOfUpdate
+ 	 	 		performForward("/selinas/selinas020.jsp",request,response);
 			} catch (Exception e) {
 				LoggerHelper.log(this.getClass().getName(), "Exception of perForm Beenden", e);
 				performForward(nextPage,request,response);//Login 

@@ -49,22 +49,89 @@ public class SelectboxOptionen {
         this.changeDate = columns.elementAt(8).toString();
     }//SelectboxOptionen
     
-    /**
-     * @return Returns the optionDescription.
-     */
-    public String getOptionDescription() {
-        return optionDescription;
-    }
-    /**
-     * @return Returns the optionId.
-     */
-    public String getOptionId() {
-        return optionId;
-    }
-    /**
-     * @return Returns the optionValue.
-     */
-    public String getOptionValue() {
-        return optionValue;
-    }
+    
+	/**
+	 * @return Returns the changeDate.
+	 */
+	public String getChangeDate() {
+		return changeDate;
+	}
+	/**
+	 * @param changeDate The changeDate to set.
+	 */
+	public void setChangeDate(String changeDate) {
+		this.changeDate = changeDate;
+	}
+	/**
+	 * @return Returns the changeUserId.
+	 */
+	public String getChangeUserId() {
+		return changeUserId;
+	}
+	/**
+	 * @param changeUserId The changeUserId to set.
+	 */
+	public void setChangeUserId(String changeUserId) {
+		this.changeUserId = changeUserId;
+	}
+	/**
+	 * @return Returns the createDate.
+	 */
+	public String getCreateDate() {
+		return createDate;
+	}
+	/**
+	 * @param createDate The createDate to set.
+	 */
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
+	/**
+	 * @return Returns the createUserId.
+	 */
+	public String getCreateUserId() {
+		return createUserId;
+	}
+	/**
+	 * @param createUserId The createUserId to set.
+	 */
+	public void setCreateUserId(String createUserId) {
+		this.createUserId = createUserId;
+	}
+	/**
+	 * @return Returns the optionDescription.
+	 */
+	public String getOptionDescription() {
+		return optionDescription;
+	}
+	/**
+	 * @param optionDescription The optionDescription to set.
+	 */
+	public void setOptionDescription(String optionDescription) {
+		this.optionDescription = optionDescription;
+	}
+	/**
+	 * @return Returns the optionId.
+	 */
+	public String getOptionId() {
+		return optionId;
+	}
+	/**
+	 * @param optionId The optionId to set.
+	 */
+	public void setOptionId(String optionId) {
+		this.optionId = optionId;
+	}
+	/**
+	 * @return Returns the optionValue.
+	 */
+	public String getOptionValue() {
+		return optionValue;
+	}
+	/**
+	 * @param optionValue The optionValue to set.
+	 */
+	public void setOptionValue(String optionValue) {
+		this.optionValue = optionValue;
+	}
 }//class SelectboxOptionen
