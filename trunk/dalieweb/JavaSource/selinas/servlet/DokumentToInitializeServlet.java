@@ -48,7 +48,10 @@ public class DokumentToInitializeServlet extends HttpServlet implements Servlet 
 	     	try{
 	     		session.setAttribute("Dokument", show.getDokumentOfInitialize(dbConn,selinasuser.user,request));//SessionAttribut:DokumentOfInitialization
 	     		session.setAttribute("Typ",show.getDokumentTypOfDatabase(dbConn,request));//SessionAttribut:DokumentTypOfDatabase
-	     		session.setAttribute("Modus","NEW");
+	     		session.setAttribute("Modus","NEW");//SessionAttribut:neues Dokument erfassen -> beenden Button off!
+	     		session.setAttribute("UpLoadOn","0");//SessionAttribut:Show Table of Upload off
+	     		session.setAttribute("DokumentOrderByTyp","TNI");//SessionAttribut:sort by Dokument
+	     		session.setAttribute("LinkOrderByTyp","N");//SessionAttribut:sort by Link
 	     		performForward("/selinas/selinas004.jsp",request,response);
 	     	}catch (Exception e) {
 		         performForward(nextPage,request,response);//Login 

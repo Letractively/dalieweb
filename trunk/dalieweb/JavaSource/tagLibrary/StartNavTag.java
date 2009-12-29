@@ -59,17 +59,17 @@ public class StartNavTag extends TagSupport {
             		int counter = 0;
             		if(((String)session.getAttribute("SelectTyp")).equalsIgnoreCase("UB")){//Element Übersicht is aktiv
             			/* Initialize of String */
-            			ulli = "<ul><li class='current'><img src='/dalieweb/bilder/arrow.gif'/>&nbsp;&nbsp;<span>"+ show.session.getLink1() +"</span></li>";
+            			ulli = "<ul><li class='current'><img src='/dalieweb/bilder/arrow.gif' title='"+show.session.getImage1()+"' alt='"+show.session.getImage1()+"'/>&nbsp;&nbsp;<span>"+ show.session.getLink1() +"</span></li>";
             			counter = 2;
             		}else{
             			ulli = "<ul><li><a href='/dalieweb/GoToStartServlet?selectTyp=UB' " +
-            					"title='zurück zum Überblick'><span>"+ show.session.getLink1() +"</span></a></li>";
+            					"title='"+show.session.getLink1t()+"'><span>"+ show.session.getLink1() +"</span></a></li>";
             			counter = 1;
             		}//endif
                  	try{
                         dbConn.getConnection();
                         /* finde alle DokumentTypen zum User */
-                        Vector allDokumentTypenOfUser = DataSetTyp.reade(dbConn,selinasuser.user.getKundenId(),selinasuser.user.getStandortId(),language);
+                        Vector allDokumentTypenOfUser = DataSetTyp.reade(dbConn,selinasuser.user.getKundenId(),selinasuser.user.getStandortId());
                         for (int i = 0; i < allDokumentTypenOfUser.size(); i++){
                         	/* get Objekt of DokumentTyp */
                         	Typ typOfDokument = (Typ)allDokumentTypenOfUser.elementAt(i);
@@ -86,7 +86,7 @@ public class StartNavTag extends TagSupport {
                         }//for
                         dbConn.close();
                  	}catch(Exception e){//no DokumentTypen found
-                    	out.println("<li><a href='/dalieweb/AdminOfSelina' title='Administration von Selinas'><span>Administration</span></a></li>");
+                    	out.println("<li><a href='/dalieweb/AdminOfSelina' title='"/* Selinas:LINK2 Administration von Selina */+ show.session.getLink3t() +"'><span>"+show.session.getLink3()+"</span></a></li>");
                  	}//catch    
                  	
                        	while(counter <= 8) {//minimum 8 ListenElemente
@@ -95,7 +95,7 @@ public class StartNavTag extends TagSupport {
                        	}//while
                        	
                  	if(((String)session.getAttribute("SelectTyp")).equalsIgnoreCase("UB"))
-                 		ulli += "<li><a href='/dalieweb/AdminOfSelina' title='Administration von Selinas'><span>Administration</span></a></li>";
+                 		ulli += "<li><a href='/dalieweb/AdminOfSelina' title='"/* Selinas:LINK2 Administration von Selina */+ show.session.getLink3t() +"'><span>"+show.session.getLink3()+"</span></a></li>";
                     
                  	out.println(ulli);
                  	return EVAL_BODY_INCLUDE;//Evaluate body into existing out stream, and start next with doEndTag()
@@ -154,9 +154,9 @@ public class StartNavTag extends TagSupport {
      */
 	private String writeDokumentDataToPageContext(Typ typ,String current) {
 		if(typ.getTyp().equalsIgnoreCase(current)){
-			ulli = ulli + "<li class='current'><img src='/dalieweb/bilder/arrow.gif'/>&nbsp;&nbsp;"+ typ.getDescription() + "</li>";
+			ulli = ulli + "<li class='current'><img src='/dalieweb/bilder/arrow.gif' title='"+show.session.getImage1()+"' alt='"+show.session.getImage1()+"'/>&nbsp;&nbsp;"+ typ.getDescription() + "</li>";
 		}else{
-			ulli = ulli + "<li><a href='/dalieweb/GoToStartServlet?selectTyp="+typ.getTyp()+"' title='Auswahl nach Dokumenttyp: "+typ.getDescription()+"' target='_parent'>"+ typ.getDescription() + "</a></li>";
+			ulli = ulli + "<li><a href='/dalieweb/GoToStartServlet?selectTyp="+typ.getTyp()+"' title='"/* Selinas:LINK2 Auswahl nach Dokumenttyp */+ show.session.getLink2t() + typ.getDescription()+"' target='_parent'>"+ typ.getDescription() + "</a></li>";
 		}
 	    return ulli;	
 	}//writeDokumentDataToPageContext

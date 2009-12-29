@@ -145,11 +145,31 @@ public class DataSetLink {
      * @return
      * <ul><li>none</li></ul>
      */
-    public static synchronized void delete(Database dbConn,User user, Dokument dokument) throws Exception {
+    public static synchronized void delete(Database dbConn, Dokument dokument) throws Exception {
         dbConn.executeUpdate("delete from "+dbConn.getDbSchema()+".dokumentlinks" +
-        		 " where kundenId = "+ user.getKundenId() + " and standortId = "+user.getStandortId()+
+        		 " where kundenId = "+ dokument.getKundenId() + " and standortId = "+dokument.getStandortId()+
 	             " and dokumentTyp = '"+dokument.getDokumentTyp() + "'" + " and dokumentNr = "+dokument.getNummer() +
 	             " and dokumentId = "+ dokument.getId() );
+    }//delete
+    /**
+     * <b>delete DokumentLinks on Datenbank </b>
+     * <br><b>delete:Key User, Dokument </b>
+     * <br><b>public</b><br>
+     * @param
+     * <ul>	
+     * <li>Database dbConn</li>
+     * <li>User user</li>
+     * <li>Dokument dokument</li>
+     * </ul>
+     * @return
+     * <ul><li>none</li></ul>
+     */
+    public static synchronized void delete(Database dbConn, Dokument dokument, int applicationsId) throws Exception {
+        dbConn.executeUpdate("delete from "+dbConn.getDbSchema()+".dokumentlinks" +
+        		 " where kundenId = "+ dokument.getKundenId() + " and standortId = "+dokument.getStandortId()+
+	             " and dokumentTyp = '"+dokument.getDokumentTyp() + "'" + " and dokumentNr = "+dokument.getNummer() +
+	             " and dokumentId = "+ dokument.getId() +
+				 " and applicationsId = " + applicationsId );
     }//delete
     /**
      * <b>get DokumentLinks of Database Table dokumentlink</b>

@@ -18,17 +18,26 @@ import database.getDatabase.DataSetMessage;
  */
 public class InputCheck {
 	
-	String inputName;
-    String inputValue;
+	String inputName = "";
+    String inputValue = "";
+    int count = 0;
     public Message error;
     
+    /** 1. prüfen des UserInputs  */
     public InputCheck(Database dbConn, String inputName, String inputValue, String sprachId) throws Exception{
         this.inputName = inputName;
         this.inputValue = inputValue;
         this.error = DataSetMessage.chain(dbConn,inputName,sprachId);
     }//InputCheck
     
-    public boolean CheckInput(){
+    /** 2. prüfen anzahl gefundener Sätze */
+    public InputCheck(Database dbConn,String inputName,int count ,String sprachId) throws Exception{
+    	this.count = count;
+    	this.error = DataSetMessage.chain(dbConn,inputName,sprachId);
+    }//InputCheck
+    
+    /** check UserInput */
+    public boolean checkInput(){
         if (error.getErrorTyp().equalsIgnoreCase("W") || error.getErrorTyp().equalsIgnoreCase(""))
            	return false;
         if ( inputValue == null || inputValue.equals("") || 
@@ -39,5 +48,14 @@ public class InputCheck {
         	    return false;   
       		}//endif    
     }//checkInput
+    
+    /** check Anzahl der Datenbanksätze*/
+    public boolean checkCount() {
+		if (count == 0) {
+			return false;
+		} else {
+			return true;
+		}//endif
+	}//checkCount
     
 }//class InputCheck

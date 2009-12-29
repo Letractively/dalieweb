@@ -18,16 +18,22 @@ public class Selinas004Upload extends HttpServlet implements Servlet {
 	    
 		HttpSession session = request.getSession();
 		String nextPage = "/selinas/selinas001.jsp";
-		 System.out.println("Hier war ich");       
+		       
  		try {
  	        RequestDispatcher displogin =  request.getRequestDispatcher("LogOnCheck");
       		displogin.include(request, response);
-      		RequestDispatcher upload = request.getRequestDispatcher("UploadServlet");
-      		upload.include(request, response);
  		}catch (ServletException se) {
- 		   performForward(nextPage,request,response);//Login 
-     	}//catch ServletException
- 		performForward("/selinas/selinas004.jsp", request, response);
+  		   performForward(nextPage,request,response);//Login 
+      	}//catch ServletException
+ 		
+ 		try{
+			RequestDispatcher upload = request.getRequestDispatcher("UploadServlet");
+			upload.include(request, response);
+		}catch (ServletException se) {
+			performForward(nextPage,request,response);//Login 
+		}//catch ServletException
+		
+  		performForward("/selinas/selinas004.jsp", request, response);
 	}//perForm
     
 	/** handle the HTTP <code>GET</code> method */

@@ -328,9 +328,9 @@ public class DataSetDokument {
      * @return
      * <ul><li>none</li></ul>
      */
-    public static synchronized void delete(Database dbConn,User user, Dokument dokument) throws Exception {
+    public static synchronized void delete(Database dbConn,Dokument dokument) throws Exception {
         dbConn.executeUpdate("delete from "+dbConn.getDbSchema()+".dokument" +
-        		 " where kundenId = "+ user.getKundenId() + " and standortId = "+user.getStandortId()+
+        		 " where kundenId = "+ dokument.getKundenId() + " and standortId = "+dokument.getStandortId()+
 	             " and dokumentTyp = '"+dokument.getDokumentTyp() + "'" + " and dokumentNr = "+dokument.getNummer() +
 	             " and dokumentId = "+ dokument.getId() );
     }//delete
@@ -364,10 +364,9 @@ public class DataSetDokument {
                 + user.getKundenId() + " and standortId = " + user.getStandortId() + ""
                 + " and dokumentTyp = '" + dokument.getDokumentTyp() + "'" + " and dokumentNr = " + dokument.getNummer()
                 + " and dokumentId = " + --id);
-        if(rows.size() == 1){
+        if(rows.size() == 1)//satz gefunden
         	break;
-        }
-        if(rows.size() == 0){
+        if(id == 0){//kleinster Satz
         	id++;
         	break;
         }
@@ -380,16 +379,19 @@ public class DataSetDokument {
      */
     public static synchronized int getNextdokument(Database dbConn, User user, Dokument dokument) throws Exception {
         int id = dokument.getId();
+        Vector anzahl = dbConn.executeQuery("select * from "
+                + dbConn.getDbSchema() + ".dokument " + " where kundenId = "
+                + user.getKundenId() + " and standortId = " + user.getStandortId() + ""
+                + " and dokumentTyp = '" + dokument.getDokumentTyp() + "'" + " and dokumentNr = " + dokument.getNummer());
         while(true) {   
         Vector rows = dbConn.executeQuery("select * from "
                 + dbConn.getDbSchema() + ".dokument " + " where kundenId = "
                 + user.getKundenId() + " and standortId = " + user.getStandortId() + ""
                 + " and dokumentTyp = '" + dokument.getDokumentTyp() + "'" + " and dokumentNr = " + dokument.getNummer()
                 + " and dokumentId = " + ++id);
-        if(rows.size() == 1){
+        if(rows.size() == 1)//satz gefunden
         	break;
-        }
-        if(rows.size() == 0){
+        if(id > anzahl.size()){//id ist größer als alle gefunden Sätze
         	id--;
         	break;
         }

@@ -41,16 +41,16 @@ public class SelectboxOption extends TagSupport{
     }//setId
      
     private String permitId="0";//deaktiviert
-    private String permitAttribut = " disabled";
+    private String permitAttribut = " disabled='disabled'";
     public void setPermitId(String id){
         if(Integer.parseInt(permitId)== 9) {
-    	    this.permitAttribut = " disabled";
+    	    this.permitAttribut = " disabled='disabled'";
     	}else {
     	    this.permitId = id;
         	if(Integer.parseInt(id) >= 2)
         	    this.permitAttribut = "";
         	if(Integer.parseInt(id) == 9)
-        	    this.permitAttribut = " disabled";
+        	    this.permitAttribut = " disabled='disabled'";
         	}//endif
     }//setPermitId
     
@@ -102,6 +102,7 @@ public class SelectboxOption extends TagSupport{
                     
                     try {
                         dbConn.getConnection();
+                        optionen = "";
                         Selectbox selectbox = DataSetSelectbox.chain(dbConn, selinasuser.user.getSelinasId(),selinasuser.user.getSelinasStandortId(),name, argument);
                         for (int i = 0; i < selectbox.optionen.size(); i++) {
                             SelectboxOptionen sbo = (SelectboxOptionen) selectbox.optionen.elementAt(i);
@@ -144,6 +145,16 @@ public class SelectboxOption extends TagSupport{
         return EVAL_PAGE;
     }//doEndTag
     
+    /** To find the internal state */
+    public void release() {
+        /* Der JSP-Container ruft die Methode release() auf, um den  */
+        /* internen Zustand der Aktionsklasse zurückzusetzen. */
+      dbConn = null;
+      selinasuser = null;
+      optionen = null;
+      name = null;
+      super.release();
+    }//release
     
 }//class SelectboxOption
 
