@@ -60,8 +60,8 @@
 							<td><label><%= show.session.getDokumentTyp()  %></label>
 								<dalie:Selectbox name="dokumentTyp" argument="KA" ccsStyle="selectbox"></dalie:Selectbox></td>
 							<td><label>&nbsp;<%= show.session.getDokumentNr() %></label>
-								<dalie:InputOption name="dokumentNr" tabindex="2" value="1" size="5"></dalie:InputOption></td>
-							<td><dalie:ButtonOption name="insert" accesskey="a" tabindex="1"><b>Dokument <span style="text-decoration:underline">a</span>nlegen</b></dalie:ButtonOption></td>
+								<dalie:InputOption name="dokumentNr" tabindex="2" value="1" size="5"></dalie:InputOption></td> 
+							<td><dalie:ButtonOption name="insert" accesskey="a" tabindex="1"><%= show.session.getButton11() %></dalie:ButtonOption></td>
 						</tr>
 					</tbody>
 				</table>

@@ -41,11 +41,10 @@
 <div id="page">
 	<div id="pageHeader">
 		<a href="<%= request.getContextPath()%>/dalieweb.jsp" target="_top">
-		<img src="<%= request.getContextPath()%>/bilder/pfeilmit01.gif" width="60" height="60" alt="" name="ani" title="dalieweb" class="logo"/></a>
+		<img src="<%= request.getContextPath()%>/bilder/pfeilmit01.gif" width="60" height="60" alt="dalieweb" name="ani" title="dalieweb" class="logo"/></a>
 		<span class="strapline">dalieweb.de</span>
 	</div><!-- /pageHeader -->
 	<div id="pageWrapper">
-<form action="/dalieweb/AdressToProcessServlet" method="post">
 		<table border="0" cellspacing="0" cellpadding="0" width="99%">
 			<tr>
 				<td valign="middle" align="left"></td>
@@ -54,25 +53,35 @@
 		</table>	
 		<table border="0" cellspacing="0" cellpadding="0" width="100%">
 			<tr>
-				<td>&nbsp;</td>
+				<td>
+					<table border="0" cellspacing="3" cellpadding="0">
+					 <tr>
+						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin1" alt='<%= show.session.getImage2() %>' title='<%= show.session.getImage2() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/GoToStartServlet?selectTyp=UB" title="<%= show.session.getLink1t() %>" target="_self" class="linkNav"><span class="linkNav"><%= show.session.getLink1()%></span></a></td>
+						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin3" alt='<%= show.session.getImage3() %>' title='<%= show.session.getImage3() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/AdminOfSelina" title="<%= show.session.getLink4t() %>" target="_self" class="linkNav"><span class="linkNav"><%= show.session.getLink4() %></span></a></td>
+						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin2" alt='<%= show.session.getImage4() %>' title='<%= show.session.getImage4() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/GoToSelinas025Servlet" title="<%= show.session.getLink5t() %>" target="_self" class="linkNav"><span class="linkNav"><%= show.session.getLink5() %></span></a></td>
+						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin4" alt='<%= show.session.getImage5() %>' title='<%= show.session.getImage5() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/GoToSelinas025Servlet" title="<%= show.session.getLink6t() %>" target="_self" class="linkNav"><span class="linkNav"><%= show.session.getLink6() %></span></a></td>
+						</tr>
+					</table>	
+				</td>
 			</tr>
 		</table>
 		<div id="header">
 			<table width="100%" border="0" cellpadding="0" cellspacing="0">
 				<tr>
-					<th width="100%" align="left" valign="middle">Adressverwaltung</th>
+					<th width="100%" align="left" valign="middle"><%= show.session.getCaption1() %></th>
 				</tr>
 			</table>
 			<table width="100%" border="0" cellpadding="0" cellspacing="3">
 				<tr>
-					<td width="15%" align="left">&nbsp;&nbsp;<em>Name :</em></td><td width="35%" align="left"><strong><%= user.user.getName() %></strong></td>
+					<td width="15%" align="left">&nbsp;&nbsp;<em><%= show.session.getName() %> :</em></td><td width="35%" align="left"><strong><%= user.user.getName() %></strong></td>
 					<td width="15%" align="left">&nbsp;</td><td width="35%" align="left">&nbsp;</td>
 				</tr>
 				<tr>
-					<td width="15%" align="left">&nbsp;&nbsp;<em>Vorname :</em></td><td width="35%" align="left"><strong><%= user.user.getVorname() %></strong></td>
+					<td width="15%" align="left">&nbsp;&nbsp;<em><%= show.session.getVorname() %> :</em></td><td width="35%" align="left"><strong><%= user.user.getVorname() %></strong></td>
 				</tr>
 			</table>
 		</div><!-- /header -->
+<form action="/dalieweb/AdressToProcessServlet" method="post">
 		<div id="wrapper">
 			<br />
 			<table width="99%" border="0" cellpadding="0" cellspacing="3" class="anforderungsdetails">
@@ -126,10 +135,10 @@
 			</table> 	
 			</div><!-- /contentRight -->
 		</div><!-- /wrapper -->
+</form>
 		<div id="footer">
 			<br /><br /><br />
 		</div><!-- /footer -->	
-</form>
 		<div id="navigationDetail">
 			<dalie:AdressDataTag data="N" columnHeader='<%= ColumHeader.valueOf("A",language) %>' tableTagClass="linkTable"></dalie:AdressDataTag>
 				<iframe src="<%= request.getContextPath()%>/selinas/selinas020FA.jsp" width="100%" name="selinas2" frameborder="0" height="100"></iframe>
