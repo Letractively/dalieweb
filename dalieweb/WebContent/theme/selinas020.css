@@ -50,6 +50,40 @@ body {
 	/* LogOff Link */
 	color: #778899;
 }
+img.admin1{
+	/* zurück zur Übersicht */
+	background: url(../bilder/dalie-icons-pack.gif) -159px -118px no-repeat;
+	height: 32px;
+	width: 33px;
+}
+img.admin2{
+	/* dokumentverwaltung */
+	background: url(../bilder/dalie-icons-pack.gif) -96px -211px no-repeat;
+	height: 32px;
+	width: 33px;
+}
+img.admin3{
+	/* adressverwaltung */
+	background: url(../bilder/dalie-icons-pack.gif) -224px -118px no-repeat;
+	height: 32px;
+	width: 33px;
+}
+img.admin4{
+	/* userverwaltung */
+	background: url(../bilder/dalie-icons-pack.gif) -450px -118px no-repeat;
+	height: 32px;
+	width: 33px;
+}
+.linkNav {
+	font: bold 10px Helvetica, sans-serif;
+	color: #2D5893;
+	border-bottom: 1px dotted #2D5893;
+	text-decoration: none;
+}
+.linkNav a:link, a:visited {
+	border-bottom: 1px dotted #2D5893;
+	text-decoration: none;
+}
 #header {
 	padding: 0px 0;
 }
