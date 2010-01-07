@@ -345,6 +345,7 @@
 	<tag>
 		<name>selinas004FLTag</name>
 		<tag-class>tagLibrary.selinas004FLTag</tag-class>
+		<description>IFrame->Table:DokumentLinks</description>
 	<attribute>
 			<name>header</name>
 			<!--required = false non compelling(nicht zwingend) argument-->
@@ -383,6 +384,7 @@
 	<tag>
 		<name>LanguageOption</name>
 		<tag-class>tagLibrary.LanguageOption</tag-class>
+		<description>Selectbox:Speech</description>
 		<attribute>
 			<name>name</name>
 			<!--required = true compelling(zwingend) argument-->
@@ -413,6 +415,46 @@
 	<tag>
 		<name>selinas025FTTag</name>
 		<tag-class>tagLibrary.selinas025FTTag</tag-class>
+		<description>IFrame->Table:DokumentTypenVerwaltung</description>
+	<attribute>
+			<name>header</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>Yes/No Yes=showCol of Table</description>
+		</attribute>
+		<attribute>
+			<name>data</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>Yes/No Yes=showRow of Table</description>
+		</attribute>
+		<attribute>
+			<name>farbe1</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>color of first row</description>
+		</attribute>
+		<attribute>
+			<name>farbe2</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>color of secound row</description>
+		</attribute>
+		<attribute>
+			<name>tableTagClass</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>Name of TableClass for CSS value</description>
+		</attribute>
+		<attribute><name>columnHeader</name><!--required = true compelling(zwingend) argument-->
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue><!--dynamisch durch Skriptteile erlaubt-->
+			<description>Content of TableHeader</description></attribute>
+	</tag>
+	<tag>
+		<name>selinas030FUTag</name>
+		<tag-class>tagLibrary.selinas030FUTag</tag-class>
+		<description>IFrame->Table:UserVerwaltung</description>
 	<attribute>
 			<name>header</name>
 			<!--required = false non compelling(nicht zwingend) argument-->
