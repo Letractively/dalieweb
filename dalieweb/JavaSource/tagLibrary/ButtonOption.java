@@ -12,57 +12,42 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 
 /**
- * <b>Class</b>ButtonOption:<br>description<br>
- * <b>Attribute</b> <li>Variable<li>Variable<br>
+ * <b>Class</b>ButtonOption:<br>Erzeuge ein HTML-Button nach Berechtiung<br>
+ * <b>Attribute</b> <li>name<li>userPermitId<li>permitId<li>accesskey<li>tabindex<br>
  * 
  * @version 1.00 on 03.04.2009 um 09:48:43
  * @author dv0101
  */
 public class ButtonOption extends TagSupport{
-	/* Dieses Objekt wird wie wo verwendet?*/
-	/* Und dient für ?*/
-    
+	/* Erzeute ein HTML-Button nach Berechtiung*/
+	
     /** separator " */
     final String FB = "\"";//wird als " interpretiert
-    
-    private String name="Speech";
-    public void setName(String name) {
-        this.name = name;
-        setId(name);
-    }//setName
+    /** HTML-Attribute: name */
+    private String name="name";
+    /** userPermitId: SessionAttribute -> UserBerechtiungsId */
+    private String userPermitId = "0";
+    /** permitId: Berechtigungsstufe */
     private String permitId="0";//deaktiviert
-    private String permitAttribut = " disabled='disabled'";
-    public void setPermitId(String id){
-        if(Integer.parseInt(permitId)== 9) {
-    	    this.permitAttribut = " disabled='disabled'";
-    	}else {
-    	    this.permitId = id;
-        	if(Integer.parseInt(id) >= 2)
-        	    this.permitAttribut = "";
-        	if(Integer.parseInt(id) == 9)
-        	    this.permitAttribut = " disabled='disabled'";
-        	}//endif
-    }//setPermitId
-    
+    /** HTML-Attribute: accesskey*/
     private String accesskey="n";
-    public void setAccesskey(String accesskey) {
-        this.accesskey = accesskey;
-    }//setAccesskey
+    /** HTML-Attribute: tabindex*/
     private String tabindex="1";
-    public void setTabindex(String tabindex) {
-        this.tabindex = tabindex;
-    }//setTabindex
+    
+    
     public int doStartTag() throws JspException {
         try {
             JspWriter out = pageContext.getOut();
             HttpSession session = pageContext.getSession();
             if(session.getAttribute("PermitId") != null)    
-                setPermitId((String)session.getAttribute("PermitId"));
+                userPermitId = (String)session.getAttribute("PermitId");
             
             out.println("<button type=" + FB + "submit" + FB + " name=" + FB + name + FB
                     + " accesskey=" + FB + accesskey + FB 
-                    + " tabindex=" + FB + tabindex + FB + permitAttribut + ">");
+                    + " tabindex=" + FB + tabindex + FB + getPermitAttribut() + ">");
+        
             return EVAL_BODY_INCLUDE;//Evaluate body into existing out stream
+        
         } catch (Exception e) {
             throw new JspException(e.getMessage());
         }//catch
@@ -76,6 +61,42 @@ public class ButtonOption extends TagSupport{
             }//catch
         return EVAL_PAGE;
     }//doEndTag
+    
+    private String getPermitAttribut(){
+    	if(Integer.parseInt(userPermitId) >= Integer.parseInt(permitId)){
+    	    return "";
+    	}else{
+    	    return " disabled='disabled'";
+    	}//endif
+    }//getPermitAttribut
+    
+    /** To find the internal state */
+	public void release() {
+		name = null;
+		userPermitId = null;
+		permitId = null;
+		accesskey = null;
+		tabindex = null;
+		super.release();
+	}//release
+	
+	/** @param String accesskey for accesskey */
+    public void setAccesskey(String accesskey) {
+        this.accesskey = accesskey;
+    }//setAccesskey
+    /** @param String name for name */
+    public void setName(String name) {
+        this.name = name;
+        setId(name);
+    }//setName
+    /** @param String id for permitId  */
+    public void setPermitId(String id){
+    	this.permitId = id;
+    }//setPermitId
+    /** @param String tabindex for tabindex */
+    public void setTabindex(String tabindex) {
+        this.tabindex = tabindex;
+    }//setTabindex
 
 }//ButtonOption
 

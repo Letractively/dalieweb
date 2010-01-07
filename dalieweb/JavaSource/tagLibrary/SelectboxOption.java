@@ -22,55 +22,29 @@ import selinas.SelinasUser;
 
 public class SelectboxOption extends TagSupport{
     
-    protected String optionen = "";
-    private Database dbConn;
-    private SelinasUser selinasuser;
+   protected String optionen = "";
+   private Database dbConn;
+   private SelinasUser selinasuser;
     
-    /** FB = Feldbegrenzer z.B "DV0101" */
-    public String FB = "\"";//wird als " interpretiert 
-    
-    private String name="Speech";
-    public void setName(String name) {
-        this.name = name;
-        setId(name);
-    }//setName
-    
-    private String id="";
-    public void setId(String id) {
-        this.id = id;
-    }//setId
-     
-    private String permitId="0";//deaktiviert
-    private String permitAttribut = " disabled='disabled'";
-    public void setPermitId(String id){
-        if(Integer.parseInt(permitId)== 9) {
-    	    this.permitAttribut = " disabled='disabled'";
-    	}else {
-    	    this.permitId = id;
-        	if(Integer.parseInt(id) >= 2)
-        	    this.permitAttribut = "";
-        	if(Integer.parseInt(id) == 9)
-        	    this.permitAttribut = " disabled='disabled'";
-        	}//endif
-    }//setPermitId
-    
-    private String tabindex="1";
-    public void setTabindex(String tabindex) {
-        this.tabindex = tabindex;
-    }//setTabindex
-    
-    private String argument = "KA";
-    public void setArgument(String argument){
-        this.argument = argument;
-    }//setKey
-    
-    private String ccsStyle="";
-    public void setCcsStyle(String ccsStyle) {
-        this.ccsStyle = ccsStyle;
-    }//setCcsStyle
+   /** FB = Feldbegrenzer z.B "DV0101" */
+   public String FB = "\"";//wird als " interpretiert 
+   /** HTML-Attribute: name */
+   private String name="Speech"; 
+   /** HTML-Attribute: id */
+   private String id="";  
+   /** userPermitId: SessionAttribute -> UserBerechtiungsId */
+   private String userPermitId = "0";
+   /** permitId: Berechtigungsstufe */
+   private String permitId="0";//deaktiviert
+   /** HTML-Attribute: tabindex*/ 
+   private String tabindex="1";
+   /** Argument für SelectboxKey*/ 
+   private String argument = "KA";
+   /** HTML-Attribute: ccs*/
+   private String ccsStyle="";
     
     
-    /**
+   /**
      * <b> create HTML-Tag selectBox </b>
      * <br><b>public</b><br>
      * @param
@@ -86,20 +60,18 @@ public class SelectboxOption extends TagSupport{
      * <option value="DE" class="">deutsch</option><option value="EN" class="">englisch</option></SELECT>
      * </li></ul>
      */
-    public int doStartTag() throws JspException {
-        try {
-            JspWriter out = pageContext.getOut();
+   public int doStartTag() throws JspException {
+   		try {
+   			JspWriter out = pageContext.getOut();
             HttpSession session = pageContext.getSession();
-            if (session.getAttribute("PermitId") != null)
-                setPermitId((String) session.getAttribute("PermitId"));
-            if (session.getAttribute("Argument") != null)
-                setArgument((String) session.getAttribute("Argument"));
-
             if (session.getAttribute("Database") != null) {
                 dbConn = (Database) session.getAttribute("Database");
                 if (session.getAttribute("User") != null) {
                 	 selinasuser = (SelinasUser) session.getAttribute("User");
                     
+                	 if(session.getAttribute("PermitId") != null)    
+                	 	userPermitId = (String)session.getAttribute("PermitId");
+            
                     try {
                         dbConn.getConnection();
                         optionen = "";
@@ -127,7 +99,7 @@ public class SelectboxOption extends TagSupport{
             }//session.getAttribute("Database")
 
             out.println("<select name=" + FB + name + FB + " id=" + FB + id
-                    + FB + permitAttribut + " tabindex=" + FB + tabindex + FB
+                    + FB + getPermitAttribut() + " tabindex=" + FB + tabindex + FB
                     + ">" + optionen);
         } catch (IOException iex) {
             throw new JspException(iex.getMessage());
@@ -135,26 +107,62 @@ public class SelectboxOption extends TagSupport{
         return EVAL_BODY_INCLUDE;
     }//doStartTag
     
-    public int doEndTag() {
-        try {
-            JspWriter out = pageContext.getOut();
-            out.println("</select>");
-            }catch(IOException iex) {
-                System.out.println(iex.getMessage());
-            }//catch
-        return EVAL_PAGE;
-    }//doEndTag
-    
-    /** To find the internal state */
-    public void release() {
-        /* Der JSP-Container ruft die Methode release() auf, um den  */
-        /* internen Zustand der Aktionsklasse zurückzusetzen. */
-      dbConn = null;
-      selinasuser = null;
-      optionen = null;
-      name = null;
-      super.release();
-    }//release
-    
+   public int doEndTag() {
+       try {
+           JspWriter out = pageContext.getOut();
+           out.println("</select>");
+           }catch(IOException iex) {
+               System.out.println(iex.getMessage());
+           }//catch
+       return EVAL_PAGE;
+   }//doEndTag
+   
+   private String getPermitAttribut(){
+	if(Integer.parseInt(userPermitId) >= Integer.parseInt(permitId)){
+	    return "";
+	}else{
+	    return " disabled='disabled'";
+	}//endif
+}//getPermitAttribut
+   
+   /** To find the internal state */
+   public void release() {
+      /* Der JSP-Container ruft die Methode release() auf, um den  */
+      /* internen Zustand der Aktionsklasse zurückzusetzen. */
+    dbConn = null;
+    selinasuser = null;
+    optionen = null;
+    name = null;
+    ccsStyle = null;
+    id = null;
+    permitId = null;
+	tabindex = null;
+    super.release();
+   }//release
+   
+   /** @param String name for name */
+   public void setName(String name) {
+       this.name = name;
+       setId(name);
+   }//setName
+   /** @param String ccsStyle for ccsStyle */
+   public void setCcsStyle(String ccsStyle) {
+       this.ccsStyle = ccsStyle;
+   }//setCcsStyle
+   /** @param String id for id */
+   public void setId(String id) {
+       this.id = id;
+   }//setId
+   public void setArgument(String argument){
+       this.argument = argument;
+   }//setKey
+   /** @param String id for permitId  */
+   public void setPermitId(String id){
+   	this.permitId = id;
+   }//setPermitId
+   /** @param String tabindex for tabindex */
+   public void setTabindex(String tabindex) {
+       this.tabindex = tabindex;
+   }//setTabindex
 }//class SelectboxOption
 
