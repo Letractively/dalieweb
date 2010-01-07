@@ -61,7 +61,7 @@ public class AdressDataTag extends TagSupport {
                         dbConn.getConnection();
                         out.println("<table width='100%' border='0' cellspacing='0' cellpadding='5' class="+ FB+ tableTagClass + FB+ ">"
                         	    + writeDokumentHeaderToPageContext(columnHeader)
-							    + writeDokumentDataToPageContext(DataSetAdresse.reade(dbConn, selinasuser.user.getKundenId())));
+							    + writeDokumentDataToPageContext(DataSetAdresse.readeOfKundenId(dbConn, selinasuser.user.getKundenId())));
                         dbConn.close();
                  	}catch(Exception e){//no DokumentLinks found
                     	out.println("<table width='100%' border='0' cellspacing='0' cellpadding='5' class="+ FB+ tableTagClass + FB+ ">" 

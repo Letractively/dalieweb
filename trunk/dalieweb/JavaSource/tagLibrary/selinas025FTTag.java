@@ -77,7 +77,7 @@ public class selinas025FTTag extends TagSupport {
                     return EVAL_BODY_INCLUDE;////Start next: doEndTag()              
                 
                 } catch (Exception e) {
-               	    throw new JspException("LinksofDokument"
+               	    throw new JspException("DokumentTypsOfDokument"
                	    	+ " is failed");
                     }//try 
             	} else {
