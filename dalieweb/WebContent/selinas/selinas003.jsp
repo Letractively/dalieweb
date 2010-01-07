@@ -115,7 +115,7 @@
 									<input type="hidden" name="dokumentTyp" value="<%= dokument.getDokumentTyp() %>" /> 
 									<input type="hidden" name="dokumentNr" value="<%= dokument.getNummer() %>" /> 
 									<input type="hidden" name="dokumentId" value="<%= dokument.getId() %>" /> 
-									<dalie:ButtonOption name="back" accesskey="r" tabindex="1"><!-- Button:backward --><%= show.session.getButton3() %></dalie:ButtonOption>
+									<dalie:ButtonOption name="back" accesskey="r" permitId="1" tabindex="1"><!-- Button:backward --><%= show.session.getButton3() %></dalie:ButtonOption>
 									</form>		
 								</td>
 								<td>
@@ -125,7 +125,7 @@
 									<input type="hidden" name="dokumentTyp" value="<%= dokument.getDokumentTyp() %>" /> 
 									<input type="hidden" name="dokumentNr" value="<%= dokument.getNummer() %>" /> 
 									<input type="hidden" name="dokumentId" value="<%= dokument.getId() %>" /> 
-									<dalie:ButtonOption name="submit" accesskey="b" tabindex="2"><!-- Button:bearbeiten --><%= show.session.getButton4() %></dalie:ButtonOption>
+									<dalie:ButtonOption name="submit" accesskey="b" permitId="3" tabindex="2"><!-- Button:bearbeiten --><%= show.session.getButton4() %></dalie:ButtonOption>
 									</form>
 								</td>
 								<td>
@@ -135,12 +135,12 @@
 									<input type="hidden" name="dokumentTyp" value="<%= dokument.getDokumentTyp() %>" /> 
 									<input type="hidden" name="dokumentNr" value="<%= dokument.getNummer() %>" /> 
 									<input type="hidden" name="dokumentId" value="<%= dokument.getId() %>" /> 
-									<dalie:ButtonOption name="next" accesskey="n" tabindex="3"><!-- Button:forward --><%= show.session.getButton5() %></dalie:ButtonOption>
+									<dalie:ButtonOption name="next" accesskey="n" permitId="1" tabindex="3"><!-- Button:forward --><%= show.session.getButton5() %></dalie:ButtonOption>
 									</form>		
 								</td>
 								<td>
 									<form action="/dalieweb/DokumentToReportServlet" method="post">
-									<dalie:ButtonOption name="print" accesskey="d" tabindex="4"><!-- Button:drucken --><%= show.session.getButton6() %></dalie:ButtonOption>
+									<dalie:ButtonOption name="print" accesskey="d" permitId="2" tabindex="4"><!-- Button:drucken --><%= show.session.getButton6() %></dalie:ButtonOption>
 									</form>
 								</td>
 							</tr>
@@ -158,9 +158,9 @@
 								<form action="<%= request.getContextPath()%>/GoToSelinas003Servlet" method="post">
 									<input type="hidden" name="upLoadOn" value="1" />
 									<% if(upload.equalsIgnoreCase("0")){ %> 
-										<dalie:ButtonOption name="upload" accesskey="s" tabindex="3"><!-- Button:Upload starten --><%= show.session.getButton7() %></dalie:ButtonOption>
+										<dalie:ButtonOption name="upload" accesskey="s" permitId="3" tabindex="3"><!-- Button:Upload starten --><%= show.session.getButton7() %></dalie:ButtonOption>
 									<% }else{%>
-										<dalie:ButtonOption name="upload" accesskey="e" tabindex="3"><!-- Button:beenden --><%= show.session.getButton2() %></dalie:ButtonOption>
+										<dalie:ButtonOption name="upload" accesskey="e" permitId="3" tabindex="3"><!-- Button:beenden --><%= show.session.getButton2() %></dalie:ButtonOption>
 									<% }/*endif*/ %>
 								</form>		
 							</td>
