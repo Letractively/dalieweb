@@ -20,6 +20,9 @@ import database.dateien.Adresse;
 import database.dateien.Selinas;
 
 public class AdressToProcessServlet extends HttpServlet implements Servlet {
+	 /* Aufruf der Adressverarbeitung */
+	
+	Database dbConn;
 	
 	/** perform for both HTTP <code>GET</code> and <code>POST</code> methods  */
 	protected void perForm(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
@@ -28,7 +31,7 @@ public class AdressToProcessServlet extends HttpServlet implements Servlet {
 	    SelinasSession show = new SelinasSession((Selinas) session.getAttribute("Selinas"));
 	    SelinasUser selinasuser = (SelinasUser) session.getAttribute("User"); 
 	    Adresse adressOfSession = (Adresse)session.getAttribute("Adresse");
-	    Database dbConn = (Database) session.getAttribute("Database");
+	    dbConn = (Database) session.getAttribute("Database");
 	     
 		try{
 		    RequestDispatcher displogin =  request.getRequestDispatcher("LogOnCheck");
@@ -47,6 +50,7 @@ public class AdressToProcessServlet extends HttpServlet implements Servlet {
 	 	 String error = (String) session.getAttribute("Error");
 	 	 if(request.getParameter("beenden")!= null){//button beendet
 	 	 	try{
+	 	 		dbConn.getConnection();
 	 	 		if(error.equalsIgnoreCase("yes")) { 
 	 	 			session.setAttribute("Adresse", show.getAdressOfUpdate(dbConn,selinasuser.user,adressOfSession,request));//SessionAttribut:AdressOfUpdate
 	 	 			performForward("/selinas/selinas020.jsp",request,response);
@@ -60,6 +64,7 @@ public class AdressToProcessServlet extends HttpServlet implements Servlet {
 	 	 	}//catch ServletException
 	 	 }else{//button beendet
  	 		try {
+ 	 			dbConn.getConnection();
  	 			session.setAttribute("Adresse", show.getAdressOfUpdate(dbConn,selinasuser.user,adressOfSession,request));//SessionAttribut:AdressOfUpdate
  	 	 		performForward("/selinas/selinas020.jsp",request,response);
 			} catch (Exception e) {
@@ -93,5 +98,12 @@ public class AdressToProcessServlet extends HttpServlet implements Servlet {
 	    return "work with UserBean Selinas";
 	}//getServletInfo
 
-
+	/** finally method */
+	public void destroy(){
+	    try {
+	        dbConn.close();//DatabaseConnection close
+	    } catch (Exception e) {
+	        LoggerHelper.log(this.getClass().getName(), "Exception of destroy LoginServlet", e);
+	    }//catch
+	}//destroy
 }//class AdressToProcessServlet

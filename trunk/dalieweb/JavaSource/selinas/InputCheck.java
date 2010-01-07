@@ -20,6 +20,8 @@ public class InputCheck {
 	
 	String inputName = "";
     String inputValue = "";
+    String passwort = "";
+    String passwortagain = "";
     int count = 0;
     public Message error;
     
@@ -31,8 +33,14 @@ public class InputCheck {
     }//InputCheck
     
     /** 2. prüfen anzahl gefundener Sätze */
-    public InputCheck(Database dbConn,String inputName,int count ,String sprachId) throws Exception{
+    public InputCheck(Database dbConn, String inputName, int count, String sprachId) throws Exception{
     	this.count = count;
+    	this.error = DataSetMessage.chain(dbConn,inputName,sprachId);
+    }//InputCheck
+    /** 3. prüfen Passwort gleich Passwortwiederholung */
+    public InputCheck(Database dbConn, String inputName, String sprachId, String passwort, String passwortagain)throws Exception{
+    	this.passwort = passwort;
+    	this.passwortagain = passwortagain;
     	this.error = DataSetMessage.chain(dbConn,inputName,sprachId);
     }//InputCheck
     
@@ -57,5 +65,13 @@ public class InputCheck {
 			return true;
 		}//endif
 	}//checkCount
+    
+    public boolean comparePasswort(){
+    	if ( passwort.equals(passwortagain)) {
+			return true;
+		} else {
+			return false;
+		}//endif
+    }//comparePasswort
     
 }//class InputCheck

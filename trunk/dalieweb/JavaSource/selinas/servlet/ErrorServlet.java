@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import database.Database;
+import database.dateien.Selinas;
 import selinas.InputCheck;
+import selinas.bean.SelinasSession;
 
 public class ErrorServlet extends HttpServlet implements Servlet {
 	
@@ -21,6 +23,7 @@ public class ErrorServlet extends HttpServlet implements Servlet {
     /** perform for both HTTP <code>GET</code> and <code>POST</code> methods  */
 	protected void perForm(HttpServletRequest request,HttpServletResponse response) throws ServletException {
         HttpSession session = request.getSession();
+        SelinasSession show = new SelinasSession((Selinas) session.getAttribute("Selinas"));
         dbConn = (Database) session.getAttribute("Database");
         try {
             dbConn.getConnection();//DataBaseConnection open
@@ -35,6 +38,14 @@ public class ErrorServlet extends HttpServlet implements Servlet {
                 	    session.setAttribute("Error","yes");
                 	    break;
                 	}//endif test.CheckInput
+                	if(param.equals(show.session.getPassword())){
+                		InputCheck passwort = new InputCheck(dbConn,"Passwort",(String) session.getAttribute("Speech"),request.getParameter(show.session.getPassword()),request.getParameter(show.session.getPasswordchek()));
+                		if(!passwort.comparePasswort()){
+                			request.setAttribute("Message", passwort.error.getErrorMsg());
+                			session.setAttribute("Error","yes");
+                    	    break;
+                		}//endif.comparePassword
+                	}//endif
             }//while
         } catch (Exception e) {
             LoggerHelper.log(this.getClass().getName(), "Exception of perForm ErrorServlet", e);

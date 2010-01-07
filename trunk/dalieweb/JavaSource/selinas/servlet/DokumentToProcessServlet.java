@@ -89,7 +89,7 @@ public class DokumentToProcessServlet extends HttpServlet implements Servlet {
 			 	 					performForward("/selinas/selinas004.jsp",request,response);
 			 	 				}else{
 			 	 					session.setAttribute("Dokument", show.getDokumentOfUpdate(dbConn,selinasuser.user,dokumentOfSession,request));//SessionAttribut:DokumentOfInitialization
-			 	 					performForward("/selinas/selinas003.jsp",request,response);
+			 	 					performForward("/selinas/selinas004.jsp",request,response);
 			 	 				}//endif error.equals
 			 	 			}catch (Exception e) {
 			 	 				LoggerHelper.log(this.getClass().getName(), "Exception of perForm Verarbeitung", e);

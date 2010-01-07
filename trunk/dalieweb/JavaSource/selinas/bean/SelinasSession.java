@@ -15,6 +15,7 @@ import database.getDatabase.DataSetAdresse;
 import database.getDatabase.DataSetDokument;
 import database.getDatabase.DataSetSelectOptionen;
 import database.getDatabase.DataSetTyp;
+import database.getDatabase.DataSetUser;
 
 /**
  * @author dv0101 am 29.12.2008 um 09:15:45
@@ -43,33 +44,99 @@ public class SelinasSession {
 	* </ul>
 	* @return
 	* <ul><li>Adresse adresse</li></ul>
+     * @throws Exception
+     * @throws 
     * @throws Exception
 	*/
 	public Adresse getAdressOfDatabase(Database dbConn,User user) throws Exception{
+		/* Verwendung: AdressToRequestServlet-Aufruf der Adressverwaltung */
 	    Adresse adresseOfDatabase = null;
-		dbConn.getConnection();////DataBaseConnection open
-		adresseOfDatabase = DataSetAdresse.chain(dbConn, user.getKundenId(),"U");
-		dbConn.close();////DataBaseConnection close
-		return adresseOfDatabase;//Return DokumentOfDatabase
-	}//getDokument
+		dbConn.getConnection();//DataBaseConnection open
+		adresseOfDatabase = DataSetAdresse.chain(dbConn, user.getKundenId(),"U",user.getUserId());
+		dbConn.close();//DataBaseConnection close
+		return adresseOfDatabase;//Return AdressOfDatabase
+	}//getAdressOfDatabase
+	
+	public Adresse getAdressOfDatabase(Database dbConn,User user,User show){
+		/* Verwendung: UserToRequestServlet-Aufruf der Userverarbeitung */
+	    Adresse adresseOfDatabase = null;
+		try {
+			dbConn.getConnection();////DataBaseConnection open
+			adresseOfDatabase = DataSetAdresse.chain(dbConn, user.getKundenId(),"U",show.getUserId());
+			dbConn.close();////DataBaseConnection close
+			return adresseOfDatabase;//Return AdressOfDatabase
+		} catch (Exception e) {
+			Adresse adresseOfInitialize = new Adresse();
+			try {
+				adresseOfInitialize.setAdressId(user.getKundenId());
+				adresseOfInitialize.setAdressArt("U");
+				adresseOfInitialize.setUserId(show.getUserId());
+				adresseOfInitialize.setStrasse(session.getStrasse());
+				adresseOfInitialize.setFax(session.getFax());
+				adresseOfInitialize.setLand(session.getLand());
+				adresseOfInitialize.setMail(session.getMail());
+				adresseOfInitialize.setNummer(session.getNummer());
+				adresseOfInitialize.setOrt(session.getOrt());
+				adresseOfInitialize.setPlz(session.getPlz());
+				adresseOfInitialize.setTelefon(session.getTelefon());
+				dbConn.getConnection();//DataBaseConnection open
+				DataSetAdresse.insert(dbConn,user,adresseOfInitialize);
+				adresseOfInitialize = DataSetAdresse.chain(dbConn,user.getKundenId(),"U",show.getUserId());
+				dbConn.close();//DatabaseConnection close;
+			} catch (Exception e1) {
+				System.out.println(this.getClass().getName()+".getAdressOfDatabase:" + e1);
+			}//catch
+				return adresseOfInitialize;//Return adresseOfInitialize
+		}//catch
+	}//getAdressOfDatabase
+	
+	/**
+	* <b>Erzeuge ein Objekt vom Typ Adresse aus HttpServletRequest</b>
+	* <br> Adresse bearbeiten ohne Update of Database"
+	* <br><b>chain:Key Adresse ofSession, HttpServletRequest request</b>
+	* <br><b>public</b><br>
+	* @param
+	* <ul>
+	* <li>Adresse ofSession</li>
+	* <li>HttpServletRequest request</li>
+	* </ul>
+	* @return
+	* <ul><li>Adresse adresseOfRequest</li></ul>
+    * @throws Exception
+	*/
+	public Adresse getAdressOfRequest(Adresse ofSession, HttpServletRequest request)throws Exception{
+		/* Verwendung: UserToProcessServlet Aufruf der User/Adressverarbeitung */
+		   Adresse adresseOfRequest = ofSession;
+		   adresseOfRequest.setStrasse(request.getParameter(session.getStrasse()));
+		   adresseOfRequest.setNummer(request.getParameter(session.getNummer()));
+		   adresseOfRequest.setPlz(request.getParameter(session.getPlz()));
+		   adresseOfRequest.setOrt(request.getParameter(session.getOrt()));
+		   adresseOfRequest.setLand(request.getParameter(session.getLand()));
+		   adresseOfRequest.setMail(request.getParameter(session.getMail()));
+		   adresseOfRequest.setTelefon(request.getParameter(session.getTelefon()));
+		   adresseOfRequest.setFax(request.getParameter(session.getFax()));
+		   return adresseOfRequest;
+	}//getAdressOfRequest  
 	
 	public Adresse getAdressOfUpdate(Database dbConn,User user,Adresse ofSession, HttpServletRequest request)throws Exception{
+		/* Verwendung: AdressToProcessServlet Aufruf der Adressverarbeitung */
 		Adresse adressOfUpdate = ofSession;
 		adressOfUpdate.setAdressArt(request.getParameter("AdressTyp"));
-		adressOfUpdate.setStrasse(request.getParameter(session.getStrasse()));
-		adressOfUpdate.setNummer(request.getParameter(session.getNummer()));
-		adressOfUpdate.setPlz(request.getParameter(session.getPlz()));
-		adressOfUpdate.setOrt(request.getParameter(session.getOrt()));
-		adressOfUpdate.setTelefon(request.getParameter(session.getTelefon()));
-		adressOfUpdate.setFax(request.getParameter(session.getFax()));
-		adressOfUpdate.setMail(request.getParameter(session.getMail()));
+		adressOfUpdate.setStrasse(collapseSpaces(request.getParameter(session.getStrasse())));
+		adressOfUpdate.setNummer(collapseSpaces(request.getParameter(session.getNummer())));
+		adressOfUpdate.setPlz(collapseSpaces(request.getParameter(session.getPlz())));
+		adressOfUpdate.setOrt(collapseSpaces(request.getParameter(session.getOrt())));
+		adressOfUpdate.setLand(collapseSpaces(request.getParameter(session.getLand())));
+		adressOfUpdate.setTelefon(collapseSpaces(request.getParameter(session.getTelefon())));
+		adressOfUpdate.setFax(collapseSpaces(request.getParameter(session.getFax())));
+		adressOfUpdate.setMail(collapseSpaces(request.getParameter(session.getMail())));
+		adressOfUpdate.setUserId(request.getParameter(session.getAdressUserId()));
 		dbConn.getConnection();//DataBaseConnection open
 		DataSetAdresse.update(dbConn, user, adressOfUpdate);
-		adressOfUpdate = DataSetAdresse.chain(dbConn, user.getKundenId() ,adressOfUpdate.getAdressArt()); 
+		adressOfUpdate = DataSetAdresse.chain(dbConn, user.getKundenId() ,adressOfUpdate.getAdressArt(),adressOfUpdate.getUserId()); 
 		dbConn.close();//DataBaseConnection close
 		return adressOfUpdate;
-	}//getDokument  
-	
+	}//getAdressOfUpdate 
 	
 	/**
 	* <b>Erzeuge ein Objekt vom Typ Dokument aus Datenbanktabelle Dokument</b>
@@ -91,6 +158,7 @@ public class SelinasSession {
 		dbConn.close();////DataBaseConnection close
 		return dokumentOfDatabase;//Return DokumentOfDatabase
 	}//getDokument
+	
 	/**
 	* <b>Erzeuge ein Objekt vom Typ Dokument aus Datenbanktabelle Dokument</b>
 	* <br><b>chain:Key User user, Dokument dokumemt</b>
@@ -111,6 +179,7 @@ public class SelinasSession {
 		dbConn.close();////DataBaseConnection close
 		return dokumentOfDatabase;//Return DokumentOfDatabase
 	}//getDokument
+	
 	/**
 	* <b>Erzeuge ein Objekt vom Typ Dokument aus Datenbanktabelle Dokument</b>
 	* <br> Button Dokument "zurück"
@@ -134,6 +203,7 @@ public class SelinasSession {
 		dbConn.close();////DataBaseConnection close
 		return dokumentOfDatabase;//Return DokumentOfDatabase
 	}//getDokument
+	
 	/**
 	* <b>Erzeuge ein Objekt vom Typ Dokument aus Datenbanktabelle Dokument</b>
 	* <br> Button Dokument "vorwärts"
@@ -157,6 +227,7 @@ public class SelinasSession {
 		dbConn.close();////DataBaseConnection close
 		return dokumentOfDatabase;//Return DokumentOfDatabase
 	}//getDokument
+	
 	/**
 	* <b>Erzeuge ein Objekt vom Typ Dokument aus Datenbanktabelle Dokument</b>
 	* <br> Dokument anlegen"
@@ -223,6 +294,7 @@ public class SelinasSession {
 	   dbConn.close();//DataBaseConnection close
 	   return dokumentOfUpdate;
 	}//getDokumentOfUpdate
+	
 	/**
 	* <b>Erzeuge ein Objekt vom Typ Dokument aus HttpServletRequest</b>
 	* <br> Dokument bearbeiten ohne Update of Database"
@@ -270,6 +342,8 @@ public class SelinasSession {
        dbConn.getConnection();//Aufbau Dankverbindung
        int nextDokumentId = DataSetDokument.getNextdokumentId(dbConn,user,dokumentOfCopy);
        dokumentOfCopy.setGliederung(dokumentOfCopy.getNummer() + "." + nextDokumentId);//GliederungsVorschlag setzen
+       dokumentOfCopy.setDescripten(session.getDescripten());
+       dokumentOfCopy.setContent(session.getContent());
        dokumentOfCopy.setStatus("A");
        DataSetDokument.insert(dbConn,user,dokumentOfCopy);//Insert in Datenbank
        dokumentOfCopy = DataSetDokument.chain(dbConn,user,dokumentOfCopy.getDokumentTyp(),dokumentOfCopy.getNummer(),nextDokumentId);
@@ -432,13 +506,112 @@ public class SelinasSession {
 	}//getDokumentOfUpdate
 	
 	/**
+	* <b>Erzeuge ein Objekt vom Typ User aus Datenbanktabelle user</b>
+	* <br><b>chain:Key request userId</b>
+	* <br><b>public</b><br>
+	* @param
+	* <ul>
+	* <li>Database dbConn</li>
+	* <li>HttpServletRequest request</li>
+	* </ul>
+	* @return
+	* <ul><li>User user</li></ul>
+    * @throws Exception
+	*/
+	public User getUserOfDatabase(Database dbConn,HttpServletRequest request) throws Exception{
+		/* Verwendung:  UserToRequestServlet -> Aufruf Userverwaltung*/
+	    User userTypOfDatabase = null;
+		dbConn.getConnection();////DataBaseConnection open
+		userTypOfDatabase = DataSetUser.chain(dbConn,request.getParameter("user"));
+		dbConn.close();////DataBaseConnection close
+		return userTypOfDatabase;//Return DokumentTypOfDatabase
+	}//getUserTypOfDatabase
+	
+	/**
+	* <b>Erzeuge ein Objekt vom Typ User aus Datenbanktabelle user</b>
+	* <br><b>chain:Key User userId</b>
+	* <br><b>public</b><br>
+	* @param
+	* <ul>
+	* <li>Database dbConn</li>
+	* <li>User user</li>
+	* </ul>
+	* @return
+	* <ul><li>User user</li></ul>
+    * @throws Exception
+	*/
+	public User getUserOfDatabase(Database dbConn,User user) throws Exception{
+		User userOfDatabase = null;
+		dbConn.getConnection();////DataBaseConnection open
+		userOfDatabase = DataSetUser.chain(dbConn,user.getUserId());
+		dbConn.close();////DataBaseConnection close
+		return userOfDatabase;//Return UserTypOfDatabase
+	}//getDokument
+	
+	/**
+	* <b>Erzeuge ein Objekt vom Typ User aus HttpServletRequest</b>
+	* <br> User bearbeiten ohne Update of Database"
+	* <br><b>chain:Key User ofSession, HttpServletRequest request</b>
+	* <br><b>public</b><br>
+	* @param
+	* <ul>
+	* <li>User ofSession</li>
+	* <li>HttpServletRequest request</li>
+	* </ul>
+	* @return
+	* <ul><li>User userOfRequest</li></ul>
+    * @throws Exception
+	*/
+	public User getUserOfRequest(User ofSession, HttpServletRequest request)throws Exception{
+		   User userOfRequest = ofSession;
+		   userOfRequest.setPermitId(Integer.parseInt(request.getParameter("PermitId").toString()));
+		   userOfRequest.setUserAutorisierungsId(Integer.parseInt(request.getParameter("AutorisierungId").toString()));
+		   userOfRequest.setName(collapseSpaces(request.getParameter(session.getName())));
+		   userOfRequest.setVorname(collapseSpaces(request.getParameter(session.getVorname())));
+		   userOfRequest.setUserStatus(collapseSpaces(request.getParameter("Status")));
+		   userOfRequest.setPassword(request.getParameter(session.getPassword()));
+		   return userOfRequest;
+	}//getUserOfRequest  
+	
+	/**
+	* <b>Erzeuge ein Objekt vom Typ Dokument aus Datenbanktabelle Dokument</b>
+	* <br> Dokument update"
+	* <br><b>chain:Key User user,Dokument ofSession, HttpServletRequest request</b>
+	* <br><b>public</b><br>
+	* @param
+	* <ul>
+	* <li>Database dbConn</li>
+	* <li>User user</li>
+	* <li>Dokument ofSession</li>
+	* <li>HttpServletRequest request</li>
+	* </ul>
+	* @return
+	* <ul><li>Dokument dokumentOfUpdate</li></ul>
+    * @throws Exception
+	*/
+	public User getUserOfUpdate(Database dbConn,User user,User ofSession,HttpServletRequest request)throws Exception{
+	   User userOfUpdate = ofSession;
+	   userOfUpdate.setPermitId(Integer.parseInt(request.getParameter("PermitId").toString()));
+	   userOfUpdate.setUserAutorisierungsId(Integer.parseInt(request.getParameter("AutorisierungId").toString()));
+	   userOfUpdate.setName(collapseSpaces(request.getParameter(session.getName())));
+	   userOfUpdate.setVorname(collapseSpaces(request.getParameter(session.getVorname())));
+	   userOfUpdate.setUserStatus(collapseSpaces(request.getParameter("Status")));
+	   userOfUpdate.setPassword(request.getParameter(session.getPassword()));
+	   dbConn.getConnection();//DataBaseConnection open
+	   DataSetUser.update(dbConn, user, userOfUpdate);
+	   userOfUpdate = DataSetUser.chain(dbConn,userOfUpdate.getUserId());
+	   dbConn.close();//DataBaseConnection close
+	   return userOfUpdate;
+	}//getUserOfUpdate
+	
+	/**
 	 * Remove/collapse character
 	 *
 	 * @param argStr string to remove multiple spaces from.
 	 * @return String
 	 */
 	String collapseSpaces(String argStr) {
-		if (argStr != null) {//with Input
+		if (argStr != null || argStr != "" ) {//with Input
 			char last = argStr.charAt(0);
 			StringBuffer argBuf = new StringBuffer();
 			for (int cIdx = 0; cIdx < argStr.length(); cIdx++) {
