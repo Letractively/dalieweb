@@ -146,11 +146,25 @@ img.admin4{
 	text-align: left;
 	vertical-align: top;
 	width: 15%;
+	/* OrdungsLinie */
+	border-style: solid;
+	border-top-width: 1px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-bottom-width: 0px;
+	border-color: #557AA6;
 }
 #contentRight {
 	float: left;
 	padding-left: 2px;
 	width: 83.5%;
+	/* OrdungsLinie */
+	border-style: solid;
+	border-top-width: 1px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-bottom-width: 0px;
+	border-color: #557AA6;
 }
 #footer {
 	clear: both;
@@ -254,6 +268,16 @@ img.admin4{
 #navigationDetails td a:hover {
 	/* Link's zur Auswahl der Dokumente*/
 	color: #778899;
+}
+#navigationDetail iframe {
+	/* TABLE TH: Anzeige der Dokumente*/
+	border-style: solid;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-bottom-width: 2px;
+	border-color: #557AA6;
+	padding-bottom: 2px; 	
 }
 #pageFooter {
 	background-color: fuchsia;
