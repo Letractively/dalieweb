@@ -32,11 +32,21 @@ public class DataSetSelectOptionen {
      */
     public static synchronized Vector chain(Database dbConn,String nameOfSelectbox,String sprachId,String optionId) throws Exception {
         Vector allOptionen = new Vector();
+        Vector first = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".selectoptionen " +
+    	        "where selectbox = '"+nameOfSelectbox+"'" +
+    	        " and sprachId = '"+sprachId+"'"+
+    			" and optionId = '"+optionId+"'" +
+				" and optionValue = '"+optionId+"'" +
+    			" ORDER BY selectbox, sprachId, optionId, optionValue");
+        for(int i = 0;i < first.size();i++) {
+            allOptionen.addElement(new SelectboxOptionen((Vector) first.elementAt(i)));
+        }//for
         	Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".selectoptionen " +
         	        "where selectbox = '"+nameOfSelectbox+"'" +
         	        " and sprachId = '"+sprachId+"'"+
         			" and optionId = '"+optionId+"'" +
-        			" ORDER BY selectbox, sprachId, optionId, optionDescripten desc");
+					" and optionValue <> '"+optionId+"'" +
+        			" ORDER BY selectbox, sprachId, optionId, optionValue");
         	 for(int i = 0;i < rows.size();i++) {
                  allOptionen.addElement(new SelectboxOptionen((Vector) rows.elementAt(i)));
              }//for

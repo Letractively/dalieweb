@@ -24,10 +24,13 @@ import database.dateien.Selinas;
 public class DataSetSelinas {
     
     public static synchronized Selinas chain(Database dbConn,int kundenId,int standortId,String sprachId) throws Exception {
-    	Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".selinas " +
-    			"where kundenId = "+kundenId+"" +
-    			 	" and standortId = "+standortId+""+
-    			 	" and sprachId = '"+sprachId+"'");
+    	Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".selinas left join "+dbConn.getDbSchema()+".selinas1" +
+    			" on selinas.kundenId = selinas1.kundenId and" +
+    			" selinas.standortId = selinas1.standortId and" +
+    			" selinas.sprachId = selinas1.sprachId" +
+    			" where selinas.kundenId = " + kundenId +
+    			 	" and selinas.standortId = " + standortId+
+    			 	" and selinas.sprachId = '" + sprachId + "'");
     	if(rows.size() == 0)
     	    throw new Exception("Record not Found");
         return new Selinas((Vector)rows.elementAt(0));
