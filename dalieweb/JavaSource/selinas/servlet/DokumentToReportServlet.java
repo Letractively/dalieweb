@@ -78,7 +78,7 @@ public class DokumentToReportServlet extends HttpServlet implements Servlet {
       		out.writeObject(DataSetStatus.chain(dbConn,dokumentOfPrint.getStatus(),language));/* get a Status form Database -> write to XML-Output */ 
       		out.writeObject(DataSetTyp.chain(dbConn,dokumentOfPrint));/* get a Typ form Database -> write to XML-Output */
       		out.writeObject(selinasuser);/* write User to XML-Output */
-      		out.writeObject(DataSetAdresse.chain(dbConn,dokumentOfPrint.getKundenId(),"U"));/* get a (U)ser Adress form Database -> write to XML-Output */
+      		out.writeObject(DataSetAdresse.chain(dbConn,dokumentOfPrint.getKundenId(),"U", dokumentOfPrint.getChangeUser()));/* get a (U)ser Adress form Database -> write to XML-Output */
       		out.flush();/* important */
       		out.close();/* important */ 
         } catch (Exception e) {
