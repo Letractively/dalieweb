@@ -61,7 +61,7 @@
 								<dalie:Selectbox name="dokumentTyp" argument="KA" ccsStyle="selectbox"></dalie:Selectbox></td>
 							<td><label>&nbsp;<%= show.session.getDokumentNr() %></label>
 								<dalie:InputOption name="dokumentNr" tabindex="2" value="1" size="5"></dalie:InputOption></td> 
-							<td><dalie:ButtonOption name="insert" accesskey="a" tabindex="1"><%= show.session.getButton11() %></dalie:ButtonOption></td>
+							<td><dalie:ButtonOption name="insert" accesskey="a" permitId="3" tabindex="1"><%= show.session.getButton11() %></dalie:ButtonOption></td>
 						</tr>
 					</tbody>
 				</table>

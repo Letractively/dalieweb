@@ -38,7 +38,7 @@
 	Typ typ = (Typ)session.getAttribute("Typ");
 	Adresse adresse = (Adresse)session.getAttribute("Adresse");
 	String language = (String)session.getAttribute("Speech");
-	String TypOrderByTyp = (String)session.getAttribute("TypOrderByTyp");//SessionAttribut:sort by Typ
+	String typOrderByTyp = (String)session.getAttribute("TypOrderByTyp");//SessionAttribut:sort by Typ
 %>
 <div id="page">
 	<div id="pageHeader">
@@ -61,7 +61,7 @@
 						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin1" alt='<%= show.session.getImage2() %>' title='<%= show.session.getImage2() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/GoToStartServlet?selectTyp=UB" title="<%= show.session.getLink1t() %>" target="_self" class="linkNav"><span class="linkNav"><%= show.session.getLink1()%></span></a></td>
 						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin3" alt='<%= show.session.getImage3() %>' title='<%= show.session.getImage3() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/AdminOfSelina" title="<%= show.session.getLink4t() %>" target="_self" class="linkNav"><span class="linkNav"><%= show.session.getLink4() %></span></a></td>
 						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin2" alt='<%= show.session.getImage4() %>' title='<%= show.session.getImage4() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/GoToSelinas025Servlet" title="<%= show.session.getLink5t() %>" target="_self" class="linkNav"><span class="linkNav"><%= show.session.getLink5() %></span></a></td>
-						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin4" alt='<%= show.session.getImage5() %>' title='<%= show.session.getImage5() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/GoToSelinas025Servlet" title="<%= show.session.getLink6t() %>" target="_self" class="linkNav"><span class="linkNav"><%= show.session.getLink6() %></span></a></td>
+						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin4" alt='<%= show.session.getImage5() %>' title='<%= show.session.getImage5() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/GoToSelinas030Servlet" title="<%= show.session.getLink6t() %>" target="_self" class="linkNav"><span class="linkNav"><%= show.session.getLink6() %></span></a></td>
 						</tr>
 					</table>	
 				</td>
@@ -77,8 +77,8 @@
 		<div id="wrapper">
 			<br />
 			<div id="navigationDetail"> 
-			<dalie:selinas025FTTag data="N" columnHeader='<%= ColumHeader.valueOf("7",language,TypOrderByTyp) %>' tableTagClass="anforderungsdetails"></dalie:selinas025FTTag>
-				<iframe src="<%= request.getContextPath()%>/selinas/selinas025FT.jsp" width="100%" name="selinas2" frameborder="0" height="100"></iframe>
+			<dalie:selinas025FTTag data="N" columnHeader='<%= ColumHeader.valueOf("7",language,typOrderByTyp) %>' tableTagClass="anforderungsdetails"></dalie:selinas025FTTag>
+				<iframe src="<%= request.getContextPath()%>/selinas/selinas025FT.jsp" width="100%" name="selinas2" frameborder="0" height="160"></iframe>
 		</div><!-- /navigationDetail -->
 <form action="/dalieweb/TypToProcessServlet" method="post">
 			<table width="99%" border="0" cellpadding="0" cellspacing="3" class="details">

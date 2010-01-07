@@ -106,11 +106,11 @@
 				<textarea name='<%= show.session.getContent() %>' rows="7" cols="80" class="requestText" tabindex="3"><%= dokument.getContent()%></textarea>
 				<table border="0" cellpadding="0" cellspacing="0">
 					<tr>
-						<td><dalie:ButtonOption name="submit" accesskey="v" tabindex="8"><!-- Button:Dokument verarbeiten --><%= show.session.getButton8() %></dalie:ButtonOption></td>
-						<td><dalie:ButtonOption name="copy" accesskey="k" tabindex="9"><!-- Button:Dokument verarbeiten --><%= show.session.getButton9() %></dalie:ButtonOption></td>
+						<td><dalie:ButtonOption name="submit" accesskey="v" permitId="3" tabindex="8"><!-- Button:Dokument verarbeiten --><%= show.session.getButton8() %></dalie:ButtonOption></td>
+						<td><dalie:ButtonOption name="copy" accesskey="k" permitId="3" tabindex="9"><!-- Button:Dokument kopieren --><%= show.session.getButton9() %></dalie:ButtonOption></td>
 				   <!-- <td><dalie:ButtonOption name="link" accesskey="A" tabindex="10">Ihre <span style="text-decoration:underline">A</span>nlagen bearbeiten</dalie:ButtonOption></td> -->
-						<td><dalie:ButtonOption name="print" accesskey="d" tabindex="11"><!-- Button:drucken --><%= show.session.getButton6() %></dalie:ButtonOption></td>
-		 				<td><dalie:ButtonOption name="delete" accesskey="l" tabindex="12"><!-- Button:Dokument löschen --><%= show.session.getButton10() %></dalie:ButtonOption></td>
+						<td><dalie:ButtonOption name="print" accesskey="d" permitId="2" tabindex="11"><!-- Button:drucken --><%= show.session.getButton6() %></dalie:ButtonOption></td>
+		 				<td><dalie:ButtonOption name="delete" accesskey="l" permitId="4" tabindex="12"><!-- Button:Dokument löschen --><%= show.session.getButton10() %></dalie:ButtonOption></td>
 						<% if(modus.equalsIgnoreCase("Update")){ %>
 							<td><dalie:ButtonOption name="beenden" accesskey="e" tabindex="13" permitId="2"><!-- Button:beenden --><%= show.session.getButton2() %></dalie:ButtonOption></td>
 						<% }/*endif*/ %>	
@@ -136,7 +136,7 @@
 					<td width="15%" align="left" valign="top">&nbsp;</td>
 					<td width="85%" align="left">
 						<form action="<%= request.getContextPath()%>/GoToSelinas004Servlet" method="post">
-							<dalie:ButtonOption name="upLoadOn" accesskey="s" tabindex="3"><!-- Button:upload starten --><%= show.session.getButton7() %></dalie:ButtonOption>
+							<dalie:ButtonOption name="upLoadOn" accesskey="s" permitId="3" tabindex="3"><!-- Button:upload starten --><%= show.session.getButton7() %></dalie:ButtonOption>
 						</form>							
 					</td>
 				</tr>
@@ -150,7 +150,7 @@
 								<td nowrap="nowrap"  valign="bottom">
 									<form action="<%= request.getContextPath()%>/Selinas004Upload" enctype="multipart/form-data" method="post">
 									<input type="file" name="myFile" tabindex='2' maxlength="255" class="file"/>
-									<dalie:ButtonOption name="submit" accesskey="s" tabindex="3"><!-- Button:upload starten --><%= show.session.getButton7() %></dalie:ButtonOption>
+									<dalie:ButtonOption name="submit" accesskey="s" permitId="3" tabindex="3"><!-- Button:upload starten --><%= show.session.getButton7() %></dalie:ButtonOption>
 									</form>
 								</td>	
 								<td align="left" valign="bottom">
