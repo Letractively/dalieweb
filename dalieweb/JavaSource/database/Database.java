@@ -115,7 +115,7 @@ public class Database {
 	}//executeQuery
 
 
-	/** SQL Data Manipulation Language insert,delete,update */
+	/** SQL Data Manipulation Language create,insert,delete,update */
 	public boolean executeUpdate(String sqlStatement) throws Exception{
 		boolean result = executeUpdateProcess(sqlStatement);
 		if (!result){
