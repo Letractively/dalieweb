@@ -26,6 +26,8 @@ public class Adresse {
     private int adressId = 0;//adressId = KundenNr 04711
     /** AdressArt (U)ser,(R)erchnung oder (K)undenadresse */
     private String adressArt = "";//adressArt = (U)ser,(R)echnungs oder (K)Kundenadresse
+    /** UserId */
+    private String userId = "";
     /** Strasse */
     private String strasse = "";//strasse Wilhelm Pieck Straﬂe
     /** Nummer der Strasse */
@@ -34,6 +36,8 @@ public class Adresse {
     private String plz = "";//plz 6902
     /** Ort */
     private String ort = "";//ort Jena
+    /** Land */
+    private String land = "";//land DDR
     /** Telefon */
     private String telefon = "";//04711/4711
     /** Fax */
@@ -62,135 +66,52 @@ public class Adresse {
      * private String mail<br>
      */
     public Adresse(){
-    }//construktor
+    }//Adresse
     public Adresse(Vector columns){
         this.adressId = Integer.parseInt(columns.elementAt(0).toString());
         this.adressArt = columns.elementAt(1).toString();
-        this.strasse = columns.elementAt(2).toString(); 
-        this.nummer = columns.elementAt(3).toString();
-        this.plz = columns.elementAt(4).toString();
-        this.ort = columns.elementAt(5).toString();
-        this.telefon = columns.elementAt(6).toString();
-        this.fax = columns.elementAt(7).toString();
-        this.mail = columns.elementAt(8).toString();
+        this.userId = columns.elementAt(2).toString();
+        this.strasse = columns.elementAt(3).toString(); 
+        this.nummer = columns.elementAt(4).toString();
+        this.plz = columns.elementAt(5).toString();
+        this.ort = columns.elementAt(6).toString();
+        this.land = columns.elementAt(7).toString();
         
-        this.createUserId = columns.elementAt(9).toString();
-        this.createDate = HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(10).toString());
-        this.changeUserId = columns.elementAt(11).toString();
-        this.changeDate = HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(12).toString());
-    }//construktor
+        this.telefon = columns.elementAt(8).toString();
+        this.fax = columns.elementAt(9).toString();
+        this.mail = columns.elementAt(10).toString();
+        
+        this.createUserId = columns.elementAt(11).toString();
+        this.createDate = HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(12).toString());
+        this.changeUserId = columns.elementAt(13).toString();
+        this.changeDate = HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(14).toString());
+    }//Adresse
     
     
-    
-    /**
-     * @return Returns the adressArt.
-     */
-    public String getAdressArt() {
-        return adressArt;
-    }
-    /**
-     * @param adressArt The adressArt to set.
-     */
-    public void setAdressArt(String adressArt) {
-        this.adressArt = adressArt;
-    }
-    /**
-     * @return Returns the adressId.
-     */
-    public int getAdressId() {
-        return adressId;
-    }
-    /**
-     * @param adressId The adressId to set.
-     */
-    public void setAdressId(int adressId) {
-        this.adressId = adressId;
-    }
-    /**
-     * @return Returns the fax.
-     */
-    public String getFax() {
-        return fax;
-    }
-    /**
-     * @param fax The fax to set.
-     */
-    public void setFax(String fax) {
-        this.fax = fax;
-    }
-    /**
-     * @return Returns the mail.
-     */
-    public String getMail() {
-        return mail;
-    }
-    /**
-     * @param mail The mail to set.
-     */
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-    /**
-     * @return Returns the nummer.
-     */
-    public String getNummer() {
-        return nummer;
-    }
-    /**
-     * @param nummer The nummer to set.
-     */
-    public void setNummer(String nummer) {
-        this.nummer = nummer;
-    }
-    /**
-     * @return Returns the ort.
-     */
-    public String getOrt() {
-        return ort;
-    }
-    /**
-     * @param ort The ort to set.
-     */
-    public void setOrt(String ort) {
-        this.ort = ort;
-    }
-    /**
-     * @return Returns the plz.
-     */
-    public String getPlz() {
-        return plz;
-    }
-    /**
-     * @param plz The plz to set.
-     */
-    public void setPlz(String plz) {
-        this.plz = plz;
-    }
-    /**
-     * @return Returns the strasse.
-     */
-    public String getStrasse() {
-        return strasse;
-    }
-    /**
-     * @param strasse The strasse to set.
-     */
-    public void setStrasse(String strasse) {
-        this.strasse = strasse;
-    }
-    /**
-     * @return Returns the telefon.
-     */
-    public String getTelefon() {
-        return telefon;
-    }
-    /**
-     * @param telefon The telefon to set.
-     */
-    public void setTelefon(String telefon) {
-        this.telefon = telefon;
-    }
-    
+	/**
+	 * @return Returns the adressArt.
+	 */
+	public String getAdressArt() {
+		return adressArt;
+	}
+	/**
+	 * @param adressArt The adressArt to set.
+	 */
+	public void setAdressArt(String adressArt) {
+		this.adressArt = adressArt;
+	}
+	/**
+	 * @return Returns the adressId.
+	 */
+	public int getAdressId() {
+		return adressId;
+	}
+	/**
+	 * @param adressId The adressId to set.
+	 */
+	public void setAdressId(int adressId) {
+		this.adressId = adressId;
+	}
 	/**
 	 * @return Returns the changeDate.
 	 */
@@ -238,5 +159,113 @@ public class Adresse {
 	 */
 	public void setCreateUserId(String createUserId) {
 		this.createUserId = createUserId;
+	}
+	/**
+	 * @return Returns the fax.
+	 */
+	public String getFax() {
+		return fax;
+	}
+	/**
+	 * @param fax The fax to set.
+	 */
+	public void setFax(String fax) {
+		this.fax = fax;
+	}
+	/**
+	 * @return Returns the land.
+	 */
+	public String getLand() {
+		return land;
+	}
+	/**
+	 * @param land The land to set.
+	 */
+	public void setLand(String land) {
+		this.land = land;
+	}
+	/**
+	 * @return Returns the mail.
+	 */
+	public String getMail() {
+		return mail;
+	}
+	/**
+	 * @param mail The mail to set.
+	 */
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+	/**
+	 * @return Returns the nummer.
+	 */
+	public String getNummer() {
+		return nummer;
+	}
+	/**
+	 * @param nummer The nummer to set.
+	 */
+	public void setNummer(String nummer) {
+		this.nummer = nummer;
+	}
+	/**
+	 * @return Returns the ort.
+	 */
+	public String getOrt() {
+		return ort;
+	}
+	/**
+	 * @param ort The ort to set.
+	 */
+	public void setOrt(String ort) {
+		this.ort = ort;
+	}
+	/**
+	 * @return Returns the plz.
+	 */
+	public String getPlz() {
+		return plz;
+	}
+	/**
+	 * @param plz The plz to set.
+	 */
+	public void setPlz(String plz) {
+		this.plz = plz;
+	}
+	/**
+	 * @return Returns the strasse.
+	 */
+	public String getStrasse() {
+		return strasse;
+	}
+	/**
+	 * @param strasse The strasse to set.
+	 */
+	public void setStrasse(String strasse) {
+		this.strasse = strasse;
+	}
+	/**
+	 * @return Returns the telefon.
+	 */
+	public String getTelefon() {
+		return telefon;
+	}
+	/**
+	 * @param telefon The telefon to set.
+	 */
+	public void setTelefon(String telefon) {
+		this.telefon = telefon;
+	}
+	/**
+	 * @return Returns the userId.
+	 */
+	public String getUserId() {
+		return userId;
+	}
+	/**
+	 * @param userId The userId to set.
+	 */
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 }//class Adresse

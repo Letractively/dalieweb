@@ -110,6 +110,42 @@ public class Selinas {
     private String button12;
     /** Dokumenttyp anlegen*/
     private String button13;
+    /** User löschen SELINAS1*/
+    private String button14;
+    /** User anlegen SELINAS1*/
+    private String button15;
+    /** Button16 SELINAS1*/
+    private String button16;
+    /** Button17 SELINAS1*/
+    private String button17;
+    /** Button18 SELINAS1*/
+    private String button18;
+    /** Button19 SELINAS1*/
+    private String button19;
+    /** Button20 SELINAS1*/
+    private String button20;
+    /** Button21 SELINAS1*/
+    private String button21;
+    /** Button22 SELINAS1*/
+    private String button22;
+    /** Button23 SELINAS1*/
+    private String button23;
+    /** Button24 SELINAS1*/
+    private String button24;
+    /** Button25 SELINAS1*/
+    private String button25;
+    /** PermitId SELINAS1*/
+    private String permitId;//Userverwaltung
+    /** Geburtstag SELINAS1*/
+    private String geburtstag;//Userverwaltung
+    /** Land Adresse SELINAS1*/
+    private String land;//Adresse Land
+    /** userAppId SELINAS1*/
+    private String userAppId;//User-AutorisierungsId
+    /** dokumentPermitId SELINAS1*/
+    private String dokumentPermitId;//Dokument-AutorisierungsId
+    /** adressUserId SELINAS1*/
+    private String adressUserId;//Adresse gehört zu
     
     private String link1;//Übersicht
     private String link1t;//Übersicht
@@ -218,6 +254,25 @@ public class Selinas {
         this.button12 = columns.elementAt(50).toString();
         this.button13 = columns.elementAt(51).toString();
         
+        this.button14 = columns.elementAt(89).toString();
+        this.button15 = columns.elementAt(90).toString();
+        this.button16 = columns.elementAt(91).toString();
+        this.button17 = columns.elementAt(92).toString();
+        this.button18 = columns.elementAt(93).toString();
+        this.button19 = columns.elementAt(94).toString();
+        this.button20 = columns.elementAt(95).toString();
+        this.button21 = columns.elementAt(96).toString();
+        this.button22 = columns.elementAt(97).toString();
+        this.button23 = columns.elementAt(98).toString();
+        this.button24 = columns.elementAt(99).toString();
+        this.button25 = columns.elementAt(100).toString();
+        this.permitId = columns.elementAt(101).toString();
+        this.geburtstag = columns.elementAt(102).toString();
+        this.land = columns.elementAt(103).toString();
+        this.userAppId = columns.elementAt(104).toString();
+        this.dokumentPermitId = columns.elementAt(105).toString();
+        this.adressUserId = columns.elementAt(106).toString();
+        
         this.link1 = columns.elementAt(52).toString();
         this.link1t = columns.elementAt(53).toString();
         this.link2 = columns.elementAt(54).toString();
@@ -268,6 +323,18 @@ public class Selinas {
 	 */
 	public void setAdressArt(String adressArt) {
 		this.adressArt = adressArt;
+	}
+	/**
+	 * @return Returns the adressUserId.
+	 */
+	public String getAdressUserId() {
+		return adressUserId;
+	}
+	/**
+	 * @param adressUserId The adressUserId to set.
+	 */
+	public void setAdressUserId(String adressUserId) {
+		this.adressUserId = adressUserId;
 	}
 	/**
 	 * @return Returns the archiv.
@@ -342,6 +409,78 @@ public class Selinas {
 		this.button13 = button13;
 	}
 	/**
+	 * @return Returns the button14.
+	 */
+	public String getButton14() {
+		return button14;
+	}
+	/**
+	 * @param button14 The button14 to set.
+	 */
+	public void setButton14(String button14) {
+		this.button14 = button14;
+	}
+	/**
+	 * @return Returns the button15.
+	 */
+	public String getButton15() {
+		return button15;
+	}
+	/**
+	 * @param button15 The button15 to set.
+	 */
+	public void setButton15(String button15) {
+		this.button15 = button15;
+	}
+	/**
+	 * @return Returns the button16.
+	 */
+	public String getButton16() {
+		return button16;
+	}
+	/**
+	 * @param button16 The button16 to set.
+	 */
+	public void setButton16(String button16) {
+		this.button16 = button16;
+	}
+	/**
+	 * @return Returns the button17.
+	 */
+	public String getButton17() {
+		return button17;
+	}
+	/**
+	 * @param button17 The button17 to set.
+	 */
+	public void setButton17(String button17) {
+		this.button17 = button17;
+	}
+	/**
+	 * @return Returns the button18.
+	 */
+	public String getButton18() {
+		return button18;
+	}
+	/**
+	 * @param button18 The button18 to set.
+	 */
+	public void setButton18(String button18) {
+		this.button18 = button18;
+	}
+	/**
+	 * @return Returns the button19.
+	 */
+	public String getButton19() {
+		return button19;
+	}
+	/**
+	 * @param button19 The button19 to set.
+	 */
+	public void setButton19(String button19) {
+		this.button19 = button19;
+	}
+	/**
 	 * @return Returns the button2.
 	 */
 	public String getButton2() {
@@ -352,6 +491,78 @@ public class Selinas {
 	 */
 	public void setButton2(String button2) {
 		this.button2 = button2;
+	}
+	/**
+	 * @return Returns the button20.
+	 */
+	public String getButton20() {
+		return button20;
+	}
+	/**
+	 * @param button20 The button20 to set.
+	 */
+	public void setButton20(String button20) {
+		this.button20 = button20;
+	}
+	/**
+	 * @return Returns the button21.
+	 */
+	public String getButton21() {
+		return button21;
+	}
+	/**
+	 * @param button21 The button21 to set.
+	 */
+	public void setButton21(String button21) {
+		this.button21 = button21;
+	}
+	/**
+	 * @return Returns the button22.
+	 */
+	public String getButton22() {
+		return button22;
+	}
+	/**
+	 * @param button22 The button22 to set.
+	 */
+	public void setButton22(String button22) {
+		this.button22 = button22;
+	}
+	/**
+	 * @return Returns the button23.
+	 */
+	public String getButton23() {
+		return button23;
+	}
+	/**
+	 * @param button23 The button23 to set.
+	 */
+	public void setButton23(String button23) {
+		this.button23 = button23;
+	}
+	/**
+	 * @return Returns the button24.
+	 */
+	public String getButton24() {
+		return button24;
+	}
+	/**
+	 * @param button24 The button24 to set.
+	 */
+	public void setButton24(String button24) {
+		this.button24 = button24;
+	}
+	/**
+	 * @return Returns the button25.
+	 */
+	public String getButton25() {
+		return button25;
+	}
+	/**
+	 * @param button25 The button25 to set.
+	 */
+	public void setButton25(String button25) {
+		this.button25 = button25;
 	}
 	/**
 	 * @return Returns the button3.
@@ -642,6 +853,18 @@ public class Selinas {
 		this.dokumentNr = dokumentNr;
 	}
 	/**
+	 * @return Returns the dokumentPermitId.
+	 */
+	public String getDokumentPermitId() {
+		return dokumentPermitId;
+	}
+	/**
+	 * @param dokumentPermitId The dokumentPermitId to set.
+	 */
+	public void setDokumentPermitId(String dokumentPermitId) {
+		this.dokumentPermitId = dokumentPermitId;
+	}
+	/**
 	 * @return Returns the dokumentTyp.
 	 */
 	public String getDokumentTyp() {
@@ -664,6 +887,18 @@ public class Selinas {
 	 */
 	public void setFax(String fax) {
 		this.fax = fax;
+	}
+	/**
+	 * @return Returns the geburtstag.
+	 */
+	public String getGeburtstag() {
+		return geburtstag;
+	}
+	/**
+	 * @param geburtstag The geburtstag to set.
+	 */
+	public void setGeburtstag(String geburtstag) {
+		this.geburtstag = geburtstag;
 	}
 	/**
 	 * @return Returns the gliederung.
@@ -844,6 +1079,18 @@ public class Selinas {
 	 */
 	public void setImage9(String image9) {
 		this.image9 = image9;
+	}
+	/**
+	 * @return Returns the land.
+	 */
+	public String getLand() {
+		return land;
+	}
+	/**
+	 * @param land The land to set.
+	 */
+	public void setLand(String land) {
+		this.land = land;
 	}
 	/**
 	 * @return Returns the link1.
@@ -1158,6 +1405,18 @@ public class Selinas {
 		this.passwordchek = passwordchek;
 	}
 	/**
+	 * @return Returns the permitId.
+	 */
+	public String getPermitId() {
+		return permitId;
+	}
+	/**
+	 * @param permitId The permitId to set.
+	 */
+	public void setPermitId(String permitId) {
+		this.permitId = permitId;
+	}
+	/**
 	 * @return Returns the plz.
 	 */
 	public String getPlz() {
@@ -1216,6 +1475,18 @@ public class Selinas {
 	 */
 	public void setTitel(String titel) {
 		this.titel = titel;
+	}
+	/**
+	 * @return Returns the userAppId.
+	 */
+	public String getUserAppId() {
+		return userAppId;
+	}
+	/**
+	 * @param userAppId The userAppId to set.
+	 */
+	public void setUserAppId(String userAppId) {
+		this.userAppId = userAppId;
 	}
 	/**
 	 * @return Returns the userId.
