@@ -28,6 +28,8 @@ public class User extends Person {
     private String userStatus;//aktiv/inkativ
     private String password;//geheim
     private int permitId;//Berechtiung 0 nothing 10 all
+    private int userAutorisierungsId;//Sicherheitsstufe der Dokumnte
+	
     private int kundenId;//KundenNr 04711
     private int standortId;//Standort 2
     private String sprachId;//EN = englisch/DE = deutsch 
@@ -67,97 +69,187 @@ public class User extends Person {
         this.setVorname(columns.elementAt(4).toString());
         this.setGeburtstag(HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(5).toString()));
         this.permitId = Integer.parseInt(columns.elementAt(6).toString());
-        this.kundenId = Integer.parseInt(columns.elementAt(7).toString());
-        this.standortId = Integer.parseInt(columns.elementAt(8).toString());
-        this.sprachId = columns.elementAt(9).toString();
-        this.selinasId = Integer.parseInt(columns.elementAt(10).toString());
-        this.selinasStandortId = Integer.parseInt(columns.elementAt(11).toString());
+        this.userAutorisierungsId = Integer.parseInt(columns.elementAt(7).toString());
         
-        this.createUserId = columns.elementAt(12).toString();
-        this.createDate = HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(13).toString());
-        this.changeUserId = columns.elementAt(14).toString();
-        this.changeDate = HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(15).toString());
+        this.kundenId = Integer.parseInt(columns.elementAt(8).toString());
+        this.standortId = Integer.parseInt(columns.elementAt(9).toString());
+        this.sprachId = columns.elementAt(10).toString();
+        this.selinasId = Integer.parseInt(columns.elementAt(11).toString());
+        this.selinasStandortId = Integer.parseInt(columns.elementAt(12).toString());
+        
+        this.createUserId = columns.elementAt(13).toString();
+        this.createDate = HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(14).toString());
+        this.changeUserId = columns.elementAt(15).toString();
+        this.changeDate = HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(16).toString());
     }//user
     
-    /**
-     * @return Returns the permitId "Berechtiung 0 nothing 10 all".
-     */
-    public int getPermitId() {
-        return permitId;
-    }
-    /**
-     * @return Returns the kundenId "KundenNr 04711".
-     */
-    public int getKundenId() {
-        return kundenId;
-    }
-    /**
-     * @param kundenId The kundenId "KundenNr 04711" to set.
-     */
-    public void setKundenId(int kundenId) {
-        this.kundenId = kundenId;
-    }
-    /**
-     * @return Returns the standortId "Standort 2".
-     */
-    public int getStandortId() {
-        return standortId;
-    }
-    /**
-     * @param standortId The standortId "Standort 2" to set.
-     */
-    public void setStandortId(int standortId) {
-        this.standortId = standortId;
-    }
-    /**
-     * @return Returns the userId "DV0101 AnmeldeKennnung am System".
-     */
-    public String getUserId() {
-        return userId;
-    }
-    /**
-     * @param userId The userId "DV0101 AnmeldeKennnung am System" to set.
-     */
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
     
-    /**
-     * @return Returns the selinasId (VerwaltungsId).
-     */
-    public int getSelinasId() {
-        return selinasId;
-    }
-    /**
-     * @param selinasId The selinasId (VerwaltungsId) to set.
-     */
-    public void setSelinasId(int selinasId) {
-        this.selinasId = selinasId;
-    }
-    /**
-     * @return Returns the selinasStandortId.
-     */
-    public int getSelinasStandortId() {
-        return selinasStandortId;
-    }
-    /**
-     * @param selinasStandortId The selinasStandortId to set.
-     */
-    public void setSelinasStandortId(int selinasStandortId) {
-        this.selinasStandortId = selinasStandortId;
-    }
-    
-    /**
-     * @return Returns the password.
-     */
-    public String getPassword() {
-        return password;
-    }
-    
-    /**
-     * @return Returns the userStatus.
-     */
-    public String getUserStatus() {
-        return userStatus;
-    }
+	/**
+	 * @return Returns the changeDate.
+	 */
+	public String getChangeDate() {
+		return changeDate;
+	}
+	/**
+	 * @param changeDate The changeDate to set.
+	 */
+	public void setChangeDate(String changeDate) {
+		this.changeDate = changeDate;
+	}
+	/**
+	 * @return Returns the changeUserId.
+	 */
+	public String getChangeUserId() {
+		return changeUserId;
+	}
+	/**
+	 * @param changeUserId The changeUserId to set.
+	 */
+	public void setChangeUserId(String changeUserId) {
+		this.changeUserId = changeUserId;
+	}
+	/**
+	 * @return Returns the createDate.
+	 */
+	public String getCreateDate() {
+		return createDate;
+	}
+	/**
+	 * @param createDate The createDate to set.
+	 */
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
+	/**
+	 * @return Returns the createUserId.
+	 */
+	public String getCreateUserId() {
+		return createUserId;
+	}
+	/**
+	 * @param createUserId The createUserId to set.
+	 */
+	public void setCreateUserId(String createUserId) {
+		this.createUserId = createUserId;
+	}
+	/**
+	 * @return Returns the kundenId.
+	 */
+	public int getKundenId() {
+		return kundenId;
+	}
+	/**
+	 * @param kundenId The kundenId to set.
+	 */
+	public void setKundenId(int kundenId) {
+		this.kundenId = kundenId;
+	}
+	/**
+	 * @return Returns the password.
+	 */
+	public String getPassword() {
+		return password;
+	}
+	/**
+	 * @param password The password to set.
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	/**
+	 * @return Returns the permitId.
+	 */
+	public int getPermitId() {
+		return permitId;
+	}
+	/**
+	 * @param permitId The permitId to set.
+	 */
+	public void setPermitId(int permitId) {
+		this.permitId = permitId;
+	}
+	/**
+	 * @return Returns the selinasId.
+	 */
+	public int getSelinasId() {
+		return selinasId;
+	}
+	/**
+	 * @param selinasId The selinasId to set.
+	 */
+	public void setSelinasId(int selinasId) {
+		this.selinasId = selinasId;
+	}
+	/**
+	 * @return Returns the selinasStandortId.
+	 */
+	public int getSelinasStandortId() {
+		return selinasStandortId;
+	}
+	/**
+	 * @param selinasStandortId The selinasStandortId to set.
+	 */
+	public void setSelinasStandortId(int selinasStandortId) {
+		this.selinasStandortId = selinasStandortId;
+	}
+	/**
+	 * @return Returns the sprachId.
+	 */
+	public String getSprachId() {
+		return sprachId;
+	}
+	/**
+	 * @param sprachId The sprachId to set.
+	 */
+	public void setSprachId(String sprachId) {
+		this.sprachId = sprachId;
+	}
+	/**
+	 * @return Returns the standortId.
+	 */
+	public int getStandortId() {
+		return standortId;
+	}
+	/**
+	 * @param standortId The standortId to set.
+	 */
+	public void setStandortId(int standortId) {
+		this.standortId = standortId;
+	}
+	/**
+	 * @return Returns the userAutorisierungsId.
+	 */
+	public int getUserAutorisierungsId() {
+		return userAutorisierungsId;
+	}
+	/**
+	 * @param userAutorisierungsId The userAutorisierungsId to set.
+	 */
+	public void setUserAutorisierungsId(int userAutorisierungsId) {
+		this.userAutorisierungsId = userAutorisierungsId;
+	}
+	/**
+	 * @return Returns the userId.
+	 */
+	public String getUserId() {
+		return userId;
+	}
+	/**
+	 * @param userId The userId to set.
+	 */
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	/**
+	 * @return Returns the userStatus.
+	 */
+	public String getUserStatus() {
+		return userStatus;
+	}
+	/**
+	 * @param userStatus The userStatus to set.
+	 */
+	public void setUserStatus(String userStatus) {
+		this.userStatus = userStatus;
+	}
 }//class User
