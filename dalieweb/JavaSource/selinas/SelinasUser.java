@@ -49,5 +49,33 @@ public class SelinasUser {
     public boolean checkStatus(Status userstatus) {
         return this.user.getUserStatus().equals(userstatus.getStatusId());
     }//checkPasswort
+    /**
+     * <b>to determine a new USERId for Selinas</b>
+     * <br>
+     * <p>example DV0101 -> DV0102 </p>
+     * @param String userId
+     * */
+    public String getNewUserId(){
+    	return this.user.getUserId().substring(0,4) + getUserCounter(this.user.getUserId());
+    }//getNewUserId
+    
+    /**
+     * <b>convert the UserId to KundenId</b>
+     * 
+     * @param String userId
+     * */
+    public int getKundenId(){
+    	return Integer.parseInt(this.user.getUserId().substring(2,4));
+    }//getNewUserId
+    
+    /** to determine the next count */
+    private String getUserCounter(String count){
+		int counter = (Integer.parseInt(count.substring(4,count.length())) + 1);
+			if (counter < 10){
+				return "0" + (new Integer(counter)).toString();
+			}else {
+				return (new Integer(counter)).toString();
+			}//endif
+	}//getUserCounter
     
 }//SelinasUser

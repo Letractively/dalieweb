@@ -113,6 +113,31 @@ public class DataSetUser {
     	return liste;        
     }//reade
     
+    /**
+     * <b>insert User on Datenbank </b>
+     * <br><b>insert:Key none </b>
+     * <br><b>public</b><br>
+     * @param
+     * <ul>	
+     * <li>Database dbConn</li>
+     * <li>User user</li>
+     * </ul>
+     * @return
+     * <ul><li>none</li></ul>
+     */
+    public static synchronized void insert(Database dbConn, User user) throws Exception {
+    	/* Verwendung: Selinas.session.getUserOfInitialize() */
+		dbConn.executeUpdate("insert into "+dbConn.getDbSchema()+".user " +
+				"values('"+user.getUserId()+"','"+user.getUserStatus()+"'," +
+				"'"+user.getPassword()+"','"+user.getName()+"'," + 
+				"'"+user.getVorname()+"',now()," +
+				user.getPermitId()+","+user.getUserAutorisierungsId() + "," +
+				user.getKundenId()+","+user.getSelinasStandortId() + "," +
+				"'"+user.getSprachId()+"',"+user.getSelinasId() + "," +
+				user.getSelinasStandortId() + ",'"+user.getCreateUserId()+"'," +
+				"now(),'"+user.getCreateUserId()+"',now())");
+    }//insert
+    
     public static synchronized void update(Database dbConn, User user, User ofUpdate) throws Exception {
         dbConn.executeUpdate("update "+dbConn.getDbSchema()+".user " +
                 "set" +
@@ -127,6 +152,32 @@ public class DataSetUser {
                 " where kundenId = "+ user.getKundenId() + " and standortId = "+user.getStandortId() +
                 " and userId = '"+ ofUpdate.getUserId()+"'");
     }//update
+    
+    /**
+     * <b>User aus Datenbank Tabelle user</b>
+     * <br>finde alle User die zum User gehören
+     * <br><b>reade:Key User.kundenId,User.standortId</b>
+     * <br><br><b>public static</b><br>
+     * @param
+     * <ul>
+     * <li>Database dbConn</li>
+     * <li>int kundenId = 1</li>
+     * <li>int standortId = 1</li>
+     * </ul>
+     * @return
+     * <ul>
+     * <li>User user</li>
+     * </ul>
+     */
+    public static synchronized User determineLastUserId(Database dbConn,User user) throws Exception {
+    	/* Verwendung:	selinas030FUTag -> Frame zur Anzeige aller User */
+    	Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".user " +
+                "where kundenId = " + user.getKundenId() +
+        		" and standortId = " + user.getStandortId());
+        if(rows.size() == 0)
+            throw new Exception("Record not Found");
+        return new User((Vector)rows.elementAt(rows.size()-1));      
+    }//reade
     
     /**
      * Returns a String with order by value based on the given String value.
