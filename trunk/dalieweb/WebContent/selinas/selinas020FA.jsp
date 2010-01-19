@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head> 
 <%@ page language="java"
-	import="selinas.ColumHeader"
+	import="selinas.table.Selinas020H"
 	contentType="text/html; charset=ISO-8859-1" 
 	pageEncoding="ISO-8859-1"%>
 <!-- onwn TagLib-Direktive -->
@@ -24,8 +24,8 @@
 <%	
 	String language = (String)session.getAttribute("Speech");
 %> 
-<div id="navigationDetails"> 
-	<dalie:AdressDataTag header="N" columnHeader='<%= ColumHeader.valueOf("A",language) %>'></dalie:AdressDataTag>
+<div id="navigationDetails">  
+	<dalie:selinas020FATag header="N" farbe1="#FFFFFF" farbe2="#DEDEDE" columnHeader='<%= Selinas020H.valueOf("20",language) %>'></dalie:selinas020FATag>
 </div><!-- /navigationsDetails -->
 </body>
 </html>

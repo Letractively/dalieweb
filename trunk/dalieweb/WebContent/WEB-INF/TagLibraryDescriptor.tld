@@ -176,7 +176,41 @@
 			<required>false</required>
 		</attribute>
 	</tag>
-<tag>
+	<tag>
+		<name>SelectboxDokumentStatus</name>
+		<tag-class>tagLibrary.SelectboxDokumentStatus</tag-class>
+		<attribute>
+			<name>name</name>
+			<!--required = true compelling(zwingend) argument-->
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue><!--dynamisch durch Skriptteile erlaubt-->
+		</attribute>
+		<attribute>
+			<name>id</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue><!--dynamisch durch Skriptteile erlaubt-->
+		</attribute>
+		<attribute>
+			<name>permitId</name>
+			<!--required = true non compelling(zwingend) argument-->
+			<required>false</required>
+		</attribute>
+		<attribute>
+			<name>tabindex</name>
+		</attribute>
+		<attribute>
+			<name>argument</name>
+			<required>true</required><!--zwingend-->
+			<rtexprvalue>true</rtexprvalue><!--dynamisch durch Skriptteile erlaubt-->
+		</attribute>
+		<attribute>
+			<name>ccsStyle</name>
+			<!--required = true non compelling(zwingend) argument-->
+			<required>false</required>
+		</attribute>
+	</tag>
+	<tag>
 		<name>InputOption</name>
 		<tag-class>tagLibrary.InputOption</tag-class>
 		<attribute>
@@ -222,6 +256,11 @@
 			<!--required = false non compelling(zwingend) argument-->
 			<required>false</required>
 		</attribute>
+		<attribute>
+			<name>maxlength</name>
+			<!--required = false non compelling(zwingend) argument-->
+			<required>false</required>
+		</attribute>
 	</tag>
 	 <tag>
 		<name>ButtonOption</name>
@@ -263,44 +302,6 @@
 	<tag>
 		<name>AdminNavTag</name>
 		<tag-class>tagLibrary.AdminNavTag</tag-class>
-	</tag>
-	<tag>
-		<name>AdressDataTag</name>
-		<tag-class>tagLibrary.AdressDataTag</tag-class>
-	<attribute>
-			<name>header</name>
-			<!--required = false non compelling(nicht zwingend) argument-->
-			<required>false</required>
-			<description>Yes/No Yes=showCol of Table</description>
-		</attribute>
-		<attribute>
-			<name>data</name>
-			<!--required = false non compelling(nicht zwingend) argument-->
-			<required>false</required>
-			<description>Yes/No Yes=showRow of Table</description>
-		</attribute>
-		<attribute>
-			<name>farbe1</name>
-			<!--required = false non compelling(nicht zwingend) argument-->
-			<required>false</required>
-			<description>color of first row</description>
-		</attribute>
-		<attribute>
-			<name>farbe2</name>
-			<!--required = false non compelling(nicht zwingend) argument-->
-			<required>false</required>
-			<description>color of secound row</description>
-		</attribute>
-		<attribute>
-			<name>tableTagClass</name>
-			<!--required = false non compelling(nicht zwingend) argument-->
-			<required>false</required>
-			<description>Name of TableClass for CSS value</description>
-		</attribute>
-		<attribute><name>columnHeader</name><!--required = true compelling(zwingend) argument-->
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue><!--dynamisch durch Skriptteile erlaubt-->
-			<description>Content of TableHeader</description></attribute>
 	</tag>
 	<tag>
 		<name>selinas004FDTag</name>
@@ -411,6 +412,45 @@
 			<required>false</required>
 			<description>default attribute is DE</description>
 		</attribute>
+	</tag>
+	<tag>
+		<name>selinas020FATag</name>
+		<tag-class>tagLibrary.selinas020FATag</tag-class>
+		<description>IFrame->Table:Adressenverwaltung</description>
+	<attribute>
+			<name>header</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>Yes/No Yes=showCol of Table</description>
+		</attribute>
+		<attribute>
+			<name>data</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>Yes/No Yes=showRow of Table</description>
+		</attribute>
+		<attribute>
+			<name>farbe1</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>color of first row</description>
+		</attribute>
+		<attribute>
+			<name>farbe2</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>color of secound row</description>
+		</attribute>
+		<attribute>
+			<name>tableTagClass</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>Name of TableClass for CSS value</description>
+		</attribute>
+		<attribute><name>columnHeader</name><!--required = true compelling(zwingend) argument-->
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue><!--dynamisch durch Skriptteile erlaubt-->
+			<description>Content of TableHeader</description></attribute>
 	</tag>
 	<tag>
 		<name>selinas025FTTag</name>

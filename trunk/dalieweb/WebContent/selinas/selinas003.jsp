@@ -5,7 +5,7 @@
 <%@ page language="java"
 	import="database.dateien.Selinas"
 	import="selinas.bean.SelinasSession"
-	import="selinas.ColumHeader"
+	import="selinas.table.Selinas003H"
 	import="selinas.SelinasUser"
 	import="database.dateien.Dokument"
 	contentType="text/html; charset=ISO-8859-1" 
@@ -95,11 +95,11 @@
 								<td class="subheading1">&nbsp;</td>
       						</tr>
 						</table>
-						<table width="100%" border="0" cellpadding="0" cellspacing="0">
-        					<tr>
-        						<td><textarea name="text" class="requestText" readonly="readonly" ><%= dokument.getContent()%></textarea></td>
-							</tr>
-						</table>
+					</td>
+				</tr>
+              	<tr>
+					<td>	
+						<iframe src="<%= request.getContextPath()%>/selinas/selinas003FC.jsp" width="100%" name="xxx" frameborder="0" height="155" align="left" marginwidth="2" marginheight="0"></iframe>						
 					</td>
 				</tr>
 			</table>
@@ -112,7 +112,7 @@
 									<form action="<%= request.getContextPath()%>/GoToSelinas003Servlet" method="post">
 									<input type="hidden" name="kundenId" value="<%= dokument.getKundenId() %>" />
 									<input type="hidden" name="standortId" value="<%= dokument.getStandortId() %>" />
-									<input type="hidden" name="dokumentTyp" value="<%= dokument.getDokumentTyp() %>" /> 
+									<input type="hidden" name="dokumentTyp" value="<%= dokument.getTyp() %>" /> 
 									<input type="hidden" name="dokumentNr" value="<%= dokument.getNummer() %>" /> 
 									<input type="hidden" name="dokumentId" value="<%= dokument.getId() %>" /> 
 									<dalie:ButtonOption name="back" accesskey="r" permitId="1" tabindex="1"><!-- Button:backward --><%= show.session.getButton3() %></dalie:ButtonOption>
@@ -122,7 +122,7 @@
 									<form action="<%= request.getContextPath()%>/DokumentToWorkServlet" method="post">
 									<input type="hidden" name="kundenId" value="<%= dokument.getKundenId() %>" />
 									<input type="hidden" name="standortId" value="<%= dokument.getStandortId() %>" />
-									<input type="hidden" name="dokumentTyp" value="<%= dokument.getDokumentTyp() %>" /> 
+									<input type="hidden" name="dokumentTyp" value="<%= dokument.getTyp() %>" /> 
 									<input type="hidden" name="dokumentNr" value="<%= dokument.getNummer() %>" /> 
 									<input type="hidden" name="dokumentId" value="<%= dokument.getId() %>" /> 
 									<dalie:ButtonOption name="submit" accesskey="b" permitId="3" tabindex="2"><!-- Button:bearbeiten --><%= show.session.getButton4() %></dalie:ButtonOption>
@@ -132,7 +132,7 @@
 									<form action="<%= request.getContextPath()%>/GoToSelinas003Servlet" method="post">
 									<input type="hidden" name="kundenId" value="<%= dokument.getKundenId() %>" />
 									<input type="hidden" name="standortId" value="<%= dokument.getStandortId() %>" />
-									<input type="hidden" name="dokumentTyp" value="<%= dokument.getDokumentTyp() %>" /> 
+									<input type="hidden" name="dokumentTyp" value="<%= dokument.getTyp() %>" /> 
 									<input type="hidden" name="dokumentNr" value="<%= dokument.getNummer() %>" /> 
 									<input type="hidden" name="dokumentId" value="<%= dokument.getId() %>" /> 
 									<dalie:ButtonOption name="next" accesskey="n" permitId="1" tabindex="3"><!-- Button:forward --><%= show.session.getButton5() %></dalie:ButtonOption>
@@ -150,7 +150,7 @@
 			</table>
 			</div><!-- /contentLeft -->
 			<div id="contentRight">	
-				<dalie:DokumentLinkTag data="N" columnHeader='<%= ColumHeader.valueOf("2",language,linkOrderByTyp) %>' tableTagClass="linkTable"></dalie:DokumentLinkTag>
+				<dalie:DokumentLinkTag data="N" columnHeader='<%= new Selinas003H().valueOf("3",language,linkOrderByTyp) %>' tableTagClass="linkTable"></dalie:DokumentLinkTag>
 				<iframe src="<%= request.getContextPath()%>/selinas/selinas003FL.jsp" width="100%" name="selinas2" frameborder="0" height="221"></iframe>						
 					<table border="0" cellpadding="0" cellspacing="0" width="100%">	
 						<tr>
@@ -186,7 +186,7 @@
 			<% }/*endif*/ %>	
 		</div><!-- /footer -->	
 		<div id="navigationDetail">
-			<dalie:DokumentTypTag data="N" columnHeader='<%= ColumHeader.valueOf("1",language,dokumentOrderByTyp) %>' tableTagClass="linkTable"></dalie:DokumentTypTag>
+			<dalie:DokumentTypTag data="N" columnHeader='<%= new Selinas003H().valueOf("1",language,dokumentOrderByTyp) %>' tableTagClass="linkTable"></dalie:DokumentTypTag>
 			<iframe src="<%= request.getContextPath()%>/selinas/selinas003FD.jsp" width="100%" name="selinas1" frameborder="0" height="100"></iframe>
 		</div><!-- /navigationDetail -->
 	</div><!-- /pageWrapper -->
