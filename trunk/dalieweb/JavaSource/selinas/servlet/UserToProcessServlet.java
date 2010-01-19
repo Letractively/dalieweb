@@ -31,6 +31,7 @@ public class UserToProcessServlet extends HttpServlet implements Servlet {
 	    User userOfSession = (User)session.getAttribute("ShowUser");
 	    Adresse adresseOfSession = (Adresse)session.getAttribute("Adresse");
 	    Database dbConn = (Database) session.getAttribute("Database");
+	    String language = (String) session.getAttribute("Speech");
 	    
 	    try{
 		    RequestDispatcher displogin =  request.getRequestDispatcher("LogOnCheck");
@@ -49,8 +50,8 @@ public class UserToProcessServlet extends HttpServlet implements Servlet {
 	 	String error = (String) session.getAttribute("Error");
 	 	if(request.getParameter("new") != null){//Button: Dokumenttypen neu
  	 		try{	
- 	 			/* gültigen Dokumenttyp ermitteln */
- 	 			//session.setAttribute("Typ", show.getTypOfInitialize(dbConn,selinasuser.user,language));//SessionAttribut:DokumentTypOfInitialize
+ 	 			/* gültigen Dokumenttyp ermitteln */					
+ 	 			session.setAttribute("ShowUser", show.getUserOfInitialize(dbConn,selinasuser.user,language));//SessionAttribut:UserOfInitialize
 	 	 		performForward("/selinas/selinas030.jsp",request,response);
 		    } catch (Exception e) {
 		       	LoggerHelper.log(this.getClass().getName(),"Exception of perForm..:", e);
@@ -59,7 +60,7 @@ public class UserToProcessServlet extends HttpServlet implements Servlet {
 		}else{//endif button
 			if(request.getParameter("delete") != null){//Button: Dokumenttypen löschen
 				try{
-					
+					session.setAttribute("ShowUser", show.getUserOfDelete(dbConn,selinasuser.user,userOfSession,language));//SessionAttribut:UserOfDelete
 					performForward("/selinas/selinas030.jsp",request,response);
 				} catch (Exception e) {
 					LoggerHelper.log(this.getClass().getName(),"Exception of perForm..:", e);
@@ -73,7 +74,7 @@ public class UserToProcessServlet extends HttpServlet implements Servlet {
 		 				session.setAttribute("Adresse", show.getAdressOfRequest(adresseOfSession,request));//SessionAttribut:AdressOfRequest
 		 				performForward("/selinas/selinas030.jsp",request,response);
 		 			}else{//Fehler: not found
-		 				session.setAttribute("ShowUser", show.getUserOfUpdate(dbConn,selinasuser.user,userOfSession,request));//SessionAttribut:AdressOfUpdate
+		 				session.setAttribute("ShowUser", show.getUserOfUpdate(dbConn,selinasuser.user,userOfSession,request));//SessionAttribut:UserOfUpdate
 		 				session.setAttribute("Adresse", show.getAdressOfUpdate(dbConn,selinasuser.user,adresseOfSession,request));//SessionAttribut:AdressOfUpdate
 		 				performForward("/selinas/selinas030.jsp",request,response);
 		 			}//endif error.equals

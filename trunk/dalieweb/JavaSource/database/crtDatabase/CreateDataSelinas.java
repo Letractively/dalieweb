@@ -38,7 +38,7 @@ public class CreateDataSelinas {
 				"1," +//standortId
 				"'DE'," +//sprachId
 				"'Zugangsdaten'," +//hinweis1
-				"'Hinweis'," +//hinweis2
+				"'Kontakt:'," +//hinweis2
 				"'Hinweis'," +//hinweis3
 				"'Hinweis'," +//hinweis4
 				"'Benutzer'," +//userId
@@ -71,7 +71,7 @@ public class CreateDataSelinas {
 				"'Adresse:'," +//caption6
 				"'Passwort:'," +//caption7
 				"'Dokumenten-Typus:'," +//caption8
-				"'Ihre Anlangen auswählen'," +//caption9
+				"'Ihre Anlagen auswählen'," +//caption9
 				"'Ihre Notizen erfassen'," +//caption10
 				"'Verarbeitung <span style=\"text-decoration:underline\">s</span>tarten'," +//Button1
 				"'B<span style=\"text-decoration:underline\">e</span>enden'," +//Button2
@@ -131,7 +131,7 @@ public class CreateDataSelinas {
 				"1," +//standortId
 				"'EN'," +//sprachId
 				"'Login'," +//hinweis1
-				"'Hinweis'," +//hinweis2
+				"'Contact:'," +//hinweis2
 				"'Hinweis'," +//hinweis3
 				"'Hinweis'," +//hinweis4
 				"'User'," +//userId
@@ -217,7 +217,7 @@ public class CreateDataSelinas {
 	}//insertSelinasEN
 	
 	 public static void main(String args[]) throws Exception{
-	 	Database dbConn = new Database("mySql","localhost","selina","web4857","xxx");
+	 	Database dbConn = new Database("mySql","localhost","selina","web4857","selina2009");
     	
 	 	CreateDataSelinas selinas = new CreateDataSelinas();
     	

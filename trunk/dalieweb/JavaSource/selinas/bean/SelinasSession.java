@@ -4,6 +4,8 @@ import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 
+import selinas.SelinasUser;
+
 import database.Database;
 import database.dateien.Adresse;
 import database.dateien.Dokument;
@@ -17,6 +19,7 @@ import database.getDatabase.DataSetDokument;
 import database.getDatabase.DataSetLink;
 import database.getDatabase.DataSetSelectOptionen;
 import database.getDatabase.DataSetTyp;
+import database.getDatabase.DataSetStatus;
 import database.getDatabase.DataSetUser;
 
 /**
@@ -119,14 +122,14 @@ public class SelinasSession {
 	public Adresse getAdressOfRequest(Adresse ofSession, HttpServletRequest request)throws Exception{
 		/* Verwendung: UserToProcessServlet Aufruf der User/Adressverarbeitung */
 		   Adresse adresseOfRequest = ofSession;
-		   adresseOfRequest.setStrasse(request.getParameter(session.getStrasse()));
-		   adresseOfRequest.setNummer(request.getParameter(session.getNummer()));
-		   adresseOfRequest.setPlz(request.getParameter(session.getPlz()));
-		   adresseOfRequest.setOrt(request.getParameter(session.getOrt()));
-		   adresseOfRequest.setLand(request.getParameter(session.getLand()));
-		   adresseOfRequest.setMail(request.getParameter(session.getMail()));
-		   adresseOfRequest.setTelefon(request.getParameter(session.getTelefon()));
-		   adresseOfRequest.setFax(request.getParameter(session.getFax()));
+		   adresseOfRequest.setStrasse(collapseSpaces(request.getParameter(session.getStrasse())));
+		   adresseOfRequest.setNummer(collapseSpaces(request.getParameter(session.getNummer())));
+		   adresseOfRequest.setPlz(collapseSpaces(request.getParameter(session.getPlz())));
+		   adresseOfRequest.setOrt(collapseSpaces(request.getParameter(session.getOrt())));
+		   adresseOfRequest.setLand(collapseSpaces(request.getParameter(session.getLand())));
+		   adresseOfRequest.setMail(collapseSpaces(request.getParameter(session.getMail())));
+		   adresseOfRequest.setTelefon(collapseSpaces(request.getParameter(session.getTelefon())));
+		   adresseOfRequest.setFax(collapseSpaces(request.getParameter(session.getFax())));
 		   return adresseOfRequest;
 	}//getAdressOfRequest  
 	
@@ -328,12 +331,12 @@ public class SelinasSession {
 	public Dokument getDokumentOfUpdate(Database dbConn,User user,Dokument ofSession, HttpServletRequest request)throws Exception{
 	   Dokument dokumentOfUpdate = ofSession;
 	   dokumentOfUpdate.setTitel(collapseSpaces(request.getParameter(session.getTitel())));
-	   dokumentOfUpdate.setDescripten(request.getParameter(session.getDescripten()));
-	   dokumentOfUpdate.setContent(request.getParameter(session.getContent()));
-	   dokumentOfUpdate.setGliederung(request.getParameter(session.getGliederung()));
-	   dokumentOfUpdate.setArchiv(request.getParameter(session.getArchiv()));
-	   dokumentOfUpdate.setVorgabe(request.getParameter(session.getVorgabe()));
-	   dokumentOfUpdate.setStatus(request.getParameter(session.getStatus()));
+	   dokumentOfUpdate.setDescripten(collapseSpaces(request.getParameter(session.getDescripten())));
+	   dokumentOfUpdate.setContent(collapseSpaces(request.getParameter(session.getContent())));
+	   dokumentOfUpdate.setGliederung(collapseSpaces(request.getParameter(session.getGliederung())));
+	   dokumentOfUpdate.setArchiv(collapseSpaces(request.getParameter(session.getArchiv())));
+	   dokumentOfUpdate.setVorgabe(collapseSpaces(request.getParameter(session.getVorgabe())));
+	   dokumentOfUpdate.setStatus(collapseSpaces(request.getParameter(session.getStatus())));
 	   dbConn.getConnection();//DataBaseConnection open
 	   DataSetDokument.update(dbConn, user, dokumentOfUpdate);
 	   dokumentOfUpdate = DataSetDokument.chain(dbConn, user, dokumentOfUpdate);
@@ -358,12 +361,12 @@ public class SelinasSession {
 	public Dokument getDokumentOfRequest(Dokument ofSession, HttpServletRequest request)throws Exception{
 		   Dokument dokumentOfRequest = ofSession;
 		   dokumentOfRequest.setTitel(collapseSpaces(request.getParameter(session.getTitel())));
-		   dokumentOfRequest.setDescripten(request.getParameter(session.getDescripten()));
+		   dokumentOfRequest.setDescripten(collapseSpaces(request.getParameter(session.getDescripten())));
 		   dokumentOfRequest.setContent(collapseSpaces(request.getParameter(session.getContent())));
-		   dokumentOfRequest.setGliederung(request.getParameter(session.getGliederung()));
-		   dokumentOfRequest.setArchiv(request.getParameter(session.getArchiv()));
-		   dokumentOfRequest.setVorgabe(request.getParameter(session.getVorgabe()));
-		   dokumentOfRequest.setStatus(request.getParameter(session.getStatus()));
+		   dokumentOfRequest.setGliederung(collapseSpaces(request.getParameter(session.getGliederung())));
+		   dokumentOfRequest.setArchiv(collapseSpaces(request.getParameter(session.getArchiv())));
+		   dokumentOfRequest.setVorgabe(collapseSpaces(request.getParameter(session.getVorgabe())));
+		   dokumentOfRequest.setStatus(collapseSpaces(request.getParameter(session.getStatus())));
 		   return dokumentOfRequest;
 	}//getDokumentOfRequest  
 	
@@ -418,7 +421,7 @@ public class SelinasSession {
 	public void getDokumentLinkOfUpdate(Database dbConn,User user,Dokument ofSession,HttpServletRequest request)throws Exception{
 		dbConn.getConnection();//DataBaseConnection open
 		Link linkOfUpdate = DataSetLink.chain(dbConn,ofSession,Integer.parseInt(request.getParameter("ApplicationsId")));
-		linkOfUpdate.setNotizOfLink(request.getParameter("memo"));
+		linkOfUpdate.setNotizOfLink(collapseSpaces(request.getParameter("memo")));
 		DataSetLink.update(dbConn, user,ofSession,linkOfUpdate);
 		dbConn.close();//DataBaseConnection close
 	}//getDokumentLinkOfUpdate
@@ -518,18 +521,18 @@ public class SelinasSession {
 	}//getTypOfRequest  
 	
 	/**
-	* <b>Erzeuge ein Objekt vom Typ Dokument aus Datenbanktabelle Dokument</b>
-	* <br> Dokument anlegen"
-	* <br><b>chain:Key User user, HttpServletRequest request</b>
+	* <b>Erzeuge ein Objekt vom Typ Typ aus Datenbanktabelle Typ</b>
+	* <br> Dokumenttyp anlegen"
+	* <br><b>chain:Key id </b>
 	* <br><b>public</b><br>
 	* @param
 	* <ul>
 	* <li>Database dbConn</li>
 	* <li>User user</li>
-	* <li>HttpServletRequest request</li>
+	* <li>String language</li>
 	* </ul>
 	* @return
-	* <ul><li>Dokument dokumentOfDatabase</li></ul>
+	* <ul><li>Typ typ</li></ul>
     * @throws Exception
 	*/
 	public Typ getTypOfInitialize(Database dbConn,User user,String language)throws Exception{
@@ -547,7 +550,7 @@ public class SelinasSession {
        DataSetSelectOptionen.insert(dbConn,user,dokumentTyp,"KA",option);
        dbConn.close();
        return  typOfInitialize;
-    }//getDokumentOfInitialize
+    }//getTypOfInitialize
 	
 	/**
 	* <b>Erzeuge ein Objekt vom Typ Dokument aus Datenbanktabelle Dokument</b>
@@ -568,7 +571,7 @@ public class SelinasSession {
 	public Typ getTypOfUpdate(Database dbConn,User user,Typ ofSession,HttpServletRequest request,String language)throws Exception{
 	   Typ typOfUpdate = ofSession;
 	   //typOfUpdate.setTyp(collapseSpaces(request.getParameter(session.getDokumentTyp())));
-	   typOfUpdate.setDescription(request.getParameter(session.getDescripten()));
+	   typOfUpdate.setDescription(collapseSpaces(request.getParameter(session.getDescripten())));
 	   dbConn.getConnection();//DataBaseConnection open
 	   DataSetTyp.update(dbConn, user, typOfUpdate);
 	   typOfUpdate = DataSetTyp.chain(dbConn, user, typOfUpdate);
@@ -692,12 +695,50 @@ public class SelinasSession {
 		   User userOfRequest = ofSession;
 		   userOfRequest.setPermitId(Integer.parseInt(request.getParameter("PermitId").toString()));
 		   userOfRequest.setUserAutorisierungsId(Integer.parseInt(request.getParameter("AutorisierungId").toString()));
-		   userOfRequest.setName(collapseSpaces(request.getParameter(session.getName())));
-		   userOfRequest.setVorname(collapseSpaces(request.getParameter(session.getVorname())));
-		   userOfRequest.setUserStatus(collapseSpaces(request.getParameter("Status")));
-		   userOfRequest.setPassword(request.getParameter(session.getPassword()));
+		   userOfRequest.setName(collapseSpaces(collapseSpaces(request.getParameter(session.getName()))));
+		   userOfRequest.setVorname(collapseSpaces(collapseSpaces(request.getParameter(session.getVorname()))));
+		   userOfRequest.setUserStatus(request.getParameter("Status"));
+		   userOfRequest.setPassword(collapseSpaces(request.getParameter(session.getPassword())));
 		   return userOfRequest;
 	}//getUserOfRequest  
+	
+	/**
+	* <b>Erzeuge ein Objekt vom Typ Typ aus Datenbanktabelle Typ</b>
+	* <br> Dokumenttyp anlegen"
+	* <br><b>chain:Key id </b>
+	* <br><b>public</b><br>
+	* @param
+	* <ul>
+	* <li>Database dbConn</li>
+	* <li>User user</li>
+	* <li>String language</li>
+	* </ul>
+	* @return
+	* <ul><li>Typ typ</li></ul>
+    * @throws Exception
+	*/
+	public User getUserOfInitialize(Database dbConn,User user,String language)throws Exception{
+       User userOfInitialize = new User();
+       dbConn.getConnection();//Aufbau Dankverbindung
+       SelinasUser selinasuser = new SelinasUser(DataSetUser.determineLastUserId(dbConn,user));
+       userOfInitialize.setName("Name");
+       userOfInitialize.setVorname("Vorname");
+       userOfInitialize.setPassword("selina");
+       userOfInitialize.setKundenId(selinasuser.getKundenId());
+       userOfInitialize.setPermitId(user.getPermitId());
+       userOfInitialize.setSelinasId(1);
+       userOfInitialize.setSelinasStandortId(1);
+       userOfInitialize.setSprachId("");
+       userOfInitialize.setStandortId(user.getStandortId());
+       userOfInitialize.setUserAutorisierungsId(user.getUserAutorisierungsId());
+       userOfInitialize.setUserId(selinasuser.getNewUserId());
+       userOfInitialize.setUserStatus(DataSetStatus.chain(dbConn,"A",language).getStatusId());
+       userOfInitialize.setCreateUserId(user.getUserId());
+       DataSetUser.insert(dbConn,userOfInitialize);
+       userOfInitialize = DataSetUser.chain(dbConn,selinasuser.getNewUserId());
+       dbConn.close();
+       return  userOfInitialize;
+    }//getTypOfInitialize
 	
 	/**
 	* <b>Erzeuge ein Objekt vom Typ Dokument aus Datenbanktabelle Dokument</b>
@@ -722,13 +763,23 @@ public class SelinasSession {
 	   userOfUpdate.setName(collapseSpaces(request.getParameter(session.getName())));
 	   userOfUpdate.setVorname(collapseSpaces(request.getParameter(session.getVorname())));
 	   userOfUpdate.setUserStatus(collapseSpaces(request.getParameter("Status")));
-	   userOfUpdate.setPassword(request.getParameter(session.getPassword()));
+	   userOfUpdate.setPassword(collapseSpaces(request.getParameter(session.getPassword())));
 	   dbConn.getConnection();//DataBaseConnection open
 	   DataSetUser.update(dbConn, user, userOfUpdate);
 	   userOfUpdate = DataSetUser.chain(dbConn,userOfUpdate.getUserId());
 	   dbConn.close();//DataBaseConnection close
 	   return userOfUpdate;
 	}//getUserOfUpdate
+	
+	public User getUserOfDelete(Database dbConn,User user,User ofSession,String language)throws Exception{
+		   User userOfUpdate = ofSession;
+		   dbConn.getConnection();//DataBaseConnection open
+		   userOfUpdate.setUserStatus(DataSetStatus.chain(dbConn,"I",language).getStatusId());
+		   DataSetUser.update(dbConn, user, userOfUpdate);
+		   userOfUpdate = DataSetUser.chain(dbConn,userOfUpdate.getUserId());
+		   dbConn.close();//DataBaseConnection close
+		   return userOfUpdate;
+		}//getUserOfUpdate
 	
 	/**
 	 * Remove/collapse character
@@ -742,7 +793,8 @@ public class SelinasSession {
 			StringBuffer argBuf = new StringBuffer();
 			for (int cIdx = 0; cIdx < argStr.length(); cIdx++) {
 				char ch = argStr.charAt(cIdx);
-				if (ch != '\'') {
+				if (ch == '\'' || ch == '\"') {
+					}else{
 					argBuf.append(ch);
 					last = ch;
 				}//endif

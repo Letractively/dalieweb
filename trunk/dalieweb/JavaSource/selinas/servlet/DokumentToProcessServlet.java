@@ -61,7 +61,8 @@ public class DokumentToProcessServlet extends HttpServlet implements Servlet {
 	 	 	if(request.getParameter("print") != null){//Button: Dokument drucken
 		 	 	try{
 		 			RequestDispatcher displogin =  request.getRequestDispatcher("DokumentToReportServlet");
-		      		displogin.include(request, response);
+		 			displogin.include(request, response);
+		 			performForward("/selinas/selinas004.jsp",request,response);
 		        } catch (Exception e) {
 		        	LoggerHelper.log(this.getClass().getName(),"Exception of perForm..:", e);
 		        }//catch

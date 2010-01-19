@@ -21,8 +21,6 @@ import javax.servlet.jsp.tagext.TagSupport;
 public class ButtonOption extends TagSupport{
 	/* Erzeute ein HTML-Button nach Berechtiung*/
 	
-    /** separator " */
-    final String FB = "\"";//wird als " interpretiert
     /** HTML-Attribute: name */
     private String name="name";
     /** userPermitId: SessionAttribute -> UserBerechtiungsId */
@@ -42,9 +40,9 @@ public class ButtonOption extends TagSupport{
             if(session.getAttribute("PermitId") != null)    
                 userPermitId = (String)session.getAttribute("PermitId");
             
-            out.println("<button type=" + FB + "submit" + FB + " name=" + FB + name + FB
-                    + " accesskey=" + FB + accesskey + FB 
-                    + " tabindex=" + FB + tabindex + FB + getPermitAttribut() + ">");
+             out.println("<button type=\"submit\" name=\""+name+"\" id=\""+name+"\" value=\""+name+"\"" + 
+                    " accesskey=\""+accesskey+"\""+  
+                    " tabindex=\""+tabindex+"\" "+ getPermitAttribut() +">");
         
             return EVAL_BODY_INCLUDE;//Evaluate body into existing out stream
         
