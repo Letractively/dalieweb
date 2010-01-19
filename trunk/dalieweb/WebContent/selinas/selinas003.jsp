@@ -139,7 +139,7 @@
 									</form>		
 								</td>
 								<td>
-									<form action="/dalieweb/DokumentToReportServlet" method="post">
+									<form action="<%= request.getContextPath()%>/DokumentToReportServlet" method="post">
 									<dalie:ButtonOption name="print" accesskey="d" permitId="2" tabindex="4"><!-- Button:drucken --><%= show.session.getButton6() %></dalie:ButtonOption>
 									</form>
 								</td>
