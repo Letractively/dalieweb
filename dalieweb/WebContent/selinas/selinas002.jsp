@@ -3,11 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <%@ page language="java"
-	import="database.dateien.Selinas"
-	import="selinas.bean.SelinasSession"
-	import="selinas.ColumHeader"
 	import="selinas.SelinasUser"
+	import="selinas.bean.SelinasSession" 
+	import="selinas.table.Selinas002H"
 	import="database.dateien.Dokument"
+	import="database.dateien.Selinas"
 	contentType="text/html; charset=ISO-8859-1" 
 	pageEncoding="ISO-8859-1"%>
 <!-- onwn TagLib-Direktive -->
@@ -32,6 +32,7 @@
 	SelinasSession show = new SelinasSession((Selinas) session.getAttribute("Selinas")); 
     SelinasUser user = (SelinasUser) session.getAttribute("User");
 	String language = (String)session.getAttribute("Speech"); 
+	String dokumentOrderByTyp = (String)session.getAttribute("DokumentOrderByTyp");//SessionAttribut:sort by Dokument
 %>
 <div id="page">
 	<div id="pageHeader">
@@ -69,8 +70,8 @@
 			<!-- CLASS:HinweisOption -->
 			<dalie:HinweisOption message='${requestScope.Message}'></dalie:HinweisOption>
 		</div><!-- /header -->
-		<div id="wrapper">
-			<dalie:DokumentDataTag data="N" columnHeader='<%= ColumHeader.valueOf("3",language) %>'></dalie:DokumentDataTag>
+		<div id="wrapper"> 
+			<dalie:DokumentDataTag data="N" columnHeader='<%= new Selinas002H().valueOf("2",language,dokumentOrderByTyp) %>'></dalie:DokumentDataTag>
 			<iframe src="<%= request.getContextPath()%>/selinas/selinas002F.jsp" width="100%" name="selinas" frameborder="0" height="100%"></iframe>
 		</div><!-- /wrapper -->
 		<div id="footer">

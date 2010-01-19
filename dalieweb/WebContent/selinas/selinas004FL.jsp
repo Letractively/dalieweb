@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head> 
 <%@ page language="java"
-	import="selinas.ColumHeader"
+	import="selinas.table.Selinas004H" 
 	contentType="text/html; charset=ISO-8859-1" 
 	pageEncoding="ISO-8859-1"%>
 <!-- onwn TagLib-Direktive -->
@@ -24,7 +24,7 @@
 	String language = (String)session.getAttribute("Speech");
 %>
 <div id="uploads">
-		<dalie:selinas004FLTag header="N" farbe1="#FFFFFF" farbe2="#DEDEDE" columnHeader='<%= ColumHeader.valueOf("6",language) %>' tableTagClass="linkTable"></dalie:selinas004FLTag>
+		<dalie:selinas004FLTag header="N" farbe1="#FFFFFF" farbe2="#DEDEDE" columnHeader='<%= Selinas004H.valueOf("4",language) %>' tableTagClass="linkTable"></dalie:selinas004FLTag>
 </div><!-- /uploads -->
 </body>
 </html>

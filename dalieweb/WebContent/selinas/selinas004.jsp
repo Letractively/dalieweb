@@ -6,14 +6,16 @@
 <%@ page language="java"
 	import="database.dateien.Selinas"
 	import="selinas.bean.SelinasSession"
-	import="selinas.ColumHeader"
+	import="selinas.table.Selinas004H"
 	import="selinas.SelinasUser"
 	import="database.dateien.Dokument"
+	import="database.dateien.Link"
 	import="database.dateien.Typ"
 	contentType="text/html; charset=ISO-8859-1" 
 	pageEncoding="ISO-8859-1"%>
 <!-- onwn TagLib-Direktive -->
 <%@ taglib uri="/WEB-INF/TagLibraryDescriptor.tld" prefix="dalie"%>
+<%@ taglib uri="http://java.fckeditor.net" prefix="FCK" %>
 <!-- MetaData -->
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1"/>
 <meta http-equiv="Content-Style-Type" content="text/css"/>
@@ -36,10 +38,16 @@
 	Dokument dokument = (Dokument)session.getAttribute("Dokument");
 	Typ typ = (Typ)session.getAttribute("Typ");
 	String language = (String) session.getAttribute("Speech");
+	String languageFCKedtitor = language.toLowerCase();
 	String modus = (String)session.getAttribute("Modus");
 	String upload = (String) session.getAttribute("UpLoadOn");
+	String memoLoad = (String)session.getAttribute("MemoLoad");
 	String dokumentOrderByTyp = (String)session.getAttribute("DokumentOrderByTyp");//SessionAttribut:sort by Dokument
 	String linkOrderByTyp = (String)session.getAttribute("LinkOrderByTyp");//SessionAttribut:sort by Link
+	Link linkOfDokument = new Link();
+	if (session.getAttribute("LinkOfDokument")!= null){
+		linkOfDokument = (Link) session.getAttribute("LinkOfDokument"); 
+	}
 %>
 <div id="page">
 	<div id="pageHeader">
@@ -60,7 +68,7 @@
 			</tr>
 		</table>
 <form action="<%= request.getContextPath()%>/DokumentToProcessServlet" method="post">
-<input type="hidden" name="dokumentTyp" value="<%= dokument.getDokumentTyp() %>" />
+<input type="hidden" name="dokumentTyp" value="<%= dokument.getTyp() %>" />
 <input type="hidden" name="dokumentNr" value="<%= dokument.getNummer() %>" />
 <input type="hidden" name="dokumentId" value="<%= dokument.getId() %>" />
 		<div id="header">
@@ -72,7 +80,7 @@
 			<table width="100%" border="0" cellpadding="0" cellspacing="3">
 				<tr>
 					<td width="15%" align="left">&nbsp;&nbsp;<em><%= show.session.getDokumentTyp() %> :</em></td><td width="35%" align="left"><strong><%= typ.getDescription() %></strong></td>
-					<td width="15%" align="left"><em><%= show.session.getStatus() %> :</em></td><td width="35%" align="left"><dalie:Selectbox name="Status" argument='<%=dokument.getStatus()%>' tabindex="7" ccsStyle="BOX"></dalie:Selectbox></td>
+					<td width="15%" align="left"><em><%= show.session.getStatus() %> :</em></td><td width="35%" align="left"><dalie:SelectboxDokumentStatus name="Status" argument='<%=dokument.getStatus()%>' tabindex="7" ccsStyle="BOX"></dalie:SelectboxDokumentStatus></td>
 				</tr>
 				<tr>
 					<td width="15%" align="left">&nbsp;&nbsp;<em>Dokumenten-Nr. : </em></td><td width="35%" align="left"><strong><%= dokument.getNummer() %>.<%= dokument.getId() %></strong></td>
@@ -93,17 +101,22 @@
 			</table> 
 			<table width="99%" border="0" cellpadding="0" cellspacing="3" class="details">
 				<tr>
-					<td width="15%" align="left"><%= show.session.getTitel() %></td><td width="85%" align="left"><dalie:InputOption name='<%= show.session.getTitel() %>' value='<%=dokument.getTitel() %>' tabindex="1" size="35"></dalie:InputOption></td>
+					<td width="15%" align="left"><%= show.session.getTitel() %></td><td width="85%" align="left"><dalie:InputOption name='<%= show.session.getTitel() %>' value='<%=dokument.getTitel() %>' tabindex="1" size="35" maxlength="50"></dalie:InputOption></td>
 				</tr>
 				<tr>
-					<td width="15%" align="left"><%= show.session.getDescripten() %></td><td width="85%" align="left"><dalie:InputOption name='<%= show.session.getDescripten() %>' value='<%=dokument.getDescripten() %>' tabindex="2" size="35"></dalie:InputOption></td>
+					<td width="15%" align="left"><%= show.session.getDescripten() %></td><td width="85%" align="left"><dalie:InputOption name='<%= show.session.getDescripten() %>' value='<%=dokument.getDescripten() %>' tabindex="2" size="35" maxlength="60"></dalie:InputOption></td>
 				</tr>
 			</table> 
 			<div id="contentLeft">
 				<span>&nbsp;<%= show.session.getContent() %></span>
 			</div><!-- /contentLeft -->
-			<div id="contentRight">	
-				<textarea name='<%= show.session.getContent() %>' rows="7" cols="80" class="requestText" tabindex="3"><%= dokument.getContent()%></textarea>
+			<div id="contentRight"> 
+				<FCK:editor instanceName="<%= show.session.getContent() %>" inputName="<%= show.session.getContent() %>" toolbarSet="Basic" value="<%= dokument.getContent() %>">
+					<FCK:config AutoDetectLanguage="false" DefaultLanguage="en" />
+					<FCK:config ToolbarStartExpanded="true" />
+					<FCK:config ShowBorders="false" />
+					<FCK:config SkinPath="skins/office2003/" />
+				</FCK:editor>	
 				<table border="0" cellpadding="0" cellspacing="0">
 					<tr>
 						<td><dalie:ButtonOption name="submit" accesskey="v" permitId="3" tabindex="8"><!-- Button:Dokument verarbeiten --><%= show.session.getButton8() %></dalie:ButtonOption></td>
@@ -111,12 +124,12 @@
 				   <!-- <td><dalie:ButtonOption name="link" accesskey="A" tabindex="10">Ihre <span style="text-decoration:underline">A</span>nlagen bearbeiten</dalie:ButtonOption></td> -->
 						<td><dalie:ButtonOption name="print" accesskey="d" permitId="2" tabindex="11"><!-- Button:drucken --><%= show.session.getButton6() %></dalie:ButtonOption></td>
 		 				<td><dalie:ButtonOption name="delete" accesskey="l" permitId="4" tabindex="12"><!-- Button:Dokument löschen --><%= show.session.getButton10() %></dalie:ButtonOption></td>
-						<% if(modus.equalsIgnoreCase("Update")){ %>
+						<% if(modus.equalsIgnoreCase("update")){ %>
 							<td><dalie:ButtonOption name="beenden" accesskey="e" tabindex="13" permitId="2"><!-- Button:beenden --><%= show.session.getButton2() %></dalie:ButtonOption></td>
 						<% }/*endif*/ %>	
 					</tr>
 					<tr> 
-						<td align="left"><!-- CLASS:HinweisOption --><dalie:HinweisOption message='${requestScope.Message}'></dalie:HinweisOption></td>
+						<td colspan="4" align="left"><!-- CLASS:HinweisOption --><dalie:HinweisOption message='${requestScope.Message}'></dalie:HinweisOption></td>
 					</tr>
 				</table>
 			</div><!-- /contentRight -->
@@ -127,7 +140,7 @@
 				<tr>
 					<td width="15%" align="left" valign="top">Anlagen</td>
 					<td width="85%" align="left">
-						<dalie:selinas004FLTag data="N" columnHeader='<%= ColumHeader.valueOf("6",language,linkOrderByTyp) %>' tableTagClass="linkTable"></dalie:selinas004FLTag>
+						<dalie:selinas004FLTag data="N" columnHeader='<%= new Selinas004H().valueOf("4",language,linkOrderByTyp) %>' tableTagClass="linkTable"></dalie:selinas004FLTag>
 						<iframe src="<%= request.getContextPath()%>/selinas/selinas004FL.jsp" width="100%" name="selinas1" frameborder="0" height="100"></iframe>						
 					</td>
 				</tr>
@@ -143,7 +156,7 @@
 				<% }/*endif*/ %>				
 				<% if(upload.equalsIgnoreCase("1")){ %> 
 				<tr>
-					<td width="15%" align="left">Anlagen auswählen</td>
+					<td width="15%" align="left"><%= show.session.getCaption9() %></td>
 					<td width="85%" align="left" valign="bottom">
 						<table width="99%" border="0" cellpadding="0" cellspacing="3" class="details">
 							<tr>
@@ -168,12 +181,37 @@
 						<dalie:HinweisOption message='${requestScope.upload}'></dalie:HinweisOption><!-- CLASS:HinweisOption --></td>
 				</tr>
 				<% }/*endif*/ %>
+				<% if(memoLoad.equalsIgnoreCase("memoLoadOn")){ %> 
+				<tr>
+					<td width="15%" align="left"><%= show.session.getCaption10() %></td>
+					<td width="85%" align="left" valign="bottom">
+						<form action="<%= request.getContextPath()%>/GoToSelinas004Servlet" method="post">
+						<input type="hidden" name="ApplicationsId" value="<%= linkOfDokument.getApplicationsId() %>" />
+						<table style="border-style: solid; 
+							border-top-width: 1px; 
+							border-right-width: 1px; 
+							border-left-width: 1px; 
+							border-bottom-width: 1px; 
+							border-color: #557AA6;" width="99%" border="0" cellpadding="0" cellspacing="5" class="details">
+							<tr>
+								<td nowrap="nowrap"  valign="bottom">
+								<dalie:InputOption name='memo' value='<%= linkOfDokument.getNotizOfLink() %>' tabindex="6" size="38"></dalie:InputOption>
+								</td>	
+								<td align="left" valign="bottom">
+									<dalie:ButtonOption name="memoLoadOFF" accesskey="s" tabindex="3"><!-- Button:beenden --><%= show.session.getButton2() %></dalie:ButtonOption>
+								</td>	
+							</tr>
+						</table>
+						</form>
+					</td>
+				</tr>
+				<% }/*endif*/ %>
 			</table> 
 		</div><!-- /upload -->
 		<div id="footer">
 		</div><!-- /footer -->	
 		<div id="navigationDetail">
-			<dalie:selinas004FDTag data="N" columnHeader='<%= ColumHeader.valueOf("5",language,dokumentOrderByTyp) %>' tableTagClass="linkTable"></dalie:selinas004FDTag>
+			<dalie:selinas004FDTag data="N" columnHeader='<%= new Selinas004H().valueOf("1",language,dokumentOrderByTyp) %>' tableTagClass="linkTable"></dalie:selinas004FDTag>
 			<iframe src="<%= request.getContextPath()%>/selinas/selinas004FD.jsp" width="100%" name="selinas2" frameborder="0" height="100"></iframe>
 		</div><!-- /navigationDetail -->
 	</div><!-- /pageWrapper -->

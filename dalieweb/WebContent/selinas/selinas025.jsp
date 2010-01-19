@@ -6,7 +6,7 @@
 <%@ page language="java"
 	import="database.dateien.Selinas"
 	import="selinas.bean.SelinasSession"
-	import="selinas.ColumHeader"
+	import="selinas.table.Selinas025H"
 	import="selinas.SelinasUser"
 	import="database.dateien.Dokument"
 	import="database.dateien.Adresse"
@@ -59,9 +59,9 @@
 					<table border="0" cellspacing="3" cellpadding="0">
 					 <tr>
 						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin1" alt='<%= show.session.getImage2() %>' title='<%= show.session.getImage2() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/GoToStartServlet?selectTyp=UB" title="<%= show.session.getLink1t() %>" target="_self" class="linkNav"><span class="linkNav"><%= show.session.getLink1()%></span></a></td>
-						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin3" alt='<%= show.session.getImage3() %>' title='<%= show.session.getImage3() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/AdminOfSelina" title="<%= show.session.getLink4t() %>" target="_self" class="linkNav"><span class="linkNav"><%= show.session.getLink4() %></span></a></td>
 						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin2" alt='<%= show.session.getImage4() %>' title='<%= show.session.getImage4() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/GoToSelinas025Servlet" title="<%= show.session.getLink5t() %>" target="_self" class="linkNav"><span class="linkNav"><%= show.session.getLink5() %></span></a></td>
 						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin4" alt='<%= show.session.getImage5() %>' title='<%= show.session.getImage5() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/GoToSelinas030Servlet" title="<%= show.session.getLink6t() %>" target="_self" class="linkNav"><span class="linkNav"><%= show.session.getLink6() %></span></a></td>
+						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin3" alt='<%= show.session.getImage3() %>' title='<%= show.session.getImage3() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/GoToSelinas020Servlet" title="<%= show.session.getLink4t() %>" target="_self" class="linkNav"><span class="linkNav"><%= show.session.getLink4() %></span></a></td>
 						</tr>
 					</table>	
 				</td>
@@ -76,35 +76,42 @@
 		</div><!-- /header -->
 		<div id="wrapper">
 			<br />
-			<div id="navigationDetail"> 
-			<dalie:selinas025FTTag data="N" columnHeader='<%= ColumHeader.valueOf("7",language,typOrderByTyp) %>' tableTagClass="anforderungsdetails"></dalie:selinas025FTTag>
+			<div id="navigationDetail">  
+			<dalie:selinas025FTTag data="N" columnHeader='<%= new Selinas025H().valueOf("25",language,typOrderByTyp) %>' tableTagClass="anforderungsdetails"></dalie:selinas025FTTag>
 				<iframe src="<%= request.getContextPath()%>/selinas/selinas025FT.jsp" width="100%" name="selinas2" frameborder="0" height="160"></iframe>
 		</div><!-- /navigationDetail -->
+		<br />
 <form action="/dalieweb/TypToProcessServlet" method="post">
-			<table width="99%" border="0" cellpadding="0" cellspacing="3" class="details">
+			<table style="border-style: solid; border-top-width: 1px; border-right-width: 1px; border-left-width: 1px; border-bottom-width: 1px; border-color: #557AA6;" width="99%" border="0" cellpadding="0" cellspacing="3" class="details">
 				<tr>
-					<td width="15%" align="left">Typ</td><td width="85%" align="left">
-					<dalie:InputOption name='<%= show.session.getDokumentTyp() %>' value='<%= typ.getTyp() %>' tabindex="0" size="5" permitId="9"></dalie:InputOption>
-					<dalie:InputOption name='<%= show.session.getDescripten() %>' value='<%= typ.getDescription() %>' tabindex="1" size="20"></dalie:InputOption>
+					<td>
+						<table width="99%" border="0" cellpadding="0" cellspacing="0" class="details">
+							<caption style="text-align: left; font: bold 10px Helvetica, sans-serif; margin-left: 8px; margin-top: 5px; margin-bottom: 3px;"><!-- Benutzerangaben: --><%= show.session.getCaption8() %></caption>
+							<tr>
+								<td style="border-style: solid; border-top-width: 1px; border-right-width: 0px; border-left-width: 0px; border-bottom-width: 0px; border-color: #557AA6; padding-left: 5px; padding-top: 5px;"
+									align="left">Typ</td>
+								<td style="border-style: solid; border-top-width: 1px; border-right-width: 0px; border-left-width: 0px; border-bottom-width: 0px; border-color: #557AA6; padding-left: 5px; padding-top: 5px;"
+									align="left"><dalie:InputOption name='<%= show.session.getDokumentTyp() %>' value='<%= typ.getTyp() %>' tabindex="0" size="5" permitId="9"></dalie:InputOption><dalie:InputOption name='<%= show.session.getDescripten() %>' value='<%= typ.getDescription() %>' tabindex="1" size="20" maxlength="30"></dalie:InputOption></td>
+							</tr>
+						</table>					
 					</td>
 				</tr>
-			</table> 
+				<tr>
+					<td style="border-style: solid; border-top-width: 1px; border-right-width: 0px; border-left-width: 0px; border-bottom-width: 0px; border-color: #557AA6; padding-left: 5px; padding-top: 5px;"
+						align="left"><dalie:ButtonOption name="submit" accesskey="s" permitId="3" tabindex="14"><!-- Button:Verarbeitung starten --><%= show.session.getButton1() %></dalie:ButtonOption>
+					<dalie:ButtonOption name="delete" accesskey="l" permitId="4" tabindex="15"><!-- Button:Dokumenttyp löschen --><%= show.session.getButton12() %></dalie:ButtonOption>
+					<dalie:ButtonOption name="new" accesskey="n" permitId="3" tabindex="16"><!-- Button:Dokumenttyp anlegen --><%= show.session.getButton13() %></dalie:ButtonOption>
+					<dalie:ButtonOption name="beenden" accesskey="e" tabindex="17" permitId="2"><!-- Button:beenden --><%= show.session.getButton2() %></dalie:ButtonOption></td>
+				</tr>
+				<tr>
+					<td align="left"><!-- CLASS:HinweisOption --><dalie:HinweisOption message='${requestScope.Message}'></dalie:HinweisOption></td>
+				</tr>
+			</table>
 			<div id="contentLeft">	
 				<span>&nbsp;</span>			
 			</div><!-- /contentLeft -->
 			<div id="contentRight">	
-			<table width="99%" border="0" cellpadding="0" cellspacing="3">
-				<tr>
-					<td align="left"><dalie:ButtonOption name="submit" accesskey="s" tabindex="2"><!-- Button:Verarbeitung starten --><%= show.session.getButton1() %></dalie:ButtonOption>
-					<dalie:ButtonOption name="delete" accesskey="l" tabindex="3"><!-- Button:Dokumenttyp löschen --><%= show.session.getButton12() %></dalie:ButtonOption>
-					<dalie:ButtonOption name="new" accesskey="n" tabindex="4"><!-- Button:Dokumenttyp anlegen --><%= show.session.getButton13() %></dalie:ButtonOption>
-					<dalie:ButtonOption name="beenden" accesskey="e" tabindex="3" permitId="2"><!-- Button:beenden --><%= show.session.getButton2() %></dalie:ButtonOption>
-					</td> 
-				</tr>
-				<tr> 
-					<td align="left"><!-- CLASS:HinweisOption --><dalie:HinweisOption message='${requestScope.Message}'></dalie:HinweisOption></td>
-				</tr>
-			</table> 	
+				<span>&nbsp;</span>	
 			</div><!-- /contentRight -->
 </form>
 		</div><!-- /wrapper -->

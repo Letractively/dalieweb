@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head> 
 <%@ page language="java"
-	import="database.dateien.Dokument"
-	import="selinas.ColumHeader"
+	import="selinas.table.Selinas003H"
 	contentType="text/html; charset=ISO-8859-1" 
 	pageEncoding="ISO-8859-1"%>
 <!-- onwn TagLib-Direktive -->
@@ -22,11 +21,10 @@
 </head>
 <body> 
 <%	
-	Dokument dokument = (Dokument)session.getAttribute("Dokument");	
 	String language = (String)session.getAttribute("Speech");
 %>
 	<div id="navigationDetails">
-	<dalie:DokumentTypTag header="N" farbe2="#D6D8BA" columnHeader='<%= ColumHeader.valueOf("1",language) %>' tableTagClass="linkTable"></dalie:DokumentTypTag>
+		<dalie:DokumentTypTag header="N" farbe2="#D6D8BA" columnHeader='<%= Selinas003H.valueOf("3",language) %>' tableTagClass="linkTable"></dalie:DokumentTypTag>
 	</div><!-- /navigationDetails -->
 </body>
 </html>
