@@ -49,7 +49,7 @@
 		<table border="0" cellspacing="0" cellpadding="0" width="99%">
 			<tr>
 				<td valign="middle" align="left"></td>
-				<td valign="middle" align="right" class="strapline"><%= user.user.getName() %>, <%= user.user.getVorname() %>&nbsp; <a href="<%= request.getContextPath()%>/LogOffSelina" target="_self" class="link">Log off</a></td>
+				<td valign="middle" align="right" class="strapline"><%= user.user.getName() %>, <%= user.user.getVorname() %>&nbsp; <a href="<%= request.getContextPath()%>/LogOffSelina" target="_self" tabindex="20" class="link">Log off</a></td>
 			</tr>
 		</table>	
 		<table border="0" cellspacing="0" cellpadding="0" width="100%">
@@ -57,10 +57,10 @@
 				<td>
 					<table border="0" cellspacing="3" cellpadding="0">
 					 <tr>
-						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin1" alt='<%= show.session.getImage2() %>' title='<%= show.session.getImage2() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/GoToStartServlet?selectTyp=UB" title="<%= show.session.getLink1t() %>" target="_self" class="linkNav"><span class="linkNav"><%= show.session.getLink1()%></span></a></td>
-						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin2" alt='<%= show.session.getImage4() %>' title='<%= show.session.getImage4() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/GoToSelinas025Servlet" title="<%= show.session.getLink5t() %>" target="_self" class="linkNav"><span class="linkNav"><%= show.session.getLink5() %></span></a></td>
-						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin4" alt='<%= show.session.getImage5() %>' title='<%= show.session.getImage5() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/GoToSelinas030Servlet" title="<%= show.session.getLink6t() %>" target="_self" class="linkNav"><span class="linkNav"><%= show.session.getLink6() %></span></a></td>
-						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin3" alt='<%= show.session.getImage3() %>' title='<%= show.session.getImage3() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/GoToSelinas020Servlet" title="<%= show.session.getLink4t() %>" target="_self" class="linkNav"><span class="linkNav"><%= show.session.getLink4() %></span></a></td>
+						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin1" alt='<%= show.session.getImage2() %>' title='<%= show.session.getImage2() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/GoToStartServlet?selectTyp=UB" title="<%= show.session.getLink1t() %>" target="_self" class="linkNav" tabindex="21"><span class="linkNav"><%= show.session.getLink1()%></span></a></td>
+						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin2" alt='<%= show.session.getImage4() %>' title='<%= show.session.getImage4() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/GoToSelinas025Servlet" title="<%= show.session.getLink5t() %>" target="_self" class="linkNav" tabindex="22"><span class="linkNav"><%= show.session.getLink5() %></span></a></td>
+						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin4" alt='<%= show.session.getImage5() %>' title='<%= show.session.getImage5() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/GoToSelinas030Servlet" title="<%= show.session.getLink6t() %>" target="_self" class="linkNav" tabindex="23"><span class="linkNav"><%= show.session.getLink6() %></span></a></td>
+						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin3" alt='<%= show.session.getImage3() %>' title='<%= show.session.getImage3() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/GoToSelinas020Servlet" title="<%= show.session.getLink4t() %>" target="_self" class="linkNav" tabindex="24"><span class="linkNav"><%= show.session.getLink4() %></span></a></td>
 						</tr>
 					</table>	
 				</td>
@@ -84,120 +84,149 @@
 <input type="hidden" name="<%= show.session.getUserId() %>" value="<%= showUser.getUserId() %>" />
 <input type="hidden" name="userAdressId" value="<%= showUser.getUserId() %>" />
 <input type="hidden" name="AdressTyp" value="U" />
-				<table style="	border-style: solid; 
-							border-top-width: 1px; 
-							border-right-width: 1px; 
-							border-left-width: 1px; 
-							border-bottom-width: 0px; 
-							border-color: #557AA6;" width="99%" border="0" cellpadding="0" cellspacing="3" class="details">
-				<tr>
+<% if( user.user.getPermitId() <= 3 ){ %>
+<input type="hidden" name="PermitId" value="<%= showUser.getPermitId() %>" />
+<input type="hidden" name="AutorisierungId" value="<%= showUser.getPermitId() %>" />
+<input type="hidden" name="Status" value="<%= showUser.getUserStatus() %>" />
+<%} %> 
+		<table width="99%" border="0" cellpadding="0" cellspacing="2" class="anforderungsdetails">
+			<caption id="caption"><%= show.session.getCaption2() %></caption>
+			<tr>
 				<td style="	border-style: solid; 
 							border-top-width: 0px; 
 							border-right-width: 0px; 
 							border-bottom-width: 1px; 
 							border-left-width: 0px; 
 							border-color: #557AA6;
-							padding-left: 5px;" 
-					colspan="2" align="left">
-						<strong><em><%= showUser.getUserId() %>&nbsp;-&nbsp;<%= showUser.getName() %>,<%= showUser.getVorname() %></em></strong>
+							padding-top: 3px;
+							padding-bottom: 3px; 
+							padding-left: 15px"
+							colspan="1" align="left"><strong><em><%= showUser.getUserId() %>&nbsp;-&nbsp;<%= showUser.getName() %>,<%= showUser.getVorname() %></em></strong>
 				</td>
-				</tr>
-				<tr>
-					<td align="left" valign="top"><!--1.Spalte  -->
-						<table width="99%" border="0" cellpadding="0" cellspacing="3" class="details">
-							<caption style="text-align: left; font-weight: bold; font-size: 10px; font-family: Helvetica,sans-serif; margin-left: 3px;"><!-- Benutzerangaben: --><%= show.session.getCaption5() %></caption>
-							<tr>
-								<td align="left"><%= show.session.getPermitId() %></td><td align="left"><dalie:Selectbox name="PermitId" argument='<%= (new Integer(showUser.getPermitId())).toString() %>' ccsStyle="selectbox" permitId="5"></dalie:Selectbox></td>
-							</tr>
-							<tr>
-								<td align="left"><%= show.session.getUserAppId() %></td><td align="left"><dalie:Selectbox name="AutorisierungId" argument='<%= (new Integer(showUser.getUserAutorisierungsId())).toString() %>' ccsStyle="selectbox" permitId="5"></dalie:Selectbox></td>
-							</tr>
-							<tr>
-								<td align="left"><%= show.session.getName() %></td><td align="left"><dalie:InputOption name='<%= show.session.getName() %>' value='<%= showUser.getName() %>' tabindex="2"></dalie:InputOption></td>
-							</tr>
-							<tr>
-								<td align="left"><%= show.session.getVorname() %></td><td align="left"><dalie:InputOption name='<%= show.session.getVorname() %>' value='<%= showUser.getVorname() %>' tabindex="3"></dalie:InputOption></td>
-							</tr>
-							<tr>
-								<td align="left"><%= show.session.getStatus() %></td><td align="left"><dalie:Selectbox name="Status" argument='<%= showUser.getUserStatus() %>' ccsStyle="selectbox" permitId="5"></dalie:Selectbox></td>
-							</tr>
-						</table>
-						<table border="0" cellpadding="0" cellspacing="1" class=""><tr><th>&nbsp;</th></tr></table>
+				<td style="	border-style: solid; 
+							border-top-width: 0px; 
+							border-right-width: 0px; 
+							border-bottom-width: 1px; 
+							border-left-width: 0px; 
+							border-color: #557AA6;
+							padding-top: 3px;
+							padding-bottom: 3px; 
+							padding-left: 15px"
+							colspan="1" align="left"><strong><em><%= show.session.getStatus() %></em></strong>&nbsp;<dalie:Selectbox name="Status" argument='<%= showUser.getUserStatus() %>' ccsStyle="selectbox" tabindex="1" permitId="5"></dalie:Selectbox>
+				</td>
+			</tr>
+			<tr>
+				<td style="" colspan="1" align="left" valign="top"><!-- 1.row ; 1.colum -->
 						<table width="99%" border="0" cellpadding="0" cellspacing="3" class="details">
 							<caption style="font-weight: bold; 
 											font-size: 10px; 
 											font-family: Helvetica,sans-serif; 
-											padding-left: 3px;
-											text-align: left;"><!-- Passwort: --><%= show.session.getCaption7() %></caption>
+											margin-left: 3px;
+											text-align: left"><!-- Benutzerangaben: --><%= show.session.getCaption5() %></caption>
 							<tr>
-								<td align="left"><%= show.session.getPassword() %></td><td align="left"><dalie:InputOption type="password" name='<%= show.session.getPassword() %>' value='<%= showUser.getPassword() %>' tabindex="5" size="10"></dalie:InputOption></td>
+								<td width="50%" align="left"><%= show.session.getPermitId() %></td><td align="left"><dalie:Selectbox name="PermitId" argument='<%= (new Integer(showUser.getPermitId())).toString() %>' ccsStyle="selectbox" tabindex="2" permitId="5"></dalie:Selectbox></td>
 							</tr>
 							<tr>
-								<td align="left"><%= show.session.getPasswordchek() %></td><td align="left"><dalie:InputOption type="password" name='<%= show.session.getPasswordchek() %>' value='<%= showUser.getPassword() %>' tabindex="6" size="10"></dalie:InputOption></td>
+								<td width="50%" align="left"><%= show.session.getUserAppId() %></td><td align="left"><dalie:Selectbox name="AutorisierungId" argument='<%= (new Integer(showUser.getUserAutorisierungsId())).toString() %>' ccsStyle="selectbox" tabindex="3" permitId="5"></dalie:Selectbox></td>
 							</tr>
 						</table>
-					</td>
-					<td align="left" valign="top"><!-- 2.Spalte --> 
 						<table width="99%" border="0" cellpadding="0" cellspacing="3" class="details">
+							<caption style="font-weight: bold; 
+											font-size: 10px; 
+											font-family: Helvetica,sans-serif; 
+											margin-top: 0em;
+											margin-left: 3px;
+											text-align: left;"><!-- Passwort: --><%= show.session.getCaption7() %></caption>
+							<tr>
+								<td width="50%" align="left"><%= show.session.getPassword() %></td><td align="left"><dalie:InputOption type="password" name='<%= show.session.getPassword() %>' value='<%= showUser.getPassword() %>' tabindex="11" size="14" maxlength="10"></dalie:InputOption></td>
+							</tr>
+							<tr>
+								<td width="50%" align="left"><%= show.session.getPasswordchek() %></td><td align="left"><dalie:InputOption type="password" name='<%= show.session.getPasswordchek() %>' value='<%= showUser.getPassword() %>' tabindex="12" size="14" maxlength="10"></dalie:InputOption></td>
+							</tr>
+						</table>
+						<table width="99%" border="0" cellpadding="0" cellspacing="3" class="details">
+							<caption style="font-weight: bold; 
+											font-size: 10px; 
+											font-family: Helvetica,sans-serif; 
+											margin-top: 2px;
+											margin-left: 3px;
+											text-align: left;"><!-- Kontakt: --><%= show.session.getHinweis2() %></caption>
+							<tr>
+								<td width="50%" align="left"><%= show.session.getMail() %></td><td align="left"><dalie:InputOption name='<%= show.session.getMail() %>' value='<%= adresse.getMail() %>' tabindex="13" size="14" maxlength="50"></dalie:InputOption></td>
+							</tr>
+							<tr>
+								<td width="50%" align="left"><%= show.session.getTelefon() %></td><td align="left"><dalie:InputOption name='<%= show.session.getTelefon() %>' value='<%= adresse.getTelefon() %>' tabindex="14" size="14" maxlength="50"></dalie:InputOption></td>
+							</tr>
+							<tr>
+								<td width="50%" align="left"><%= show.session.getFax() %></td><td align="left"><dalie:InputOption name='<%= show.session.getFax() %>' value='<%= adresse.getFax() %>' tabindex="15" size="14" maxlength="50"></dalie:InputOption></td>
+							</tr>
+						</table>
+				</td>
+				<td style="padding-bottom: 4px;" 
+						colspan="1" align="left" valign="top"><!-- 1.row ; 2.colum -->
+						<table width="99%" border="0" cellpadding="0" cellspacing="6" class="details">
 							<caption style="font-weight: bold; 
 											font-size: 10px; 
 											font-family: Helvetica,sans-serif; 
 											margin-left: 3px;
 											text-align: left;"><!-- Adresse: --><%= show.session.getCaption6() %></caption>
 							<tr>
-								<td align="left"><%= show.session.getStrasse() %></td><td width="85%" align="left"><dalie:InputOption name='<%= show.session.getStrasse() %>' value='<%= adresse.getStrasse() %>' tabindex="7" size="30"></dalie:InputOption></td>
+								<td align="left"><%= show.session.getName() %></td><td align="left"><dalie:InputOption name='<%= show.session.getName() %>' value='<%= showUser.getName() %>' tabindex="4" size="40" maxlength="50"></dalie:InputOption></td>
 							</tr>
 							<tr>
-								<td width="15%" align="left"><%= show.session.getNummer() %></td><td width="85%" align="left"><dalie:InputOption name='<%= show.session.getNummer() %>' value='<%= adresse.getNummer() %>' tabindex="8"></dalie:InputOption></td>
+								<td align="left"><%= show.session.getVorname() %></td><td align="left"><dalie:InputOption name='<%= show.session.getVorname() %>' value='<%= showUser.getVorname() %>' tabindex="5" size="40" maxlength="50"></dalie:InputOption></td>
 							</tr>
 							<tr>
-								<td width="15%" align="left"><%= show.session.getPlz() %></td><td width="85%" align="left"><dalie:InputOption name='<%= show.session.getPlz() %>' value='<%= adresse.getPlz() %>' tabindex="9"></dalie:InputOption></td>
+								<td style="padding-top: 1px;" align="left">&nbsp;</td><td align="left">&nbsp;</td>
 							</tr>
 							<tr>
-								<td width="15%" align="left"><%= show.session.getOrt() %></td><td width="85%" align="left"><dalie:InputOption name='<%= show.session.getOrt() %>' value='<%= adresse.getOrt() %>' tabindex="10" size="30"></dalie:InputOption></td>
+								<td align="left"><%= show.session.getStrasse() %></td><td align="left"><dalie:InputOption name='<%= show.session.getStrasse() %>' value='<%= adresse.getStrasse() %>' tabindex="6" size="40" maxlength="50"></dalie:InputOption></td>
 							</tr>
 							<tr>
-								<td width="15%" align="left"><%= show.session.getLand() %></td><td width="85%" align="left"><dalie:InputOption name='<%= show.session.getLand() %>' value='<%= adresse.getLand() %>' tabindex="10" size="30"></dalie:InputOption></td>
+								<td align="left"><%= show.session.getNummer() %></td><td align="left"><dalie:InputOption name='<%= show.session.getNummer() %>' value='<%= adresse.getNummer() %>' tabindex="7" size="20" maxlength="20"></dalie:InputOption></td>
 							</tr>
 							<tr>
-								<td width="15%" align="left">&nbsp;</td><td width="35%" align="left">&nbsp;</td>
-							</tr>	
-							<tr>
-								<td width="15%" align="left"><%= show.session.getMail() %></td><td width="85%" align="left"><dalie:InputOption name='<%= show.session.getMail() %>' value='<%= adresse.getMail() %>' tabindex="11"></dalie:InputOption></td>
+								<td align="left"><%= show.session.getPlz() %></td><td align="left"><dalie:InputOption name='<%= show.session.getPlz() %>' value='<%= adresse.getPlz() %>' tabindex="8" size="20" maxlength="20"></dalie:InputOption></td>
 							</tr>
 							<tr>
-								<td width="15%" align="left"><%= show.session.getTelefon() %></td><td width="85%" align="left"><dalie:InputOption name='<%= show.session.getTelefon() %>' value='<%= adresse.getTelefon() %>' tabindex="12"></dalie:InputOption></td>
+								<td align="left"><%= show.session.getOrt() %></td><td align="left"><dalie:InputOption name='<%= show.session.getOrt() %>' value='<%= adresse.getOrt() %>' tabindex="9" size="40" maxlength="50"></dalie:InputOption></td>
 							</tr>
 							<tr>
-								<td width="15%" align="left"><%= show.session.getFax() %></td><td width="85%" align="left"><dalie:InputOption name='<%= show.session.getFax() %>' value='<%= adresse.getFax() %>' tabindex="13"></dalie:InputOption></td>
+								<td align="left"><%= show.session.getLand() %></td><td align="left"><dalie:InputOption name='<%= show.session.getLand() %>' value='<%= adresse.getLand() %>' tabindex="10" size="40" maxlength="100"></dalie:InputOption></td>
 							</tr>
-						</table> 
-					</td>
-				</tr>
-			</table>
-			<table style="border-style: solid; 
-							border-top-width: 0px; 
-							border-right-width: 1px; 
-							border-left-width: 1px; 
-							border-bottom-width: 0px; 
-							border-color: #557AA6;" width="99%" border="0" cellpadding="0" cellspacing="3" class="details">
-				<tr>
-					<td align="left"><dalie:ButtonOption name="submit" accesskey="s" permitId="3" tabindex="14"><!-- Button:Verarbeitung starten --><%= show.session.getButton1() %></dalie:ButtonOption>
-					<dalie:ButtonOption name="delete" accesskey="l" permitId="9" tabindex="15"><!-- Button:Dokumenttyp löschen --><%= show.session.getButton14() %></dalie:ButtonOption>
-					<dalie:ButtonOption name="new" accesskey="n" permitId="9" tabindex="16"><!-- Button:Dokumenttyp anlegen --><%= show.session.getButton15() %></dalie:ButtonOption>
-					<dalie:ButtonOption name="beenden" accesskey="e" tabindex="17" permitId="2"><!-- Button:beenden --><%= show.session.getButton2() %></dalie:ButtonOption>
-					</td> 
-				</tr>
-				<tr> 
-					<td align="left"><!-- CLASS:HinweisOption --><dalie:HinweisOption message='${requestScope.Message}'></dalie:HinweisOption></td>
-				</tr>
-			</table> 	
-			<div id="contentLeft">
-				<span>&nbsp;</span>	
-			</div><!-- /contentLeft -->
-			<div id="contentRight">	
-				<span>&nbsp;</span>			
-			</div><!-- /contentRight -->
+						</table>
+				</td>
+			</tr>
+		</table>
+		<table style="margin-left: 5px;"
+				width="99%" border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td style="	border-style: solid; 
+							border-top-width: 1px; 
+							border-right-width: 0px; 
+		 					border-bottom-width: 0px; 
+							border-left-width: 0px; 
+							border-color: #557AA6;
+							padding-top: 3px;
+							padding-bottom: 3px; 
+							padding-left: 5px;"
+							colspan="1" align="left">
+							<dalie:ButtonOption name="submit" accesskey="s" permitId="3" tabindex="16"><!-- Button:Verarbeitung starten --><%= show.session.getButton1() %></dalie:ButtonOption>
+							<dalie:ButtonOption name="delete" accesskey="l" permitId="4" tabindex="17"><!-- Button:Dokumenttyp löschen --><%= show.session.getButton14() %></dalie:ButtonOption>
+							<dalie:ButtonOption name="new" accesskey="n" permitId="5" tabindex="18"><!-- Button:Dokumenttyp anlegen --><%= show.session.getButton15() %></dalie:ButtonOption>
+							<dalie:ButtonOption name="beenden" accesskey="e" tabindex="19" permitId="2"><!-- Button:beenden --><%= show.session.getButton2() %></dalie:ButtonOption>
+				</td>
+			</tr>
+			<tr> 
+				<td align="left"><!-- CLASS:HinweisOption --><dalie:HinweisOption message='${requestScope.Message}'></dalie:HinweisOption></td>
+			</tr>
+		</table>
+		<div id="contentLeft">
+			<span>&nbsp;</span>	
+		</div><!-- /contentLeft -->
+		<div id="contentRight">	
+			<span>&nbsp;</span>			
+		</div><!-- /contentRight -->
 </form>
 		</div><!-- /wrapper -->
 		<div id="footer">
@@ -223,7 +252,7 @@
 				 	</div><!-- /adr -->
  					<div class="tel">
 					</div><!-- /tel -->
-					<a href="http://www.dalieonline.de">Contact Us.</a> | <a href="mailto:dalie@dalieweb.de">Schreiben</a>&nbsp;Sie mir!
+					<a href="http://www.dalieonline.de" tabindex="25">Contact Us.</a> | <a href="mailto:dalie@dalieweb.de" tabindex="26">Schreiben</a>&nbsp;Sie mir!
 				</div><!-- /vcard -->
 			</div><!-- /meta-wrap -->
 		</div><!-- /pageFooter -->	

@@ -110,7 +110,12 @@ div .titleTabTop h4 {
 	width: 100%;;
 	border-top: 1px dotted #AAAAAA;
 }
-
+p {
+	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+	clear: both;
+}
 #meta-wrap {
 	text-align: left;
 	margin: 0 auto;
