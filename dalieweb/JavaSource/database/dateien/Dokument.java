@@ -27,7 +27,7 @@ public class Dokument {
     /** StandortId */ 
     private int standortId;//Standort 1 zu Kunde 07411
     /** DokuemtenTyp Typ z.b. Arbeitsanweisung */
-    private String dokumentTyp;//Arbeitsanweisung
+    private String typ;//Arbeitsanweisung
     /** Nummer des Dokuments */
     private int nummer;//dokumentNr
     /** DokumentenId */
@@ -85,7 +85,7 @@ public class Dokument {
     public Dokument(Vector columns) throws Exception {
         this.kundenId = Integer.parseInt(columns.elementAt(0).toString());
         this.standortId = Integer.parseInt(columns.elementAt(1).toString());
-        this.dokumentTyp = columns.elementAt(2).toString();
+        this.typ = columns.elementAt(2).toString();
         this.nummer = Integer.parseInt(columns.elementAt(3).toString());
         this.id = Integer.parseInt(columns.elementAt(4).toString());
        
@@ -104,6 +104,27 @@ public class Dokument {
         this.changeUserId =  columns.elementAt(16).toString();
         this.changeDate = HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(17).toString());
     }//Dokument  
+    
+    public boolean getUserckeck(User user){
+    	if(this.status.equalsIgnoreCase("P")){
+    		if(this.kundenId == user.getKundenId() &&
+    			this.standortId == user.getStandortId() &&
+				this.createUserId.equalsIgnoreCase(user.getUserId())){
+    			return true;
+    		}else{
+    			return false;
+    		}
+    	}else{
+    		if(this.kundenId == user.getKundenId() &&
+        		this.standortId == user.getStandortId() &&
+        		Integer.parseInt(this.status) <= user.getUserAutorisierungsId()){
+        			return true;
+        		}else{
+        			return false;
+        		}
+    	} //endif P
+    }//getUser
+    
     /**
      * @return Returns the archiv.
      */
@@ -208,8 +229,8 @@ public class Dokument {
     /**
      * @param dokumentNr The dokumentNr to set.
      */
-    public void setDokumentNr(int dokumentNr) {
-        this.nummer = dokumentNr;
+    public void setNr(int nr) {
+        this.nummer = nr;
     }
     
     /**
@@ -227,15 +248,15 @@ public class Dokument {
     /**
      * @return Returns the dokumentTyp.
      */
-    public String getDokumentTyp() {
-        return dokumentTyp;
+    public String getTyp() {
+        return typ;
     }
     
     /**
      * @param dokumentTyp The dokumentTyp to set.
      */
-    public void setDokumentTyp(String dokumentTyp) {
-        this.dokumentTyp = dokumentTyp;
+    public void setTyp(String typ) {
+        this.typ = typ;
     }
     /**
      * @return Returns the gliederung.

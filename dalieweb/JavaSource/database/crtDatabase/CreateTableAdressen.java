@@ -22,23 +22,23 @@ public class CreateTableAdressen {
 		try {
 			dbConn.executeUpdate(
 				"CREATE TABLE "+dbConn.getDbSchema()+".adressen( " +
-					"adressId int NOT  NULL COMMENT 'Adress ID'," +
-					"adressArt char(1) NOT NULL COMMENT 'Adress Art'," +
-					"userId char(10) NOT NULL COMMENT 'User Id'," +
-					"strasse char(50) NOT NULL COMMENT 'Adress Strasse'," +
-					"nummer char(20) NOT NULL COMMENT 'Adress Hausnummer'," +
-					"plz char(20) NOT NULL COMMENT 'Adress PLZ'," +
-					"ort char(50) NOT NULL COMMENT 'Adress Ort'," +
-					"land char(100) NOT NULL COMMENT 'Adress Land',"+
+					"adressId int NOT  NULL COMMENT '0 Adress ID'," +
+					"adressArt char(1) NOT NULL COMMENT '1 Adress Art'," +
+					"userId char(10) NOT NULL COMMENT '2 User Id'," +
+					"strasse char(50) NOT NULL COMMENT '3 Adress Strasse'," +
+					"nummer char(20) NOT NULL COMMENT '4 Adress Hausnummer'," +
+					"plz char(20) NOT NULL COMMENT '5 Adress PLZ'," +
+					"ort char(50) NOT NULL COMMENT '6 Adress Ort'," +
+					"land char(100) NOT NULL COMMENT '7 Adress Land',"+
 					
-					"telefon char(50) NOT NULL COMMENT 'Adress Telefon'," +
-					"fax char(50) NOT NULL COMMENT 'Adress Fax'," +
-					"mail char(50) NOT NULL COMMENT 'Adress Mail'," +
+					"telefon char(50) NOT NULL COMMENT '8 Adress Telefon'," +
+					"fax char(50) NOT NULL COMMENT '9 Adress Fax'," +
+					"mail char(50) NOT NULL COMMENT '10 Adress Mail'," +
 
-					"createUser char(10) NOT NULL COMMENT 'Erstell USER'," +
-					"createDate DATETIME NOT NULL COMMENT 'Erstell Datum'," +
-					"changeUser char(10) NOT NULL COMMENT 'Aenderungs USER'," + 
-					"changeDate DATETIME NOT NULL COMMENT 'Aenderungs Datum'," + 
+					"createUser char(10) NOT NULL COMMENT '11 Erstell USER'," +
+					"createDate DATETIME NOT NULL COMMENT '12 Erstell Datum'," +
+					"changeUser char(10) NOT NULL COMMENT '13 Aenderungs USER'," + 
+					"changeDate DATETIME NOT NULL COMMENT '14 Aenderungs Datum'," + 
 					"PRIMARY KEY (adressId, adressArt, userId)" +
 					")ENGINE = myisam CHARACTER SET latin1 COLLATE latin1_german1_ci COMMENT = 'Adressen'");
 		} catch (Exception e) {
@@ -48,7 +48,7 @@ public class CreateTableAdressen {
 	}//createTableAdressen
 	
 	public static void main(String args[]) throws Exception{
-		Database dbConn = new Database("mySql","localhost","schemas","kunde","pw");
+		Database dbConn = new Database("mySql","localhost","selina","web4857","xxx");
     	
     	CreateTableAdressen selinas = new CreateTableAdressen();
     	dbConn.getConnection();

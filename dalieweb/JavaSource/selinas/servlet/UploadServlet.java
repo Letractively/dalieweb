@@ -81,7 +81,7 @@ public class UploadServlet extends HttpServlet implements Servlet {
         					   	}catch(Exception e){
         					   		applicationsId += (0);
         					   		}
-        					   	first += dokument.getDokumentTyp().toString(); //+ uploadApplication.getApplication();
+        					   	first += dokument.getTyp().toString(); //+ uploadApplication.getApplication();
         					   	sUploadDir = "/upload/" + (generator.nextInt(9) + 1) + FB;
         						String next = (new Integer(generator.nextInt(999) + 1)).toString();
         					   	

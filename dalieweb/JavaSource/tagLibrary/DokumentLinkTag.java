@@ -120,7 +120,9 @@ public class DokumentLinkTag extends TagSupport{
 	    for (int i = 0; i < dokumentLinks.size(); i++){         
 			Link link  = ((Link)dokumentLinks.elementAt(i));
 			tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +
-					"<td width='60%' class="+FB+FB+"><a href='"+((HttpServletResponse) pageContext.getResponse()).encodeURL("../LinkToGetServlet?ApplicationsId="+link.getApplicationsId()+ UploadApplication.getApplicationsKz(link.getContentType()))+"' target='_blank'>" + link.getNameOfLinkUn() +"</a></td>" +
+					"<td width='60%' class="+FB+FB+"><a href='"+((HttpServletResponse) pageContext.getResponse()).encodeURL("../LinkToGetServlet?ApplicationsId="+link.getApplicationsId()+ UploadApplication.getApplicationsKz(link.getContentType()))+"' " +
+						"title='"+link.getNotizOfLink()+"'" +	
+						"target='_blank'>" + link.getNameOfLinkUn() +"</a></td>" +
 					"<td width='40%' class="+FB+FB+">"+ link.getCreateDate() + "</td>" +
 					"</tr>";
 		}//for	

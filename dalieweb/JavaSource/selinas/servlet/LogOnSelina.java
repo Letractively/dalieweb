@@ -65,6 +65,16 @@ public class LogOnSelina extends HttpServlet implements Servlet {
     				session.setAttribute("LinkOrderByTyp","D");//SessionAttribut:sort by Link
     				session.setAttribute("TypOrderByTyp","B");//SessionAttribut:sort by DokumentTyp
     				session.setAttribute("UserOrderByTyp","U");//SessionAttribut:sort by UserId
+    				session.setAttribute("AdressOrderByTyp","U");//SessionAttribut:sort by Adresse
+    				session.setAttribute("MemoLoad","memoLoadOFF");//SessionAttribut:MemoLoad Table show
+    				
+    				try {
+    		 	        RequestDispatcher displogin =  request.getRequestDispatcher("LogOnSelinaInializeServlet");
+    		      		displogin.include(request, response);  		
+    		 		}catch (ServletException se) {
+    		 		   performForward(nextPage,request,response);//Login 
+    		     	}//catch ServletException
+    				
     				performForward("/selinas/selinas002.jsp",request,response);//JSP- show all Dokuments
     			} else {
     				error = DataSetMessage.chain(dbConn, "Login",(String) session.getAttribute("Speech"));

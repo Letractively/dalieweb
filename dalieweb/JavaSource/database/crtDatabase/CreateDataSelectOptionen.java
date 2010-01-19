@@ -62,26 +62,26 @@ public class CreateDataSelectOptionen {
     	String des = "";
     	for(int i = 1; i <= 5;i++){
     		if(i == 1 && sprachId == "DE")
-    			des = " - ansehen";
+    			des = " - ansehen ";
     		if(i == 2 && sprachId == "DE")
-        	 	des = " - drucken";
+        	 	des = " - drucken ";
     		if(i == 3 && sprachId == "DE")
         	 	des = " - bearbeiten";
     		if(i == 4 && sprachId == "DE")
-        	 	des = " - löschen";
+        	 	des = " - löschen ";
     		if(i == 5 && sprachId == "DE")
-        	 	des = " - administrieren";
+        	 	des = " - administrieren ";
     		
     		if(i == 1 && sprachId == "EN")
-    			des = "- to view as" ;
+    			des = "- to view as " ;
     		if(i == 2 && sprachId == "EN")
-    			des = "- to print as";
+    			des = "- to print as ";
     		if(i == 3 && sprachId == "EN")
-    			des = "- to handle as";
+    			des = "- to handle as ";
     		if(i == 4 && sprachId == "EN")
-    			des = "- to delete as";
+    			des = "- to delete as ";
     		if(i == 4 && sprachId == "EN")
-    			des = "- to adminstration as";
+    			des = "- to adminstration as ";
     		
 		try {
 			dbConn.executeUpdate("insert into "+dbConn.getDbSchema()+".selectoptionen " +
@@ -112,22 +112,54 @@ public class CreateDataSelectOptionen {
     public static synchronized void insertSelectoptionenStatusId(Database dbConn,String nameOfSelectbox,String sprachId,String optionId){
     	String optionValue = "";
     	String optionDescripten = "";
+    	for(int i = 0; i <= 10;i++){
+    		if(i == 0 && sprachId == "DE"){
+    			optionValue = "P";
+    			optionDescripten = " privat ";
+    		}
+    		if(i > 0 && sprachId == "DE"){
+    			optionValue = (new Integer(i).toString());
+    			optionDescripten = optionValue +"-AutorisierungId ";
+    		}
+    		if(i == 0 && sprachId == "EN"){
+    			optionValue = "P";
+    			optionDescripten = " private ";
+    		}
+    		if(i > 0 && sprachId == "EN"){
+        		optionValue = (new Integer(i)).toString();
+        		optionDescripten = optionValue + "-AuthorizationId ";
+    		}
+		try {
+			dbConn.executeUpdate("insert into "+dbConn.getDbSchema()+".selectoptionen " +
+					"values('"+nameOfSelectbox+"','" +sprachId+"','"+optionId+"','"+optionValue+"'," + 
+					"'"+optionDescripten+"',"+
+					"'DV0101'," + "now()," + 
+					"'DV0101'," + "now())");
+		} catch (Exception e) {
+			LoggerHelper.log("CreateDataSelectOptionen", "Exception of insert-SQL", e);
+		}//catch
+    	}//for
+    }//insert
+    
+    public static synchronized void insertSelectoptionenUserStatusId(Database dbConn,String nameOfSelectbox,String sprachId,String optionId){
+    	String optionValue = "";
+    	String optionDescripten = "";
     	for(int i = 1; i <= 2;i++){
     		if(i == 1 && sprachId == "DE"){
     			optionValue = "A";
-    			optionDescripten = " aktiv";
+    			optionDescripten = " aktiv ";
     		}
     		if(i == 2 && sprachId == "DE"){
         		optionValue = "I";
-        		optionDescripten = " inaktiv";
+        		optionDescripten = " inaktiv ";
     		}
     		if(i == 1 && sprachId == "EN"){
     			optionValue = "A";
-    			optionDescripten = " actual";
+    			optionDescripten = " actual ";
     		}
     		if(i == 2 && sprachId == "EN"){
         		optionValue = "I";
-        		optionDescripten = " inactive";
+        		optionDescripten = " inactive ";
     		}
 		try {
 			dbConn.executeUpdate("insert into "+dbConn.getDbSchema()+".selectoptionen " +
@@ -147,11 +179,11 @@ public class CreateDataSelectOptionen {
     	
     	if(sprachId == "DE"){
     		optionValue = "U";
-    		optionDescripten = " Useradresse";
+    		optionDescripten = " Useradresse ";
     	}
     	if(sprachId == "EN"){
     		optionValue = "U";
-    		optionDescripten = " Adress of User";
+    		optionDescripten = " Adress of User ";
     	}
 		try {
 			dbConn.executeUpdate("insert into "+dbConn.getDbSchema()+".selectoptionen " +
@@ -171,19 +203,19 @@ public class CreateDataSelectOptionen {
     	for(int i = 1; i <= 2;i++){
     		if(i == 1 && sprachId == "DE"){
     			optionValue = "DE";
-    			optionDescripten = " deutsch";
+    			optionDescripten = " deutsch ";
     		}
     		if(i == 2 && sprachId == "DE"){
         		optionValue = "EN";
-        		optionDescripten = " englisch";
+        		optionDescripten = " englisch ";
     		}
     		if(i == 1 && sprachId == "EN"){
     			optionValue = "DE";
-    			optionDescripten = " german";
+    			optionDescripten = " german ";
     		}
     		if(i == 2 && sprachId == "EN"){
         		optionValue = "EN";
-        		optionDescripten = " english";
+        		optionDescripten = " english ";
     		}
 		try {
 			dbConn.executeUpdate("insert into "+dbConn.getDbSchema()+".selectoptionen " +
@@ -197,9 +229,23 @@ public class CreateDataSelectOptionen {
     	}//for
     }//insert
     
+    public static synchronized void insertSelectoptionenDokumentTyp(Database dbConn,String nameOfSelectbox,String sprachId,String optionId){
+    	String optionValue = "KA";
+    	String optionDescripten = "[Bitte auswählen] ";
+		try {
+			dbConn.executeUpdate("insert into "+dbConn.getDbSchema()+".selectoptionen " +
+					"values('"+nameOfSelectbox+"','" +sprachId+"','"+optionId+"','"+optionValue+"'," + 
+					"'"+optionDescripten+"',"+
+					"'DV0101'," + "now()," + 
+					"'DV0101'," + "now())");
+		} catch (Exception e) {
+			LoggerHelper.log("CreateDataSelectOptionen", "Exception of insert-SQL", e);
+		}//catch
+    	
+    }//insert
     
     public static void main(String args[]) throws Exception{
-    	dbConn = new Database("mySql","localhost","schemas","kunde","pw"); 
+    	dbConn = new Database("mySql","localhost","selina","web4857","xxx"); 
     	
     	dbConn.getConnection();
     	deleteSelectboxId(dbConn,"PermitId","DE");
@@ -232,18 +278,24 @@ public class CreateDataSelectOptionen {
     	deleteSelectboxId(dbConn,"Status","DE");
     	insertSelectboxId(dbConn,"Status","DE");
     	
-    	deleteSelectoptionenId(dbConn,"Status","DE","A");
-    	deleteSelectoptionenId(dbConn,"Status","DE","I");
-    		insertSelectoptionenStatusId(dbConn,"Status","DE","A");
-    		insertSelectoptionenStatusId(dbConn,"Status","DE","I");
+    	deleteSelectoptionenId(dbConn,"Status","DE","P");
+    		insertSelectoptionenStatusId(dbConn,"Status","DE","P");
     	
+    		for(int id = 1;id <= 10;id++){
+        		deleteSelectoptionenId(dbConn,"Status","DE",id);
+        		insertSelectoptionenStatusId(dbConn,"Status","DE",(new Integer(id).toString()));
+        	}//for
+    		
     	deleteSelectboxId(dbConn,"Status","EN");
     	insertSelectboxId(dbConn,"Status","EN");
     	
-    	deleteSelectoptionenId(dbConn,"Status","EN","A");
-    	deleteSelectoptionenId(dbConn,"Status","EN","I");
-    		insertSelectoptionenStatusId(dbConn,"Status","EN","A");
-    		insertSelectoptionenStatusId(dbConn,"Status","EN","I");
+    	deleteSelectoptionenId(dbConn,"Status","EN","P");
+    		insertSelectoptionenStatusId(dbConn,"Status","EN","P");
+    		
+    		for(int id = 1;id <= 10;id++){
+        		deleteSelectoptionenId(dbConn,"Status","EN",id);
+        		insertSelectoptionenStatusId(dbConn,"Status","EN",(new Integer(id).toString()));
+        	}//for
     	
     	deleteSelectboxId(dbConn,"AdressTyp","DE");
         insertSelectboxId(dbConn,"AdressTyp","DE");
@@ -266,8 +318,34 @@ public class CreateDataSelectOptionen {
         insertSelectboxId(dbConn,"Speech","EN");	
         deleteSelectoptionenId(dbConn,"Speech","EN","EN");
         	insertSelectoptionenSpeech(dbConn,"Speech","EN","EN");
-        		
-    	dbConn.close();
+        
+        //deleteSelectboxId(dbConn,"DokumentTyp","KA");
+        //insertSelectboxId(dbConn,"DokumentTyp","KA");
+        	//deleteSelectoptionenId(dbConn,"DokumentTyp","KA","KA");
+        	//deleteSelectoptionenId(dbConn,"DokumentTyp","KA","KA");
+        	//insertSelectoptionenDokumentTyp(dbConn,"DokumentTyp","KA","KA");
+        
+        /** Selectbox für UserStatus DE */
+        deleteSelectboxId(dbConn,"Status","DE");
+        insertSelectboxId(dbConn,"Status","DE");
+        	
+        /** Selectbox-optionen für UserStatus DE */
+        deleteSelectoptionenId(dbConn,"Status","DE","A");
+        deleteSelectoptionenId(dbConn,"Status","DE","I");
+        	insertSelectoptionenUserStatusId(dbConn,"Status","DE","A");
+        	insertSelectoptionenUserStatusId(dbConn,"Status","DE","I");
+        	
+       	/** Selectbox für UserStatus EN */
+       	deleteSelectboxId(dbConn,"Status","EN");
+       	insertSelectboxId(dbConn,"Status","EN");
+        
+       	/** Selectbox-optionen UserStauts EN */
+       	deleteSelectoptionenId(dbConn,"Status","EN","A");
+       	deleteSelectoptionenId(dbConn,"Status","EN","I");
+       		insertSelectoptionenUserStatusId(dbConn,"Status","EN","A");
+       		insertSelectoptionenUserStatusId(dbConn,"Status","EN","I");	
+    	
+       	dbConn.close();
     	System.out.println("Fertig");
     }//main
     

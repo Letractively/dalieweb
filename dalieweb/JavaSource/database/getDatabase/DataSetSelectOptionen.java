@@ -42,15 +42,15 @@ public class DataSetSelectOptionen {
             allOptionen.addElement(new SelectboxOptionen((Vector) first.elementAt(i)));
         }//for
         	Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".selectoptionen " +
-        	        "where selectbox = '"+nameOfSelectbox+"'" +
-        	        " and sprachId = '"+sprachId+"'"+
-        			" and optionId = '"+optionId+"'" +
-					" and optionValue <> '"+optionId+"'" +
-        			" ORDER BY selectbox, sprachId, optionId, optionValue");
-        	 for(int i = 0;i < rows.size();i++) {
-                 allOptionen.addElement(new SelectboxOptionen((Vector) rows.elementAt(i)));
-             }//for
-             return allOptionen;
+        		"where selectbox = '"+nameOfSelectbox+"'" +
+                " and sprachId = '"+sprachId+"'"+
+        		" and optionId = '"+optionId+"'" +
+				" and optionValue <> '"+optionId+"'" +
+        		" ORDER BY selectbox, sprachId, optionId, optionValue");
+        	for(int i = 0;i < rows.size();i++) {
+                allOptionen.addElement(new SelectboxOptionen((Vector) rows.elementAt(i)));
+        	}//for
+        return allOptionen;
     }//chain
 	
     /**
@@ -66,7 +66,8 @@ public class DataSetSelectOptionen {
      * <ul><li>none</li></ul>
      */
     public static synchronized void insert(Database dbConn,User user,String nameOfSelectbox,String sprachId,SelectboxOptionen option) throws Exception{
-		dbConn.executeUpdate("insert into "+dbConn.getDbSchema()+".selectoptionen " +
+		/* Verwendung: SelinasSession.getTypOfInitialize */
+    	dbConn.executeUpdate("insert into "+dbConn.getDbSchema()+".selectoptionen " +
 				"values('"+nameOfSelectbox+"','" +sprachId+"'," +
 				"'"+option.getOptionId()+"','"+option.getOptionValue()+"'," + 
 				"'"+option.getOptionDescription()+"',"+

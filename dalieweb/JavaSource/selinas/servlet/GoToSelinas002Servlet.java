@@ -69,5 +69,5 @@ public class GoToSelinas002Servlet extends HttpServlet implements Servlet {
 	public String getServletInfo() {
 	    return "navigation of Selinas";
 	}//getServletInfo
-
+	
 }//class GoToSelinas002Servlet

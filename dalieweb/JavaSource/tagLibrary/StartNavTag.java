@@ -4,6 +4,8 @@
  */
 package tagLibrary;
 
+import help.HelpString;
+
 import java.io.IOException;
 import java.util.Vector;
 
@@ -154,9 +156,9 @@ public class StartNavTag extends TagSupport {
      */
 	private String writeDokumentDataToPageContext(Typ typ,String current) {
 		if(typ.getTyp().equalsIgnoreCase(current)){
-			ulli = ulli + "<li class='current'><img src='/dalieweb/bilder/arrow.gif' title='"+show.session.getImage1()+"' alt='"+show.session.getImage1()+"'/>&nbsp;&nbsp;"+ typ.getDescription() + "</li>";
+			ulli = ulli + "<li class='current'><img src='/dalieweb/bilder/arrow.gif' title='"+show.session.getImage1()+"' alt='"+show.session.getImage1()+"'/>&nbsp;&nbsp;"+ HelpString.collapseSpacesWP(typ.getDescription(),19) + "</li>";
 		}else{
-			ulli = ulli + "<li><a href='/dalieweb/GoToStartServlet?selectTyp="+typ.getTyp()+"' title='"/* Selinas:LINK2 Auswahl nach Dokumenttyp */+ show.session.getLink2t() + typ.getDescription()+"' target='_parent'>"+ typ.getDescription() + "</a></li>";
+			ulli = ulli + "<li><a href='/dalieweb/GoToStartServlet?selectTyp="+typ.getTyp()+"' title='"/* Selinas:LINK2 Auswahl nach Dokumenttyp */+ show.session.getLink2t() + typ.getDescription()+"' target='_parent'>"+ HelpString.collapseSpacesWP(typ.getDescription(),19) + "</a></li>";
 		}
 	    return ulli;	
 	}//writeDokumentDataToPageContext

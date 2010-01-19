@@ -26,6 +26,8 @@ public class Link {
     private String pfadOfLink;//upload/11KO12.pdf
     /** nameOfLink = original Name of Uploadfile */
     private String nameOfLink;//senderbelegung
+    /** notizOfLink = erfasste Notizen vom User zum Link */
+    private String notizOfLink; //Seminar Webtechnologien SS 2003 fu-berlin
     /** contentType = application of UploadFile */
     private String contentType;//application/pdf
     /** sizeInBytes = the value of bytes */
@@ -47,14 +49,28 @@ public class Link {
     public Link(Vector columns) throws Exception {       
         this.pfadOfLink = columns.elementAt(5).toString();
         this.nameOfLink = columns.elementAt(6).toString();
-        this.contentType = columns.elementAt(7).toString();
-        this.sizeInBytes = Long.parseLong(columns.elementAt(10).toString());
-        this.applicationsId = Integer.parseInt(columns.elementAt(8).toString());
-        this.createUserId = columns.elementAt(11).toString();
-        this.createDate = HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(12).toString());
-        this.changeUserId = columns.elementAt(13).toString();
-        this.changeDate = HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(14).toString());
+        this.notizOfLink = columns.elementAt(7).toString();
+        this.contentType = columns.elementAt(8).toString();
+        this.applicationsId = Integer.parseInt(columns.elementAt(9).toString());
+        this.sizeInBytes = Long.parseLong(columns.elementAt(11).toString());
+        this.createUserId = columns.elementAt(12).toString();
+        this.createDate = HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(13).toString());
+        this.changeUserId = columns.elementAt(14).toString();
+        this.changeDate = HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(15).toString());
     }//Link
+    
+    /**
+	 * /**
+     * <b>example dateiname.pdf return dateiname</b>
+     * <br>
+     * <br><b>private</b><br>
+	 * @param String nameOfLink
+	 * @return String sting */
+	public String getNameOfLinkUn() {
+		StringBuffer temp = new StringBuffer(this.nameOfLink);
+		temp.delete(this.nameOfLink.lastIndexOf("."), this.nameOfLink.length());
+		return temp.toString();
+	}//getNameOfLinkUn
     
     /**
      * @return Returns the changeDate.
@@ -123,18 +139,6 @@ public class Link {
         return nameOfLink;
     }
     /**
-	 * /**
-     * <b>example dateiname.pdf return dateiname</b>
-     * <br>
-     * <br><b>private</b><br>
-	 * @param String nameOfLink
-	 * @return String sting */
-	public String getNameOfLinkUn() {
-		StringBuffer temp = new StringBuffer(this.nameOfLink);
-		temp.delete(this.nameOfLink.lastIndexOf("."), this.nameOfLink.length());
-		return temp.toString();
-	}//getNameOfLink
-    /**
      * @param nameOfLink The nameOfLink to set.
      */
     public void setNameOfLink(String nameOfLink) {
@@ -176,5 +180,18 @@ public class Link {
 	 */
 	public void setApplicationsId(int applicationsId) {
 		this.applicationsId = applicationsId;
+	}
+	
+	/**
+	 * @return Returns the notizOfLink.
+	 */
+	public String getNotizOfLink() {
+		return notizOfLink;
+	}
+	/**
+	 * @param notizOfLink The notizOfLink to set.
+	 */
+	public void setNotizOfLink(String notizOfLink) {
+		this.notizOfLink = notizOfLink;
 	}
 }//class Link

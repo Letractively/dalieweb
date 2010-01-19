@@ -22,8 +22,6 @@ import database.dateien.User;
 
 public class UserToProcessServlet extends HttpServlet implements Servlet {
 	
-	Database dbConn;
-
 	/** perform for both HTTP <code>GET</code> and <code>POST</code> methods  */
 	protected void perForm(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -32,7 +30,7 @@ public class UserToProcessServlet extends HttpServlet implements Servlet {
 	    SelinasUser selinasuser = (SelinasUser) session.getAttribute("User"); 
 	    User userOfSession = (User)session.getAttribute("ShowUser");
 	    Adresse adresseOfSession = (Adresse)session.getAttribute("Adresse");
-	    dbConn = (Database) session.getAttribute("Database");
+	    Database dbConn = (Database) session.getAttribute("Database");
 	    
 	    try{
 		    RequestDispatcher displogin =  request.getRequestDispatcher("LogOnCheck");
@@ -75,7 +73,6 @@ public class UserToProcessServlet extends HttpServlet implements Servlet {
 		 				session.setAttribute("Adresse", show.getAdressOfRequest(adresseOfSession,request));//SessionAttribut:AdressOfRequest
 		 				performForward("/selinas/selinas030.jsp",request,response);
 		 			}else{//Fehler: not found
-		 				dbConn.getConnection();
 		 				session.setAttribute("ShowUser", show.getUserOfUpdate(dbConn,selinasuser.user,userOfSession,request));//SessionAttribut:AdressOfUpdate
 		 				session.setAttribute("Adresse", show.getAdressOfUpdate(dbConn,selinasuser.user,adresseOfSession,request));//SessionAttribut:AdressOfUpdate
 		 				performForward("/selinas/selinas030.jsp",request,response);
@@ -124,16 +121,7 @@ public class UserToProcessServlet extends HttpServlet implements Servlet {
 	
 	/**@return a short description of this Servlet */
 	public String getServletInfo() {
-	    return "Manipulation on Database: DataTable user ";
+	    return this.getClass().getName() +"User: update/insert/delete ";
 	}//getServletInfo
-	
-	/** finally method */
-	public void destroy(){
-	    try {
-	        dbConn.close();//DatabaseConnection close
-	    } catch (Exception e) {
-	        LoggerHelper.log(this.getClass().getName(), "Exception of destroy LoginServlet", e);
-	    }//catch
-	}//destroy
 	
 }//class UserToProcessServlet

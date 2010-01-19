@@ -40,7 +40,7 @@ public class CreateDataSelinas1 {
 				
 				"'User <span style=\"text-decoration:underline\">l</span>öschen'," +//Button14
 				"'User <span style=\"text-decoration:underline\">a</span>nlegen'," +//Button15
-				"'Button16'," +//Button16
+				"'Adresse <span style=\"text-decoration:underline\">a</span>nlegen'," +//Button16
 				"'Button17'," +//Button17
 				"'Button18'," +//Button18
 				"'Button19'," +//Button19
@@ -56,8 +56,8 @@ public class CreateDataSelinas1 {
 				"'Land',"+//land
 				"'Autorisierungsstufe',"+//userAppId
 				"'Dokumentsicherheit',"+//dokumentPermitId
-				"'Adresse gehört zu:')"//userAdressId
-				);
+				"'Adresse gehört zu:',"+//Bezeichnung für Bezug zur Adresse
+				"'[Bitte auswählen]')");
 		} catch (Exception e) {
 			System.out.println(this.getClass().getName()+".insertSelina1DE:" + e);
 		}//catch
@@ -73,7 +73,7 @@ public class CreateDataSelinas1 {
 				
 				"'User <span style=\"text-decoration:underline\">d</span>elet'," +//Button14
 				"'User <span style=\"text-decoration:underline\">c</span>reatin'," +//Button15
-				"'Button16'," +//Button16
+				"'Contact <span style=\"text-decoration:underline\">c</span>reate'," +//Button16
 				"'Button17'," +//Button17
 				"'Button18'," +//Button18
 				"'Button19'," +//Button19
@@ -89,15 +89,15 @@ public class CreateDataSelinas1 {
 				"'contry',"+//land
 				"'Authorization-Id',"+//userAppId
 				"'Document Security Id',"+//dokumentPermitId
-				"'Address belongs:')"//userAdressId
-				);
+				"'Address belongs to',"+//userAdressId
+				"'[Please select]')");
 		} catch (Exception e) {
 			System.out.println(this.getClass().getName()+".insertSelina1EN:" + e);
 		}//catch
 	}//insertSelinas1DE
 	
 	 public static void main(String args[]) throws Exception{
-	 	Database dbConn = new Database("mySql","localhost","schemas","kunde","pw");
+	 	Database dbConn = new Database("mySql","localhost","selina","web4857","xxx");
     	
 	 	CreateDataSelinas1 selinas = new CreateDataSelinas1();
     	

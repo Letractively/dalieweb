@@ -22,16 +22,16 @@ public class CreateTableSelectbox {
 		try {
 			dbConn.executeUpdate(
 				"CREATE TABLE "+dbConn.getDbSchema()+".selectbox( " +
-					"kundenId int NOT NULL COMMENT 'Kunden Id'," +
-					"standortId int NOT NULL COMMENT 'Standort Id'," +
-					"selectbox char(15) NOT NULL COMMENT 'Selectbox Name'," +
-					"sprachId char(2) NOT NULL COMMENT 'Sprach Id'," +
+					"kundenId int NOT NULL COMMENT '0 Kunden Id'," +
+					"standortId int NOT NULL COMMENT '1 Standort Id'," +
+					"selectbox char(15) NOT NULL COMMENT '2 Selectbox Name'," +
+					"sprachId char(2) NOT NULL COMMENT '3 Sprach Id'," +
 					
-					"createUser char(10) NOT NULL COMMENT 'Erstell USER'," +
-					"createDate DATETIME NOT NULL COMMENT 'Erstell Datum'," +
-					"changeUser char(10) NOT NULL COMMENT 'Aenderungs USER'," + 
-					"changeDate DATETIME NOT NULL COMMENT 'Aenderungs Datum'," + 
-					"PRIMARY KEY (kundenId,standortId,selectbox,sprachId))" +
+					"createUser char(10) NOT NULL COMMENT '4 Erstell USER'," +
+					"createDate DATETIME NOT NULL COMMENT '5 Erstell Datum'," +
+					"changeUser char(10) NOT NULL COMMENT '6 Aenderungs USER'," + 
+					"changeDate DATETIME NOT NULL COMMENT '7 Aenderungs Datum'," + 
+					"PRIMARY KEY (kundenId,standortId,selectbox,sprachId)" +
 					")ENGINE = myisam CHARACTER SET latin1 COLLATE latin1_german1_ci COMMENT = 'Selectbox'");
 		} catch (Exception e) {
 			LoggerHelper.log(this.getClass().getName(),"createTableSelectbox:", e);
@@ -40,8 +40,8 @@ public class CreateTableSelectbox {
 	}//createTableSelectbox
 	
 	public static void main(String args[]) throws Exception{
-		Database dbConn = new Database("mySql","localhost","schemas","kunde","pw");
-    	
+		Database dbConn = new Database("mySql","localhost","selina","web4857","xxx");
+		
     	CreateTableSelectbox selectbox = new CreateTableSelectbox();
     	CreateTableSelectOptionen selectoptionen = new CreateTableSelectOptionen();
     	dbConn.getConnection();

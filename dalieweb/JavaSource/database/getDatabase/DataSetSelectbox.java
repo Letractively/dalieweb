@@ -4,6 +4,7 @@ import java.util.Vector;
 
 import database.Database;
 import database.dateien.Selectbox;
+import database.dateien.User;
 
 public class DataSetSelectbox {
     
@@ -27,14 +28,49 @@ public class DataSetSelectbox {
      * <option value='QMH'>QM Handbuch</option><option value='VA'>Verfahrensanweisung</option></select>
      * </li></ul>
      */
-    public static synchronized Selectbox chain(Database dbConn,int kundenId, int standortId, String nameOfSelectbox,String keyOption) throws Exception {
-        	Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".selectbox " +
-        	        "where kundenId = "+kundenId+" " +
-        			"and standortId = "+standortId+" " +
-        			"and sprachId = 'DE' " +
-        			"and selectbox = '"+nameOfSelectbox+"'");
-            return new Selectbox(dbConn,(Vector)rows.elementAt(0),keyOption);
+    public static synchronized Selectbox chain(Database dbConn,int kundenId, 
+    	int standortId, String nameOfSelectbox,
+			String sprachId,String keyOption) throws Exception {
+    	
+    	Vector rows = null;
+    	if(sprachId.equalsIgnoreCase("KA")){
+    		rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".selectbox " +
+        	        "where kundenId = "+kundenId +
+        			" and standortId = "+standortId +
+        			" and sprachId = 'KA'" +
+        			" and selectbox = '"+nameOfSelectbox+"'");
+    	} else {
+    		rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".selectbox " +
+            	        "where kundenId = "+kundenId +
+            			" and standortId = "+standortId +
+            			" and sprachId = '"+sprachId+"'" +
+            			" and selectbox = '"+nameOfSelectbox+"'");
+    	}//endif
+       return new Selectbox(dbConn,(Vector)rows.elementAt(0),keyOption);
     }//chain
     
+    public static synchronized Selectbox chain(Database dbConn,int kundenId, 
+        	int standortId, String nameOfSelectbox, String sprachId) throws Exception {
+    	/* Verwendung: LogOnSelinaInializeServlet() */
+    	Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".selectbox " +
+    	        "where kundenId = "+kundenId +
+    			" and standortId = "+standortId +
+    			" and sprachId = '"+sprachId+"'" +
+    			" and selectbox = '"+nameOfSelectbox+"'");
+        	 if(rows.size() == 0)
+        	    throw new Exception("Record not Found");
+        	 return new Selectbox(dbConn,(Vector)rows.elementAt(0),sprachId);
+        }//chain
+    
+    public static synchronized void insert(Database dbConn,User user, 
+    		String nameOfSelectbox, String sprachId ) throws Exception {
+    		/* Verwendung: LogOnSelinaInializeServlet() */
+    		dbConn.executeUpdate("insert into "+dbConn.getDbSchema()+".selectbox " +
+    				"values("+user.getKundenId()+"," +user.getStandortId()+"," +
+    				"'"+nameOfSelectbox+"','"+sprachId+"'," +
+    				"'"+user.getUserId()+"'," +
+    				"now()," + "'"+user.getUserId()+"'," + "now())");
+        }//insert
+        
 }//class Selectbox
 

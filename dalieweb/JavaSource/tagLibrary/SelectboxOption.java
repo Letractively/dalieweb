@@ -14,17 +14,19 @@ import database.getDatabase.DataSetSelectbox;
 import selinas.SelinasUser;
 
 /**
+ * create a select box for status documents.
+ * 
  * @author dv0101 am 09.01.2009 um 21:08:04
  *
  * SelectboxOption.java
  * 
  */
-
 public class SelectboxOption extends TagSupport{
     
    protected String optionen = "";
    private Database dbConn;
    private SelinasUser selinasuser;
+   private Selectbox selectbox;
     
    /** FB = Feldbegrenzer z.B "DV0101" */
    public String FB = "\"";//wird als " interpretiert 
@@ -42,7 +44,8 @@ public class SelectboxOption extends TagSupport{
    private String argument = "KA";
    /** HTML-Attribute: ccs*/
    private String ccsStyle="";
-    
+   /** SprachKey */
+   private String language;
     
    /**
      * <b> create HTML-Tag selectBox </b>
@@ -68,25 +71,37 @@ public class SelectboxOption extends TagSupport{
                 dbConn = (Database) session.getAttribute("Database");
                 if (session.getAttribute("User") != null) {
                 	 selinasuser = (SelinasUser) session.getAttribute("User");
-                    
-                	 if(session.getAttribute("PermitId") != null)    
-                	 	userPermitId = (String)session.getAttribute("PermitId");
-            
-                    try {
-                        dbConn.getConnection();
-                        optionen = "";
-                        Selectbox selectbox = DataSetSelectbox.chain(dbConn, selinasuser.user.getSelinasId(),selinasuser.user.getSelinasStandortId(),name, argument);
-                        for (int i = 0; i < selectbox.optionen.size(); i++) {
-                            SelectboxOptionen sbo = (SelectboxOptionen) selectbox.optionen.elementAt(i);
-                            optionen = optionen + "<option value='"+ sbo.getOptionValue() + 
+                	 if(session.getAttribute("Speech") != null){
+                	 	language = (String)session.getAttribute("Speech");
+                	 	
+                	 	if(session.getAttribute("PermitId") != null)    
+                	 		userPermitId = (String)session.getAttribute("PermitId");
+           
+                	 	try {
+                	 		dbConn.getConnection();
+                	 		optionen = "";
+                	 		if(argument.equalsIgnoreCase("KA")){
+                	 			selectbox = DataSetSelectbox.chain(dbConn, selinasuser.user.getKundenId(),selinasuser.user.getStandortId(),name+selinasuser.user.getKundenId()+selinasuser.user.getStandortId(), "KA",argument);
+                	 		}else{
+                	 			selectbox = DataSetSelectbox.chain(dbConn, selinasuser.user.getSelinasId(),selinasuser.user.getSelinasStandortId(),name, language,argument);
+                	 		}//endif
+                	 		for (int i = 0; i < selectbox.optionen.size(); i++) {
+                	 			SelectboxOptionen sbo = (SelectboxOptionen) selectbox.optionen.elementAt(i);
+                	 			optionen = optionen + "<option value='"+ sbo.getOptionValue() + 
                                     "'class='"+ ccsStyle + "'>"
                                     + sbo.getOptionDescription() + "</option>";
-                        }//for
-                        dbConn.close();
-                    } catch (Exception e) {
-                        throw new JspException("Selectbox object "
+                	 		}//for
+                	 		dbConn.close();
+                	 		} catch (Exception e) {
+                	 			throw new JspException("Selectbox object "
+                	 					+ " has not the valid type");
+                	 		}//Selectbox.chain
+                    
+                	 } else {
+                        throw new JspException("Speech object in session "
+                                + session.getAttribute("Speech")
                                 + " has not the valid type");
-                    }//Selectbox.chain
+                    }//session.getAttribute("User")
                 } else {
                     throw new JspException("User object in session "
                             + session.getAttribute("User")
@@ -134,6 +149,7 @@ public class SelectboxOption extends TagSupport{
     optionen = null;
     name = null;
     ccsStyle = null;
+    language = null;
     id = null;
     permitId = null;
 	tabindex = null;

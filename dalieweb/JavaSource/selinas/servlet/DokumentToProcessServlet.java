@@ -88,6 +88,7 @@ public class DokumentToProcessServlet extends HttpServlet implements Servlet {
 			 	 					session.setAttribute("Dokument", show.getDokumentOfRequest(dokumentOfSession,request));//SessionAttribut:DokumentOfInitialization
 			 	 					performForward("/selinas/selinas004.jsp",request,response);
 			 	 				}else{
+			 	 					session.setAttribute("Modus","update");/* beenden button on */
 			 	 					session.setAttribute("Dokument", show.getDokumentOfUpdate(dbConn,selinasuser.user,dokumentOfSession,request));//SessionAttribut:DokumentOfInitialization
 			 	 					performForward("/selinas/selinas004.jsp",request,response);
 			 	 				}//endif error.equals

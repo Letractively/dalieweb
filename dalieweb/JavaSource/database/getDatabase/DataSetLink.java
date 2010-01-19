@@ -64,7 +64,7 @@ public class DataSetLink {
     public static synchronized Link chain(Database dbConn,Dokument dokument,int applicationsId) throws Exception {
 		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokumentlinks " +
 				"where kundenId = " + dokument.getKundenId() + " and standortId = " + dokument.getStandortId() +
-				" and dokumentTyp = '"+ dokument.getDokumentTyp()+ "'" + " and dokumentNr = "+ dokument.getNummer() + 
+				" and dokumentTyp = '"+ dokument.getTyp()+ "'" + " and dokumentNr = "+ dokument.getNummer() + 
 				" and dokumentId = "+ dokument.getId() + " and applicationsId = " + applicationsId + 
 				" ORDER BY dokumentTyp, dokumentNr, dokumentId, nameOfLink, createDate desc");
 		if(rows.size() == 0)
@@ -122,7 +122,7 @@ public class DataSetLink {
         Vector liste = new Vector();
 		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokumentlinks " +
 				"where kundenId = " + dokument.getKundenId() + " and standortId = " + dokument.getStandortId() +
-				" and dokumentTyp = '"+ dokument.getDokumentTyp()+ "'" + " and dokumentNr = "+ dokument.getNummer() + " and dokumentId = "+ dokument.getId() + 
+				" and dokumentTyp = '"+ dokument.getTyp()+ "'" + " and dokumentNr = "+ dokument.getNummer() + " and dokumentId = "+ dokument.getId() + 
 				" ORDER BY dokumentTyp, dokumentNr, dokumentId, nameOfLink, createDate desc");
 		if(rows.size() == 0)
     	    throw new Exception("Record not Found");
@@ -145,10 +145,34 @@ public class DataSetLink {
      * @return
      * <ul><li>none</li></ul>
      */
+    public static synchronized void update(Database dbConn, User user, Dokument dokument,Link link) throws Exception {
+        /* Verwendung: SelinasSession.getDokumentLinkOfUpdate */
+    	dbConn.executeUpdate("update "+dbConn.getDbSchema()+".dokumentlinks" +
+        		" set notizOfLink = '"+link.getNotizOfLink()+"'," +
+        		 " changeUser = '"+user.getUserId()+"'," + " changeDate = now() " +
+        		 " where kundenId = "+ dokument.getKundenId() + " and standortId = "+dokument.getStandortId()+
+	             " and dokumentTyp = '"+dokument.getTyp() + "'" + " and dokumentNr = "+dokument.getNummer() +
+	             " and dokumentId = "+ dokument.getId() +
+				 " and applicationsId = " + link.getApplicationsId());
+    }//update
+    
+    /**
+     * <b>delete DokumentLinks on Datenbank </b>
+     * <br><b>delete:Key User, Dokument </b>
+     * <br><b>public</b><br>
+     * @param
+     * <ul>	
+     * <li>Database dbConn</li>
+     * <li>User user</li>
+     * <li>Dokument dokument</li>
+     * </ul>
+     * @return
+     * <ul><li>none</li></ul>
+     */
     public static synchronized void delete(Database dbConn, Dokument dokument) throws Exception {
         dbConn.executeUpdate("delete from "+dbConn.getDbSchema()+".dokumentlinks" +
         		 " where kundenId = "+ dokument.getKundenId() + " and standortId = "+dokument.getStandortId()+
-	             " and dokumentTyp = '"+dokument.getDokumentTyp() + "'" + " and dokumentNr = "+dokument.getNummer() +
+	             " and dokumentTyp = '"+dokument.getTyp() + "'" + " and dokumentNr = "+dokument.getNummer() +
 	             " and dokumentId = "+ dokument.getId() );
     }//delete
     /**
@@ -167,7 +191,7 @@ public class DataSetLink {
     public static synchronized void delete(Database dbConn, Dokument dokument, int applicationsId) throws Exception {
         dbConn.executeUpdate("delete from "+dbConn.getDbSchema()+".dokumentlinks" +
         		 " where kundenId = "+ dokument.getKundenId() + " and standortId = "+dokument.getStandortId()+
-	             " and dokumentTyp = '"+dokument.getDokumentTyp() + "'" + " and dokumentNr = "+dokument.getNummer() +
+	             " and dokumentTyp = '"+dokument.getTyp() + "'" + " and dokumentNr = "+dokument.getNummer() +
 	             " and dokumentId = "+ dokument.getId() +
 				 " and applicationsId = " + applicationsId );
     }//delete
@@ -191,7 +215,7 @@ public class DataSetLink {
         Vector liste = new Vector();
 		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokumentlinks " +
 				"where kundenId = " + dokument.getKundenId() + " and standortId = " + dokument.getStandortId() +
-				" and dokumentTyp = '"+ dokument.getDokumentTyp()+ "'" + " and dokumentNr = "+ dokument.getNummer() + " and dokumentId = "+ dokument.getId() + 
+				" and dokumentTyp = '"+ dokument.getTyp()+ "'" + " and dokumentNr = "+ dokument.getNummer() + " and dokumentId = "+ dokument.getId() + 
 				" ORDER BY "+valueOf(oderBy)+"");
 		if(rows.size() == 0)
     	    throw new Exception("Record not Found");
@@ -216,8 +240,8 @@ public class DataSetLink {
     public static synchronized void insert(Database dbConn, Dokument dokument,Link link ,User user) throws Exception{
         dbConn.executeUpdate("insert into "+dbConn.getDbSchema()+".dokumentlinks " +
                 "values(" + dokument.getKundenId()+ "," + dokument.getStandortId()+ "," +
-                "'"+dokument.getDokumentTyp()+"'," + dokument.getNummer()+ "," + dokument.getId()+ "," +
-                "'"+link.getPfadOfLink()+"'," + "'"+link.getNameOfLink()+"'," +
+                "'"+dokument.getTyp()+"'," + dokument.getNummer()+ "," + dokument.getId()+ "," +
+                "'"+link.getPfadOfLink()+"'," + "'"+link.getNameOfLink()+"',''," +
                 "'"+link.getContentType()+"',"+ link.getApplicationsId()+","+
                 "'applicationspfad'" + "," + link.getSizeInBytes()+"," +
                 "'"+user.getUserId()+"'," + "now()," + "'"+user.getUserId()+"'," + "now())");

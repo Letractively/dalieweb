@@ -40,7 +40,7 @@ public class GoToSelinas003Servlet extends HttpServlet implements Servlet {
  		   performForward(nextPage,request,response);//Login 
      	}//catch ServletException
 		
-	 	try{
+	 	try{ 
 	 		session.setAttribute("Dokument", show.getDokumentOfDatabase(dbConn,selinasuser.user,dokumentOfSession));//SessionAttribut:DokumentOfDatabase
 	 		
 	 		if(request.getParameter("upLoadOn")!= null){//Button: Download zeigen
@@ -66,7 +66,7 @@ public class GoToSelinas003Servlet extends HttpServlet implements Servlet {
 	 				session.setAttribute("LinkOrderByTyp",lastLinkOrderByTyp);//SessionAttribut:sort by Link
 	 			}else{
 	 				session.setAttribute("LinkOrderByTyp",currentLinkOrderByTyp);//SessionAttribut:sort by Link
-	 			}//endif
+	 			}//endif 
 	 		}//endif
 	 		
 	 		if(request.getParameter("back") != null)//Button:back 
@@ -105,5 +105,5 @@ public class GoToSelinas003Servlet extends HttpServlet implements Servlet {
 	public String getServletInfo() {
 	    return "navigation of Selinas";
 	}//getServletInfo
-
+	
 }//class GoToSelinas003Servlet

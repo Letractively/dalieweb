@@ -16,12 +16,11 @@ import javax.servlet.http.HttpSession;
 import selinas.SelinasUser;
 import selinas.bean.SelinasSession;
 import database.Database;
+import database.dateien.Adresse;
 import database.dateien.Selinas;
 
 public class AdressToRequestServlet extends HttpServlet implements Servlet {
 	/* Aufruf der Adressverwaltung */
-	
-	Database dbConn;
 	
 	/** perform for both HTTP <code>GET</code> and <code>POST</code> methods  */
 	protected void perForm(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
@@ -30,7 +29,7 @@ public class AdressToRequestServlet extends HttpServlet implements Servlet {
 	     String nextPage = "/selinas/selinas001.jsp";
 	     SelinasSession show = new SelinasSession((Selinas) session.getAttribute("Selinas")); 
 	     SelinasUser selinasuser = (SelinasUser) session.getAttribute("User");
-	     dbConn = (Database) session.getAttribute("Database");
+	     Database dbConn = (Database) session.getAttribute("Database");
 		 try {
 		     RequestDispatcher displogin =  request.getRequestDispatcher("LogOnCheck");
 	     	 displogin.include(request, response);
@@ -38,10 +37,11 @@ public class AdressToRequestServlet extends HttpServlet implements Servlet {
 		    performForward(nextPage,request,response);//Login 
 	     }//catch ServletException
 		    
-		 try{
-		 	dbConn.getConnection();
-		 	session.setAttribute("Adresse", show.getAdressOfDatabase(dbConn,selinasuser.user));//SessionAttribut:AdressOfDatabase
-	        performForward("/selinas/selinas005.jsp", request, response);//JSP- Seite zum Verwalten
+		 try{ 
+		 	Adresse adressOfSession = show.getAdressOfDatabase(dbConn,request);
+		 	session.setAttribute("Adresse", adressOfSession);//SessionAttribut:AdressOfDatabase
+		 	session.setAttribute("AdressUser", show.getUserOfDatabase(dbConn,adressOfSession.getUserId()));
+	        performForward("/selinas/selinas020.jsp", request, response);//JSP- Seite zum Verwalten
 		 } catch (Exception e) {
 		 	LoggerHelper.log(this.getClass().getName(), "Exception of perForm getAdressOfDatabase", e);
 		 	performForward(nextPage, request, response);
@@ -69,15 +69,7 @@ public class AdressToRequestServlet extends HttpServlet implements Servlet {
 	
 	/**@return a short description of this Servlet */
 	public String getServletInfo() {
-	    return "work with UserBean Selinas";
+	    return  this.getClass().getName() + "get Adress from Database and Load to SessionAttribute";
 	}//getServletInfo
 	
-	/** finally method */
-	public void destroy(){
-	    try {
-	        dbConn.close();//DatabaseConnection close
-	    } catch (Exception e) {
-	        LoggerHelper.log(this.getClass().getName(), "Exception of destroy LoginServlet", e);
-	    }//catch
-	}//destroy
 }//class AdressToRequestServlet

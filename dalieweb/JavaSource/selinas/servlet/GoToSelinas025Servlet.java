@@ -56,7 +56,7 @@ public class GoToSelinas025Servlet extends HttpServlet implements Servlet {
 	 			}//endif
 	 		}//endif
 	 		
-	 		performForward("/selinas/selinas025.jsp",request,response);//show Page selinas003.jsp 			
+	 		performForward("/selinas/selinas025.jsp",request,response);//show Page selinas025.jsp -> Anzeige Dokumenttypverwaltung 			
 	 	}catch (Exception e) {
 	 		LoggerHelper.log(this.getClass().getName(), "Exception of perForm:", e);
 	 		performForward(nextPage,request,response);//Login 

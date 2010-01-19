@@ -4,6 +4,8 @@
  */
 package tagLibrary;
 
+import help.HelpString;
+
 import java.io.IOException;
 import java.util.Vector;
 
@@ -19,7 +21,7 @@ import database.dateien.Selinas;
 import database.dateien.Typ;
 import database.getDatabase.DataSetDokument;
 import database.getDatabase.DataSetTyp;
-import selinas.ColumHeader;
+import selinas.table.Selinas002H;
 import selinas.SelinasUser;
 import selinas.bean.SelinasSession;
 
@@ -77,7 +79,7 @@ public class DokumentDataTag extends TagSupport {
 							    + writeDokumentDataToPageContext(DataSetDokument.readeO(dbConn, selinasuser.user,orderByTyp)));
                         }else{
                         	out.println("<table width='100%' border='0' cellspacing='0' cellpadding='0' class="+ FB+ tableTagClass + FB+ ">"
-                        		+ writeDokumentHeaderToPageContext(ColumHeader.valueOf("4",language))
+                        		+ writeDokumentHeaderToPageContext(Selinas002H.valueOf("1",language,orderByTyp))
                                 + writeDokumentDataToPageContextTyp(DataSetDokument.reade(dbConn, selinasuser.user,(String)session.getAttribute("SelectTyp"),orderByTyp)));	
                         }//endif
                         dbConn.close();
@@ -145,9 +147,9 @@ public class DokumentDataTag extends TagSupport {
 			Typ dokumentTyp = DataSetTyp.chain(dbConn,data);
 			tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +
 					"<td width='15%'>" + dokumentTyp.getDescription() +"</td>" +
-					"<td width='5%'><a href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" title='"+show.session.getLink2() + data.getTitel()+" ' target='_parent' class='link'>" + data.getNummer()+"."+ data.getId() +"</a></td>" +
-					"<td width='20%'>" + collapseSpaces(data.getTitel()) +"</td>" +
-					"<td width='25%'>" + data.getDescripten() + "</td>" +
+					"<td width='5%'><a href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" title='"+show.session.getLink2() + data.getTitel()+" ' target='_parent' class='link'>" + data.getNummer()+"."+ data.getId() +"</a></td>" +
+					"<td width='20%'>" + HelpString.collapseSpaces(data.getTitel()) +"</td>" +
+					"<td width='25%'>" + HelpString.collapseSpaces(data.getDescripten(),32) + "</td>" +
 					"<td width='5%'>" + data.getGliederung() +"</td>" +
 					"<td width='15%'>" + data.getCreateUser() +"<br />"+  data.getCreateDate() +"</td>" +
 					"<td width='15%'>" + data.getChangeUser() +"<br />"+  data.getChangeDate() +"</td>" +
@@ -163,8 +165,8 @@ public class DokumentDataTag extends TagSupport {
 			Dokument data  = ((Dokument)dokumente.elementAt(i));
 			tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +
 				"<td width='10%'>" + data.getNummer()+"."+ data.getId() +"</td>" +
-				"<td width='20%'><a href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" title='" +show.session.getLink2() + data.getTitel()+" ' target='_parent' class='link'>" + collapseSpaces(data.getTitel())+"</a></td>" +
-				"<td width='30%'>" + data.getDescripten() + "</td>" +
+				"<td width='20%'><a href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" title='" +show.session.getLink2() + data.getTitel()+" ' target='_parent' class='link'>" + HelpString.collapseSpaces(data.getTitel())+"</a></td>" +
+				"<td width='30%'>" + HelpString.collapseSpaces(data.getDescripten(),32) + "</td>" +
 				"<td width='10%'>" + data.getGliederung() +"</td>" +
 				"<td width='15%'>" + data.getCreateUser() +"<br />"+  data.getCreateDate() +"</td>" +
 				"<td width='15%'>" + data.getChangeUser() +"<br />"+  data.getChangeDate() +"</td>" +
@@ -172,24 +174,6 @@ public class DokumentDataTag extends TagSupport {
 		}//for	
 	    return tableTRTD;	
 	}//writeDokumentDataToPageContext
-	
-	/**
-	 * Remove spaces.
-	 *
-	 * @param argStr string to remove over spaces from.
-	 * @return String
-	 */
-	private String collapseSpaces(String argStr){
-		if(argStr.length() > 25){
-			StringBuffer argBuf = new StringBuffer();
-			for (int cIdx = 0 ; cIdx < 20; cIdx++){
-	            argBuf.append(argStr.charAt(cIdx));
-			}//for
-			return argBuf.toString();
-		}else{
-			return argStr;
-		}//endif
-	}//collapseSpaces
 	
 	/** To find the internal state */
     public void release() {
