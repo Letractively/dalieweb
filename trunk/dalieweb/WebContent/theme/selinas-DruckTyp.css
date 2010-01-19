@@ -1,0 +1,76 @@
+@CHARSET "ISO-8859-1";
+/* 
+Basisvorlage CCS
+
+Projekt.........: www.dalieweb.de
+FileName........: selinas-DruckTyp.css
+Start...........: 01.05.2009
+Letzte Aenderung: 00.00.20xx
+
+*/
+body {
+	background: white;
+	font-size: 12pt;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000;
+}
+#pageHeader,
+#pageMenu,
+#pageFooter,
+#header,
+#navigation,
+#logOFF,
+#contentRight, 
+#footer {
+	display: none;
+}
+
+#wrapper {
+	width: auto;
+	margin: 0 5%;
+	padding: 0;
+	border: 0;
+	float: none !important;
+	color: #000;
+	background: transparent none;
+	height: 38em;
+}
+#wrapper td {
+	text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	padding-top: 2pt;
+	padding-bottom: 2pt;
+}
+
+h1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20pt;
+	font-weight: normal;
+}
+
+h2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18pt;
+	font-weight: normal;
+}
+
+h3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16pt;
+	font-weight: normal;
+}
+
+h4 {
+	font-size: 14pt;
+}
+
+p, ul {
+	font-size: 12pt;
+	line-height: 14pt;
+}
+textarea, input[type=text] {
+	border: none;
+	border-bottom: 2px #000 dashed;
+}
