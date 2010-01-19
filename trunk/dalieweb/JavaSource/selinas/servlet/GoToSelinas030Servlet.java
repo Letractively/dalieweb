@@ -43,8 +43,9 @@ public class GoToSelinas030Servlet extends HttpServlet implements Servlet {
 	 		/* Hier wird der angemeldete User ermittelt
 	 		 * wird ein Satz gefunden, wird dieser dann gleich zur Verwaltung angezeigt.  */
 	 		session.setAttribute("ShowUser",show.getUserOfDatabase(dbConn,selinasuser.user));//SessionAttribut:UserOfDatabase
-	 		
-	 		
+	 		/* SessionAttribut: UserAdresse des aktiv angemeldeten User's  */
+     		session.setAttribute("Adresse", show.getAdressOfDatabase(dbConn,selinasuser.user));//SessionAttribut:AdressOfDatabase
+     		
 	 		if(request.getParameter("userOrderByTyp")!= null){//Table-Typ:sort by Typ
 	 			if(lastUserOrderByTyp.equalsIgnoreCase(currentUserOrderByTyp)){
 	 				lastUserOrderByTyp = lastUserOrderByTyp + "D";
@@ -54,7 +55,7 @@ public class GoToSelinas030Servlet extends HttpServlet implements Servlet {
 	 			}//endif
 	 		}//endif
 	 		
-	 		performForward("/selinas/selinas030.jsp",request,response);//show Page selinas003.jsp 			
+	 		performForward("/selinas/selinas030.jsp",request,response);//show Page selinas030.jsp Userverwaltung 			
 	 	}catch (Exception e) {
 	 		LoggerHelper.log(this.getClass().getName(), "Exception of perForm:", e);
 	 		performForward(nextPage,request,response);//Login 

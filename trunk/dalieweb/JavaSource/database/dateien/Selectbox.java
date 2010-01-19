@@ -66,4 +66,112 @@ public class Selectbox {
     }//Selectbox
     
     
+	/**
+	 * @return Returns the changeDate.
+	 */
+	public String getChangeDate() {
+		return changeDate;
+	}
+	/**
+	 * @param changeDate The changeDate to set.
+	 */
+	public void setChangeDate(String changeDate) {
+		this.changeDate = changeDate;
+	}
+	/**
+	 * @return Returns the changeUserId.
+	 */
+	public String getChangeUserId() {
+		return changeUserId;
+	}
+	/**
+	 * @param changeUserId The changeUserId to set.
+	 */
+	public void setChangeUserId(String changeUserId) {
+		this.changeUserId = changeUserId;
+	}
+	/**
+	 * @return Returns the createDate.
+	 */
+	public String getCreateDate() {
+		return createDate;
+	}
+	/**
+	 * @param createDate The createDate to set.
+	 */
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
+	/**
+	 * @return Returns the createUserId.
+	 */
+	public String getCreateUserId() {
+		return createUserId;
+	}
+	/**
+	 * @param createUserId The createUserId to set.
+	 */
+	public void setCreateUserId(String createUserId) {
+		this.createUserId = createUserId;
+	}
+	/**
+	 * @return Returns the kundenId.
+	 */
+	public int getKundenId() {
+		return kundenId;
+	}
+	/**
+	 * @param kundenId The kundenId to set.
+	 */
+	public void setKundenId(int kundenId) {
+		this.kundenId = kundenId;
+	}
+	/**
+	 * @return Returns the optionen.
+	 */
+	public Vector getOptionen() {
+		return optionen;
+	}
+	/**
+	 * @param optionen The optionen to set.
+	 */
+	public void setOptionen(Vector optionen) {
+		this.optionen = optionen;
+	}
+	/**
+	 * @return Returns the selectbox.
+	 */
+	public String getSelectbox() {
+		return selectbox;
+	}
+	/**
+	 * @param selectbox The selectbox to set.
+	 */
+	public void setSelectbox(String selectbox) {
+		this.selectbox = selectbox;
+	}
+	/**
+	 * @return Returns the sprachId.
+	 */
+	public String getSprachId() {
+		return sprachId;
+	}
+	/**
+	 * @param sprachId The sprachId to set.
+	 */
+	public void setSprachId(String sprachId) {
+		this.sprachId = sprachId;
+	}
+	/**
+	 * @return Returns the standortId.
+	 */
+	public int getStandortId() {
+		return standortId;
+	}
+	/**
+	 * @param standortId The standortId to set.
+	 */
+	public void setStandortId(int standortId) {
+		this.standortId = standortId;
+	}
 }//class Selectbox

@@ -4,6 +4,8 @@
  */
 package tagLibrary;
 
+import help.HelpString;
+
 import java.io.IOException;
 import java.util.Vector;
 
@@ -70,7 +72,7 @@ public class DokumentTypTag extends TagSupport{
                         dbConn.getConnection();
                         out.println("<table cellspacing='0' cellpadding='0' width='100%' class="+ FB+ tableTagClass + FB+ ">"                       		
                         		+ writeDokumentHeaderToPageContext(columnHeader)
-                                + writeDokumentDataToPageContext(DataSetDokument.reade(dbConn, selinasuser.user,dokumentOfSession.getDokumentTyp(),dokumentOfSession.getNummer(),orderByTyp)));
+                                + writeDokumentDataToPageContext(DataSetDokument.reade(dbConn, selinasuser.user,dokumentOfSession.getTyp(),dokumentOfSession.getNummer(),orderByTyp)));
                         dbConn.close();
                  	}catch(Exception e){//no DokumentLinks found
                     	out.println("<table class="+ FB+ tableTagClass + FB+ ">" 
@@ -129,18 +131,18 @@ public class DokumentTypTag extends TagSupport{
 			Typ dokumentTyp = DataSetTyp.chain(dbConn,data);
 			if(data.getId() == dokumentOfSession.getId()){
 				tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +
-				"<td class='aktiv' width='25%'>" + data.getTitel() +"</td>" +
-				"<td class='aktiv' width='10%'><a class='link' href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" target='_parent'>"+ "<strong>&nbsp;" + data.getNummer()+ "." +data.getId()+"&nbsp;</strong>"+"</a></td>" +
-				"<td class='aktiv' width='25%'>" + data.getDescripten() + "</td>" +
+				"<td class='aktiv' width='25%'>" + HelpString.collapseSpaces(data.getTitel(),30) +"</td>" +
+				"<td class='aktiv' width='10%'><a class='link' href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" target='_parent'>"+ "<strong>&nbsp;" + data.getNummer()+ "." +data.getId()+"&nbsp;</strong>"+"</a></td>" +
+				"<td class='aktiv' width='25%'>" + HelpString.collapseSpaces(data.getDescripten(),32) + "</td>" +
 				"<td class='aktiv' width='8%'>" + data.getGliederung() +"</td>" +
 				"<td class='aktiv' width='16%'>" + data.getCreateUser() +"<br />"+  data.getCreateDate() +"</td>" +
 				"<td class='aktiv' width='16%'>" + data.getChangeUser() +"<br />"+  data.getChangeDate() +"</td>" +
 				"</tr>";
 			}else{
 				tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +
-				"<td width='25%'>" + data.getTitel() +"</td>" +
-				"<td width='10%'><a class='link' href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getDokumentTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" target='_parent'>"+ "&nbsp;" + data.getNummer()+ "." +data.getId()+"&nbsp;"+"</a></td>" +
-				"<td width='25%'>" + data.getDescripten() + "</td>" +
+				"<td width='25%'>" + HelpString.collapseSpaces(data.getTitel(),30) +"</td>" +
+				"<td width='10%'><a class='link' href="+FB+((HttpServletResponse) pageContext.getResponse()).encodeURL("../DokumentToRequestServlet?dokumentTyp="+data.getTyp()+"&amp;dokumentNr="+data.getNummer()+"&amp;dokumentId="+data.getId())+FB+" target='_parent'>"+ "&nbsp;" + data.getNummer()+ "." +data.getId()+"&nbsp;"+"</a></td>" +
+				"<td width='25%'>" + HelpString.collapseSpaces(data.getDescripten(),32) + "</td>" +
 				"<td width='8%'>" + data.getGliederung() +"</td>" +
 				"<td width='16%'>" + data.getCreateUser() +"<br />"+  data.getCreateDate() +"</td>" +
 				"<td width='16%'>" + data.getChangeUser() +"<br />"+  data.getChangeDate() +"</td>" +

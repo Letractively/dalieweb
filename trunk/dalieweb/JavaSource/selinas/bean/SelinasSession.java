@@ -7,12 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import database.Database;
 import database.dateien.Adresse;
 import database.dateien.Dokument;
+import database.dateien.Link;
 import database.dateien.SelectboxOptionen;
 import database.dateien.Selinas;
 import database.dateien.Typ;
 import database.dateien.User;
 import database.getDatabase.DataSetAdresse;
 import database.getDatabase.DataSetDokument;
+import database.getDatabase.DataSetLink;
 import database.getDatabase.DataSetSelectOptionen;
 import database.getDatabase.DataSetTyp;
 import database.getDatabase.DataSetUser;
@@ -50,12 +52,22 @@ public class SelinasSession {
 	*/
 	public Adresse getAdressOfDatabase(Database dbConn,User user) throws Exception{
 		/* Verwendung: AdressToRequestServlet-Aufruf der Adressverwaltung */
+		/*             GoToSelinas020Servlet->Aufruf zur Adressverwaltung */
 	    Adresse adresseOfDatabase = null;
 		dbConn.getConnection();//DataBaseConnection open
 		adresseOfDatabase = DataSetAdresse.chain(dbConn, user.getKundenId(),"U",user.getUserId());
 		dbConn.close();//DataBaseConnection close
 		return adresseOfDatabase;//Return AdressOfDatabase
 	}//getAdressOfDatabase
+	
+	public Adresse getAdressOfDatabase(Database dbConn,HttpServletRequest request) throws Exception{
+		/* Verwendung: AdressToRequestServlet -> get Adress from Database and Load to SessionAttribute */
+	    Adresse adresseOfDatabase = null;
+		dbConn.getConnection();////DataBaseConnection open
+		adresseOfDatabase = DataSetAdresse.chain(dbConn,Integer.parseInt(request.getParameter("adressId")),request.getParameter("adressArt"),request.getParameter("userId"));
+		dbConn.close();////DataBaseConnection close
+		return adresseOfDatabase;//Return AdresseOfDatabase
+	}//getDokumentTypOfDatabase
 	
 	public Adresse getAdressOfDatabase(Database dbConn,User user,User show){
 		/* Verwendung: UserToRequestServlet-Aufruf der Userverarbeitung */
@@ -130,7 +142,7 @@ public class SelinasSession {
 		adressOfUpdate.setTelefon(collapseSpaces(request.getParameter(session.getTelefon())));
 		adressOfUpdate.setFax(collapseSpaces(request.getParameter(session.getFax())));
 		adressOfUpdate.setMail(collapseSpaces(request.getParameter(session.getMail())));
-		adressOfUpdate.setUserId(request.getParameter(session.getAdressUserId()));
+		adressOfUpdate.setUserId(request.getParameter("userAdressId"));
 		dbConn.getConnection();//DataBaseConnection open
 		DataSetAdresse.update(dbConn, user, adressOfUpdate);
 		adressOfUpdate = DataSetAdresse.chain(dbConn, user.getKundenId() ,adressOfUpdate.getAdressArt(),adressOfUpdate.getUserId()); 
@@ -182,7 +194,7 @@ public class SelinasSession {
 	
 	/**
 	* <b>Erzeuge ein Objekt vom Typ Dokument aus Datenbanktabelle Dokument</b>
-	* <br> Button Dokument "zurück"
+	* <br> Button Dokument "vorwärts"
 	* <br><b>chain:Key User user, Dokument dokumemt</b>
 	* <br><b>public</b><br>
 	* @param
@@ -195,6 +207,30 @@ public class SelinasSession {
     * @throws Exception
 	*/
 	public Dokument getBackDokumentOfDatabase(Database dbConn,User user,Dokument dokument) throws Exception{
+		/* Verwendung GoToSelinas003Servlet -> << backward  */
+	    Dokument dokumentOfDatabase = null;
+		dbConn.getConnection();////DataBaseConnection open
+		dokumentOfDatabase = DataSetDokument.foundBackDokument(dbConn,user,dokument,"TNID");
+		dbConn.close();////DataBaseConnection close
+		return dokumentOfDatabase;//Return DokumentOfDatabase
+	}//getNextDokumentOfDatabase
+	
+	/**
+	* <b>Erzeuge ein Objekt vom Typ Dokument aus Datenbanktabelle Dokument</b>
+	* <br> Button Dokument "zurück"
+	* <br><b>chain:Key User user, Dokument dokumemt</b>
+	* <br><b>public</b><br>
+	* @param
+	* <ul>
+	* <li>Database dbConn</li>
+	* <li>Dokument dokument</li>
+	* </ul>
+	* @return
+	* <ul><li>Dokument dokumentOfDatabase</li></ul>
+    * @throws Exception
+	*/
+	public Dokument getBackDokumentOfDatabase1(Database dbConn,User user,Dokument dokument) throws Exception{
+		/* Verwendung GoToSelinas003Servlet -> << backward  */
 	    Dokument dokumentOfDatabase = null;
 		dbConn.getConnection();////DataBaseConnection open
 		int nextDokumentId = DataSetDokument.getBackdokument(dbConn,user,dokument);
@@ -219,6 +255,16 @@ public class SelinasSession {
     * @throws Exception
 	*/
 	public Dokument getNextDokumentOfDatabase(Database dbConn,User user,Dokument dokument) throws Exception{
+		/* Verwendung GoToSelinas003Servlet -> >> forward  */
+	    Dokument dokumentOfDatabase = null;
+		dbConn.getConnection();////DataBaseConnection open
+		dokumentOfDatabase = DataSetDokument.foundNextDokument(dbConn,user,dokument,"TNI");
+		dbConn.close();////DataBaseConnection close
+		return dokumentOfDatabase;//Return DokumentOfDatabase
+	}//getNextDokumentOfDatabase
+	
+	public Dokument getNextDokumentOfDatabase1(Database dbConn,User user,Dokument dokument) throws Exception{
+		/* Verwendung GoToSelinas003Servlet -> >> altes forward  */
 	    Dokument dokumentOfDatabase = null;
 		dbConn.getConnection();////DataBaseConnection open
 		int nextDokumentId = DataSetDokument.getNextdokument(dbConn,user,dokument);
@@ -226,7 +272,7 @@ public class SelinasSession {
 		dokumentOfDatabase = DataSetDokument.chain(dbConn, user,dokument);
 		dbConn.close();////DataBaseConnection close
 		return dokumentOfDatabase;//Return DokumentOfDatabase
-	}//getDokument
+	}//getNextDokumentOfDatabase1
 	
 	/**
 	* <b>Erzeuge ein Objekt vom Typ Dokument aus Datenbanktabelle Dokument</b>
@@ -246,11 +292,11 @@ public class SelinasSession {
 	public Dokument getDokumentOfInitialize(Database dbConn,User user,HttpServletRequest request)throws Exception{
        Dokument dokumentOfInitialize = new Dokument();
        dbConn.getConnection();//Aufbau Dankverbindung
-       dokumentOfInitialize.setDokumentTyp(request.getParameter("dokumentTyp"));
-       dokumentOfInitialize.setDokumentNr(Integer.parseInt(request.getParameter("dokumentNr")));
+       dokumentOfInitialize.setTyp(request.getParameter("dokumentTyp"));
+       dokumentOfInitialize.setNr(Integer.parseInt(request.getParameter("dokumentNr")));
        int nextDokumentId = DataSetDokument.getNextdokumentId(dbConn,user,dokumentOfInitialize);
        dokumentOfInitialize.setGliederung(dokumentOfInitialize.getNummer() + "." + nextDokumentId);//GliederungsVorschlag setzen
-       dokumentOfInitialize.setStatus("A");
+       dokumentOfInitialize.setStatus("P");//Status:privat
        dokumentOfInitialize.setTitel(session.getTitel());
        dokumentOfInitialize.setDescripten(session.getDescripten());
        dokumentOfInitialize.setContent(session.getContent());
@@ -258,7 +304,7 @@ public class SelinasSession {
        dokumentOfInitialize.setSprachId("DE");
        dokumentOfInitialize.setVorgabe("123");
        DataSetDokument.insert(dbConn,user,dokumentOfInitialize);//Insert in Datenbank
-       dokumentOfInitialize = DataSetDokument.chain(dbConn,user,dokumentOfInitialize.getDokumentTyp(),dokumentOfInitialize.getNummer(),nextDokumentId);
+       dokumentOfInitialize = DataSetDokument.chain(dbConn,user,dokumentOfInitialize.getTyp(),dokumentOfInitialize.getNummer(),nextDokumentId);
        dbConn.close();
        return  dokumentOfInitialize;
     }//getDokumentOfInitialize
@@ -283,7 +329,7 @@ public class SelinasSession {
 	   Dokument dokumentOfUpdate = ofSession;
 	   dokumentOfUpdate.setTitel(collapseSpaces(request.getParameter(session.getTitel())));
 	   dokumentOfUpdate.setDescripten(request.getParameter(session.getDescripten()));
-	   dokumentOfUpdate.setContent(collapseSpaces(request.getParameter(session.getContent())));
+	   dokumentOfUpdate.setContent(request.getParameter(session.getContent()));
 	   dokumentOfUpdate.setGliederung(request.getParameter(session.getGliederung()));
 	   dokumentOfUpdate.setArchiv(request.getParameter(session.getArchiv()));
 	   dokumentOfUpdate.setVorgabe(request.getParameter(session.getVorgabe()));
@@ -344,12 +390,39 @@ public class SelinasSession {
        dokumentOfCopy.setGliederung(dokumentOfCopy.getNummer() + "." + nextDokumentId);//GliederungsVorschlag setzen
        dokumentOfCopy.setDescripten(session.getDescripten());
        dokumentOfCopy.setContent(session.getContent());
-       dokumentOfCopy.setStatus("A");
+       dokumentOfCopy.setStatus("P");
        DataSetDokument.insert(dbConn,user,dokumentOfCopy);//Insert in Datenbank
-       dokumentOfCopy = DataSetDokument.chain(dbConn,user,dokumentOfCopy.getDokumentTyp(),dokumentOfCopy.getNummer(),nextDokumentId);
+       dokumentOfCopy = DataSetDokument.chain(dbConn,user,dokumentOfCopy.getTyp(),dokumentOfCopy.getNummer(),nextDokumentId);
        dbConn.close();
        return dokumentOfCopy;
     }//getDokumentOfCopy
+	
+	
+	/**
+	* <b>Erzeuge ein Objekt vom Typ Link aus Datenbanktabelle link</b>
+	* <br> link update"
+	* <br><b>chain:Key User user,Dokument ofSession, HttpServletRequest request</b>
+	* <br><b>public</b><br>
+	* @param
+	* <ul>
+	* <li>Database dbConn</li>
+	* <li>User user</li>
+	* <li>Dokument ofSession</li>
+	* <li>Link updateLink</li>
+	* <li>HttpServletRequest request</li>
+	* </ul>
+	* @return
+	* <ul><li>Dokument dokumentOfUpdate</li></ul>
+    * @throws Exception
+	*/
+	public void getDokumentLinkOfUpdate(Database dbConn,User user,Dokument ofSession,HttpServletRequest request)throws Exception{
+		dbConn.getConnection();//DataBaseConnection open
+		Link linkOfUpdate = DataSetLink.chain(dbConn,ofSession,Integer.parseInt(request.getParameter("ApplicationsId")));
+		linkOfUpdate.setNotizOfLink(request.getParameter("memo"));
+		DataSetLink.update(dbConn, user,ofSession,linkOfUpdate);
+		dbConn.close();//DataBaseConnection close
+	}//getDokumentLinkOfUpdate
+	
 	
 	/**
 	* <b>Erzeuge ein Objekt vom Typ Dokumenttyp aus Datenbanktabelle Dokumenttyp</b>
@@ -411,6 +484,8 @@ public class SelinasSession {
     * @throws Exception
 	*/
 	public Typ getTypOfDatabase(Database dbConn,User user) throws Exception{
+		/* Verwendung: AdminOfSelina -> Aufruf Administration Selinas */
+		/*             TypToProcessServlet -> Verarbeitung Dokumenttyp */			
 	    Vector allDokumentTypOfDatabase;
 	    Typ dokumentTypOfDatabase = new Typ();
 		dbConn.getConnection();////DataBaseConnection open
@@ -468,7 +543,8 @@ public class SelinasSession {
        option.setOptionId("KA");
        option.setOptionValue(typOfInitialize.getTyp());
        option.setOptionDescription(typOfInitialize.getDescription());
-       DataSetSelectOptionen.insert(dbConn,user,"DokumentTyp",language,option);
+       String dokumentTyp = "DokumentTyp" + user.getKundenId() + user.getStandortId();
+       DataSetSelectOptionen.insert(dbConn,user,dokumentTyp,"KA",option);
        dbConn.close();
        return  typOfInitialize;
     }//getDokumentOfInitialize
@@ -500,10 +576,36 @@ public class SelinasSession {
        option.setOptionId("KA");
        option.setOptionValue(typOfUpdate.getTyp());
        option.setOptionDescription(typOfUpdate.getDescription());
-       DataSetSelectOptionen.update(dbConn,user,"DokumentTyp",language,option);
+       String dokumentTyp = "DokumentTyp" + user.getKundenId() + user.getStandortId();
+       DataSetSelectOptionen.update(dbConn,user,dokumentTyp,"KA",option);
 	   dbConn.close();//DataBaseConnection close
 	   return typOfUpdate;
-	}//getDokumentOfUpdate
+	}//getTypOfUpdate
+	
+	/**
+	* <b>delete content on Databasetable: Dokumenttyp and selectboxoptionen</b>
+	* <br> Dokumenttyp delete and Selectbox delete"
+	* <br><b>chain:Key User user,Dokument ofSession, HttpServletRequest request</b>
+	* <br><b>public</b><br>
+	* @param
+	* <ul>
+	* <li>Database dbConn</li>
+	* <li>User user</li>
+	* <li>Typ ofSession</li>
+	* </ul>
+	* @return
+	* <ul><li>nothing</li></ul>
+    * @throws Exception
+	*/
+	public void getTypOfDelete(Database dbConn,User user,Typ ofSession)throws Exception {
+		/* Verwendung: TypToProcessServlet - Verarbeitung/Verwaltung von Dokumenttypen */
+	   Typ typOfDelete = ofSession;
+	   dbConn.getConnection();//DataBaseConnection open
+	   DataSetTyp.delete(dbConn,user.getKundenId(),user.getStandortId(),typOfDelete.getTyp());
+	   String dokumentTyp = "DokumentTyp" + user.getKundenId() + user.getStandortId();
+	   DataSetSelectOptionen.delete(dbConn,dokumentTyp,"KA","KA",typOfDelete.getTyp());
+	   dbConn.close();//DataBaseConnection close
+	}//getTypOfDelete
 	
 	/**
 	* <b>Erzeuge ein Objekt vom Typ User aus Datenbanktabelle user</b>
@@ -525,7 +627,7 @@ public class SelinasSession {
 		userTypOfDatabase = DataSetUser.chain(dbConn,request.getParameter("user"));
 		dbConn.close();////DataBaseConnection close
 		return userTypOfDatabase;//Return DokumentTypOfDatabase
-	}//getUserTypOfDatabase
+	}//getUserOfDatabase
 	
 	/**
 	* <b>Erzeuge ein Objekt vom Typ User aus Datenbanktabelle user</b>
@@ -541,12 +643,36 @@ public class SelinasSession {
     * @throws Exception
 	*/
 	public User getUserOfDatabase(Database dbConn,User user) throws Exception{
+		/* Verwendung: GoToSelinas030Serlvet -> Anzeige Userverwaltung */
 		User userOfDatabase = null;
 		dbConn.getConnection();////DataBaseConnection open
 		userOfDatabase = DataSetUser.chain(dbConn,user.getUserId());
 		dbConn.close();////DataBaseConnection close
 		return userOfDatabase;//Return UserTypOfDatabase
-	}//getDokument
+	}//getUserOfDatabase
+	
+	/**
+	* <b>Erzeuge ein Objekt vom Typ User aus Datenbanktabelle user</b>
+	* <br><b>chain:Key User userId</b>
+	* <br><b>public</b><br>
+	* @param
+	* <ul>
+	* <li>Database dbConn</li>
+	* <li>User user</li>
+	* </ul>
+	* @return
+	* <ul><li>User user</li></ul>
+    * @throws Exception
+	*/
+	public User getUserOfDatabase(Database dbConn,String userId) throws Exception{
+		/* Verwendung: GoToSelinas020Serlvet -> Anzeige Adressverwaltung */
+		User userOfDatabase = null;
+		dbConn.getConnection();//DataBaseConnection open
+		System.out.println(this.getClass().getName()+"Hier " + userId);
+		userOfDatabase = DataSetUser.chain(dbConn,userId);
+		dbConn.close();//DataBaseConnection close
+		return userOfDatabase;//Return UserOfDatabase
+	}//getUserOfDatabase
 	
 	/**
 	* <b>Erzeuge ein Objekt vom Typ User aus HttpServletRequest</b>
@@ -626,6 +752,7 @@ public class SelinasSession {
 			return "";
 		}//endif
 	}//collapseSpaces
+	
 }//class selinas
 
 

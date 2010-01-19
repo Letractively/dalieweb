@@ -31,8 +31,10 @@ public class Status {
     /** Key Sprachschlüssel */
     private String sprachId;//EN = englisch/DE = deutsch
     /** Beschreibung des Status */
-    private String descripten;//Beschreibung des Status
-
+    private String description;//Beschreibung des Status
+    /** Interne Notizen für Status */
+    private String notizen;
+    
     /** Kennzeichen des User der Status erstellt hat */
     private String createUserId;//DV0101 AnmeldeKennnung am System
     /** Timestamp der Erstellung */
@@ -49,122 +51,134 @@ public class Status {
         //this.standortId = Integer.parseInt(columns.elementAt(1).toString());
         this.statusId = columns.elementAt(0).toString();
         this.sprachId = columns.elementAt(1).toString();
-        this.descripten = columns.elementAt(2).toString();
+        this.description = columns.elementAt(2).toString();
+        this.notizen = columns.elementAt(3).toString();
         
-        this.createUserId =  columns.elementAt(3).toString();
-        this.createDate = HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(4).toString());
-        this.changeUserId =  columns.elementAt(5).toString();
-        this.changeDate = HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(6).toString());       
+        this.createUserId =  columns.elementAt(4).toString();
+        this.createDate = HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(5).toString());
+        this.changeUserId =  columns.elementAt(6).toString();
+        this.changeDate = HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(7).toString());       
     }//Status
     
     
-    
-    /**
-     * @return Returns the changeDate.
-     */
-    public String getChangeDate() {
-        return changeDate;
-    }
-    /**
-     * @param changeDate The changeDate to set.
-     */
-    public void setChangeDate(String changeDate) {
-        this.changeDate = changeDate;
-    }
-    /**
-     * @return Returns the changeUserId.
-     */
-    public String getChangeUserId() {
-        return changeUserId;
-    }
-    /**
-     * @param changeUserId The changeUserId to set.
-     */
-    public void setChangeUserId(String changeUserId) {
-        this.changeUserId = changeUserId;
-    }
-    /**
-     * @return Returns the createDate.
-     */
-    public String getCreateDate() {
-        return createDate;
-    }
-    /**
-     * @param createDate The createDate to set.
-     */
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
-    }
-    /**
-     * @return Returns the createUserId.
-     */
-    public String getCreateUserId() {
-        return createUserId;
-    }
-    /**
-     * @param createUserId The createUserId to set.
-     */
-    public void setCreateUserId(String createUserId) {
-        this.createUserId = createUserId;
-    }
-    /**
-     * @return Returns the descripten.
-     */
-    public String getDescripten() {
-        return descripten;
-    }
-    /**
-     * @param descripten The descripten to set.
-     */
-    public void setDescripten(String descripten) {
-        this.descripten = descripten;
-    }
-    /**
-     * @return Returns the kundenId.
-     */
-    public int getKundenId() {
-        return kundenId;
-    }
-    /**
-     * @param kundenId The kundenId to set.
-     */
-    public void setKundenId(int kundenId) {
-        this.kundenId = kundenId;
-    }
-    /**
-     * @return Returns the sprachId.
-     */
-    public String getSprachId() {
-        return sprachId;
-    }
-    /**
-     * @param sprachId The sprachId to set.
-     */
-    public void setSprachId(String sprachId) {
-        this.sprachId = sprachId;
-    }
-    /**
-     * @return Returns the standortId.
-     */
-    public int getStandortId() {
-        return standortId;
-    }
-    /**
-     * @param standortId The standortId to set.
-     */
-    public void setStandortId(int standortId) {
-        this.standortId = standortId;
-    }
-    /**
-     * @return Returns the statusId.
-     */
-    public String getStatusId() {
-        return statusId;
-    }
-    /**
-     * @param statusId The statusId to set.
-     */
-    public void setStatusId(String statusId) {
-        this.statusId = statusId;
-    }
+	/**
+	 * @return Returns the changeDate.
+	 */
+	public String getChangeDate() {
+		return changeDate;
+	}
+	/**
+	 * @param changeDate The changeDate to set.
+	 */
+	public void setChangeDate(String changeDate) {
+		this.changeDate = changeDate;
+	}
+	/**
+	 * @return Returns the changeUserId.
+	 */
+	public String getChangeUserId() {
+		return changeUserId;
+	}
+	/**
+	 * @param changeUserId The changeUserId to set.
+	 */
+	public void setChangeUserId(String changeUserId) {
+		this.changeUserId = changeUserId;
+	}
+	/**
+	 * @return Returns the createDate.
+	 */
+	public String getCreateDate() {
+		return createDate;
+	}
+	/**
+	 * @param createDate The createDate to set.
+	 */
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
+	/**
+	 * @return Returns the createUserId.
+	 */
+	public String getCreateUserId() {
+		return createUserId;
+	}
+	/**
+	 * @param createUserId The createUserId to set.
+	 */
+	public void setCreateUserId(String createUserId) {
+		this.createUserId = createUserId;
+	}
+	/**
+	 * @return Returns the description.
+	 */
+	public String getDescription() {
+		return description;
+	}
+	/**
+	 * @param description The description to set.
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	/**
+	 * @return Returns the kundenId.
+	 */
+	public int getKundenId() {
+		return kundenId;
+	}
+	/**
+	 * @param kundenId The kundenId to set.
+	 */
+	public void setKundenId(int kundenId) {
+		this.kundenId = kundenId;
+	}
+	/**
+	 * @return Returns the notizen.
+	 */
+	public String getNotizen() {
+		return notizen;
+	}
+	/**
+	 * @param notizen The notizen to set.
+	 */
+	public void setNotizen(String notizen) {
+		this.notizen = notizen;
+	}
+	/**
+	 * @return Returns the sprachId.
+	 */
+	public String getSprachId() {
+		return sprachId;
+	}
+	/**
+	 * @param sprachId The sprachId to set.
+	 */
+	public void setSprachId(String sprachId) {
+		this.sprachId = sprachId;
+	}
+	/**
+	 * @return Returns the standortId.
+	 */
+	public int getStandortId() {
+		return standortId;
+	}
+	/**
+	 * @param standortId The standortId to set.
+	 */
+	public void setStandortId(int standortId) {
+		this.standortId = standortId;
+	}
+	/**
+	 * @return Returns the statusId.
+	 */
+	public String getStatusId() {
+		return statusId;
+	}
+	/**
+	 * @param statusId The statusId to set.
+	 */
+	public void setStatusId(String statusId) {
+		this.statusId = statusId;
+	}
 }//class Status

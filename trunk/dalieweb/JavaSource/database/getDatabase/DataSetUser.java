@@ -68,6 +68,7 @@ public class DataSetUser {
      * <ul><li>User user</li></ul>
      */
     public static synchronized User chain(Database dbConn,String userId) throws Exception {
+    	/* Verwendung: LogOnSelina -> Login on Selina */
         	User user = null;
         	Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".user " +
         			"where userId = '"+userId+"'");

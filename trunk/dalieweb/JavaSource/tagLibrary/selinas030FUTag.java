@@ -134,20 +134,20 @@ public class selinas030FUTag extends TagSupport {
 			User showUser  = ((User)user.elementAt(i));
 			if(showUser.getUserId().equalsIgnoreCase(userOfSession.getUserId())){
 				tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +
-					"<td class='aktiv' width='25%'><em>"+ showUser.getName() + "," + showUser.getVorname()+ "</em></td>" +
+					"<td align='center' class='aktiv' width='20%'><em>"+ showUser.getName() + "," + showUser.getVorname()+ "</em></td>" +
 					"<td class='aktiv' width='15%'><a href='"+((HttpServletResponse) pageContext.getResponse()).encodeURL("../UserToRequestServlet?user="+showUser.getUserId()+"")+"' target='_parent'><em>" + showUser.getUserId() +"</em></a></td>" +
-					"<td class='aktiv' width='20%'>"+ showUser.getUserStatus() + " = " + DataSetStatus.chain(dbConn,showUser.getUserStatus(),speech).getDescripten() + "</td>" +
+					"<td class='aktiv' width='20%'>"+ showUser.getUserStatus() + " = " + DataSetStatus.chain(dbConn,showUser.getUserStatus(),speech).getDescription() + "</td>" +
 					"<td class='aktiv' width='5%'><em>"+ showUser.getPermitId() + "</em></td>" +
-					"<td class='aktiv' width='15%'><em>"+ showUser.getCreateDate() + "</em></td>" +
+					"<td class='aktiv' width='20%'><em>"+ showUser.getCreateDate() + "</em></td>" +
 					"<td class='aktiv' width='20%'><em>"+ showUser.getChangeDate() + "</em></td>" +
 					"</tr>";
 			}else{
 				tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +
-					"<td width='25%' class="+FB+FB+">"+ showUser.getName() + "," + showUser.getVorname()+ "</td>" +
+					"<td width='20%' class="+FB+FB+">"+ showUser.getName() + "," + showUser.getVorname()+ "</td>" +
 					"<td width='15%' class="+FB+FB+"><a href='"+((HttpServletResponse) pageContext.getResponse()).encodeURL("../UserToRequestServlet?user="+showUser.getUserId()+"")+"' target='_parent'>" + showUser.getUserId() +"</a></td>" +
-					"<td width='20%' class="+FB+FB+">"+ showUser.getUserStatus() + " = " + DataSetStatus.chain(dbConn,showUser.getUserStatus(),speech).getDescripten() + "</td>" +
+					"<td width='20%' class="+FB+FB+">"+ showUser.getUserStatus() + " = " + DataSetStatus.chain(dbConn,showUser.getUserStatus(),speech).getDescription() + "</td>" +
 					"<td width='5%' class="+FB+FB+">"+ showUser.getPermitId() + "</td>" +
-					"<td width='15%' class="+FB+FB+">"+ showUser.getCreateDate() + "</td>" +
+					"<td width='20%' class="+FB+FB+">"+ showUser.getCreateDate() + "</td>" +
 					"<td width='20%' class="+FB+FB+">"+ showUser.getChangeDate() + "</td>" +
 					"</tr>";
 			}//endif

@@ -68,11 +68,11 @@ public class CreateDataSelinas {
 				"'Verwaltung der Dokumenttypen'," +//caption3
 				"'Userverwaltung'," +//caption4
 				"'Benutzerangaben:'," +//caption5
-				"'Adresse'," +//caption6
-				"'Passwort'," +//caption7
-				"'Caption8'," +//caption8
-				"'Caption9'," +//caption9
-				"'Caption10'," +//caption10
+				"'Adresse:'," +//caption6
+				"'Passwort:'," +//caption7
+				"'Dokumenten-Typus:'," +//caption8
+				"'Ihre Anlangen auswählen'," +//caption9
+				"'Ihre Notizen erfassen'," +//caption10
 				"'Verarbeitung <span style=\"text-decoration:underline\">s</span>tarten'," +//Button1
 				"'B<span style=\"text-decoration:underline\">e</span>enden'," +//Button2
 				"'<< <span style=\"text-decoration:underline\">z</span>urück'," +//Button3
@@ -161,11 +161,11 @@ public class CreateDataSelinas {
 				"'Administration of document types'," +//caption3
 				"'User Management'," +//caption4
 				"'User Information:'," +//caption5
-				"'Adress'," +//caption6
-				"'Password'," +//caption7
-				"'Caption8'," +//caption8
-				"'Caption9'," +//caption9
-				"'Caption10'," +//caption10
+				"'Adress:'," +//caption6
+				"'Password:'," +//caption7
+				"'Document-Figure:'," +//caption8
+				"'select your attachment'," +//caption9
+				"'your memo'," +//caption10
 				"'processing start'," +//Button1
 				"'finish'," +//Button2
 				"'<< backward'," +//Button3
@@ -217,7 +217,7 @@ public class CreateDataSelinas {
 	}//insertSelinasEN
 	
 	 public static void main(String args[]) throws Exception{
-	 	Database dbConn = new Database("mySql","localhost","schemas","kunde","pw");
+	 	Database dbConn = new Database("mySql","localhost","selina","web4857","xxx");
     	
 	 	CreateDataSelinas selinas = new CreateDataSelinas();
     	

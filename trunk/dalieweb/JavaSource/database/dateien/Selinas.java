@@ -114,7 +114,7 @@ public class Selinas {
     private String button14;
     /** User anlegen SELINAS1*/
     private String button15;
-    /** Button16 SELINAS1*/
+    /** Adresse anlegen SELINAS1*/
     private String button16;
     /** Button17 SELINAS1*/
     private String button17;
@@ -146,6 +146,8 @@ public class Selinas {
     private String dokumentPermitId;//Dokument-AutorisierungsId
     /** adressUserId SELINAS1*/
     private String adressUserId;//Adresse gehört zu
+    /** optionDescripten SELINAS1*/
+    private String optionDescripten;//[Bitte auswählen]
     
     private String link1;//Übersicht
     private String link1t;//Übersicht
@@ -272,6 +274,7 @@ public class Selinas {
         this.userAppId = columns.elementAt(104).toString();
         this.dokumentPermitId = columns.elementAt(105).toString();
         this.adressUserId = columns.elementAt(106).toString();
+        this.optionDescripten = columns.elementAt(107).toString();
         
         this.link1 = columns.elementAt(52).toString();
         this.link1t = columns.elementAt(53).toString();
@@ -312,6 +315,7 @@ public class Selinas {
     }//Selinas
     
     
+	
 	/**
 	 * @return Returns the adressArt.
 	 */
@@ -1367,6 +1371,18 @@ public class Selinas {
 	 */
 	public void setNummer(String nummer) {
 		this.nummer = nummer;
+	}
+	/**
+	 * @return Returns the optionDescripten.
+	 */
+	public String getOptionDescripten() {
+		return optionDescripten;
+	}
+	/**
+	 * @param optionDescripten The optionDescripten to set.
+	 */
+	public void setOptionDescripten(String optionDescripten) {
+		this.optionDescripten = optionDescripten;
 	}
 	/**
 	 * @return Returns the ort.

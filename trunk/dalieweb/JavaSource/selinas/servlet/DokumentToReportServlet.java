@@ -1,5 +1,6 @@
 package selinas.servlet;
 
+import help.HelpString;
 import help.LoggerHelper;
 
 import java.io.ByteArrayOutputStream;
@@ -32,7 +33,6 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 import database.Database;
 import database.dateien.Dokument;
 import database.getDatabase.DataSetAdresse;
-import database.getDatabase.DataSetStatus;
 import database.getDatabase.DataSetTyp;
 
 public class DokumentToReportServlet extends HttpServlet implements Servlet {
@@ -65,8 +65,9 @@ public class DokumentToReportServlet extends HttpServlet implements Servlet {
         nameOfXmlPfad += (new Integer(dokumentOfPrint.getStandortId())).toString();
         nameOfXmlPfad += (new Integer(dokumentOfPrint.getNummer())).toString();
         nameOfXmlPfad += (new Integer(dokumentOfPrint.getId())).toString();
-        nameOfXmlPfad += dokumentOfPrint.getDokumentTyp().toString();
-       
+        nameOfXmlPfad += dokumentOfPrint.getTyp().toString();
+        
+        dokumentOfPrint.setContent(HelpString.collapseHtml(dokumentOfPrint.getContent()));
         try{
       		//Write to a file in the file system      	
       		FileOutputStream fos = new FileOutputStream (getServletContext().getRealPath("/xml/"+nameOfXmlPfad+".xml"));
@@ -75,7 +76,7 @@ public class DokumentToReportServlet extends HttpServlet implements Servlet {
       		ObjectOutputStream out = xs.createObjectOutputStream(writer);
       		out.writeObject(dokumentOfPrint);/* write Dokument to XML-Output */
       		dbConn.getConnection();/* open Databaseconnection */
-      		out.writeObject(DataSetStatus.chain(dbConn,dokumentOfPrint.getStatus(),language));/* get a Status form Database -> write to XML-Output */ 
+      	//	out.writeObject(DataSetStatus.chain(dbConn,dokumentOfPrint.getStatus(),language));/* get a Status form Database -> write to XML-Output */ 
       		out.writeObject(DataSetTyp.chain(dbConn,dokumentOfPrint));/* get a Typ form Database -> write to XML-Output */
       		out.writeObject(selinasuser);/* write User to XML-Output */
       		out.writeObject(DataSetAdresse.chain(dbConn,dokumentOfPrint.getKundenId(),"U", dokumentOfPrint.getChangeUser()));/* get a (U)ser Adress form Database -> write to XML-Output */

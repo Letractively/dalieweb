@@ -126,7 +126,7 @@ public class selinas025FTTag extends TagSupport {
 	private String writeDokumentDataToPageContext(Vector dokumentTypen) throws Exception {
 	    String tableTRTD = "";
 	    if (data.equalsIgnoreCase("J"))
-	    for (int i = 0; i < dokumentTypen.size(); i++){         
+	    for (int i = 0; i < dokumentTypen.size(); i++){  
 			Typ typ  = ((Typ)dokumentTypen.elementAt(i));
 			if(typ.getTyp().equalsIgnoreCase(typOfSession.getTyp())){
 				tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +

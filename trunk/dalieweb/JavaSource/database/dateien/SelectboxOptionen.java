@@ -39,7 +39,7 @@ public class SelectboxOptionen {
      */
     public SelectboxOptionen() {
     }//SelectboxOptionen
-    public SelectboxOptionen(Vector columns) throws Exception {       
+    public SelectboxOptionen(Vector columns) throws Exception {
         this.optionId = columns.elementAt(2).toString();
         this.optionValue = columns.elementAt(3).toString();
         this.optionDescription = columns.elementAt(4).toString();
@@ -48,7 +48,6 @@ public class SelectboxOptionen {
         this.changeUserId = columns.elementAt(7).toString();
         this.changeDate = columns.elementAt(8).toString();
     }//SelectboxOptionen
-    
     
 	/**
 	 * @return Returns the changeDate.

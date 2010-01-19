@@ -120,9 +120,11 @@ public class selinas004FLTag extends TagSupport{
 	    for (int i = 0; i < dokumentLinks.size(); i++){         
 			Link link  = ((Link)dokumentLinks.elementAt(i));
 			tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +
-					"<td width='50%' class="+FB+FB+"><a href='"+((HttpServletResponse) pageContext.getResponse()).encodeURL("../LinkToGetServlet?ApplicationsId="+link.getApplicationsId()+ UploadApplication.getApplicationsKz(link.getContentType()))+"' target='_blank'>" + link.getNameOfLinkUn() +"</a></td>" +
-					"<td width='45%' class="+FB+FB+">"+ link.getCreateDate() + "</td>" +
-					"<td width='5%' class="+FB+FB+"><a href='"+((HttpServletResponse) pageContext.getResponse()).encodeURL("../LinkToDeleteServlet?ApplicationsId="+link.getApplicationsId())+"' target='_blank'><img src='../bilder/spacer.gif' class='requests' width='21' height='22' hspace='8' vspace='8' alt='delete' title='delete'/></a></td>"+ 
+					"<td width='20%' class="+FB+FB+"><a href='"+((HttpServletResponse) pageContext.getResponse()).encodeURL("../LinkToGetServlet?ApplicationsId="+link.getApplicationsId()+ UploadApplication.getApplicationsKz(link.getContentType()))+"' target='_blank'>" + link.getNameOfLinkUn() +"</a></td>" +
+					"<td width='40%' class="+FB+FB+">"+ link.getNotizOfLink() + "</td>" +
+					"<td width='30%' class="+FB+FB+">"+ link.getCreateDate() + "</td>" +
+					"<td width='5%' class="+FB+FB+"><a href='"+((HttpServletResponse) pageContext.getResponse()).encodeURL("../LinkToMemoServlet?ApplicationsId="+link.getApplicationsId())+"' target=\"_parent\"><img src='../bilder/spacer.gif' class='memo' width='21' height='22' hspace='8' vspace='8' alt='notzien' title='Notizen erfassen'/></a></td>"+ 
+					"<td width='5%' class="+FB+FB+"><a href='"+((HttpServletResponse) pageContext.getResponse()).encodeURL("../LinkToDeleteServlet?ApplicationsId="+link.getApplicationsId())+"' target=\"_parent\"><img src='../bilder/spacer.gif' class='erase' width='21' height='22' hspace='8' vspace='8' alt='delete' title='Anlage löschen'/></a></td>"+ 
 					"</tr>";
 		}//for	
 	    return tableTRTD;	

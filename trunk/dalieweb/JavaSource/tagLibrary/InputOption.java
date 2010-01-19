@@ -26,72 +26,55 @@ import javax.servlet.jsp.tagext.TagSupport;
  */
 public class InputOption extends TagSupport{
     
-    /**
-     * FB = Feldbegrenzer z.B "DV0101"
-     */
+	/** FB = Feldbegrenzer z.B "DV0101" */
     public String FB = "\"";//wird als " interpretiert
-    
+    /** HTML-Attribute: type */
     private String type="text";
-    public void setType(String type) {
-        this.type = type;
-    }//setType
-    
+    /** HTML-Attribute: name */
     private String name="name";
-    public void setName(String name) {
-        this.name = name;
-        setId(name);
-    }//setName
-    private String getName() {
-        return this.name;
-    }//getName
-        
+    /** HTML-Attribute: name */    
     private String id=""; 
-    public void setId(String id) {
-        this.id = id;
-    }//setId
-    
+    /** HTML-Attribute: name */
     private String value = "";
-    public void setValue(String value){
-        this.value = value;
-    }//setValue
-    public String getValue() {
-        return value;
-    }//getValue
+    /** HTML-Attribute: name */
     private String permitId="0";//deaktiviert
     private String permitAttribut = " readonly='readonly' disabled='disabled'";
     public void setPermitId(String id){
-        	if(Integer.parseInt(permitId)== 9) {
-        	    this.permitAttribut = " readonly='readonly' disabled='disabled'";
-        	}else {
-        		this.permitId = id;
-        	if(Integer.parseInt(id) >= 3) {
-        	    this.permitAttribut = "";
-        	} else if(Integer.parseInt(id) == 2) {
-        	    this.permitAttribut = "";
-        	    this.permitAttribut = " readonly='readonly'";
-        	} else if(Integer.parseInt(id) == 9) {
-        	    this.permitAttribut = "";
-        	    this.permitAttribut = " readonly='readonly' disabled='disabled'";
-        	}//endif
-        	}//endif
-    }//setPermitId
-    
-    private String tabindex="1";
-    public void setTabindex(String tabindex) {
-        this.tabindex = tabindex;
-    }//setTabindex
-    
-    private String size="";
-    public void setSize(String size) {
-        this.size = size;
-    }//setSize
-    public String getSize() {
-        if(size.equals("")) {
-            return "";
+    	if(Integer.parseInt(permitId)== 9) {
+            this.permitAttribut = " readonly='readonly' disabled='disabled'";
         }else {
-            return " style="+FB+"width:"+size+"em;"+FB +" maxlength="+FB+size+FB;
+        	this.permitId = id;
+        if(Integer.parseInt(id) >= 3) {
+            this.permitAttribut = "";
+        } else if(Integer.parseInt(id) == 2) {
+            this.permitAttribut = "";
+            this.permitAttribut = " readonly='readonly'";
+        } else if(Integer.parseInt(id) == 9) {
+            this.permitAttribut = "";
+            this.permitAttribut = " readonly='readonly' disabled='disabled'";
         }//endif
+        }//endif
+    }//setPermitId
+    /** HTML-Attribute: tabindex */
+    private String tabindex="1";
+    /** HTML-Attribute: size */
+    private String size="";
+    public String getSize() {
+    	if(size.equalsIgnoreCase("")){
+    		return "";
+    	}else{
+    		return " style=\"width:"+size+"em;\"";
+    	}
     }//getSize
+    /** HTML-Attribute: maxlength */
+    private String maxlength = "";
+    public String getMaxlength(){
+    	if(maxlength.equalsIgnoreCase("")){
+    		return "";
+    	}else{
+    		return  " maxlength=\""+maxlength+"\"";
+    	}//endif
+    }//getMaxlength
     /**
      * <b> create HTML-Tag INPUT </b>
      * <br><b>public</b><br>
@@ -115,7 +98,7 @@ public class InputOption extends TagSupport{
             if(session.getAttribute("PermitId") != null)    
                 //Daten vom SessionOpjekt als Input holen
                 setPermitId((String)session.getAttribute("PermitId"));
-            out.println("<input type="+FB+type+FB+" name="+FB+name+FB+" id="+FB+id+FB+" onfocus ="+FB+"if(this.value=='"+getName()+"') this.value=''"+FB+" onblur ="+FB+"if (this.value=='') this.value='"+getName()+"'"+FB+" value="+FB+getValue()+FB+" tabindex="+FB+tabindex+FB+ this.permitAttribut + getSize()+ " class="+FB+"OHNE"+FB+"");
+            out.println("<input type="+FB+type+FB+" name="+FB+name+FB+" id="+FB+id+FB+" onfocus ="+FB+"if(this.value=='"+getName()+"') this.value=''"+FB+" onblur ="+FB+"if (this.value=='') this.value='"+getName()+"'"+FB+" value="+FB+getValue()+FB+" tabindex="+FB+tabindex+FB+ this.permitAttribut + getSize()+ getMaxlength()+ " class="+FB+"OHNE"+FB+"");
             }catch(IOException iex) {
             }//catch
         return EVAL_BODY_INCLUDE;
@@ -130,5 +113,48 @@ public class InputOption extends TagSupport{
         return EVAL_PAGE;
     }//doEndTag    
     
+    /** To find the internal state */
+	public void release() {
+		name = null;
+		id = null;
+		permitId = null;
+		tabindex = null;
+		super.release();
+	}//release
+    
+    /** @param String type for type */
+    public void setType(String type) {
+        this.type = type;
+    }//setType
+    /** @param String name for name */
+    public void setName(String name) {
+        this.name = name;
+        setId(name);
+    }//setName
+    /** getValue */
+    private String getName() {
+        return this.name;
+    }//getName
+    /** @param String id for id */
+    public void setId(String id) {
+        this.id = id;
+    }//setId
+    /** @param String value for value */
+    public void setValue(String value){
+        this.value = value;
+    }//setValue
+    /** @param String value */
+    public String getValue() {
+        return value;
+    }//getValue
+    public void setTabindex(String tabindex) {
+        this.tabindex = tabindex;
+    }//setTabindex
+    public void setSize(String size) {
+        this.size = size;
+    }//setSize
+    public void setMaxlength(String maxlength) {
+        this.maxlength = maxlength;
+    }//setSize
 }//class InputOption
 

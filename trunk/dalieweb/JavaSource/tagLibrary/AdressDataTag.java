@@ -59,7 +59,7 @@ public class AdressDataTag extends TagSupport {
                  	JspWriter out = pageContext.getOut();
                  	try{
                         dbConn.getConnection();
-                        out.println("<table width='100%' border='0' cellspacing='0' cellpadding='5' class="+ FB+ tableTagClass + FB+ ">"
+                        out.println("<table width='100%' border='0' cellspacing='0' cellpadding='0' class="+ FB+ tableTagClass + FB+ ">"
                         	    + writeDokumentHeaderToPageContext(columnHeader)
 							    + writeDokumentDataToPageContext(DataSetAdresse.readeOfKundenId(dbConn, selinasuser.user.getKundenId())));
                         dbConn.close();
@@ -118,7 +118,6 @@ public class AdressDataTag extends TagSupport {
 	    String tableTRTD = "";
 	    if (data.equalsIgnoreCase("J"))
 	    for (int i = 0; i < adressen.size(); i++){ 
-	    	System.out.println("hier:");
 			Adresse data  = ((Adresse)adressen.elementAt(i));
 			Typen typen = DataSetTypen.chain(dbConn,data.getAdressArt(),language);
 			tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +

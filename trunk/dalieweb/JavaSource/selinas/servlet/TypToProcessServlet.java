@@ -19,7 +19,6 @@ import selinas.bean.SelinasSession;
 import database.Database;
 import database.dateien.Selinas;
 import database.dateien.Typ;
-import database.getDatabase.DataSetSelectOptionen;
 import database.getDatabase.DataSetTyp;
 
 public class TypToProcessServlet extends HttpServlet implements Servlet {
@@ -55,7 +54,7 @@ public class TypToProcessServlet extends HttpServlet implements Servlet {
  	 			session.setAttribute("Typ", show.getTypOfInitialize(dbConn,selinasuser.user,language));//SessionAttribut:DokumentTypOfInitialize
 	 	 		performForward("/selinas/selinas025.jsp",request,response);
 		    } catch (Exception e) {
-		       	LoggerHelper.log(this.getClass().getName(),"Exception of perForm..:", e);
+		       	LoggerHelper.log(this.getClass().getName(),"Exception of perForm..: Button -> Dokumenttyp neu anlegen ", e);
 		       	performForward(nextPage,request,response);//Login 
 		    }//catch
 		}else{//endif button
@@ -67,41 +66,39 @@ public class TypToProcessServlet extends HttpServlet implements Servlet {
 						request.setAttribute("Message", test.error.getErrorMsg());
 						session.setAttribute("Error","yes");
 					}else{
-						DataSetTyp.delete(dbConn,selinasuser.user.getKundenId(),selinasuser.user.getStandortId(),typOfSession.getTyp());
-						DataSetSelectOptionen.delete(dbConn,"DokumentTyp",language,"KA",typOfSession.getTyp());
-						/* ersten gültigen Dokumenttyp ermitteln */
+						show.getTypOfDelete(dbConn,selinasuser.user,typOfSession);
+						/* nächsten gültigen Dokumenttyp ermitteln */
 						session.setAttribute("Typ",show.getTypOfDatabase(dbConn,selinasuser.user));//SessionAttribut:DokumentTypOfDatabase
 					}//endif test.CheckCount
 					performForward("/selinas/selinas025.jsp",request,response);
 				} catch (Exception e) {
-					LoggerHelper.log(this.getClass().getName(),"Exception of perForm..:", e);
+					LoggerHelper.log(this.getClass().getName(),"Exception of perForm..: Button -> Dokumenttyp löschen ", e);
 					performForward(nextPage,request,response);//Login 
 		        }//catch
 		}else{//endif button
 		 	if(request.getParameter("beenden") == null){//Button: Verarbeitung starten
 		 		try{
 		 			if(error.equalsIgnoreCase("yes")) {//Fehler: gefunden 
-		 				session.setAttribute("Typ", show.getTypOfRequest(typOfSession,request));//SessionAttribut:AdressOfUpdate
+		 				session.setAttribute("Typ", show.getTypOfRequest(typOfSession,request));//SessionAttribut:TypOfUpdate
 		 				performForward("/selinas/selinas025.jsp",request,response);
 		 			}else{//Fehler: not found
 		 				session.setAttribute("Typ", show.getTypOfUpdate(dbConn,selinasuser.user,typOfSession,request,language));//SessionAttribut:AdressOfUpdate
 		 				performForward("/selinas/selinas025.jsp",request,response);
 		 			}//endif error.equals
 		 		}catch (Exception e) {
-		 			LoggerHelper.log(this.getClass().getName(), "Exception of perForm Verarbeitung", e);
+		 			LoggerHelper.log(this.getClass().getName(), "Exception of perForm..: Button -> Dokumenttyp verarbeiten ", e);
 		 			performForward(nextPage,request,response);//Login 
 		 		}//catch ServletException
 			}else{//Button: beenden
 		 		try {
 		 			if(error.equalsIgnoreCase("yes")) {//Fehler: found 
-		 				session.setAttribute("Typ", show.getTypOfRequest(typOfSession,request));//SessionAttribut:AdressOfUpdate
+		 				session.setAttribute("Typ", show.getTypOfRequest(typOfSession,request));//SessionAttribut:TypOfUpdate
 		 				performForward("/selinas/selinas025.jsp",request,response);
 		 			}else{//Fehler: not found
-		 				//session.setAttribute("Typ", show.getTypOfUpdate(dbConn,selinasuser.user,typOfSession,request));//SessionAttribut:AdressOfUpdate
-		 				performForward("/selinas/selinas002.jsp",request,response);
+		 				performForward("/selinas/selinas002.jsp",request,response);//JSP-Page: Anzeige aller Dokumente
 		 			}//endif
 		 		} catch (Exception e) {
-		 			LoggerHelper.log(this.getClass().getName(), "Exception of perForm Beenden", e);
+		 			LoggerHelper.log(this.getClass().getName(), "Exception of perForm..: Button -> Dokumenttyp beenden ", e);
 		 			performForward(nextPage,request,response);//Login 
 		 		}//catch
 		 	}//endif beenden
@@ -130,7 +127,7 @@ public class TypToProcessServlet extends HttpServlet implements Servlet {
 	
 	/**@return a short description of this Servlet */
 	public String getServletInfo() {
-	    return "Manipulation on Database: DataTable Dokumenttyp ";
+	    return this.getClass().getName() +"Dokument(Typ): update/insert/delete ";
 	}//getServletInfo
 
 

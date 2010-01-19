@@ -26,7 +26,7 @@ public class DataSetDokument {
 	
 	
 	 /** oderByTypOf_0 = Table dokument by*/
-	public static final String orderByTypOf_0 = "kundenId, standortId, dokumenttyp, gliederung";
+	public static final String orderByTypOf_0 = "kundenId, standortId, typ, gliederung";
 	/** oderByTypOf_1 = Table dokument by*/
 	public static final String orderByTypOf_1 = "kundenId, standortId, titel";
 	/** oderByTypOf_2 = Table dokument by*/
@@ -38,13 +38,13 @@ public class DataSetDokument {
 	/** oderByTypOf_5 = Table dokument by*/
 	public static final String orderByTypOf_5 = "kundenId, standortId, gliederung";
 	/** oderByTypOf_6 = Table dokument by*/
-	public static final String orderByTypOf_6 = "kundenId, standortId, dokumentNr, dokumentId";
+	public static final String orderByTypOf_6 = "kundenId, standortId, nummer, id";
 	/** oderByTypOf_7 = Table dokument by*/
-	public static final String orderByTypOf_7 = "kundenId, standortId, dokumenttyp, dokumentNr, dokumentId";
+	public static final String orderByTypOf_7 = "kundenId, standortId, typ, nummer, id";
 	/** oderByTypOf_6 = Table dokument by*/
-	public static final String orderByTypOf_8 = "kundenId, standortId, dokumentNr, dokumentId desc";
+	public static final String orderByTypOf_8 = "kundenId, standortId, nummer, id desc";
 	 /** oderByTypOf_0 = Table dokument by*/
-	public static final String orderByTypOf_9 = "kundenId, standortId, dokumenttyp, gliederung desc";
+	public static final String orderByTypOf_9 = "kundenId, standortId, typ, gliederung desc";
 	/** oderByTypOf_1 = Table dokument by*/
 	public static final String orderByTypOf_10 = "kundenId, standortId, titel desc";
 	/** oderByTypOf_2 = Table dokument by*/
@@ -55,6 +55,8 @@ public class DataSetDokument {
 	public static final String orderByTypOf_13 = "kundenId, standortId, createDate";
 	/** oderByTypOf_4 = Table dokument by*/
 	public static final String orderByTypOf_14 = "kundenId, standortId, changeDate";
+	/** oderByTypOf_7 = Table dokument by*/
+	public static final String orderByTypOf_15 = "kundenId, standortId, typ, nummer, id desc";
 	
 	private static Hashtable memberTable = init();
 	private static Hashtable init() {
@@ -74,7 +76,7 @@ public class DataSetDokument {
         members.put("OGD",orderByTypOf_12);//order by only by gliederung desc
         members.put("CREATEDATED",orderByTypOf_13);//order by createDate
         members.put("CHANGEDATED",orderByTypOf_14);//order by changeDate
-        members.put("TNID",orderByTypOf_7);//order by only dokumentTyp,Nummer,Id
+        members.put("TNID",orderByTypOf_15);//order by only dokumentTyp,Nummer,Id desc
         return members;
     }//init
 
@@ -90,11 +92,11 @@ public class DataSetDokument {
      * @return
      * <ul><li>Dokument dokument</li></ul>
      */
-    public static synchronized Dokument chain(Database dbConn,User user,String dokumentTyp,int dokumentNr,int dokumentId) throws Exception {
+    public static synchronized Dokument chain(Database dbConn,User user,String typ,int nr,int id) throws Exception {
         Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokument " +
         		"where kundenId = "+user.getKundenId() + " and standortId = "+user.getStandortId() +
-        			" and dokumentTyp = '"+dokumentTyp+"'" + " and dokumentNr = "+dokumentNr +
-        			" and dokumentId = "+dokumentId+"");
+        			" and typ = '"+typ+"'" + " and nummer = "+nr +
+        			" and id = "+id+"");
         if(rows.size() == 0)
     	    throw new Exception("Record not Found");
         return new Dokument((Vector)rows.elementAt(0));
@@ -114,17 +116,17 @@ public class DataSetDokument {
     public static synchronized Dokument chain(Database dbConn,User user,Dokument dokument) throws Exception {
         Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokument " +
         		"where kundenId = "+user.getKundenId() + " and standortId = "+user.getStandortId() +
-        			" and dokumentTyp = '"+dokument.getDokumentTyp()+"'" + " and dokumentNr = "+ dokument.getNummer() +
-        			" and dokumentId = "+dokument.getId()+"");
+        			" and typ = '"+dokument.getTyp()+"'" + " and nummer = "+ dokument.getNummer() +
+        			" and id = "+dokument.getId()+"");
         if(rows.size() == 0)
     	    throw new Exception("Record not Found");
         return new Dokument((Vector)rows.elementAt(0));
     }//chain
     
-    public static synchronized Dokument chain(Database dbConn, User user, String dokumentTyp) throws Exception{
+    public static synchronized Dokument chain(Database dbConn, User user, String typ) throws Exception{
 		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokument " +
 				"where kundenId = "+user.getKundenId()+ " and standortId = "+user.getStandortId() + 
-				" and dokumentTyp = '"+ dokumentTyp +"'");
+				" and typ = '"+ typ +"'");
 		if(rows.size() == 0)
     	    throw new Exception("Record not Found");
 		 return new Dokument((Vector)rows.elementAt(0));
@@ -142,11 +144,12 @@ public class DataSetDokument {
      * @return
      * <ul><li> Vector Dokument(e)</li></ul>
      */
-    public static synchronized Vector reade(Database dbConn, User user) throws Exception{
+    public static synchronized Vector reade(Database dbConn, User user) throws Exception {
+    	/* Verwendung: ohne */
 		Vector liste = new Vector();
 		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokument " +
 				"where kundenId = "+user.getKundenId()+ " and standortId = "+user.getStandortId() +
-				" ORDER BY kundenId, standortId, dokumentTyp, dokumentNr, dokumentId");
+				" ORDER BY kundenId, standortId, typ, nummerr, id");
 		if(rows.size() == 0)
     	    throw new Exception("Record not Found");
 		for (int i = 0; i < rows.size(); i++){
@@ -167,9 +170,14 @@ public class DataSetDokument {
      * <ul><li> Vector Dokument(e)</li></ul>
      */
     public static synchronized Vector readeO(Database dbConn, User user,String orderBy) throws Exception{
+    	/* Verwendung DokumentDataTag -> JSP:SELINAS002.jsp Anzeige aller Dokumente  */
 		Vector liste = new Vector();
 		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokument " +
-				"where kundenId = "+user.getKundenId()+ " and standortId = "+user.getStandortId() +
+				"where kundenId = "+user.getKundenId()+ " and standortId = "+user.getStandortId()+
+				" and createUser = '"+user.getUserId()+"' or "  +
+				" kundenId = "+user.getKundenId()+ " and standortId = "+user.getStandortId()+
+				" and createUser <> '"+user.getUserId()+"'" +
+				" and status <= "+user.getUserAutorisierungsId()+" and status <> 'P'" +
 				" ORDER BY "+valueOf(orderBy)+"");
 		if(rows.size() == 0)
     	    throw new Exception("Record not Found");
@@ -178,6 +186,7 @@ public class DataSetDokument {
 		}//for
 		return liste;
 	}//query	
+    
     /**
      * <b>alle Dokument(e) aus Datenbank Tabelle Dokument</b>
      * <br>finde alle Dokumente zum DokumentTyp
@@ -191,12 +200,16 @@ public class DataSetDokument {
      * @return
      * <ul><li> Vector Dokument(e)</li></ul>
      */
-    public static synchronized Vector reade(Database dbConn, User user, String dokumentTyp) throws Exception{
+    public static synchronized Vector reade1(Database dbConn, User user, String typ) throws Exception{
+    	/* Verwendung DokumentNavTag -> lese alle Dokumente zum gefundenen DokumentTyp */
 		Vector liste = new Vector();
 		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokument " +
 				"where kundenId = "+user.getKundenId()+ " and standortId = "+user.getStandortId() + 
-				" and dokumentTyp = '"+ dokumentTyp +"'" +
-				" ORDER BY kundenId, standortId, dokumentTyp, dokumentNr, dokumentId");
+				" and typ = '"+ typ +"' and createUser = '"+user.getUserId()+"' or " +
+				" kundenId = "+user.getKundenId()+ " and standortId = "+user.getStandortId()+
+				" and typ = '"+ typ +"' and createUser <> '"+user.getUserId()+ "'" +
+				" and status <= "+user.getUserAutorisierungsId()+" and status <> 'P'" +
+				" ORDER BY kundenId, standortId, typ, nummer, id");
 		if(rows.size() == 0)
     	    throw new Exception("Record not Found");
 		for (int i = 0; i < rows.size(); i++){
@@ -217,11 +230,16 @@ public class DataSetDokument {
      * @return
      * <ul><li> Vector Dokument(e)</li></ul>
      */
-    public static synchronized Vector reade(Database dbConn, User user, String dokumentTyp,String orderBy) throws Exception{
+    public static synchronized Vector reade(Database dbConn, User user, String typ,String orderBy) throws Exception{
+    	/* Verwendung DokumentDataTag -> JSP:SELINAS002.jsp Anzeige aller Dokumente  */
+    	/* 			  DokumentDataTag -> JSP:SELINAS002.jsp Anzeige aller Dokument nach Auswahl Dokumenttyp */
 		Vector liste = new Vector();
 		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokument " +
 				"where kundenId = "+user.getKundenId()+ " and standortId = "+user.getStandortId() + 
-				" and dokumentTyp = '"+ dokumentTyp +"'" +
+				" and typ = '"+ typ +"' and createUser = '"+user.getUserId()+"' or " +
+				" kundenId = "+user.getKundenId()+ " and standortId = "+user.getStandortId()+
+				" and typ = '"+ typ +"' and createUser <> '"+user.getUserId()+ "'" +
+				" and status <= "+user.getUserAutorisierungsId()+" and status <> 'P'" +
 				" ORDER BY "+valueOf(orderBy)+"");
 		if(rows.size() == 0)
     	    throw new Exception("Record not Found");
@@ -243,11 +261,15 @@ public class DataSetDokument {
      * @return
      * <ul><li> Vector Dokument(e)</li></ul>
      */
-    public static synchronized Vector reade(Database dbConn, User user, String dokumentTyp,int dokumentNr,String orderBy) throws Exception{
+    public static synchronized Vector reade(Database dbConn, User user, String typ,int nr,String orderBy) throws Exception {
+    	/* Verwendung: DokumentTypTag -> zeige alle Dokumente zum DokumentTyp */
 		Vector liste = new Vector();
 		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokument " +
 				"where kundenId = "+user.getKundenId()+ " and standortId = "+user.getStandortId() + 
-				" and dokumentTyp = '"+ dokumentTyp +"' and dokumentNr = " + dokumentNr + 
+				" and typ = '"+ typ +"' and nummer = " + nr + " and createUser = '"+user.getUserId()+"' or " +
+				" kundenId = "+user.getKundenId()+ " and standortId = "+user.getStandortId()+
+				" and typ = '"+ typ +"' and nummer = " + nr + " and createUser <> '"+user.getUserId()+"'" +
+				" and status <= "+user.getUserAutorisierungsId()+ " and status <> 'P'" +
 				" ORDER BY "+valueOf(orderBy)+"");
 		if(rows.size() == 0)
     	    throw new Exception("Record not Found");
@@ -268,10 +290,11 @@ public class DataSetDokument {
      * @return
      * <ul><li>none</li></ul>
      */
-    public static synchronized void insert(Database dbConn, User user, Dokument dokument) throws Exception{
+    public static synchronized void insert(Database dbConn, User user, Dokument dokument) throws Exception {
+    	/* Verwendung: Selinas.session.getDokumentOfInitialize() */
 		dbConn.executeUpdate("insert into "+dbConn.getDbSchema()+".dokument " +
 				"values("+user.getKundenId()+"," +user.getStandortId()+"," +
-				"'"+dokument.getDokumentTyp()+"'," +dokument.getNummer()+","
+				"'"+dokument.getTyp()+"'," +dokument.getNummer()+","
 				+ getNextdokumentId(dbConn,user, dokument)+"," +
 				"'"+dokument.getStatus()+"'," + "'"+dokument.getTitel()+"'," +
 				"'"+dokument.getDescripten()+"'," + "'"+dokument.getContent()+"'," +
@@ -281,16 +304,16 @@ public class DataSetDokument {
 				"now()," + "'"+user.getUserId()+"'," + "now())");
     }//insert
     
-    public static synchronized void update(Database dbConn, User user, Dokument dokument) throws Exception {
+    public static synchronized void update(Database dbConn, User user, Dokument dokument) throws Exception {    	
         dbConn.executeUpdate("update "+dbConn.getDbSchema()+".dokument " +
-                "set dokumentStatus = '"+ dokument.getStatus() + "'," +
+                "set status = '"+ dokument.getStatus() + "'," +
                 " titel = '"+dokument.getTitel()+"'," + " descripten = '"+dokument.getDescripten()+"',"+
                 " content = '"+dokument.getContent()+"'," + " gliederung = '"+dokument.getGliederung()+"',"+
                 " archiv = '"+dokument.getArchiv()+"'," + " vorgabe = '"+dokument.getVorgabe()+"',"+
                 " changeUser = '"+user.getUserId()+"'," + " changeDate = now() " +
                 " where kundenId = "+ user.getKundenId() + " and standortId = "+user.getStandortId()+
-                " and dokumentTyp = '"+dokument.getDokumentTyp() + "'" + " and dokumentNr = "+dokument.getNummer() +
-                " and dokumentId = "+ dokument.getId() );
+                " and typ = '"+dokument.getTyp() + "'" + " and nummer = "+dokument.getNummer() +
+                " and id = "+ dokument.getId() );
     }//update
     
     /**
@@ -309,10 +332,10 @@ public class DataSetDokument {
      * @return
      * <ul><li>none</li></ul>
      */
-    public static synchronized void delete(Database dbConn,int kundenId, int standortId,String dokumentTyp,int dokumentNr, int dokumentId) throws Exception {
+    public static synchronized void delete(Database dbConn,int kundenId, int standortId,String typ,int nr, int id) throws Exception {
         dbConn.executeUpdate("delete from "+dbConn.getDbSchema()+".dokument" +
-                " where dokumentNr = " + dokumentNr + " and dokumentId = " + dokumentId +
-                " and dokumentTyp = '"+ dokumentTyp + "'" + " and standortId = " + standortId +
+                " where nummer = " + nr + " and id = " + id +
+                " and typ = '"+ typ + "'" + " and standortId = " + standortId +
                 " and kundenId = " + kundenId);
     }//delete
     /**
@@ -331,8 +354,8 @@ public class DataSetDokument {
     public static synchronized void delete(Database dbConn,Dokument dokument) throws Exception {
         dbConn.executeUpdate("delete from "+dbConn.getDbSchema()+".dokument" +
         		 " where kundenId = "+ dokument.getKundenId() + " and standortId = "+dokument.getStandortId()+
-	             " and dokumentTyp = '"+dokument.getDokumentTyp() + "'" + " and dokumentNr = "+dokument.getNummer() +
-	             " and dokumentId = "+ dokument.getId() );
+	             " and typ = '"+dokument.getTyp() + "'" + " and nummer = "+dokument.getNummer() +
+	             " and id = "+ dokument.getId() );
     }//delete
     
     
@@ -345,8 +368,8 @@ public class DataSetDokument {
         Vector rows = dbConn.executeQuery("select * from "
                 + dbConn.getDbSchema() + ".dokument " + " where kundenId = "
                 + user.getKundenId() + " and standortId = " + user.getStandortId() + ""
-                + " and dokumentTyp = '" + dokument.getDokumentTyp() + "'" + " and dokumentNr = " + dokument.getNummer()
-                + " and dokumentId = " + ++id);
+                + " and typ = '" + dokument.getTyp() + "'" + " and nummer = " + dokument.getNummer()
+                + " and id = " + ++id);
         if(rows.size() == 0)
             break;
         }//while
@@ -362,8 +385,8 @@ public class DataSetDokument {
         Vector rows = dbConn.executeQuery("select * from "
                 + dbConn.getDbSchema() + ".dokument " + " where kundenId = "
                 + user.getKundenId() + " and standortId = " + user.getStandortId() + ""
-                + " and dokumentTyp = '" + dokument.getDokumentTyp() + "'" + " and dokumentNr = " + dokument.getNummer()
-                + " and dokumentId = " + --id);
+                + " and typ = '" + dokument.getTyp() + "'" + " and nummer = " + dokument.getNummer()
+                + " and id = " + --id);
         if(rows.size() == 1)//satz gefunden
         	break;
         if(id == 0){//kleinster Satz
@@ -374,30 +397,79 @@ public class DataSetDokument {
         return id;
     }//getNextdokumentId
     
+    public static synchronized Dokument foundBackDokument(Database dbConn, User user,Dokument dokument,String orderBy) throws Exception{
+    	/* Verwendung SelinasSession.getBackDokumentOfDatabase -> selinas003.jsp Anzeige der ausgewählten Dokumente << backward  */
+    	Dokument nextDokument = null;
+		Vector liste = new Vector();
+		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokument " +
+				"where kundenId = "+dokument.getKundenId()+ " and standortId = "+dokument.getStandortId() +
+				" and typ = '"+dokument.getTyp()+"' and nummer = "+dokument.getNummer()+" and id < "+dokument.getId() +
+				" and createUser = '"+user.getUserId()+"' or "  +
+				" kundenId = "+dokument.getKundenId()+ " and standortId = "+dokument.getStandortId() +
+				" and typ = '"+dokument.getTyp()+"' and nummer = "+dokument.getNummer()+" and id < "+dokument.getId() +
+				" and createUser <> '"+user.getUserId()+"'" +
+				" and status <= "+user.getUserAutorisierungsId()+" and status <> 'P'" +
+				" ORDER BY "+valueOf(orderBy)+"");
+		if(rows.size() == 0)
+    	    return dokument;
+		for (int i = 0; i < rows.size(); i++){
+			nextDokument = new Dokument((Vector) rows.elementAt(i));
+			if(nextDokument.getUserckeck(user))
+				return nextDokument;
+		}//for
+		return dokument;
+	}//foundNextDokument	
+    
+    
     /**
      * @return Returns the nextdokumentId.
      */
     public static synchronized int getNextdokument(Database dbConn, User user, Dokument dokument) throws Exception {
+    	/* Verwendung SelinasSession.getNextDokumentOfDatabase1 -> selinas003.jsp Anzeige der ausgewählten Dokumente << backward  */
         int id = dokument.getId();
         Vector anzahl = dbConn.executeQuery("select * from "
                 + dbConn.getDbSchema() + ".dokument " + " where kundenId = "
                 + user.getKundenId() + " and standortId = " + user.getStandortId() + ""
-                + " and dokumentTyp = '" + dokument.getDokumentTyp() + "'" + " and dokumentNr = " + dokument.getNummer());
+                + " and typ = '" + dokument.getTyp() + "'" + " and nummer = " + dokument.getNummer());
         while(true) {   
         Vector rows = dbConn.executeQuery("select * from "
                 + dbConn.getDbSchema() + ".dokument " + " where kundenId = "
                 + user.getKundenId() + " and standortId = " + user.getStandortId() + ""
-                + " and dokumentTyp = '" + dokument.getDokumentTyp() + "'" + " and dokumentNr = " + dokument.getNummer()
-                + " and dokumentId = " + ++id);
+                + " and typ = '" + dokument.getTyp() + "'" + " and nummer = " + dokument.getNummer()
+                + " and id = " + ++id);
         if(rows.size() == 1)//satz gefunden
         	break;
         if(id > anzahl.size()){//id ist größer als alle gefunden Sätze
         	id--;
         	break;
-        }
+        }//endif
         }//while
         return id;
     }//getNextdokumentId
+    
+    public static synchronized Dokument foundNextDokument(Database dbConn, User user,Dokument dokument,String orderBy) throws Exception{
+    	/* Verwendung SelinasSession.getNextDokumentOfDatabase -> selinas003.jsp Anzeige der ausgewählten Dokumente >> forward  */
+    	Dokument nextDokument = null;
+		Vector liste = new Vector();
+		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokument " +
+				"where kundenId = "+dokument.getKundenId()+ " and standortId = "+dokument.getStandortId() +
+				" and typ = '"+dokument.getTyp()+"' and nummer = "+dokument.getNummer()+" and id > "+dokument.getId() +
+				" and createUser = '"+user.getUserId()+"' or "  +
+				" kundenId = "+dokument.getKundenId()+ " and standortId = "+dokument.getStandortId() +
+				" and typ = '"+dokument.getTyp()+"' and nummer = "+dokument.getNummer()+" and id > "+dokument.getId() +
+				" and createUser <> '"+user.getUserId()+"'" +
+				" and status <= "+user.getUserAutorisierungsId()+" and status <> 'P'" +
+				" ORDER BY "+valueOf(orderBy)+"");
+		if(rows.size() == 0)
+    	    return dokument;
+		for (int i = 0; i < rows.size(); i++){
+			nextDokument = new Dokument((Vector) rows.elementAt(i));
+			if(nextDokument.getUserckeck(user))
+				return nextDokument;
+		}//for
+		return dokument;
+	}//foundNextDokument	
+    
     
     /**
      * Returns a String with order by value based on the given String value.

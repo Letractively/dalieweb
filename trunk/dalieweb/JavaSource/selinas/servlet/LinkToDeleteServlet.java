@@ -1,7 +1,5 @@
 package selinas.servlet;
 
-import help.LoggerHelper;
-
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -13,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class LinkToDeleteServlet extends HttpServlet implements Servlet {
+public class LinkToDeleteServlet extends HttpServlet implements Servlet{
 	
 	
 	 /** perform for both HTTP <code>GET</code> and <code>POST</code> methods  */
@@ -59,20 +57,11 @@ public class LinkToDeleteServlet extends HttpServlet implements Servlet {
 	
 	public LinkToDeleteServlet() {
 		super();
-	}//DokumentToReportServlet
+	}//LinkToDeleteServlet
 	
 	/**@return a short description of this Servlet */
 	public String getServletInfo() {
 	    return "delete a select File OfDokuments on WebServer";
 	}//getServletInfo
-	
-	/** finally method */
-	public void destroy(){
-	    try {
-	       // dbConn.close();//DatabaseConnection close
-	    } catch (Exception e) {
-	        LoggerHelper.log(this.getClass().getName(), "Exception of destroy LoginServlet", e);
-	    }//catch
-	}//destroy
 	
 }//class DokumentToDeleteServlet

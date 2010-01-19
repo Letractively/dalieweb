@@ -129,11 +129,11 @@ public class DataSetTyp {
      * <li>int count</li>
      * </ul>
      */
-    public static synchronized int getCounter(Database dbConn,User user,String dokumenttyp) throws Exception {
+    public static synchronized int getCounter(Database dbConn,User user,String typ) throws Exception {
     	Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokument " +
     			"where kundenId = "+user.getKundenId()+" " +
         		"and standortId = "+user.getStandortId()+" " +
-        		"and dokumentTyp = '"+dokumenttyp+"'");
+        		"and typ = '"+typ+"'");
         return rows.size();            
     }//getTypOfDokument
     
@@ -158,7 +158,7 @@ public class DataSetTyp {
         	Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokumenttyp " +
         	        "where kundenId = "+dokument.getKundenId()+" " +
         			"and standortId = "+dokument.getStandortId()+" " +
-        			"and dokumentTyp = '"+dokument.getDokumentTyp()+"' " +
+        			"and dokumentTyp = '"+dokument.getTyp()+"' " +
         			"and sprachId = ''");
         	if(rows.size() == 0)
         	    throw new Exception("Record not Found");
