@@ -80,10 +80,14 @@
 			<table width="100%" border="0" cellpadding="0" cellspacing="3">
 				<tr>
 					<td width="15%" align="left">&nbsp;&nbsp;<em><%= show.session.getDokumentTyp() %> :</em></td><td width="35%" align="left"><strong><%= typ.getDescription() %></strong></td>
-					<td width="15%" align="left"><em><%= show.session.getStatus() %> :</em></td><td width="35%" align="left"><dalie:SelectboxDokumentStatus name="Status" argument='<%=dokument.getStatus()%>' tabindex="7" ccsStyle="BOX"></dalie:SelectboxDokumentStatus></td>
+					<td width="15%" align="left"><em><%= show.session.getStatus() %> :</em></td><td width="35%" align="left" valign="middle">
+							<dalie:SelectboxDokumentStatus name="Status" argument='<%=dokument.getStatus()%>' tabindex="7" ccsStyle="BOX"></dalie:SelectboxDokumentStatus>
+							<a href="/dalieweb/Selinas004PermitInfo" title="<%= show.session.getLink5t() %>" target="_self" tabindex="22">
+							<img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin5" alt='<%= show.session.getImage2() %>' title='<%= show.session.getImage2() %>'/></a></td>
 				</tr>
 				<tr>
-					<td width="15%" align="left">&nbsp;&nbsp;<em>Dokumenten-Nr. : </em></td><td width="35%" align="left"><strong><%= dokument.getNummer() %>.<%= dokument.getId() %></strong></td>
+					<td width="15%" align="left" valign="top">&nbsp;&nbsp;<em>Dokumenten-Nr. : </em></td><td width="35%" align="left" valign="top"><strong><%= dokument.getNummer() %>.<%= dokument.getId() %></strong></td>
+					<td colspan="2" align="center"><!-- CLASS:HinweisOption --><dalie:HinweisOption message='${requestScope.permitInfo}'></dalie:HinweisOption><span innerhtml="test"></span></td>
 				</tr>
 			</table>
 		</div><!-- /header -->

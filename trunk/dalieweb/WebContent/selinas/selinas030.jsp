@@ -84,7 +84,7 @@
 <input type="hidden" name="<%= show.session.getUserId() %>" value="<%= showUser.getUserId() %>" />
 <input type="hidden" name="userAdressId" value="<%= showUser.getUserId() %>" />
 <input type="hidden" name="AdressTyp" value="U" />
-<% if( user.user.getPermitId() <= 3 ){ %>
+<% if( user.user.getPermitId() <= 4 ){ %>
 <input type="hidden" name="PermitId" value="<%= showUser.getPermitId() %>" />
 <input type="hidden" name="AutorisierungId" value="<%= showUser.getPermitId() %>" />
 <input type="hidden" name="Status" value="<%= showUser.getUserStatus() %>" />

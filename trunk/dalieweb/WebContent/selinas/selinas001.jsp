@@ -50,21 +50,14 @@
 		</div><!-- /titleTag -->
 <div class="box afterH4 quickStart">
 <ul class="circle">
-<li>Call 1-877-445-8228</li>
+<li>Für mehr Information:</li>
 <li>
 <a href="mailto:dalie@dalieweb.de">Email dalieweb</a>
 </li>
 <li>
-<a href="http://www.dalieonline.de/Demo-Request-Form.xms">Online Demo</a>
+<a href="<%= request.getContextPath()%>/selinas doku/Selinas.doc" target="_blank">Online Demo</a>
 </li>
-<li>
-<a href="http://www.dalieonline.de/Request-a-Quote-Form.xms">Request a Quote</a>
-</li>
-<li>
-<a href="http://www.dalieonline.de/Newsletter-SignUp.xms">Sign-Up for Newsletter</a>
-</li>
-<li>
-<a href="http://www.dalieonline.com/Resources/Download-Whitepapers.xms">Download Whitepapers</a>
+<li>&nbsp;
 </li>
 </ul>
 </div><!-- /box afterH4 quickStart -->
@@ -102,7 +95,7 @@
 	<h3>Links</h3>
 	<p><a href="http://www.netvibes.com/dalie#General" target="_blank"></a></p>
 	<p><a href="http://www.dalieweb.de/dalieweb.xml" target="_blank"></a></p>
-	<p><a href="http://code.google.com/p/calculators/source/browse/#svn/trunk/daliecalculator" target="_blank"></a></p>
+	<p><a href="http://code.google.com/p/dalieweb/source/browse/#svn/trunk/dalieweb" target="_blank"></a></p>
 	</div><!-- div ws-notizen -->
 	</div><!-- contentRight -->
 	</div><!-- wrapperContent -->	
