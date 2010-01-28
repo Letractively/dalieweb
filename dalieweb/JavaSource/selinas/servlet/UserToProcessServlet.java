@@ -50,9 +50,11 @@ public class UserToProcessServlet extends HttpServlet implements Servlet {
 	 	String error = (String) session.getAttribute("Error");
 	 	if(request.getParameter("new") != null){//Button: Dokumenttypen neu
  	 		try{	
- 	 			/* gültigen Dokumenttyp ermitteln */					
- 	 			session.setAttribute("ShowUser", show.getUserOfInitialize(dbConn,selinasuser.user,language));//SessionAttribut:UserOfInitialize
-	 	 		performForward("/selinas/selinas030.jsp",request,response);
+ 	 			/* gültigen Dokumenttyp ermitteln */
+ 	 			User showUser = show.getUserOfInitialize(dbConn,selinasuser.user,language);
+ 	 			session.setAttribute("ShowUser", showUser);//SessionAttribut:UserOfInitialize
+ 	 			session.setAttribute("Adresse", show.getAdressOfDatabase(dbConn,selinasuser.user,showUser));
+ 	 			performForward("/selinas/selinas030.jsp",request,response);
 		    } catch (Exception e) {
 		       	LoggerHelper.log(this.getClass().getName(),"Exception of perForm..:", e);
 		       	performForward(nextPage,request,response);//Login 

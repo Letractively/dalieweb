@@ -671,7 +671,6 @@ public class SelinasSession {
 		/* Verwendung: GoToSelinas020Serlvet -> Anzeige Adressverwaltung */
 		User userOfDatabase = null;
 		dbConn.getConnection();//DataBaseConnection open
-		System.out.println(this.getClass().getName()+"Hier " + userId);
 		userOfDatabase = DataSetUser.chain(dbConn,userId);
 		dbConn.close();//DataBaseConnection close
 		return userOfDatabase;//Return UserOfDatabase
@@ -703,9 +702,8 @@ public class SelinasSession {
 	}//getUserOfRequest  
 	
 	/**
-	* <b>Erzeuge ein Objekt vom Typ Typ aus Datenbanktabelle Typ</b>
-	* <br> Dokumenttyp anlegen"
-	* <br><b>chain:Key id </b>
+	* <b>Erzeuge ein Objekt vom Typ User aus Datenbanktabelle User</b>
+	* <br> User anlegen
 	* <br><b>public</b><br>
 	* @param
 	* <ul>
@@ -714,7 +712,7 @@ public class SelinasSession {
 	* <li>String language</li>
 	* </ul>
 	* @return
-	* <ul><li>Typ typ</li></ul>
+	* <ul><li>User user</li></ul>
     * @throws Exception
 	*/
 	public User getUserOfInitialize(Database dbConn,User user,String language)throws Exception{
@@ -724,13 +722,13 @@ public class SelinasSession {
        userOfInitialize.setName("Name");
        userOfInitialize.setVorname("Vorname");
        userOfInitialize.setPassword("selina");
-       userOfInitialize.setKundenId(selinasuser.getKundenId());
-       userOfInitialize.setPermitId(user.getPermitId());
+       userOfInitialize.setKundenId(selinasuser.user.getKundenId());
+       userOfInitialize.setStandortId(selinasuser.user.getStandortId());
+       userOfInitialize.setPermitId(selinasuser.user.getPermitId());
        userOfInitialize.setSelinasId(1);
        userOfInitialize.setSelinasStandortId(1);
        userOfInitialize.setSprachId("");
-       userOfInitialize.setStandortId(user.getStandortId());
-       userOfInitialize.setUserAutorisierungsId(user.getUserAutorisierungsId());
+       userOfInitialize.setUserAutorisierungsId(selinasuser.user.getUserAutorisierungsId());
        userOfInitialize.setUserId(selinasuser.getNewUserId());
        userOfInitialize.setUserStatus(DataSetStatus.chain(dbConn,"A",language).getStatusId());
        userOfInitialize.setCreateUserId(user.getUserId());
@@ -741,19 +739,19 @@ public class SelinasSession {
     }//getTypOfInitialize
 	
 	/**
-	* <b>Erzeuge ein Objekt vom Typ Dokument aus Datenbanktabelle Dokument</b>
-	* <br> Dokument update"
-	* <br><b>chain:Key User user,Dokument ofSession, HttpServletRequest request</b>
+	* <b>Update of User: Typ User aus Datenbanktabelle User</b>
+	* <br> User update"
+	* <br><b>chain:Key User user,User ofSession, HttpServletRequest request</b>
 	* <br><b>public</b><br>
 	* @param
 	* <ul>
 	* <li>Database dbConn</li>
 	* <li>User user</li>
-	* <li>Dokument ofSession</li>
+	* <li>User ofSession</li>
 	* <li>HttpServletRequest request</li>
 	* </ul>
 	* @return
-	* <ul><li>Dokument dokumentOfUpdate</li></ul>
+	* <ul><li>User userOfUpdate</li></ul>
     * @throws Exception
 	*/
 	public User getUserOfUpdate(Database dbConn,User user,User ofSession,HttpServletRequest request)throws Exception{

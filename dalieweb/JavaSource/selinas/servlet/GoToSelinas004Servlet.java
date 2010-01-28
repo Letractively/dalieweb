@@ -73,7 +73,6 @@ public class GoToSelinas004Servlet extends HttpServlet implements Servlet {
 	 			show.getDokumentLinkOfUpdate(dbConn,selinasuser.user,dokumentOfSession,request);
 	 		}//endif
 	 		session.setAttribute("MemoLoad","memoLoadOFF");//SessionAttribut:MemoTable don't show
-	 		
 	 		performForward("/selinas/selinas004.jsp",request,response);//show Page selinas003.jsp 			
 	 	}catch (Exception e) {
 	 		performForward(nextPage,request,response);//Login 
