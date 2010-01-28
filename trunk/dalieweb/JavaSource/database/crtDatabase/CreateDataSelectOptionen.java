@@ -119,7 +119,7 @@ public class CreateDataSelectOptionen {
     		}
     		if(i > 0 && sprachId == "DE"){
     			optionValue = (new Integer(i).toString());
-    			optionDescripten = optionValue +"-AutorisierungId ";
+    			optionDescripten = optionValue +"-Sicherheitsklasse ";
     		}
     		if(i == 0 && sprachId == "EN"){
     			optionValue = "P";
@@ -127,7 +127,7 @@ public class CreateDataSelectOptionen {
     		}
     		if(i > 0 && sprachId == "EN"){
         		optionValue = (new Integer(i)).toString();
-        		optionDescripten = optionValue + "-AuthorizationId ";
+        		optionDescripten = optionValue + "-Authorization ";
     		}
 		try {
 			dbConn.executeUpdate("insert into "+dbConn.getDbSchema()+".selectoptionen " +
@@ -266,7 +266,7 @@ public class CreateDataSelectOptionen {
     	insertSelectboxId(dbConn,"AutorisierungId","DE");
     	for(int id = 1;id <= 10;id++){
     		deleteSelectoptionenId(dbConn,"AutorisierungId","DE",id);
-    		insertSelectoptionenAutorisierungId(dbConn,"AutorisierungId","DE",id," - AutorisierungsId");
+    		insertSelectoptionenAutorisierungId(dbConn,"AutorisierungId","DE",id," - Sicherheitsklasse");
     	}//for
     	deleteSelectboxId(dbConn,"AutorisierungId","EN");
     	insertSelectboxId(dbConn,"AutorisierungId","EN");
