@@ -98,8 +98,8 @@
 					</td>
 				</tr>
               	<tr>
-					<td>	
-						<iframe src="<%= request.getContextPath()%>/selinas/selinas003FC.jsp" width="100%" name="xxx" frameborder="0" height="155" align="left" marginwidth="2" marginheight="0"></iframe>						
+					<td style="padding-top: 5px;">	
+						<iframe src="<%= request.getContextPath()%>/selinas/selinas003FC.jsp" width="100%" name="xxx" frameborder="0" height="150" align="left" marginwidth="2" marginheight="0"></iframe>						
 					</td>
 				</tr>
 			</table>

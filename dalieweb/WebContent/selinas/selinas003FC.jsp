@@ -14,10 +14,36 @@
 <meta name="keywords" content="dalieweb"/>
 <meta name="author" content="u.dalies"/>
 <!-- CSS und Icons -->
-<link href="<%= request.getContextPath()%>/theme/selinas003.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="<%= request.getContextPath()%>/theme/selinas-DruckTyp.css" rel="stylesheet" type="text/css" media="print"/>
 <link href="http://www.dalieweb.de/pfeilmit01.ico" rel="shortcut icon" title="dalieweb" type="image/x-icon"/>
 <title>dalieweb</title>
+<style type="text/css">
+body {
+	padding: 0px 0px 0px 5px; 
+	font-family: Verdana, Tahoma, Arial, sans-serif;
+	line-height: normal;
+	font-size: 12px;
+}
+p{
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+ul
+{
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+a:link, a:visited {
+	text-decoration: none;
+	color: #2A4F6F;
+	background-color: transparent;
+	border-bottom: 1px dotted #B2BCC6
+}
+
+a:hover {
+	color: #778899;
+}
+</style>
 </head>
 <body> 
 <%	
