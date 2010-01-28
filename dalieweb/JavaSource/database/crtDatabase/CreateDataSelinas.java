@@ -217,7 +217,7 @@ public class CreateDataSelinas {
 	}//insertSelinasEN
 	
 	 public static void main(String args[]) throws Exception{
-	 	Database dbConn = new Database("mySql","localhost","selina","web4857","selina2009");
+	 	Database dbConn = new Database("mySql","localhost","selina","web4857","xxx");
     	
 	 	CreateDataSelinas selinas = new CreateDataSelinas();
     	
