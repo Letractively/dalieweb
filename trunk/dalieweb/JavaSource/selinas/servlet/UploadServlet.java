@@ -99,6 +99,7 @@ public class UploadServlet extends HttpServlet implements Servlet {
                                 dokumentlink.setContentType(contenType);
                                 dokumentlink.setApplicationsId(applicationsId);
                                 dokumentlink.setSizeInBytes(sizeInBytes);
+                                dokumentlink.setNotizOfLink("tooltip");
                                 DataSetLink.insert(dbConn,dokument,dokumentlink,selinasuser.user);
                                 request.setAttribute("upload",getResult(first + applicationsId + next,dokumentlink,request,response));
                             } else {//keine gültige PC Anwendung

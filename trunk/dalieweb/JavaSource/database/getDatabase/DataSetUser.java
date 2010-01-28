@@ -9,6 +9,7 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import database.Database;
+import database.dateien.Dokument;
 import database.dateien.User;
 
 /**
@@ -114,6 +115,38 @@ public class DataSetUser {
     }//reade
     
     /**
+     * <b>User aus Datenbank Tabelle user</b>
+     * <br>finde alle aktiven User, die diese Dokument bearbeiten können.
+     * <br><b>reade:Key Dokument.kundenId,Dokument.standortId</b>
+     * <br><br><b>public static</b><br>
+     * @param
+     * <ul>
+     * <li>Database dbConn</li>
+     * <li>Dokument dokument</li>
+     * </ul>
+     * @return
+     * <ul>
+     * <li>Vector of User</li>
+     * </ul>
+     */
+    public static synchronized Vector reade(Database dbConn, Dokument dokument) throws Exception {
+    	/* Verwendung:	PermitServlet -> finde alle aktiven User die diese Dokument bearbeiten können. */
+    	Vector liste = new Vector();
+    	Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".user " +
+                "where kundenId = " + dokument.getKundenId() +
+        		" and standortId = " + dokument.getStandortId() +
+				" and status = 'A'" +
+				" and userAutorisierungsId >= " + dokument.getStatus());
+				
+        if(rows.size() == 0)
+            throw new Exception("Record not Found");
+        for (int i = 0; i < rows.size(); i++){
+    		liste.addElement(new User((Vector) rows.elementAt(i)));
+    	}//for
+    	return liste;        
+    }//reade
+    
+    /**
      * <b>insert User on Datenbank </b>
      * <br><b>insert:Key none </b>
      * <br><b>public</b><br>
@@ -132,7 +165,7 @@ public class DataSetUser {
 				"'"+user.getPassword()+"','"+user.getName()+"'," + 
 				"'"+user.getVorname()+"',now()," +
 				user.getPermitId()+","+user.getUserAutorisierungsId() + "," +
-				user.getKundenId()+","+user.getSelinasStandortId() + "," +
+				user.getKundenId()+","+user.getStandortId() + "," +
 				"'"+user.getSprachId()+"',"+user.getSelinasId() + "," +
 				user.getSelinasStandortId() + ",'"+user.getCreateUserId()+"'," +
 				"now(),'"+user.getCreateUserId()+"',now())");
@@ -170,7 +203,7 @@ public class DataSetUser {
      * </ul>
      */
     public static synchronized User determineLastUserId(Database dbConn,User user) throws Exception {
-    	/* Verwendung:	selinas030FUTag -> Frame zur Anzeige aller User */
+    	/* Verwendung:	SelinasSession.getUserOfInitialize -> create a new UserAccount */
     	Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".user " +
                 "where kundenId = " + user.getKundenId() +
         		" and standortId = " + user.getStandortId());
