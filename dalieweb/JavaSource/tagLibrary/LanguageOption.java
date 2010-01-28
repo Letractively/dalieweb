@@ -104,7 +104,7 @@ public class LanguageOption extends TagSupport {
                 //Daten vom SessionOpjekt als Input holen
                 setPermitId((String)session.getAttribute("PermitId"));
     	    
-            out.println("<SELECT name="+FB+name+FB+" id="+FB+id+FB+permitAttribut+" tabindex="+FB+tabindex+FB+">"+getOption());
+            out.println("<select name="+FB+name+FB+" id="+FB+id+FB+permitAttribut+" tabindex="+FB+tabindex+FB+">"+getOption());
             }catch(IOException iex) {
             }//catch
         return EVAL_BODY_INCLUDE;
@@ -113,7 +113,7 @@ public class LanguageOption extends TagSupport {
     public int doEndTag() {
         try {
             JspWriter out = pageContext.getOut();
-            out.println("</SELECT>");
+            out.println("</select>");
             }catch(IOException iex) {
             }//catch
         return EVAL_PAGE;
