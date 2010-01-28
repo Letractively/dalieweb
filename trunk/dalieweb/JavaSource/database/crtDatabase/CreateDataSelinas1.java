@@ -97,8 +97,8 @@ public class CreateDataSelinas1 {
 	}//insertSelinas1DE
 	
 	 public static void main(String args[]) throws Exception{
-	 	Database dbConn = new Database("mySql","localhost","selina","web4857","xxx");
-    	
+	 	Database dbConn = new Database("mySql","localhost","selina","web4857","xxxx");
+    	 
 	 	CreateDataSelinas1 selinas = new CreateDataSelinas1();
     	
     	dbConn.getConnection();
