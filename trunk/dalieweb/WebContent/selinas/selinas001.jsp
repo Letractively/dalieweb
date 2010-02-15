@@ -68,7 +68,7 @@
 	<tfoot>
 		<tr>
 			<th scope="row"></th>
-			<td colspan="2"><button id="login" name="login" tabindex="3">login</button></td>
+			<td colspan="2"><button id="login" type="submit" name="login" tabindex="3" value="login">login</button></td>
 		</tr>
 	</tfoot>
 		<tr>
