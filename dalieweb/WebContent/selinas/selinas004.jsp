@@ -22,16 +22,30 @@
 <meta name="keywords" content="dalieweb"/>
 <meta name="author" content="u.dalies"/>
 <!-- CSS und Icons --> 
+<link href="http://yui.yahooapis.com/2.8.0r4/build/fonts/fonts-min.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="http://yui.yahooapis.com/2.8.0r4/build/container/assets/skins/sam/container.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="http://yui.yahooapis.com/2.8.0r4/build/fonts/fonts-min.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="http://yui.yahooapis.com/2.8.0r4/build/button/assets/skins/sam/button.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="http://yui.yahooapis.com/2.8.0r4/build/container/assets/skins/sam/container.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="http://yui.yahooapis.com/2.8.0r4/build/calendar/assets/skins/sam/calendar.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="<%= request.getContextPath()%>/theme/selinas004.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="<%= request.getContextPath()%>/theme/selinas-DruckTyp.css" rel="stylesheet" type="text/css" media="print"/>
 <link href="http://www.dalieweb.de/pfeilmit01.ico" rel="shortcut icon" title="dalieweb" type="image/x-icon"/>
 <!-- Definition RSS Feed -->
 <link rel="alternate" type="application/rss+xml" title="dalieweb.de RSS-Feed" href="http://www.dalieweb.de/dalieweb.xml"/>
 <!-- Script's  -->
+<script type="text/javascript" src="http://yui.yahooapis.com/2.8.0r4/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.8.0r4/build/container/container-min.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.8.0r4/build/dragdrop/dragdrop-min.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.8.0r4/build/element/element-min.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.8.0r4/build/button/button-min.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.8.0r4/build/calendar/calendar-min.js"></script>
+<script src="<%= request.getContextPath()%>/script/dalieInputDate.js" type="text/javascript"></script>
+<script src="<%= request.getContextPath()%>/script/dalieTooltip.js" type="text/javascript"></script>
 <script src="<%= request.getContextPath()%>/script/dalieLogo.js" type="text/javascript"></script>
 <title>dalieweb</title>
 </head>
-<body onload="if(document.images) nextimg()">
+<body class="yui-skin-sam" onload="if(document.images) nextimg()">
 <%	
 	SelinasSession show = new SelinasSession((Selinas) session.getAttribute("Selinas")); 
     SelinasUser user = (SelinasUser) session.getAttribute("User");
@@ -82,12 +96,21 @@
 					<td width="15%" align="left">&nbsp;&nbsp;<em><%= show.session.getDokumentTyp() %> :</em></td><td width="35%" align="left"><strong><%= typ.getDescription() %></strong></td>
 					<td width="15%" align="left"><em><%= show.session.getStatus() %> :</em></td><td width="35%" align="left" valign="middle">
 							<dalie:SelectboxDokumentStatus name="Status" argument='<%=dokument.getStatus()%>' tabindex="7" ccsStyle="BOX"></dalie:SelectboxDokumentStatus>
-							<a href="/dalieweb/Selinas004PermitInfo" title="<%= show.session.getLink5t() %>" target="_self" tabindex="22">
-							<img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin5" alt='<%= show.session.getImage2() %>' title='<%= show.session.getImage2() %>'/></a></td>
+							<img id="show1" src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin5" alt='<%= show.session.getImage2() %>' title='<%= show.session.getImage2() %>'/> 
+							<div id="panel1">
+											<div class="hd"><%= show.session.getLink7() %></div>
+											<div class="bd"><dalie:PermitInfoTag></dalie:PermitInfoTag></div>
+											<div class="ft"><p style="font-weight: bold; 
+											font-size: 10px; 
+											font-family: Helvetica,sans-serif; 
+											margin-left: 3px;
+											text-align: left;"> Stand: <%= dokument.getChangeDate() %> </p></div>
+							</div>
+				</td>
 				</tr>
 				<tr>
 					<td width="15%" align="left" valign="top">&nbsp;&nbsp;<em>Dokumenten-Nr. : </em></td><td width="35%" align="left" valign="top"><strong><%= dokument.getNummer() %>.<%= dokument.getId() %></strong></td>
-					<td colspan="2" align="center"><!-- CLASS:HinweisOption --><dalie:HinweisOption message='${requestScope.permitInfo}'></dalie:HinweisOption><span innerhtml="test"></span></td>
+					<td colspan="2" align="center"><!-- CLASS:HinweisOption --><dalie:HinweisOption message='${requestScope.permitInfo}'></dalie:HinweisOption></td>
 				</tr>
 			</table>
 		</div><!-- /header -->
@@ -101,6 +124,7 @@
 				</tr>
 				<tr>
 					<td width="15%" align="left"><%= show.session.getVorgabe() %></td><td width="35%" align="left"><dalie:InputOption name='<%= show.session.getVorgabe() %>' value='<%=dokument.getVorgabe() %>' tabindex="6"></dalie:InputOption></td>
+					<td width="15%" align="left"><%= show.session.getArchivDatum() %></td><td width="35%" align="left"><dalie:InputOption name='date' value='<%=dokument.getArchivDate() %>' tabindex="6"></dalie:InputOption><img id="show" src="<%= request.getContextPath()%>/bilder/calbtn.gif" width="18" height="18" title="Calendar" alt="Calendar"/></td>
 				</tr>
 			</table> 
 			<table width="99%" border="0" cellpadding="0" cellspacing="3" class="details">
