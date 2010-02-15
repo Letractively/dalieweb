@@ -28,13 +28,6 @@ body {
 ul,li {
 	list-style-type: none;
 }
-p1 {
-	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;
-	margin-top: 1.5em;
-	margin-bottom: 1.5em;
-	clear: both;
-}
-
 h1 {
 	font: 1.67em/ 0.9em Georgia, Arial, Times, serif;
 	margin-top: 0.9em;

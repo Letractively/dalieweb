@@ -72,7 +72,14 @@ body {
 	font-weight: normal;
 	color: #fff;
 	font-style: italic;
-} 
+}
+img.admin5{
+	/* overview dokumentPermit */
+	background: url(../bilder/dalie-icons-pack.gif) -545px -22px no-repeat;
+	height: 15px;
+	width: 18px;
+	border: 1px #B2BCC6; /*Rahmen wie Link's */
+}
 #wrapper {
 	margin: 0 auto;
 	max-width: 100%;

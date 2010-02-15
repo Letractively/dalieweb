@@ -8,7 +8,12 @@ Letzte Aenderung: 00.00.20xx
 body {
 	background: #006666; /* HintergrundFarbe */
 }
-
+p {
+	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+	clear: both;
+}
 #wrapper { /* kompletter Container für die ganze Darstellung */
 	background: #fff;
 	text-align: left;
