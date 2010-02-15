@@ -98,8 +98,8 @@ public class CreateDataSelinas {
 				"'Dokumenttypen anlegen,ändern oder löschen',"+//link5t
 				"'Userverwaltung',"+//link6
 				"'User anlegen,ändern oder löschen',"+//link6t
-				"'Link7',"+//link7
-				"'Link7',"+//link7t
+				"'Liste der User, die Zugriff auf dieses Dokument haben können.',"+//link7
+				"'User:',"+//link7t
 				"'Link8',"+//link8
 				"'Link8',"+//link8t
 				"'Link9',"+//link9
@@ -191,8 +191,8 @@ public class CreateDataSelinas {
 				"'creating a document type, change or delete',"+//link5t
 				"'User adminstration',"+//link6
 				"'user to create, modify or delete',"+//link6t
-				"'Link7',"+//link7
-				"'Link7',"+//link7t
+				"'Can have a list of users who have access to this document.',"+//link7
+				"'User',"+//link7t
 				"'Link8',"+//link8
 				"'Link8',"+//link8t
 				"'Link9',"+//link9

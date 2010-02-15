@@ -44,6 +44,7 @@ public class CreateTableSelinas1 {
 						"dokumentPermitId char(50) NOT NULL COMMENT '19 Dokumentensicherheit'," +
 						"adressUserId char(50) NOT NULL COMMENT '20 UserId of Adress'," +
 						"optionDescripten char(50) NOT NULL COMMENT '21 [Bitte auswählen] '," +
+						"archivDatum char(30) NOT NULL COMMENT '22 ArchivDatum des Dokuments' ," + 
 					"PRIMARY KEY (kundenId,standortId,sprachId)" +
 					")ENGINE = myisam CHARACTER SET latin1 COLLATE latin1_german1_ci COMMENT = 'selinas1 '");
 			

@@ -57,7 +57,8 @@ public class CreateDataSelinas1 {
 				"'Autorisierungsstufe',"+//userAppId
 				"'Dokumentsicherheit',"+//dokumentPermitId
 				"'Adresse gehört zu:',"+//Bezeichnung für Bezug zur Adresse
-				"'[Bitte auswählen]')");
+				"'[Bitte auswählen]',"+//Bitte auswählen Selectbox
+				"'Aufbewahrung bis:')");
 		} catch (Exception e) {
 			System.out.println(this.getClass().getName()+".insertSelina1DE:" + e);
 		}//catch
@@ -90,14 +91,15 @@ public class CreateDataSelinas1 {
 				"'Authorization-Id',"+//userAppId
 				"'Document Security Id',"+//dokumentPermitId
 				"'Address belongs to',"+//userAdressId
-				"'[Please select]')");
+				"'[Please select]',"+ 
+				"'storage of documents')");
 		} catch (Exception e) {
 			System.out.println(this.getClass().getName()+".insertSelina1EN:" + e);
 		}//catch
 	}//insertSelinas1DE
 	
 	 public static void main(String args[]) throws Exception{
-	 	Database dbConn = new Database("mySql","localhost","selina","web4857","xxxx");
+	 	Database dbConn = new Database("mySql","localhost","selina","web4857","xxx");
     	 
 	 	CreateDataSelinas1 selinas = new CreateDataSelinas1();
     	
