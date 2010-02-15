@@ -304,12 +304,12 @@ public class DataSetDokument {
 				"now()," + "'"+user.getUserId()+"'," + "now())");
     }//insert
     
-    public static synchronized void update(Database dbConn, User user, Dokument dokument) throws Exception {    	
+    public static synchronized void update(Database dbConn, User user, Dokument dokument) throws Exception {
         dbConn.executeUpdate("update "+dbConn.getDbSchema()+".dokument " +
                 "set status = '"+ dokument.getStatus() + "'," +
                 " titel = '"+dokument.getTitel()+"'," + " descripten = '"+dokument.getDescripten()+"',"+
                 " content = '"+dokument.getContent()+"'," + " gliederung = '"+dokument.getGliederung()+"',"+
-                " archiv = '"+dokument.getArchiv()+"'," + " vorgabe = '"+dokument.getVorgabe()+"',"+
+                " archiv = '"+dokument.getArchiv()+"'," + " archivDate = '"+ dokument.getArchivDate()+"', vorgabe = '"+dokument.getVorgabe()+"',"+
                 " changeUser = '"+user.getUserId()+"'," + " changeDate = now() " +
                 " where kundenId = "+ user.getKundenId() + " and standortId = "+user.getStandortId()+
                 " and typ = '"+dokument.getTyp() + "'" + " and nummer = "+dokument.getNummer() +

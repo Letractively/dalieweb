@@ -45,6 +45,29 @@ public class DataSetTypen {
         	if(rows.size() == 0)
         	    throw new Exception("Record not Found");
         	return new Typen((Vector)rows.elementAt(0));            
-    }//getTypOfDokument
+    }//chain
 	
+    /**
+     * <b>Typ aus Datenbank Tabelle Typ</b>
+     * <br><b>chain:Key String typId, String sprachId</b>
+     * <br><br><b>public static</b><br>
+     * @param
+     * <ul>
+     * <li>Database dbConn</li>
+     * <li>String typ = (U)seradresse </li>
+     * <li>String sprachId = DE</li>
+     * </ul>
+     * @return
+     * <ul>
+     * <li>Typ typ</li>
+     * </ul>
+     */
+    public static synchronized Typen chain(Database dbConn,String typId) throws Exception {
+    	Vector rows = dbConn.executeQuery("select typId, description, createUser, createDate, changeUser, changeDate from "+dbConn.getDbSchema()+".typ " +
+                "where typId = '"+typId+"'");
+        	if(rows.size() == 0)
+        	    throw new Exception("Record not Found");
+        	return new Typen((Vector)rows.elementAt(0));            
+    }//chain
+    
 }//class DataSetTypen
