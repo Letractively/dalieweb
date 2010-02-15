@@ -6,8 +6,11 @@
 package help;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import org.apache.commons.lang.time.DateFormatUtils;
 
 /**
  * Class description goes here.
@@ -44,5 +47,37 @@ public class HelpDate {
         return dbDate.substring(8, 10) + "." + dbDate.substring(5, 7) + "."
                 + dbDate.substring(0, 4) + " um " + dbDate.substring(11, 19);
     }//getTT_MM_JJJJ_HHMMSSDB
-
+    
+    static public String getTT_MMMM_JJJJ(String dbDate) {
+    	SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyy");
+    	df.setLenient(false);
+    	Date date = null;
+		try {
+			date = df.parse(dbDate.substring(8, 10) + "." + dbDate.substring(5, 7) + "."
+			        + dbDate.substring(0, 4));
+		} catch (ParseException e) {
+			System.err.println(e.getMessage() + dbDate.substring(8, 10) + "." + dbDate.substring(5, 7) + "."
+			        + dbDate.substring(0, 4));
+		}
+    	return DateFormatUtils.format(date,"dd.MMMM.yyyy");
+    }//getTT_MM_JJJJ
+   
+    static public String getTT_MMMM_JJJJ_HHMMSS(String dbDate) {
+    	SimpleDateFormat df = new SimpleDateFormat("dd.MMMM.yyyy");
+    	df.setLenient(false);
+    	Date date = null;
+		try {
+			date = df.parse(dbDate + " 12:12:12");
+		} catch (ParseException e) {
+			Calendar cal = Calendar.getInstance();
+	    	return DateFormatUtils.format(cal.getTime(),"yyyy-MM-dd HH:mm:ss");
+		}
+    	return DateFormatUtils.format(date,"yyyy-MM-dd HH:mm:ss");
+    }//getTT_MM_JJJJ_HHMMSSDB
+    
+    static public String getTT_MMMM_JJJJ_HHMMSS() {
+    	Calendar cal = Calendar.getInstance();
+    	return DateFormatUtils.format(cal.getTime(),"yyyy-MM-dd HH:mm:ss");
+    }//getTT_MM_JJJJ_HHMMSSDB
+    
 }//class HelpDate
