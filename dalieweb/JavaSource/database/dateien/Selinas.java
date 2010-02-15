@@ -148,6 +148,8 @@ public class Selinas {
     private String adressUserId;//Adresse gehört zu
     /** optionDescripten SELINAS1*/
     private String optionDescripten;//[Bitte auswählen]
+    /** archivDatum SELINAS1 */
+    private String archivDatum;//Archivdatum bis
     
     private String link1;//Übersicht
     private String link1t;//Übersicht
@@ -275,6 +277,7 @@ public class Selinas {
         this.dokumentPermitId = columns.elementAt(105).toString();
         this.adressUserId = columns.elementAt(106).toString();
         this.optionDescripten = columns.elementAt(107).toString();
+        this.archivDatum = columns.elementAt(108).toString();
         
         this.link1 = columns.elementAt(52).toString();
         this.link1t = columns.elementAt(53).toString();
@@ -315,7 +318,6 @@ public class Selinas {
     }//Selinas
     
     
-	
 	/**
 	 * @return Returns the adressArt.
 	 */
@@ -351,6 +353,18 @@ public class Selinas {
 	 */
 	public void setArchiv(String archiv) {
 		this.archiv = archiv;
+	}
+	/**
+	 * @return Returns the archivDatum.
+	 */
+	public String getArchivDatum() {
+		return archivDatum;
+	}
+	/**
+	 * @param archivDatum The archivDatum to set.
+	 */
+	public void setArchivDatum(String archivDatum) {
+		this.archivDatum = archivDatum;
 	}
 	/**
 	 * @return Returns the button1.

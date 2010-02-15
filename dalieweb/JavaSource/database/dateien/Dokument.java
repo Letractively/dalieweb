@@ -95,7 +95,7 @@ public class Dokument {
         this.content = columns.elementAt(8).toString();
         this.gliederung = columns.elementAt(9).toString();
         this.archiv = columns.elementAt(10).toString();
-        this.archivDate = HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(11).toString());
+        this.archivDate = HelpDate.getTT_MMMM_JJJJ(columns.elementAt(11).toString());
         this.vorgabe = columns.elementAt(12).toString();
         this.sprachId = columns.elementAt(13).toString();
         

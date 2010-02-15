@@ -47,8 +47,6 @@ public class Typen {
         this.changeDate = HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(5).toString());
     }//Typ
     
-    
-    
     /**
      * @return Returns the changeDate.
      */
