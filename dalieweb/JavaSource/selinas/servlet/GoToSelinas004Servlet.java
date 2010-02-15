@@ -1,6 +1,7 @@
 package selinas.servlet;
 
 import java.io.IOException;
+import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.Servlet;
@@ -16,9 +17,12 @@ import selinas.bean.SelinasSession;
 import database.Database;
 import database.dateien.Dokument;
 import database.dateien.Selinas;
+import database.dateien.User;
+import database.getDatabase.DataSetUser;
 
 public class GoToSelinas004Servlet extends HttpServlet implements Servlet {
 	
+	private String sRet = "";
 	 /** perform for both HTTP <code>GET</code> and <code>POST</code> methods  */
 	protected void perForm(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 	    

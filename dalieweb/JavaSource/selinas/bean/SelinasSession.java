@@ -1,5 +1,7 @@
 package selinas.bean;
 
+import help.HelpDate;
+
 import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
@@ -335,6 +337,11 @@ public class SelinasSession {
 	   dokumentOfUpdate.setContent(collapseSpaces(request.getParameter(session.getContent())));
 	   dokumentOfUpdate.setGliederung(collapseSpaces(request.getParameter(session.getGliederung())));
 	   dokumentOfUpdate.setArchiv(collapseSpaces(request.getParameter(session.getArchiv())));
+
+	   //if(request.getParameter("date").equalsIgnoreCase("")|| request.getParameter("date").equalsIgnoreCase("date") )
+	   	//	dokumentOfUpdate.setArchivDate(HelpDate.getTT_MMMM_JJJJ_HHMMSS());
+	   //	else
+	   		dokumentOfUpdate.setArchivDate(HelpDate.getTT_MMMM_JJJJ_HHMMSS(request.getParameter("date")));
 	   dokumentOfUpdate.setVorgabe(collapseSpaces(request.getParameter(session.getVorgabe())));
 	   dokumentOfUpdate.setStatus(collapseSpaces(request.getParameter(session.getStatus())));
 	   dbConn.getConnection();//DataBaseConnection open
