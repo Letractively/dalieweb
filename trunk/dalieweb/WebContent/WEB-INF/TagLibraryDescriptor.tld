@@ -530,4 +530,26 @@
 			<rtexprvalue>true</rtexprvalue><!--dynamisch durch Skriptteile erlaubt-->
 			<description>Content of TableHeader</description></attribute>
 	</tag>
+	<tag>
+		<name>PermitInfoTag</name>
+		<tag-class>tagLibrary.PermitInfoTag</tag-class>
+		<attribute>
+			<name>farbe1</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>color of first row</description>
+		</attribute>
+		<attribute>
+			<name>farbe2</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>color of secound row</description>
+		</attribute>
+		<attribute>
+			<name>tableTagClass</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>Name of TableClass for CSS value</description>
+		</attribute>
+	</tag>
 </taglib>
