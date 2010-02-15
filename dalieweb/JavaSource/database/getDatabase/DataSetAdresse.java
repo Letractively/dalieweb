@@ -104,6 +104,28 @@ public class DataSetAdresse {
         return new Adresse((Vector)rows.elementAt(0));
     }//chain
     
+    /**
+     * <b>Adresse aus Datenbank Tabelle Adresse</b>
+     * <br><b>chain:Key adressId,adressArt</b>
+     * <br><br><b>public static</b><br>
+     * @param
+     * <ul>	
+     * <li>Database dbConn	</li>
+     * <li>int adressId	(adressId = objektId 04711)</li>
+     * <li>String adressArt (adressArt = (I)mmobilie)</li>
+     * </ul>
+     * @return
+     * <ul><li> Adresse ImmobilienAdresse</li></ul>
+     */
+    public static synchronized Adresse chain(Database dbConn,int adressId,String adressArt) throws Exception {
+    	/* Verwendung:	Kontruktor Immobilie */
+        Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".adressen " +
+        		"where adressId = "+ adressId + " and adressArt = '"+adressArt+"'");
+        if(rows.size() == 0)
+    	    throw new Exception("Record not Found");
+        return new Adresse((Vector)rows.elementAt(0));
+    }//chain
+    
     
     /**
      * <b>alle Adresse aus der Datenbank</b>
