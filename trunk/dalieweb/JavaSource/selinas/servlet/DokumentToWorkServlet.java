@@ -32,7 +32,7 @@ public class DokumentToWorkServlet extends HttpServlet implements Servlet {
 		 }catch (ServletException se) {
 		    performForward(nextPage,request,response);//Login 
 	     }//catch ServletException
-		    
+		  
 		 try {
 		     session.setAttribute("Dokument", show.getDokumentOfDatabase(dbConn,selinasuser.user,request));//SessionAttribut:DokumentOfDatabase
 		     session.setAttribute("Typ",show.getDokumentTypOfDatabase(dbConn,request));//SessionAttribut:DokumentTypOfDatabase

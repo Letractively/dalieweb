@@ -14,7 +14,7 @@ import org.apache.commons.fileupload.FileItem;
  * <br><br>
  */
 public class UploadApplication {
-    /* Check the Choise Upload */
+    /* check the selected upload */
     
     /** 
      * <B>name=</B>C:\Dokumente und Einstellungen\DV0101\Eigene Dateien\Eigene eBooks\hms020719mu.pdf,<BR> 
@@ -45,6 +45,27 @@ public class UploadApplication {
         }else if (element.getContentType().equalsIgnoreCase("application/pdf")) {
           	this.application = ".pdf";
           	return true;
+        }else if (element.getContentType().equalsIgnoreCase("application/download")) {
+          	this.application = ".pdf";
+          	return true;
+        }//endif
+        return false;
+    }//checkUploadApplikation
+    
+    /** <B>vaild is:</B><BR>jpeg<BR>png<BR>gif */
+    public boolean checkUplaodImage() {
+        if(element.getContentType().equalsIgnoreCase("image/jpeg")){
+      		this.application = ".jpg";
+      		return true;
+        }else if (element.getContentType().equalsIgnoreCase("image/jpg")) {
+          	this.application = ".jpg";
+          	return true;
+        }else if (element.getContentType().equalsIgnoreCase("image/png")) {
+          	this.application = ".png";
+          	return true;   
+        }else if (element.getContentType().equalsIgnoreCase("image/gif")) {
+          	this.application = ".gif";
+          	return true;
         }//endif
         return false;
     }//checkUploadApplikation
@@ -55,6 +76,8 @@ public class UploadApplication {
     	if(kz.equalsIgnoreCase("application/vnd.ms-excel"))
       		return ".xls";
     	if(kz.equalsIgnoreCase("application/pdf"))
+      		return ".pdf";
+    	if(kz.equalsIgnoreCase("application/download"))
       		return ".pdf";
     	return "";
     }//getApplicationsKz
