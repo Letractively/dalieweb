@@ -30,7 +30,6 @@ import lebenslauf.Navigation;
  */
 public class Backward extends HttpServlet implements Servlet {
 
-	String test,nocheintest;
     /** perform for both HTTP <code>GET</code> and <code>POST</code> methods  */
 	protected void perForm(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 
