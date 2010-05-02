@@ -52,24 +52,36 @@ body {
 	color: #778899;
 }
 img.admin1{
+	/* Navigation-Links */
+	background: url(../bilder/dalie-icons-pack.gif) -30px -218px no-repeat;
+	height: 23px;
+	width: 10px;
+}
+img.admin3{
+	/* Navigation-Rechts */
+	background: url(../bilder/dalie-icons-pack.gif) -40px -218px no-repeat;
+	height: 23px;
+	width: 23px;
+}
+img.admin10{
 	/* zurück zur Übersicht */
 	background: url(../bilder/dalie-icons-pack.gif) -159px -118px no-repeat;
 	height: 32px;
 	width: 33px;
 }
-img.admin2{
+img.admin11{
 	/* dokumentverwaltung */
 	background: url(../bilder/dalie-icons-pack.gif) -96px -211px no-repeat;
 	height: 32px;
 	width: 33px;
 }
-img.admin3{
+img.admin12{
 	/* adressverwaltung */
 	background: url(../bilder/dalie-icons-pack.gif) -224px -118px no-repeat;
 	height: 32px;
 	width: 33px;
 }
-img.admin4{
+img.admin13{
 	/* userverwaltung */
 	background: url(../bilder/dalie-icons-pack.gif) -450px -118px no-repeat;
 	height: 32px;
