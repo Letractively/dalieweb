@@ -15,7 +15,7 @@
 <meta name="description" content="Auf DALIEWEB.DE finden Sie die Möglichkeit eigene Dokumente online zu Verwalten. Ziel soll es sein Mietverträge komplett über dieses Portal abzuwickeln." />
 <meta name="keywords" content="DALIEWEB.de, Mietverträge, Konzepte, Formulare, PDF verwaltung, online" />
 <!-- CSS und Icons -->
-<link href="http://www.dalieweb.de/pfeilmit01.ico" rel="shortcut icon" title="dalieweb" type="image/x-icon"/>
+<link href="http://www.dalieweb.de/dalieweb/bilder/pfeilmit01.ico" rel="shortcut icon" title="dalieweb" type="image/x-icon"/>
 <title>dalieweb</title>
 </head>
 <body>
