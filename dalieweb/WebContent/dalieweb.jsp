@@ -14,9 +14,9 @@
 <meta name="author" content="u.dalies"/>
 <!-- CSS und Icons -->
 <link href="<%= request.getContextPath()%>/theme/dalieweb.css" rel="stylesheet" type="text/css" media="screen, projection"/>
-<link href="http://www.dalieweb.de/pfeilmit01.ico" rel="shortcut icon" title="dalieweb" type="image/x-icon"/>
+<link href="http://www.dalieweb.de/dalieweb/bilder/pfeilmit01.ico" rel="shortcut icon" title="dalieweb" type="image/x-icon"/>
 <!-- Definition RSS Feed -->
-<link rel="alternate" type="application/rss+xml" title="dalieweb.de RSS-Feed" href="http://www.dalieweb.de/dalieweb.xml"/> 
+<link rel="alternate" type="application/rss+xml" title="dalieweb.de RSS-Feed" href="http://www.dalieweb.de/dalieweb/xml/dalieweb.xml"/> 
 <title>dalieweb</title>
 </head>
 <body>
