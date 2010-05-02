@@ -18,21 +18,35 @@
 <meta name="keywords" content="dalieweb"/>
 <meta name="author" content="u.dalies"/>
 <!-- CSS und Icons -->
+<link href="http://yui.yahooapis.com/2.8.0r4/build/fonts/fonts-min.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="http://yui.yahooapis.com/2.8.0r4/build/container/assets/skins/sam/container.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="http://yui.yahooapis.com/2.8.0r4/build/fonts/fonts-min.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="http://yui.yahooapis.com/2.8.0r4/build/button/assets/skins/sam/button.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="http://yui.yahooapis.com/2.8.0r4/build/container/assets/skins/sam/container.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="http://yui.yahooapis.com/2.8.0r4/build/calendar/assets/skins/sam/calendar.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="<%= request.getContextPath()%>/theme/selinas002.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="<%= request.getContextPath()%>/theme/selinas-DruckTyp.css" rel="stylesheet" type="text/css" media="print"/>
 <link href="http://www.dalieweb.de/pfeilmit01.ico" rel="shortcut icon" title="dalieweb" type="image/x-icon"/>
 <!-- Definition RSS Feed -->
 <link rel="alternate" type="application/rss+xml" title="dalieweb.de RSS-Feed" href="http://www.dalieweb.de/dalieweb.xml"/> 
 <!-- Script's  -->
+<script type="text/javascript" src="http://yui.yahooapis.com/2.8.0r4/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.8.0r4/build/container/container-min.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.8.0r4/build/dragdrop/dragdrop-min.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.8.0r4/build/element/element-min.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.8.0r4/build/button/button-min.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.8.0r4/build/calendar/calendar-min.js"></script>
+<script src="<%= request.getContextPath()%>/script/dalieTooltip.js" type="text/javascript"></script>
 <script src="<%= request.getContextPath()%>/script/dalieLogo.js" type="text/javascript"></script>
 <title>dalieweb</title>
 </head>
-<body onload="if(document.images) nextimg()">
+<body class="yui-skin-sam" onload="if(document.images) nextimg()">
 <%	
-	SelinasSession show = new SelinasSession((Selinas) session.getAttribute("Selinas")); 
+	SelinasSession show = new SelinasSession((Selinas)session.getAttribute("Selinas")); 
     SelinasUser user = (SelinasUser) session.getAttribute("User");
 	String language = (String)session.getAttribute("Speech"); 
 	String dokumentOrderByTyp = (String)session.getAttribute("DokumentOrderByTyp");//SessionAttribut:sort by Dokument
+	
 %>
 <div id="page">
 	<div id="pageHeader">
@@ -41,12 +55,7 @@
 		<span class="strapline">dalieweb.de</span>
 	</div><!-- /pageHeader -->
 	<div id="pageWrapper">
-		<table border="0" cellspacing="0" cellpadding="0" width="99%">
-		<tr>
-			<td valign="middle" align="left"></td>
-			<td valign="middle" align="right" class="strapline"><%= user.user.getName()%>, <%= user.user.getVorname()%>&nbsp;<a name="logOFF" id="logOFF" href="<%= request.getContextPath()%>/LogOffSelina" class="logOFF" title="Logout on dalieweb" target="_self">&nbsp;Log off&nbsp;</a></td>
-		</tr>
-		</table>
+		<dalie:SelinasNavTag></dalie:SelinasNavTag>
 		<div id="navigation">
 			<dalie:StartNavTag></dalie:StartNavTag>
 		</div><!-- /navigation -->
