@@ -3,6 +3,7 @@
 "http://www.w3.org/TR/html4/strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
+<!-- Anzeige: Administrator Verwaltung Adressen -->
 <%@ page language="java"
 	import="database.dateien.Selinas"
 	import="selinas.bean.SelinasSession"
@@ -21,18 +22,31 @@
 <meta name="keywords" content="dalieweb"/>
 <meta name="author" content="u.dalies"/>
 <!-- CSS und Icons --> 
+<link href="<%= request.getContextPath()%>/build/fonts/fonts-min.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="<%= request.getContextPath()%>/build/container/assets/skins/sam/container.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="<%= request.getContextPath()%>/build/fonts/fonts-min.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="<%= request.getContextPath()%>/build/button/assets/skins/sam/button.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="<%= request.getContextPath()%>/build/container/assets/skins/sam/container.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="<%= request.getContextPath()%>/build/calendar/assets/skins/sam/calendar.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="<%= request.getContextPath()%>/theme/selinas020.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="<%= request.getContextPath()%>/theme/selinas-DruckTyp.css" rel="stylesheet" type="text/css" media="print"/>
-<link href="http://www.dalieweb.de/pfeilmit01.ico" rel="shortcut icon" title="dalieweb" type="image/x-icon"/>
+<link href="<%= request.getContextPath()%>/bilder/pfeilmit01.ico" rel="shortcut icon" title="dalieweb" type="image/x-icon"/>
 <!-- Definition RSS Feed -->
-<link rel="alternate" type="application/rss+xml" title="dalieweb.de RSS-Feed" href="http://www.dalieweb.de/dalieweb.xml"/> 
+<link rel="alternate" type="application/rss+xml" title="dalieweb.de RSS-Feed" href="<%= request.getContextPath()%>/xml/dalieweb.xml"/> 
 <!-- Script's  -->
+<script type="text/javascript" src="<%= request.getContextPath()%>/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="<%= request.getContextPath()%>/build/container/container-min.js"></script>
+<script type="text/javascript" src="<%= request.getContextPath()%>/build/dragdrop/dragdrop-min.js"></script>
+<script type="text/javascript" src="<%= request.getContextPath()%>/build/element/element-min.js"></script>
+<script type="text/javascript" src="<%= request.getContextPath()%>/build/button/button-min.js"></script>
+<script type="text/javascript" src="<%= request.getContextPath()%>/build/calendar/calendar-min.js"></script>
+<script src="<%= request.getContextPath()%>/script/dalieTooltip.js" type="text/javascript"></script>
 <script src="<%= request.getContextPath()%>/script/dalieLogo.js" type="text/javascript"></script>
 
 <title>dalieweb</title>
 </head>
-<body onload="if(document.images) nextimg()">
-<%	
+<body class="yui-skin-sam" onload="if(document.images) nextimg()">
+<%	 
 	SelinasSession show = new SelinasSession((Selinas) session.getAttribute("Selinas")); 
     SelinasUser user = (SelinasUser) session.getAttribute("User");
 	Dokument dokument = (Dokument)session.getAttribute("Dokument");
@@ -48,21 +62,16 @@
 		<span class="strapline">dalieweb.de</span>
 	</div><!-- /pageHeader -->
 	<div id="pageWrapper">
-		<table border="0" cellspacing="0" cellpadding="0" width="99%">
-			<tr>
-				<td valign="middle" align="left"></td>
-				<td valign="middle" align="right" class="strapline"><%= user.user.getName() %>, <%= user.user.getVorname() %>&nbsp; <a href="<%= request.getContextPath()%>/LogOffSelina" target="_self" class="link" tabindex="13">Log off</a></td>
-			</tr>
-		</table>	
+		<dalie:SelinasNavTag></dalie:SelinasNavTag>
 		<table border="0" cellspacing="0" cellpadding="0" width="100%">
 			<tr>
 				<td>
 					<table border="0" cellspacing="3" cellpadding="0">
 					 <tr>
-						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin1" alt='<%= show.session.getImage2() %>' title='<%= show.session.getImage2() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/GoToStartServlet?selectTyp=UB" title="<%= show.session.getLink1t() %>" target="_self" class="linkNav" tabindex="14"><span class="linkNav"><%= show.session.getLink1()%></span></a></td>
-						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin2" alt='<%= show.session.getImage4() %>' title='<%= show.session.getImage4() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/GoToSelinas025Servlet" title="<%= show.session.getLink5t() %>" target="_self" class="linkNav"  tabindex="15"><span class="linkNav"><%= show.session.getLink5() %></span></a></td>
-						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin4" alt='<%= show.session.getImage5() %>' title='<%= show.session.getImage5() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/GoToSelinas030Servlet" title="<%= show.session.getLink6t() %>" target="_self" class="linkNav"  tabindex="16"><span class="linkNav"><%= show.session.getLink6() %></span></a></td>
-						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin3" alt='<%= show.session.getImage3() %>' title='<%= show.session.getImage3() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/GoToSelinas020Servlet" title="<%= show.session.getLink4t() %>" target="_self" class="linkNav"  tabindex="17"><span class="linkNav"><%= show.session.getLink4() %></span></a></td>
+						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin10" alt='<%= show.session.getImage2() %>' title='<%= show.session.getImage2() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/GoToStartServlet?selectTyp=UB" title="<%= show.session.getLink1t() %>" target="_self" class="linkNav" tabindex="14"><span class="linkNav"><%= show.session.getLink1()%></span></a></td>
+						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin11" alt='<%= show.session.getImage4() %>' title='<%= show.session.getImage4() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/GoToSelinas025Servlet" title="<%= show.session.getLink5t() %>" target="_self" class="linkNav"  tabindex="15"><span class="linkNav"><%= show.session.getLink5() %></span></a></td>
+						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin12" alt='<%= show.session.getImage5() %>' title='<%= show.session.getImage5() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/GoToSelinas030Servlet" title="<%= show.session.getLink6t() %>" target="_self" class="linkNav"  tabindex="16"><span class="linkNav"><%= show.session.getLink6() %></span></a></td>
+						<td valign="bottom" align="left"><img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="admin13" alt='<%= show.session.getImage3() %>' title='<%= show.session.getImage3() %>'/></td><td valign="middle" align="left"><a href="/dalieweb/GoToSelinas020Servlet" title="<%= show.session.getLink4t() %>" target="_self" class="linkNav"  tabindex="17"><span class="linkNav"><%= show.session.getLink4() %></span></a></td>
 						</tr>
 					</table>	
 				</td>
