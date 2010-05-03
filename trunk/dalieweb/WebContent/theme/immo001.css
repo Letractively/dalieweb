@@ -1,0 +1,199 @@
+@CHARSET "ISO-8859-1";
+body {
+	font: 1em/ 1.5em Verdana, Arial, Tahoma, sans-serif;
+	text-align: left;
+}
+html>body {
+	font-size: 12px;
+}
+#hd {/* Header */
+	background: transparent;
+	background-image: url("../bilder/header.jpg");
+	border-bottom: 1px dotted #B2BCC6;
+	background-color: #FFFFFF;
+	height: 8em;
+}
+.strapline {/* Schriftzug: dalieweb.de */
+	color: #778899;
+	background: transparent;
+	float: right; /* Elemente umfließen lassen */
+	margin-right: 2em; /* transparenten Abstand von rechts */
+	margin-top: 0.5em /* transparenten Abstand von oben */;
+	font-family: Arial Unicode MS, Georgia, "Times New Roman";
+	letter-spacing: 0.9px;
+	line-height: 0.8em;
+	font-size: large;
+	font-variant: small-caps;
+}
+.logo {/* Logo->Pfeile */
+	float: left; /* Elemente umfließen lassen */
+	margin-left: 1.5em; /* transparenten Abstand von links*/
+	margin-top: 0.5em; /* transparenten Abstand von oben */
+	border: 1px dotted #B2BCC6; /*Rahmen wie Link's */
+	background-color: #234F4E /*Hintergrund Farbe Selinas Grün*/
+}
+a.logOFF{
+	background-color: transparent;
+	color: #2D5893;
+	border-bottom: 1px dotted #2D5893;
+	text-decoration: none;
+}
+table.TableTyp1{
+	/* Tabelle: ImmobilienTyp mit Auswahl suchen,erstellen */
+	margin: 0px 0px;
+	padding: 0px;
+	text-align: left;
+	table-layout: fixed;
+	overflow: hidden;
+}
+table.TableTyp1 td{
+	border-color: #B2BCC6;
+	border-bottom-width: 0px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-top-width: 0px;
+	border-style: solid;
+	margin: 0px 0px;
+	padding: 0px 2px;
+	text-align: left;
+	table-layout: fixed;
+	overflow: hidden;
+}
+table.TableTyp2{
+	/* Tabelle: rechts oben LogOFF */
+	margin: 0px 0px;
+	padding: 0px;
+	text-align: right;
+	table-layout: fixed;
+	overflow: hidden;
+}
+table.TableTyp2 td{
+	border-color: #B2BCC6;
+	border-bottom-width: 0px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-top-width: 0px;
+	border-style: dotted;
+	float: right;
+	margin: 0px 0px;
+	padding: 0px 0px;
+	text-align: right;
+}
+ul.Typ1, li.Typ1 {
+	/* rechts oben LogOFF */
+	padding: 0px 3px;
+	float: right;
+	list-style-type: none;
+}
+table.iFrameTableTyp1 {
+	border-color: #B2BCC6;
+	border-bottom-width: 0px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-top-width: 0px;
+	border-style: solid;
+	margin: 0px 0px;
+	padding: 0px;
+	text-align: left;
+	table-layout: fixed;
+	overflow: hidden;
+}
+table.iFrameTableTyp1 th {
+	background-color: #C1C496;
+	color: #2D5893;
+	border-bottom-color: #7992B8;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-top-width: 0px;
+	padding: 3px;
+	text-align: left;
+}
+table.iFrameTableTyp1 th a:link, a:visited {
+	/* Link's of Table */
+	background-color: transparent;
+	color: #2D5893;
+	border-bottom: 1px dotted #2D5893;
+	text-decoration: none;
+}
+table.iFrameTableTyp1 th a:hover {
+	color: #778899;
+}
+table.iFrameTableTyp1F {
+	border-color: #B2BCC6;
+	border-top-width: 0px;
+	border-right-width: 1px;
+	border-bottom-width: 0px;
+	border-left-width: 1px;
+	border-style: solid;
+	margin: 0px 0px;
+	padding: 0px;
+	text-align: left;
+	table-layout: fixed;
+}
+table.iFrameTableTyp1F td {
+	border-color: #B2BCC6;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom: 1px solid #B2BCC6;
+	border-left-width: 1px;
+	text-align: left;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 25px;
+	overflow: hidden;
+}
+table.iFrameTableTyp1F td a:link, a:visited {
+	/* Link's of Table */
+	background-color: transparent;
+	color: #2D5893;
+	border-bottom: 1px dotted #2D5893;
+	text-decoration: none;
+}
+table.iFrameTableTyp1F td a:hover {
+	color: #778899;
+}
+#ft {/* ft=Footer*/
+	background-image: url("../bilder/footer.jpg"); border-top : 1px dotted #AAAAAA;
+	background-color: #7D9796;
+	color: #626262;
+	height: 14em;
+	width: 100%;
+	border-top: 1px dotted #AAAAAA;
+}
+#ft p {/* Footer p */
+	font: 0.83em/ 1.8em Arial, Tahoma, Verdana, sans-serif;
+	margin-left:	3em;
+	margin-top: 0.2em;
+	margin-bottom: 1.5em;
+	clear: both;
+}
+.vcard {/* vcard Platzierung Adress of Footer  */
+	float: right;
+	width: 40em;
+}
+img.admin1{
+	/* Navigation-Links */
+	background: url(../bilder/dalie-icons-pack.gif) -30px -218px no-repeat;
+	height: 23px;
+	width: 10px;
+}
+img.admin3{
+	/* Navigation-Rechts */
+	background: url(../bilder/dalie-icons-pack.gif) -40px -218px no-repeat;
+	height: 23px;
+	width: 23px;
+}
+button {
+	display: inline; /* über ganze breite */
+	font: 0.8em Arial, Tahoma, Verdana, sans-serif;
+	height: 2.2em;
+	text-align: center;
+	text-transform: uppercase;
+	padding-left: 0px;
+	padding-right: 0px;
+	marign: 0px;
+	vertical-align: middle;
+}
