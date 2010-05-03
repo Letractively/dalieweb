@@ -66,15 +66,17 @@ public class StartNavPageTag extends TagSupport {
             			return SKIP_PAGE;//Skip the rest of the page.
             		}else{
             			try{
+            				counter = 0;
             				ulli = "<div id=\"navigationPage\"><ul>";
             				dbConn.getConnection();
-            				/* Suche Dokumente zum dokumentOfSession -> gefunden -> schreibe ein Listenelemente an den htmlContent */
+            				/* Suche Dokumente zum ausgewählten Dokumenttyp -> gefundenen schreibe ein Listenelemente an den htmlContent */
             				writeDokumentDataToPageContext(DataSetDokument.reade(dbConn,selinasuser.user,DataSetDokument.chain(dbConn, selinasuser.user,(String)session.getAttribute("SelectTyp")),"G"));
             				dbConn.close();
             			}catch(Exception e){
             				System.out.println("Hinweis: keine Dokumente zum dokumentOfSession gefunden");
             			}//try
             		}//endif
+            		
                     while(counter <= 8) {//minimum 8 ListenElemente
                     	ulli = ulli + "<li>&nbsp;</li>";
                        	counter ++;

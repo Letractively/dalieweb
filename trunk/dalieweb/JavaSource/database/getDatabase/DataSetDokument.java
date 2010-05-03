@@ -296,9 +296,9 @@ public class DataSetDokument {
 		Vector liste = new Vector();
 		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokument " +
 				"where kundenId = "+dokument.getKundenId()+ " and standortId = "+dokument.getStandortId() + 
-				" and typ = '"+ dokument.getTyp() +"' and nummer = " + dokument.getNummer() + " and createUser = '"+user.getUserId()+"' or " +
+				" and typ = '"+ dokument.getTyp() +"' and createUser = '"+user.getUserId()+"' or " +
 				" kundenId = "+user.getKundenId()+ " and standortId = "+user.getStandortId()+
-				" and typ = '"+ dokument.getTyp() +"' and nummer = " + dokument.getNummer() + " and createUser <> '"+user.getUserId()+"'" +
+				" and typ = '"+ dokument.getTyp() +"' and createUser <> '"+user.getUserId()+"'" +
 				" and status <= "+user.getUserAutorisierungsId()+ " and status <> 'P'" +
 				" ORDER BY "+valueOf(orderBy)+"");
 		if(rows.size() == 0)
