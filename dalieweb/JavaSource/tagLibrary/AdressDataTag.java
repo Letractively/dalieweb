@@ -119,7 +119,7 @@ public class AdressDataTag extends TagSupport {
 	    if (data.equalsIgnoreCase("J"))
 	    for (int i = 0; i < adressen.size(); i++){ 
 			Adresse data  = ((Adresse)adressen.elementAt(i));
-			Typen typen = DataSetTypen.chain(dbConn,data.getAdressArt(),language);
+			Typen typen = DataSetTypen.chainDatenTypAdresse(dbConn,data.getAdressArt(),language);
 			tableTRTD = tableTRTD + "<tr bgcolor='" + farbe[i % 2] + "'>" +
 					"<td width='25%'>" + data.getAdressArt() + " = " + typen.getDescription() +"</td>" +
 					"<td width='25%'><a href='/dalieweb/AdressToRequestServlet?adressId="+data.getAdressId()+"&amp;adressArt="+data.getAdressArt()+"' target='_parent' class='link'>" + selinasuser.user.getName() +"</a></td>" +
