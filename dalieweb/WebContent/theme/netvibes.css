@@ -1,0 +1,16 @@
+@CHARSET "ISO-8859-1";
+img{
+	background-color: #288C96
+}
+.nv-tabContent ul,
+.nv-tabContent ul li {
+	display: block;
+	margin: 1px;/*Verändert den Abstand des Elements zur Umgebung */
+	padding: 0;/*Abstand des Inhalts zum Rand*/
+	background: none /*Hintergrund*/
+}
+.nv-tabContent ul li {
+	padding: 1px;/*Randabstand*/
+	float: left;
+	background-color: #288C96
+}
