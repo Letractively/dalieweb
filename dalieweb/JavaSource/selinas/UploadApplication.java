@@ -48,6 +48,9 @@ public class UploadApplication {
         }else if (element.getContentType().equalsIgnoreCase("application/download")) {
           	this.application = ".pdf";
           	return true;
+        }else if (element.getContentType().equalsIgnoreCase("text/plain")) {
+          	this.application = ".txt";
+          	return true;
         }//endif
         return false;
     }//checkUploadApplikation
@@ -79,6 +82,8 @@ public class UploadApplication {
       		return ".pdf";
     	if(kz.equalsIgnoreCase("application/download"))
       		return ".pdf";
+    	if(kz.equalsIgnoreCase("text/plain"))
+      		return ".txt";
     	return "";
     }//getApplicationsKz
     /**
