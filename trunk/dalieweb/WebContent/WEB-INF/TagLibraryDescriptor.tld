@@ -552,4 +552,48 @@
 			<description>Name of TableClass for CSS value</description>
 		</attribute>
 	</tag>
+	<tag>
+		<name>Immo001FITag</name>
+		<tag-class>tagLibrary.immo.Immo001FITag</tag-class>
+		<description>IFrame->Table:Immobilien-Verwaltung</description>
+	<attribute>
+			<name>header</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>Yes/No Yes=showCol of Table</description>
+		</attribute>
+		<attribute>
+			<name>data</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>Yes/No Yes=showRow of Table</description>
+		</attribute>
+		<attribute>
+			<name>farbe1</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>color of first row</description>
+		</attribute>
+		<attribute>
+			<name>farbe2</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>color of secound row</description>
+		</attribute>
+		<attribute>
+			<name>tableTagClass</name>
+			<!--required = false non compelling(nicht zwingend) argument-->
+			<required>false</required>
+			<description>Name of TableClass for CSS value</description>
+		</attribute>
+		<attribute><name>columnHeader</name><!--required = true compelling(zwingend) argument-->
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue><!--dynamisch durch Skriptteile erlaubt-->
+			<description>Content of TableHeader</description></attribute>
+	</tag>
+	<tag>
+	<name>SelinasNavTag</name>
+	<tag-class>tagLibrary.SelinasNavTag</tag-class>
+	<description>Anzeige Name User und Auswahl Modul</description>
+	</tag>
 </taglib>
