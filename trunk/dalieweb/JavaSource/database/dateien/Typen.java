@@ -36,7 +36,7 @@ public class Typen {
     
     
     public Typen() {
-    }//Typ
+    }//Typen
     public Typen(Vector columns) throws Exception {       
         this.typ = columns.elementAt(0).toString();
         this.description = columns.elementAt(1).toString();
@@ -45,7 +45,16 @@ public class Typen {
         this.createDate = HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(3).toString());
         this.changeUserId = columns.elementAt(4).toString();
         this.changeDate = HelpDate.getTT_MM_JJJJ_HHMMSSDB(columns.elementAt(5).toString());
-    }//Typ
+    }//Typen
+    public Typen(Typen typ){
+    	this.typ = typ.getTyp();
+    	this.description = typ.getDescription();
+    	
+    	this.createUserId = typ.getCreateUser();
+        this.createDate = typ.getCreateDate();
+        this.changeUserId = typ.getChangeUser();
+        this.changeDate = typ.getChangeDate();
+    }//Typen
     
     /**
      * @return Returns the changeDate.
