@@ -1,7 +1,7 @@
 /*
  * Created of DV0101 on 06.01.2010 10:04:18
  *
- * Filename	  CreateDataMessage.java
+ * Filename	  CreateDataSelina.java
  */
 package database.crtDatabase;
 
