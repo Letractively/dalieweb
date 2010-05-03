@@ -300,6 +300,10 @@
 		<tag-class>tagLibrary.StartNavTag</tag-class>
 	</tag>
 	<tag>
+		<name>StartNavPageTag</name>
+		<tag-class>tagLibrary.StartNavPageTag</tag-class>
+	</tag>
+	<tag>
 		<name>AdminNavTag</name>
 		<tag-class>tagLibrary.AdminNavTag</tag-class>
 	</tag>
