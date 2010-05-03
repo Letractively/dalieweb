@@ -2,6 +2,7 @@
 "http://www.w3.org/TR/html4/strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
+<!-- Anzeige: Auswahl der Dokumente -->
 <%@ page language="java"
 	import="selinas.SelinasUser"
 	import="selinas.bean.SelinasSession" 
