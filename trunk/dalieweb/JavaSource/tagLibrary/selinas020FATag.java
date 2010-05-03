@@ -132,7 +132,7 @@ public class selinas020FATag extends TagSupport {
 	    if (data.equalsIgnoreCase("J"))
 	    for (int i = 0; i < adressen.size(); i++){ 
 			Adresse adresse  = ((Adresse)adressen.elementAt(i));
-			Typen typen = DataSetTypen.chain(dbConn,adresse.getAdressArt(),language);
+			Typen typen = DataSetTypen.chainDatenTypAdresse(dbConn,adresse.getAdressArt(),language);
 			adressUser = DataSetUser.chain(dbConn,adresse.getUserId());
 			if(adresse.getAdressArt().equalsIgnoreCase(adressOfSession.getAdressArt()) &&
 				adresse.getUserId().equalsIgnoreCase(adressOfSession.getUserId())){
