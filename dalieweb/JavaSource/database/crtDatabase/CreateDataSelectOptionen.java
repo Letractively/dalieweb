@@ -242,7 +242,20 @@ public class CreateDataSelectOptionen {
 			LoggerHelper.log("CreateDataSelectOptionen", "Exception of insert-SQL", e);
 		}//catch
     	
-    }//insert
+    }//insertSelectoptionenDokumentTyp
+    
+    public static synchronized void insertSelectoptionenImmobilienTyp(Database dbConn,String nameOfSelectbox,String sprachId,String optionId,String optionValue,String optionDescripten){
+		try {
+			dbConn.executeUpdate("insert into "+dbConn.getDbSchema()+".selectoptionen " +
+					"values('"+nameOfSelectbox+"','" +sprachId+"','"+optionId+"','"+optionValue+"'," + 
+					"'"+optionDescripten+"',"+
+					"'DV0101'," + "now()," + 
+					"'DV0101'," + "now())");
+		} catch (Exception e) {
+			LoggerHelper.log("CreateDataSelectOptionen", "Exception of insert-SQL", e);
+		}//catch
+    	
+    }//insertSelectoptionenDokumentTyp
     
     public static void main(String args[]) throws Exception{
     	dbConn = new Database("mySql","localhost","selina","web4857","xxx"); 
@@ -345,6 +358,41 @@ public class CreateDataSelectOptionen {
        		insertSelectoptionenUserStatusId(dbConn,"Status","EN","A");
        		insertSelectoptionenUserStatusId(dbConn,"Status","EN","I");	
     	
+       	/** Selectbox für ImmobilienTyp DE */
+        deleteSelectboxId(dbConn,"TypDerImmobilie","DE");
+        insertSelectboxId(dbConn,"TypDerImmobilie","DE");
+            	
+        /** Selectbox-optionen für ImmobilieTyp DE */
+        deleteSelectoptionenId(dbConn,"TypDerImmobilie","DE","W");
+        deleteSelectoptionenId(dbConn,"TypDerImmobilie","DE","H");
+        deleteSelectoptionenId(dbConn,"TypDerImmobilie","DE","P");
+        	insertSelectoptionenImmobilienTyp(dbConn,"TypDerImmobilie","DE","W","W","Wohnung");
+        	insertSelectoptionenImmobilienTyp(dbConn,"TypDerImmobilie","DE","W","H","Haus");
+        	insertSelectoptionenImmobilienTyp(dbConn,"TypDerImmobilie","DE","W","P","Parkplatz");
+        	insertSelectoptionenImmobilienTyp(dbConn,"TypDerImmobilie","DE","H","W","Wohnung");
+        	insertSelectoptionenImmobilienTyp(dbConn,"TypDerImmobilie","DE","H","H","Haus");
+        	insertSelectoptionenImmobilienTyp(dbConn,"TypDerImmobilie","DE","H","P","Parkplatz");
+        	insertSelectoptionenImmobilienTyp(dbConn,"TypDerImmobilie","DE","P","W","Wohnung");
+        	insertSelectoptionenImmobilienTyp(dbConn,"TypDerImmobilie","DE","P","H","Haus");
+        	insertSelectoptionenImmobilienTyp(dbConn,"TypDerImmobilie","DE","P","P","Parkplatz");	
+           
+        /** Selectbox für UserStatus EN */
+        deleteSelectboxId(dbConn,"TypDerImmobilie","EN");
+        insertSelectboxId(dbConn,"TypDerImmobilie","EN");
+            
+        /** Selectbox-optionen UserStauts EN */
+        deleteSelectoptionenId(dbConn,"TypDerImmobilie","EN","W");
+        deleteSelectoptionenId(dbConn,"TypDerImmobilie","EN","H");
+        deleteSelectoptionenId(dbConn,"TypDerImmobilie","EN","P");
+        	insertSelectoptionenImmobilienTyp(dbConn,"TypDerImmobilie","EN","W","W","Apartment");
+        	insertSelectoptionenImmobilienTyp(dbConn,"TypDerImmobilie","EN","W","H","House");
+        	insertSelectoptionenImmobilienTyp(dbConn,"TypDerImmobilie","EN","W","P","Parking places");
+        	insertSelectoptionenImmobilienTyp(dbConn,"TypDerImmobilie","EN","H","W","Apartment");
+        	insertSelectoptionenImmobilienTyp(dbConn,"TypDerImmobilie","EN","H","H","House");
+        	insertSelectoptionenImmobilienTyp(dbConn,"TypDerImmobilie","EN","H","P","Parking places");
+        	insertSelectoptionenImmobilienTyp(dbConn,"TypDerImmobilie","EN","P","W","Apartment");
+        	insertSelectoptionenImmobilienTyp(dbConn,"TypDerImmobilie","EN","P","H","House");
+        	insertSelectoptionenImmobilienTyp(dbConn,"TypDerImmobilie","EN","P","P","Parking places");			
        	dbConn.close();
     	System.out.println("Fertig");
     }//main
