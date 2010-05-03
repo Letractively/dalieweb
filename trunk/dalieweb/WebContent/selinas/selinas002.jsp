@@ -59,6 +59,9 @@
 		<dalie:SelinasNavTag></dalie:SelinasNavTag>
 		<div id="navigation">
 			<dalie:StartNavTag></dalie:StartNavTag>
+		<div id="navigationPage">
+			<dalie:StartNavTag></dalie:StartNavTag>
+		</div><!-- /navigationPage -->
 		</div><!-- /navigation -->
 		<div id="header">
 			<br />
