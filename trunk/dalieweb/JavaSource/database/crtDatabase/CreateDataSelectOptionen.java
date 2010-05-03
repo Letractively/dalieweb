@@ -258,7 +258,7 @@ public class CreateDataSelectOptionen {
     }//insertSelectoptionenDokumentTyp
     
     public static void main(String args[]) throws Exception{
-    	dbConn = new Database("mySql","localhost","selina","web4857","xxx"); 
+    	dbConn = new Database("mySql","localhost","selina","web4857","selina2009"); 
     	
     	dbConn.getConnection();
     	deleteSelectboxId(dbConn,"PermitId","DE");
