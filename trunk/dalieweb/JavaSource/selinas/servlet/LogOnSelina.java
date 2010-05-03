@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import lebenslauf.Navigation;
 
+import selinas.SelinasModul;
 import selinas.SelinasUser;
 
 import database.Database;
@@ -21,6 +22,7 @@ import database.getDatabase.DataSetMessage;
 import database.getDatabase.DataSetStatus;
 import database.getDatabase.DataSetUser;
 import database.getDatabase.DataSetSelinas;
+import database.getDatabase.DataSetTypen;
 
 import help.LoggerHelper;
 
@@ -66,7 +68,8 @@ public class LogOnSelina extends HttpServlet implements Servlet {
     				session.setAttribute("TypOrderByTyp","B");//SessionAttribut:sort by DokumentTyp
     				session.setAttribute("UserOrderByTyp","U");//SessionAttribut:sort by UserId
     				session.setAttribute("AdressOrderByTyp","U");//SessionAttribut:sort by Adresse
-    				session.setAttribute("MemoLoad","memoLoadOFF");//SessionAttribut:MemoLoad Table show
+    				session.setAttribute("MemoLoad","memoLoadOFF");//SessionAttribut:MemoLoad(Funktion:laden Tooltip möglich ja/nein)Table show
+    				session.setAttribute("SelinasModul",new SelinasModul(DataSetTypen.chainDatenTypSelinasModel(dbConn,"D",request.getParameter("speech").toString())));
     				
     				try {
     		 	        RequestDispatcher displogin =  request.getRequestDispatcher("LogOnSelinaInializeServlet");
