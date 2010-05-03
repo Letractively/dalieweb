@@ -18,10 +18,9 @@ import javax.servlet.jsp.tagext.TagSupport;
 import selinas.SelinasUser;
 import selinas.bean.SelinasSession;
 import database.Database;
+import database.dateien.Dokument;
 import database.dateien.Selinas;
-import database.dateien.Typ;
 import database.getDatabase.DataSetDokument;
-import database.getDatabase.DataSetTyp;
 
 
 /**
@@ -38,8 +37,10 @@ public class StartNavPageTag extends TagSupport {
 	private Database dbConn;
     private SelinasUser selinasuser;
     private SelinasSession show;
+    private Dokument dokumentOfSession;
     private String language;
     private String selectTyp;
+            int counter = 0;
     
     /** separator " */
     final String FB = "\"";//wird als " interpretiert
@@ -56,33 +57,24 @@ public class StartNavPageTag extends TagSupport {
             		selinasuser = (SelinasUser) session.getAttribute("User");
             		if (session.getAttribute("Selinas") != null) {
             			show = new SelinasSession((Selinas) session.getAttribute("Selinas")); 
-            			            			
+            			
                 try {
                  	JspWriter out = pageContext.getOut();
-            		int counter = 0;
-                 	try{
-                        dbConn.getConnection();
-                        /* finde alle DokumentTypen zum User */
-                        Vector allDokumentTypenOfUser = DataSetTyp.reade(dbConn,selinasuser.user.getKundenId(),selinasuser.user.getStandortId());
-                        for (int i = 0; i < allDokumentTypenOfUser.size(); i++){
-                        	/* get Objekt of DokumentTyp */
-                        	Typ typOfDokument = (Typ)allDokumentTypenOfUser.elementAt(i);
-                        	
-                        	try{
-                        		/* Suche Dokumente zum DokumentTyp  */
-                        		DataSetDokument.chain(dbConn, selinasuser.user,typOfDokument.getTyp());
-                        		/* gefunden -> schreibe ein Listenelemente an den htmlContent */
-                				writeDokumentDataToPageContext(typOfDokument,(String)session.getAttribute("SelectTyp"));
-                				counter ++;
-                        	}catch(Exception e){
-                        		System.out.println("Hinweis: kein Dokument zum Dokumenttyp gefunden");
-                        	}//try
-                        }//for
-                        dbConn.close();
-                 	}catch(Exception e){//no DokumentTypen found
-                    	out.println("<li><a href='/dalieweb/AdminOfSelina' title='"/* Selinas:LINK2 Administration von Selina */+ show.session.getLink3t() +"'><span>"+show.session.getLink3()+"</span></a></li>");
-                 	}//catch    
-                 	
+            		if(((String)session.getAttribute("SelectTyp")).equalsIgnoreCase("UB")){//Element Übersicht is aktiv
+            			/* Initialize of String */
+            			counter = 9;
+            			return SKIP_PAGE;//Skip the rest of the page.
+            		}else{
+            			try{
+            				ulli = "<div id=\"navigationPage\"><ul>";
+            				dbConn.getConnection();
+            				/* Suche Dokumente zum dokumentOfSession -> gefunden -> schreibe ein Listenelemente an den htmlContent */
+            				writeDokumentDataToPageContext(DataSetDokument.reade(dbConn,selinasuser.user,DataSetDokument.chain(dbConn, selinasuser.user,(String)session.getAttribute("SelectTyp")),"G"));
+            				dbConn.close();
+            			}catch(Exception e){
+            				System.out.println("Hinweis: keine Dokumente zum dokumentOfSession gefunden");
+            			}//try
+            		}//endif
                     while(counter <= 8) {//minimum 8 ListenElemente
                     	ulli = ulli + "<li>&nbsp;</li>";
                        	counter ++;
@@ -96,7 +88,8 @@ public class StartNavPageTag extends TagSupport {
                             + " Exception " + e.getMessage()
                             + " is not vaild");
                 }//try 
-                
+                	
+            			
             		} else {
                     	throw new JspException("SelinasSession object in session "
                     		+ session.getAttribute("Selinas")
@@ -122,7 +115,7 @@ public class StartNavPageTag extends TagSupport {
 	public int doEndTag() {
         try {
             JspWriter out = pageContext.getOut();
-            out.println("</ul>");
+            out.println("</ul></div><!-- /navigationPage -->");
             	return EVAL_PAGE;//Continue evaluating the page.
             }catch(IOException iex) {
                 return SKIP_PAGE;//Skip the rest of the page.
@@ -140,15 +133,15 @@ public class StartNavPageTag extends TagSupport {
        super.release();
     }//release
 	
-	 /**
-     * Writes Dokument-Informations for one Dokument to the page body
-     */
-	private String writeDokumentDataToPageContext(Typ typ,String current) {
-		if(typ.getTyp().equalsIgnoreCase(current)){
-			ulli = ulli + "<li class='current'><img src='/dalieweb/bilder/arrow.gif' title='"+show.session.getImage1()+"' alt='"+show.session.getImage1()+"'/>&nbsp;&nbsp;"+ HelpString.collapseSpacesWP(typ.getDescription(),19) + "</li>";
-		}else{
-			ulli = ulli + "<li><a href='/dalieweb/GoToStartServlet?selectTyp="+typ.getTyp()+"' title='"/* Selinas:LINK2 Auswahl nach Dokumenttyp */+ show.session.getLink2t() + typ.getDescription()+"' target='_parent'>"+ HelpString.collapseSpacesWP(typ.getDescription(),19) + "</a></li>";
-		}
+    /** Writes Dokument-Informations for one Dokument to the page body */
+	private String writeDokumentDataToPageContext(Vector dokuments) {
+		for(int i = 0; i <= dokuments.size(); i++){
+			Dokument dokument = (Dokument)dokuments.elementAt(i);
+			if(dokument.getId() == 1){
+			ulli = ulli + "<li><a href='/dalieweb/DokumentToRequestServlet?dokumentTyp="+dokument.getTyp()+"&amp;dokumentNr="+dokument.getNummer()+"&amp;dokumentId="+dokument.getId()+"' target='_parent'>"+ + dokument.getNummer() +"."+ dokument.getId()+ "&nbsp;&nbsp;"+ HelpString.collapseSpacesWP(dokument.getTitel(),12) + "</a></li>";
+            counter ++;
+			}
+		}//for
 	    return ulli;	
 	}//writeDokumentDataToPageContext
 	
