@@ -279,6 +279,36 @@ public class DataSetDokument {
 		return liste;
 	}//query	
     /**
+     * <b>alle Dokument(e) aus Datenbank Tabelle Dokument</b>
+     * <br>finde alle Dokumente zum DokumentTyp, lesen nach oderBy Key
+     * <br><b>reade:Key User.getKundenId, User.getStandortId String dokumentTypKey</b>
+     * <br><b>public static</b><br>
+     * @param
+     * <ul>	
+     * <li>Database dbConn	</li>
+     * <li>User user	</li>
+     * </ul>
+     * @return
+     * <ul><li> Vector Dokument(e)</li></ul>
+     */
+    public static synchronized Vector reade(Database dbConn, User user,Dokument dokument,String orderBy) throws Exception {
+    	/* Verwendung: StartNavPageTag -> zeige alle Dokumente zum ausgewählten Dokument */
+		Vector liste = new Vector();
+		Vector rows = dbConn.executeQuery("select * from "+dbConn.getDbSchema()+".dokument " +
+				"where kundenId = "+dokument.getKundenId()+ " and standortId = "+dokument.getStandortId() + 
+				" and typ = '"+ dokument.getTyp() +"' and nummer = " + dokument.getNummer() + " and createUser = '"+user.getUserId()+"' or " +
+				" kundenId = "+user.getKundenId()+ " and standortId = "+user.getStandortId()+
+				" and typ = '"+ dokument.getTyp() +"' and nummer = " + dokument.getNummer() + " and createUser <> '"+user.getUserId()+"'" +
+				" and status <= "+user.getUserAutorisierungsId()+ " and status <> 'P'" +
+				" ORDER BY "+valueOf(orderBy)+"");
+		if(rows.size() == 0)
+    	    throw new Exception("Record not Found");
+		for (int i = 0; i < rows.size(); i++){
+			liste.addElement(new Dokument((Vector) rows.elementAt(i)));
+		}//for
+		return liste;
+	}//query	
+    /**
      * <b>insert Dokument on Datenbank </b>
      * <br><b>insert:Key none </b>
      * <br><b>public</b><br>
