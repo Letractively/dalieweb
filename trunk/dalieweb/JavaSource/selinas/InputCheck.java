@@ -17,12 +17,20 @@ import database.getDatabase.DataSetMessage;
  * Window - Preferences - Java - Code Style - Code Templates
  */
 public class InputCheck {
+	/* InputCheck: Objekt zur Fehlerpruefung nach Eingabe */
 	
-	String inputName = "";
-    String inputValue = "";
-    String passwort = "";
-    String passwortagain = "";
+	/** inputName: z.B. Name */
+	String inputName = "",
+	/** inputValue: der Wert des inputNamens 
+	 z.B. inputName = Name  dann wäre inputValue = "Dalie" */
+    inputValue = "",
+	/** passwort: passwort*/
+    passwort = "",
+	/** passwortagain: passwort wiederholung */
+    passwortagain = "";
+	/** count: zum prüfen auf Anzahl */
     int count = 0;
+    /** error: Objekt mit Message und MessageTyp*/
     public Message error;
     
     /** 1. prüfen des UserInputs  */
@@ -65,7 +73,7 @@ public class InputCheck {
 			return true;
 		}//endif
 	}//checkCount
-    
+    /** Passwort prüfen */
     public boolean comparePasswort(){
     	if ( passwort.equals(passwortagain)) {
 			return true;
