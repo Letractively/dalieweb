@@ -117,7 +117,7 @@ public class DokumentNavTag extends TagSupport {
                         	throw new JspException("SelinasSession object in session "
                         		+ session.getAttribute("Dokument")
                                 + " has not the valid type");
-                    	}//session.getAttribute("Selinas") 
+                    	}//session.getAttribute("Dokument") 
             		} else {
                     	throw new JspException("SelinasSession object in session "
                     		+ session.getAttribute("Selinas")
