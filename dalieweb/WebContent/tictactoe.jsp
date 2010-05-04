@@ -35,23 +35,20 @@
 	<div id="bd">
 		<div class="yui-g">
 		<!-- 1.Zeile gesamte Breite  -->
-			1
+			<p>1</p>
 		</div><!-- /yui-g 1.Zeile gesamte Breite --> 
 		<div class="yui-g">
 		<!-- 2.Zeile gesamte Breite --> 
 	    	<div class="yui-u first">
 			<!-- 2.Zeile linke hälfte --> 
-			<applet codebase="WEB-INF/classes/" code="applet/TicTacToe.class" width="200" height="200" archive="TicTacToe.jar"></applet> 
+				<p>2.1</p>
 	       	</div> <!-- yui-u first -->
 	    	<div class="yui-u">
 			<!-- 2.Zeile rechte hälfte -->
-	    			<jsp:plugin type="applet" codebase="WEB-INF/classes/" code="applet/TicTacToe" jreversion="1.2" width="200" height="200" archive="TicTacToe.jar">
-	<jsp:fallback>
-        Plugin tag OBJECT or EMBED not supported by browser.
-    </jsp:fallback>
-</jsp:plugin> 
+	    		<p>2.1</p>
 	       	</div><!-- yui-u --> 
 		</div><!-- yui-g 2.Zeile gesamte Breite  -->
+		<jsp:forward page="tictactoe/tictactoe001.jsp"></jsp:forward>
 	</div><!-- /bd body -->
 	</div><!-- /doc3 = 100%, -->
    	<div id="ft">
