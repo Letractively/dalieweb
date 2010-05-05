@@ -61,7 +61,7 @@ public class TicTacToe extends Applet implements MouseListener {
 	
 		public void paint(Graphics g){
 		
-			g.drawRect(1,1,breite,hoehe);
+			//g.drawRect(1,1,breite,hoehe);
 			//SpielFeld zeichnen
 			g.setColor(Color.blue);
 			for(int x = 39;x <= 159;x+=40)
@@ -89,25 +89,25 @@ public class TicTacToe extends Applet implements MouseListener {
 				{
 			//check von links,oben nach rechts,unten
 			if(feld[0][0].gamer == spieler && feld[1][1].gamer == spieler && feld[2][2].gamer == spieler){
-				showStatus("Spieler " + spieler + " hat gewonnen, Glückwunsch!!!");
+				showStatus("Spieler " + spieler + " hat gewonnen!!! Glückwunsch !!!");
 				status = false;
 				}//endif
 			//check von links,unten nacht rechts,oben		
 			if(feld[2][0].gamer == spieler && feld[1][1].gamer == spieler && feld[0][2].gamer == spieler){
-				showStatus("Spieler " + spieler + " hat gewonnen!!! Glückwunsch");
+				showStatus("Spieler " + spieler + " hat gewonnen!!! Glückwunsch !!!");
 				status = false;
 				}//endif
 			//check wagerecht
 			for(int x = 0;x < feld.length;x++){
 				if(feld[x][0].gamer == spieler && feld[x][1].gamer == spieler && feld[x][2].gamer == spieler){
-				showStatus("Spieler " + spieler + " hat gewonnen !!! Glückwunsch !!!");
+				showStatus("Spieler " + spieler + " hat gewonnen!!! Glückwunsch !!!");
 				status = false;
 				}//endif
 			}//for
 			//check senkrecht
 			for(int x = 0;x < feld.length;x++){
 				if(feld[0][x].gamer == spieler && feld[1][x].gamer == spieler && feld[2][x].gamer == spieler){
-				showStatus("Spieler " + spieler + " hat gewonnen Glückwunsch !!!");
+				showStatus("Spieler " + spieler + " hat gewonnen!!! Glückwunsch !!!");
 				status = false;
 				}//endif		
 			}//for
