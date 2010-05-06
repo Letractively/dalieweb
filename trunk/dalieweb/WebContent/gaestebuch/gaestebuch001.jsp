@@ -26,7 +26,7 @@
 <script language="javascript" type="text/javascript">
 function resizeFrame(){
 	document.getElementById("selinasFrame").style.height = + (screen.availHeight - 440) + "px";
-	document.getElementById("selinasFrame").style.width = + (screen.availWidth - 15) + "px";
+	document.getElementById("selinasFrame").style.width = "100%";
 }
 </script>
 <title>dalieweb</title>
