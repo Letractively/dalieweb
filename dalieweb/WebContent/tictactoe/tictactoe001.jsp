@@ -25,16 +25,28 @@
 <script src="<%= request.getContextPath()%>/script/dalieLogo.js" type="text/javascript"></script>
 <script language="javascript" type="text/javascript">
 function resizeFrame(){
-	document.getElementById("selinasFrame").style.height = + (screen.availHeight - 514) + "px";
-	document.getElementById("selinasFrame").style.width = + (screen.availWidth - 340) + "px";
-	if (screen.height < 800) {
-		document.getElementById("selinasFrame").style.width = + (screen.availWidth - 360) + "px";
-	}endif
+ 
+	var curr_height = document.getElementById("bo").offsetHeight - (document.getElementById("hd").offsetHeight + document.getElementById("ft").offsetHeight);
+	var body_height = document.getElementById("bo").offsetHeight;
+	var foot_height = document.getElementById("ft").offsetHeight;
+
+	//document.getElementById("selinasFrame").style.height = + (curr_height + 170) + "px";
+	document.getElementById("selinasFrame").style.width = "100%";
+
+	if (screen.availHeight < body_height) {
+		curr_height = curr_height - (body_height - screen.availHeight);
+		document.getElementById("selinasFrame").style.height = + (curr_height - 28) + "px";
+	}//endif
+
+	if (screen.availHeight > body_height) {
+		curr_height = curr_height + 30 +(screen.availHeight - body_height);
+		document.getElementById("selinasFrame").style.height = + (curr_height - foot_height) + "px";
+	}//endif
 }
 </script>
 <title>dalieweb</title>
 </head>
-<body class="yui-skin-sam" onload="if(document.images) nextimg(), resizeFrame()">
+<body id="bo" class="yui-skin-sam" onload="if(document.images) nextimg(), resizeFrame()">
 	<div id="hd">
 		<span class="strapline">dalieweb.de</span>
 		<a href="<%= request.getContextPath()%>/dalieweb.jsp" target="_top">
@@ -42,32 +54,7 @@ function resizeFrame(){
 	</div><!-- /hd header -->
 	<div id="doc3" class="yui-t7">
 	<div id="bd">
-		<div class="yui-gf">
-		<!-- 1.Zeile gesamte Breite  -->
-			<br /><br /> 
-			<p style="margin: 5px 0px 0px 15px;
-					font: 1.5em/ 1.8em Verdana, Arial, Tahoma, Verdana, sans-serif;">TicTacToe</p>
-		</div><!-- /yui-gf 1.Zeile gesamte Breite --> 
-		<div class="yui-gf">
-		<!-- 2.Zeile gesamte Breite --> 
-	    	<div class="yui-u first">
-			<!-- 2.Zeile linke hälfte -->
-			<applet codebase="/dalieweb/" code="applet/TicTacToe.class" width="210px" height="210px" 
-				style="border-style: solid; 
-						border-top-width: 1px; 
-						border-right-width: 1px; 
-						border-left-width: 1px; 
-						border-bottom-width: 1px; 
-						border-color: #557AA6;"></applet><br />
-			<form style="padding-top: 5px;" name="dokument" id="dokument" method="post" action="./tictactoe.jsp">
-			<button id="reset" type="submit" name="reset" tabindex="1" value="reset">reset</button>
-			</form>&nbsp;<br />
-	       	</div> <!-- yui-u first -->
-	    	<div class="yui-u">
-			<!-- 2.Zeile rechte hälfte -->
-				<iframe style="margin-bottom: 10px;" src="<%= request.getContextPath()%>/tictactoe/tictactoe001F.jsp" id="selinasFrame" name="selinasFrame" height="540px" width="945px" frameborder="0" onload="resizeFrame()"></iframe>
-	       	</div><!-- yui-u --> 
-		</div><!-- yui-gf 2.Zeile gesamte Breite  -->
+		<iframe style="margin-bottom: 10px;" src="<%= request.getContextPath()%>/tictactoe/tictactoe001F.jsp" id="selinasFrame" name="selinasFrame" height="540" width="945" frameborder="0"></iframe>
 	</div><!-- /bd body -->
 	</div><!-- /doc3 = 100%, -->
    	<div id="ft">
