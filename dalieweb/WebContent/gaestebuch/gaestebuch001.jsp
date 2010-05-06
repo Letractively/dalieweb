@@ -25,13 +25,28 @@
 <script src="<%= request.getContextPath()%>/script/dalieLogo.js" type="text/javascript"></script>
 <script language="javascript" type="text/javascript">
 function resizeFrame(){
-	document.getElementById("selinasFrame").style.height = + (screen.availHeight - 440) + "px";
+ 
+	var curr_height = document.getElementById("bo").offsetHeight - (document.getElementById("hd").offsetHeight + document.getElementById("ft").offsetHeight);
+	var body_height = document.getElementById("bo").offsetHeight;
+	var foot_height = document.getElementById("ft").offsetHeight;
+
+	//document.getElementById("selinasFrame").style.height = + (curr_height + 170) + "px";
 	document.getElementById("selinasFrame").style.width = "100%";
+
+	if (screen.availHeight < body_height) {
+		curr_height = curr_height - (body_height - screen.availHeight);
+		document.getElementById("selinasFrame").style.height = + (curr_height - 58) + "px";
+	}//endif
+
+	if (screen.availHeight > body_height) {
+		curr_height = curr_height + 30 +(screen.availHeight - body_height);
+		document.getElementById("selinasFrame").style.height = + (curr_height - foot_height) + "px";
+	}//endif
 }
 </script>
 <title>dalieweb</title>
 </head>
-<body class="yui-skin-sam" onload="if(document.images) nextimg(), resizeFrame()">
+<body id="bo" class="yui-skin-sam" onload="if(document.images) nextimg(), resizeFrame()">
 	<div id="hd">
 		<span class="strapline">dalieweb.de</span>
 		<a href="<%= request.getContextPath()%>/dalieweb.jsp" target="_top">
@@ -56,7 +71,7 @@ function resizeFrame(){
 		</div><!-- yui-gf 2.Zeile gesamte Breite  -->
 		<div class="yui-gf">
 		<!-- 3.Zeile gesamte Breite  -->
-			<iframe style="margin-bottom: 3px;" src="<%= request.getContextPath()%>/gaestebuch/gaestebuch001F.jsp" id="selinasFrame" name="selinasFrame" height="540" width="945" frameborder="0"></iframe>
+			<iframe style="margin-bottom: 10px;" src="<%= request.getContextPath()%>/gaestebuch/gaestebuch001F.jsp" id="selinasFrame" name="selinasFrame" height="540" width="100%" frameborder="0"></iframe>
 		</div><!-- /yui-gf 1.Zeile gesamte Breite -->
 	</div><!-- /bd body -->
 	</div><!-- /doc3 = 100%, -->
