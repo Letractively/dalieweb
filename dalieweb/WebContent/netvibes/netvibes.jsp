@@ -27,7 +27,7 @@
       widget.onLoad = function() {
         var who = widget.getValue('hellowho');
         // widget.setBody() replaces the content of the body element
-        widget.setBody('<p>Hello ' + who + '</p><ul><li><a href="http://www.dalieweb.de" title="dalieweb" alt="dalieweb">dalieweb</a></li><li><a href="http://www.google.de" title="google" alt="google">google</a></li></ul>');
+        widget.setBody('<p>Hello ' + who + '</p><br<ul><li><a href="http://www.dalieweb.de" title="dalieweb" alt="dalieweb">dalieweb</a></li><li><a href="http://www.google.de" title="google" alt="google">google</a></li></ul>');
       }
     </script>
   </head>
