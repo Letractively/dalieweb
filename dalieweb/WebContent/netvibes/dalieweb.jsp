@@ -11,9 +11,9 @@
 <link rel="stylesheet" type="text/css"
 	href="http://www.netvibes.com/themes/uwa/style.css" />
 <link rel="stylesheet" type="text/css"
-	href="http://www.dalieweb.de/theme/netvibes.css" />
+	href="http://www.dalieweb.de/dalieweb/theme/netvibes.css" />
 <link rel="icon" type="image/ico"
-	href="http://www.dalieweb.de/pfeilmit01.ico" />
+	href="http://www.dalieweb.de/dalieweb/bilder/pfeilmit01.ico" />
 <%-- WIDGET:Preferences --%>
 <widget:preferences>
 	<preference name="widgetTitle" type="hidden" label="Title"
