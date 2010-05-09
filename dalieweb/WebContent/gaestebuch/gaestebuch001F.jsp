@@ -27,6 +27,15 @@
 	font-size: 14pt;
 	padding-left: 3px; 
 }
+table{
+	border: 0px solid #FFFFFF;
+}
+tr{
+	border: 0px solid #FFFFFF;
+}
+td{
+	border: 0px solid #FFFFFF;
+}
 </style>
 
 <title>dalieweb</title>
@@ -35,6 +44,20 @@
 <div id="doc3" class="yui-t7">
 <!--Eintrag-->
 <br />
+<table style="border: 0px solid #FFFFFF;" border="0" width="70%" cellpadding="0" cellspacing="0">
+	<caption>KOMMENTARE</caption>
+		<tr>
+			<td width="20%" rowspan="2" headers="">Montag, 30. April 2007 um 19:14:09</td>
+			<td width="80%" style="padding-left: 5px;"><a style="padding: 5px 0 5px 20px;
+	background-position: center left;
+	background-repeat: no-repeat;
+	background-color: transparent;
+	background-image: url("./bilder/icon_mailto.gif")" href="mailto:hmann01@t-online.de"><b>hermann</b><span>schrieb:</span></a></td>
+		</tr>
+		<tr>
+			<td style="padding-left: 10px";>auf einen schönen grillabend in wangen</td>
+		</tr>
+</table>
 <span class="typBold">Name:</span>
 <span class="typDefault">hermann</span><br />
 <span class="typBold">E-Mail:</span>
