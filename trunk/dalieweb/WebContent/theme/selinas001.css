@@ -38,7 +38,10 @@
 #header {
 	background: transparent;
 }
-
+#contentRight {
+	background-color: #EBEBEB;;
+	border: 1px dotted #B2BCC6; /*Rahmen wie Link's */
+}
 #contentRight h3 {
 	margin: 1px;
 	padding: 1px 5px;
@@ -122,7 +125,12 @@ p {
 	padding: 20px 0 0 410px;
 	width: 350px;
 }
-
+img.googleCode{
+	/* adressverwaltung */
+	background: url(../bilder/icon_sprite-35.png) -0px -71px no-repeat;
+	height: 34px;
+	width: 37px;
+}
 #vcard {
 	float: right;
 	clear: both;
