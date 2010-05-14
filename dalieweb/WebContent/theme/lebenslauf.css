@@ -146,7 +146,27 @@ h2,
 	border-top: 1px solid #e0d0b0;
 	margin: 14px 0;
 }
-
+#notizen a:LINK
+{
+	/* :LINK für Verweise zu noch nicht besuchten Seiten */
+	text-decoration: none;
+	color: #778899;
+	background-color: transparent;
+	border-bottom: 1px dotted #778899                  
+}
+#notizen a:VISITED
+{
+	/* :VISITED für Verweise zu bereits besuchten Seiten */
+	text-decoration: none;
+	color: #B2BCC6;
+	background-color: transparent;
+	border-bottom: 1px dotted #B2BCC6
+}
+#notizen a:HOVER
+{	
+	/* :HOVER für Elemente, während der Anwender mit der Maus darüber fährt */
+	color: #B2BCC6;
+}
 .tIcon {
 	display: block;
 	float: left;
@@ -178,7 +198,12 @@ h2,
 .stdIcon {
 	margin-right: 9px;
 }
-
+img.googleCode{
+	/* adressverwaltung */
+	background: url(../bilder/icon_sprite-35.png) -0px -71px no-repeat;
+	height: 34px;
+	width: 37px;
+}
 #rand-information { /* hidden Container -> ohne Darstellung */
 	background: #006666;
 	clear: both;
