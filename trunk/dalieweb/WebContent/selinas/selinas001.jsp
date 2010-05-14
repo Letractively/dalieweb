@@ -94,8 +94,10 @@
 	<div class="ws-notizen">
 	<h3>Links</h3>
 	<p><a href="http://www.netvibes.com/dalie#General" target="_blank"></a></p>
-	<p><a href="http://www.dalieweb.de/dalieweb.xml" target="_blank"></a></p>
-	<p><a href="http://code.google.com/p/dalieweb/source/browse/#svn/trunk/dalieweb" target="_blank"></a></p>
+	<p><a href="http://www.dalieweb.de/dalieweb/xml/dalieweb.xml" target="_blank"></a></p>
+	<p><a href="http://code.google.com/p/dalieweb/source/browse/#svn/trunk/dalieweb" target="_blank">
+			<img src='<%= request.getContextPath()%>/bilder/spacer.gif' class="googleCode" alt='Projekthosting' title='Projekthosting'/>	
+		</a></p>
 	</div><!-- div ws-notizen -->
 	</div><!-- contentRight -->
 	</div><!-- wrapperContent -->	
