@@ -60,7 +60,7 @@ public class DokumentToReportServlet extends HttpServlet implements Servlet {
      	}//catch ServletException
  		
  		
-        XStream xs = new XStream(new DomDriver());/*Serialize the object*/
+        XStream xs = new XStream(new DomDriver("ISO-8859-1"));/*Serialize the object*/
         nameOfXmlPfad = (new Integer(dokumentOfPrint.getKundenId())).toString();
         nameOfXmlPfad += (new Integer(dokumentOfPrint.getStandortId())).toString();
         nameOfXmlPfad += (new Integer(dokumentOfPrint.getNummer())).toString();
