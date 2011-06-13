@@ -1,0 +1,102 @@
+@CHARSET "ISO-8859-1" ;
+/* 
+Basisvorlage CCS
+
+Projekt.........: www.dalieweb.de
+FileName........: Master.css
+Start...........: 01.05.2009
+Letzte Aenderung: 00.00.20xx
+
+*/
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	/*font-size: 75%;*/
+}
+
+html>body {
+	font-size: 12px;
+}
+
+body {
+	text-align: left; /* Textausrichtung */
+}
+
+ul,li {
+	list-style-type: none;
+}
+h1 {
+	font: 1.67em/ 0.9em Georgia, Arial, Times, serif;
+	margin-top: 0.9em;
+	margin-bottom: 0.9em;
+}
+
+h2 {
+	font: 1.5em/ 1em Georgia, Arial, Times, serif;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+h3 {
+	font: 1.33em/ 1.13em Georgia, Arial, Times, serif;
+	margin-top: 1.13em;
+	margin-bottom: 1.13em;
+}
+
+h4 {
+	font: 1.17em/ 1.29em Georgia, Arial, Times, serif;
+	margin-top: 1.29em;
+	margin-bottom: 1.29em;
+}
+a[href ^="mailto:"] {
+	padding: 5px 0 5px 20px;
+	background-position: center left;
+	background-repeat: no-repeat;
+	background-color: transparent;
+	background-image: url("../bilder/icon_mailto.gif");
+}
+a[href *="netvibes.com"]{
+	padding: 5px 0 5px 100px;
+	background-position: center left;
+	background-repeat: no-repeat;
+	background-color: transparent;
+	background-image: url("../bilder/add2netvibes.png");
+}
+a[href *="google.com"]{
+	padding: 5px 0 5px 90px;
+	background-position: center left;
+	background-repeat: no-repeat;
+	background-color: #EFEFEF;
+	background-image: url("../bilder/Logo_25wht.gif");
+}
+a[href$='.pdf']{
+	padding: 5px 20px 5px 20px;
+	background-position: center left;
+	background-repeat: no-repeat;
+	background-color: transparent;
+	background-image: url("../bilder/icon_pdf.gif");
+}
+a[href$='.doc']{
+	padding: 5px 20px 5px 20px;
+	background-position: center left;
+	background-repeat: no-repeat;
+	background-color: transparent;
+	background-image: url("../bilder/icon_doc.gif");
+}
+a[href$='.xls']{
+	padding: 5px 20px 5px 20px;
+	background-position: center left;
+	background-repeat: no-repeat;
+	background-color: transparent;
+	background-image: url("../bilder/icon_xls.gif");
+}
+a[href$='.txt']{
+	padding: 5px 20px 5px 20px;
+	background-position: center left;
+	background-repeat: no-repeat;
+	background-color: transparent;
+	background-image: url("../bilder/icon_txt.gif");
+}
