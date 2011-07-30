@@ -62,11 +62,11 @@ a[href ^="mailto:"] {
 <table style="border: 0px solid #FFFFFF;" border="0" width="100%" cellpadding="0" cellspacing="0">
 	<caption style="border-bottom: 1px dotted #222222"><b>KOMMENTARE</b></caption>
 		<tr>
-			<td rowspan="2" width="20%">Montag, 30. April 2007 <br /> um 19:14:09</td>
+			<td width="20%" rowspan="2">Montag, 30. April 2007 <br /> um 19:14:09</td>
 			<td><a href="mailto:hmann01@t-online.de"><b>hermann</b></a>&nbsp;<span>schrieb:</span></td>
 		</tr>
 		<tr>
-			<td style="font-size: 14px; padding: 5px 3px">auf einen sch√∂nen grillabend in wangen</td>
+			<td style="font-size: 14px; padding: 5px 3px">auf einen schˆnen grillabend in wangen</td>
 		</tr>
 </table>
 <table style="border-top: 1px dotted #222222;" border="0" width="80%" cellpadding="0" cellspacing="0">
@@ -93,8 +93,8 @@ a[href ^="mailto:"] {
 			<td><a href="mailto:albrecht.stickel@web.de"><b>Albrech</b></a>&nbsp;<span>schrieb:</span></td>
 		</tr>
 		<tr>
-			<td style="font-size: 14px; padding: 5px 3px">Hallo Uwe, sch√∂ne Web-Site!
-Vielen Dank f√ºr alles. Gru√ü Albrecht</td>
+			<td style="font-size: 14px; padding: 5px 3px">Hallo Uwe, schˆne Web-Site!
+Vielen Dank f¸r alles. Gr¸ﬂe Albrecht</td>
 		</tr>
 </table>
 <table style="border-top: 1px dotted #222222;" border="0" width="80%" cellpadding="0" cellspacing="0">
@@ -103,7 +103,7 @@ Vielen Dank f√ºr alles. Gru√ü Albrecht</td>
 			<td><a href="mailto:H.Dalies@gmx.de"><b>Mutti</b></a>&nbsp;<span>schrieb:</span></td>
 		</tr>
 		<tr>
-			<td style="font-size: 14px; padding: 5px 3px">Viel Gl√ºck</td>
+			<td style="font-size: 14px; padding: 5px 3px">Viel Gl¸ck</td>
 		</tr>
 </table>
 <table style="border-top: 1px dotted #222222;" border="0" width="80%" cellpadding="0" cellspacing="0">
@@ -112,7 +112,7 @@ Vielen Dank f√ºr alles. Gru√ü Albrecht</td>
 			<td><a href="mailto:a.dali@gmx.net"><b>Anja</b></a>&nbsp;<span>schrieb:</span></td>
 		</tr>
 		<tr>
-			<td style="font-size: 14px; padding: 5px 3px">gef√§llt mir supi gut - is ja genial :-) gruss anja un co.</td>
+			<td style="font-size: 14px; padding: 5px 3px">gef‰llt mir supi gut - is ja genial :-) gruss anja un co.</td>
 		</tr>
 </table>
 <table style="border-top: 1px dotted #222222;" border="0" width="80%" cellpadding="0" cellspacing="0">
@@ -130,7 +130,7 @@ Vielen Dank f√ºr alles. Gru√ü Albrecht</td>
 			<td><a href="mailto:u.dalies@gmx.de"><b>Uwe</b></a>&nbsp;<span>schrieb:</span></td>
 		</tr>
 		<tr>
-			<td style="font-size: 14px; padding: 5px 3px">Herzlich willkommen im G√§stebuch</td>
+			<td style="font-size: 14px; padding: 5px 3px">Herzlich willkommen im G‰stebuch</td>
 		</tr>
 </table>
 </div><!-- /doc3 = 100%, -->
