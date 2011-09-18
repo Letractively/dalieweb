@@ -3,30 +3,28 @@ package selinas.servlet;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.Servlet;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class GoGuestBook
+ * Servlet implementation class GoToGuestBookCapturer
  */
-public class GoToGuestBookEntry extends HttpServlet implements Servlet {
-	   
-    
-    /** perform for both HTTP <code>GET</code> and <code>POST</code> methods  */
-	protected void perForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-		if (session == null){
-		    return;
-		}
-		String nextPage = "/gaestebuch/guestbook002LB.jsp";
-		performForward(nextPage,request,response);//JSP- User Login
-	}//perForm
-	
+@WebServlet(description = "Determine GuestBook Captuer", urlPatterns = { "/GoToGuestBookCapturer" })
+public class GoToGuestBookCapturer extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public GoToGuestBookCapturer() {
+        super();
+    }//GoToGuestBookCapturer
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -41,6 +39,16 @@ public class GoToGuestBookEntry extends HttpServlet implements Servlet {
 		perForm(request,response);
 	}//doPost
 
+	/** perform for both HTTP <code>GET</code> and <code>POST</code> methods  */
+	protected void perForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession(false);
+		if (session == null){
+		    return;
+		}
+		String nextPage = "/gaestebuch/gaestebuch001.jsp";
+		performForward(nextPage,request,response);//JSP- User Login
+	}//perForm
+	
 	/** handle the next step */
 	protected void performForward(String destination,HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {	
 		ServletContext context = getServletContext();
@@ -52,12 +60,4 @@ public class GoToGuestBookEntry extends HttpServlet implements Servlet {
 	public void destroy(){
 	}//destroy
 	
-	
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public GoToGuestBookEntry() {
-		super();
-	}//GoToGuestBookEntry
-	
-}//class GoToGuestBookEntry
+}//class GoToGuestBookCapturer
