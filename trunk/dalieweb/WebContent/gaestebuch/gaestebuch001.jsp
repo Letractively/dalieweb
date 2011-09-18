@@ -14,15 +14,16 @@
 <meta name="keywords" content="dalieweb"/>
 <meta name="author" content="u.dalies"/>
 <!-- CSS und Icons --> 
-<link href="<%= request.getContextPath()%>/build/base/base-min.css" rel="stylesheet" type="text/css"/>
-<link href="<%= request.getContextPath()%>/build/reset-fonts-grids/reset-fonts-grids.css" rel="stylesheet" type="text/css"/>
-<link href="<%= request.getContextPath()%>/theme/immo001.css" rel="stylesheet" type="text/css" media="screen"/>
-<link href="<%= request.getContextPath()%>/theme/selinas-DruckTyp.css" rel="stylesheet" type="text/css" media="print"/>
+<link href="<%=request.getContextPath()%>/build/base/base-min.css" rel="stylesheet" type="text/css"/>
+<link href="<%=request.getContextPath()%>/build/reset-fonts-grids/reset-fonts-grids.css" rel="stylesheet" type="text/css"/>
+<link href="<%=request.getContextPath()%>/theme/immo001.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="<%=request.getContextPath()%>/theme/selinas-DruckTyp.css" rel="stylesheet" type="text/css" media="print"/>
 <link href="http://www.dalieweb.de/dalieweb/bilder/pfeilmit01.ico" rel="shortcut icon" title="dalieweb" type="image/x-icon"/>
 <!-- Definition RSS Feed -->
 <link rel="alternate" type="application/rss+xml" title="dalieweb.de RSS-Feed" href="http://www.dalieweb.de/dalieweb/xml/dalieweb.xml"/>
 <!-- Script's  -->
-<script src="<%= request.getContextPath()%>/script/dalieLogo.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/script/jquery-1.6.2.min.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/script/dalieLogo.js" type="text/javascript"></script>
 <script language="javascript" type="text/javascript">
 function resizeFrame(){
  
@@ -49,15 +50,21 @@ function resizeFrame(){
 <body id="bo" class="yui-skin-sam" onload="if(document.images) nextimg(), resizeFrame()">
 	<div id="hd">
 		<span class="strapline">dalieweb.de</span>
-		<a href="<%= request.getContextPath()%>/dalieweb.jsp" target="_top">
-		<img src="<%= request.getContextPath()%>/bilder/pfeilmit01.gif" width="60" height="60" alt="" name="ani" title="dalieweb" class="logo"/></a>
+		<a href="<%=request.getContextPath()%>/dalieweb.jsp" target="_top">
+		<img src="<%=request.getContextPath()%>/bilder/pfeilmit01.gif" width="60" height="60" alt="" name="ani" title="dalieweb" class="logo"/></a>
 	</div><!-- /hd header -->
 	<div id="doc3" class="yui-t7">
 	<div id="bd">
 		<div class="yui-gf">
 		<!-- 1.Zeile gesamte Breite  -->
-			<p>1.</p>
-		</div><!-- /yui-gf 1.Zeile gesamte Breite --> 
+				<form id="FOGuestBookEntry" action="#">
+					<table border="0" cellpadding="5" cellspacing="0">
+						<tr>
+							<td><input type="button" id="FOGuestBookEntryButton" value="capture" /></td>
+						</tr>
+					</table>
+				</form>
+			</div><!-- /yui-gf 1.Zeile gesamte Breite --> 
 		<div class="yui-gf">
 		<!-- 2.Zeile gesamte Breite --> 
 	    	<div class="yui-u first">
@@ -71,7 +78,7 @@ function resizeFrame(){
 		</div><!-- yui-gf 2.Zeile gesamte Breite  -->
 		<div class="yui-gf">
 		<!-- 3.Zeile gesamte Breite  -->
-			<iframe style="margin-bottom: 10px;" src="<%= request.getContextPath()%>/gaestebuch/gaestebuch001F.jsp" id="selinasFrame" name="selinasFrame" height="540" width="100%" frameborder="0"></iframe>
+			<iframe style="margin-bottom: 10px;" src="<%=request.getContextPath()%>/gaestebuch/gaestebuch001F.jsp" id="selinasFrame" name="selinasFrame" height="540" width="100%" frameborder="0"></iframe>
 		</div><!-- /yui-gf 1.Zeile gesamte Breite -->
 	</div><!-- /bd body -->
 	</div><!-- /doc3 = 100%, -->
@@ -97,5 +104,24 @@ function resizeFrame(){
 				</div><!-- /vcard -->
 			</div><!-- /meta-wrap -->
 	</div><!-- /ft footer -->
+<script type="text/javascript">
+	jQuery(function() {
+		jQuery("#FOGuestBookEntryButton").click(lightbox);
+
+	});
+	
+	function showLightbox(text) {
+		jQuery('body').append(text);
+	}
+	function lightbox() {
+		jQuery.ajax({
+			type : "POST",
+			url : "/dalieweb/GoToGuestBookEntry",
+			data : jQuery("#FOGuestBookEntry").serialize(),
+			success : showLightbox
+		});
+	}
+</script>
 </body>
+
 </html>
