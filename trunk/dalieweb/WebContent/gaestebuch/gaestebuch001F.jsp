@@ -48,15 +48,8 @@ a[href ^="mailto:"] {
 <title>dalieweb</title>
 </head>
 <body class="yui-skin-sam">
-<form action="<%= request.getContextPath()%>/GoToGuestBookEntry">
-  <table border="0" cellpadding="5" cellspacing="0">
-    <tr>
-    	<td><input type="submit" value="erfassen"/></td>
-    </tr>
-  </table>
-</form>
 <div id="doc3" class="yui-t7">
-<!--Eintrag-->
+<!--Entry-->
 <br />
 <table style="border: 0px solid #FFFFFF;" border="0" width="100%" cellpadding="0" cellspacing="0">
 	<caption style="border-bottom: 1px dotted #222222"><b>KOMMENTARE</b></caption>
