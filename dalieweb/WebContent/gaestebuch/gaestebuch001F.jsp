@@ -49,10 +49,12 @@ a[href ^="mailto:"] {
 </head>
 <body class="yui-skin-sam">
 <div id="doc3" class="yui-t7">
-<!--Entry-->
-<br />
 <table style="border: 0px solid #FFFFFF;" border="0" width="100%" cellpadding="0" cellspacing="0">
 	<caption style="border-bottom: 1px dotted #222222"><b>KOMMENTARE</b></caption>
+	<tr><td></td></tr>
+</table>
+<!--Entry-->
+<table style="border: 0px solid #FFFFFF;" border="0" width="100%" cellpadding="0" cellspacing="0">
 		<tr>
 			<td width="20%" rowspan="2">Montag, 30. April 2007 <br /> um 19:14:09</td>
 			<td><a href="mailto:hmann01@t-online.de"><b>hermann</b></a>&nbsp;<span>schrieb:</span></td>
