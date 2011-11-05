@@ -10,6 +10,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
+
 import org.apache.commons.lang.time.DateFormatUtils;
 
 /**
@@ -26,9 +28,26 @@ import org.apache.commons.lang.time.DateFormatUtils;
 public class HelpDate {
 
     Calendar cal = Calendar.getInstance();
+    
 
     /**
-     * @return das Laufzeit-Datum Format TT.MM.JJJJ HH:MM:SS
+     * @return the RunTimeDate Format DD.MM.JJJJ HH:MM:SS.
+     */
+    public String getDDD_MM_JJJJ() {
+    	DateFormat df = new SimpleDateFormat("EEEE, dd.MM.yyyy",Locale.GERMANY);
+    	return df.format(cal.getTime());
+    }//getDDD_MM_JJJJJ
+    
+    /**
+     * @return the RunTimeDate Format HH:MM:SS.
+     */
+    public String getHH_MM_SS() {
+    	DateFormat df = new SimpleDateFormat("HH:mm:ss",Locale.GERMANY);
+    	return df.format(cal.getTime());
+    }//getHH_MM_SS
+    
+    /**
+     * @return the RunTimeDate Format TT.MM.JJJJ HH:MM:SS
      */
     public String getTT_MM_JJJJ_HHMMSS() {
         DateFormat formater = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");

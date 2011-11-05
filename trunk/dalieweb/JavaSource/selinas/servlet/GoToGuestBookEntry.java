@@ -11,19 +11,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import selinas.bean.GuestBook002LB;
+
 /**
  * Servlet implementation class GoGuestBook
  */
 public class GoToGuestBookEntry extends HttpServlet implements Servlet {
 	   
-    
+	private static final String GUEST_BOOK_002_LB = "GuestBook002LB";
+	
     /** perform for both HTTP <code>GET</code> and <code>POST</code> methods  */
 	protected void perForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		if (session == null){
 		    return;
 		}
+		
+		ServletContext context = getServletContext();  
+		// Get bean from servlet context (same as application scope)  
+		GuestBook002LB guestBook002LB = (GuestBook002LB)context.getAttribute(GUEST_BOOK_002_LB);
+		    if (guestBook002LB == null) {
+				guestBook002LB = new GuestBook002LB();
+			}
 		String nextPage = "/gaestebuch/guestbook002LB.jsp";
+		context.setAttribute(GUEST_BOOK_002_LB, guestBook002LB);
 		performForward(nextPage,request,response);//JSP- User Login
 	}//perForm
 	
