@@ -29,7 +29,7 @@
 
 	<form id="StartLightbox2" name="StartLightbox2" method="post" action="./GoToServlet001">
 		<input id="refresh2" name="refresh2" type="hidden" value="refresh"/>
-		<input id="submitbutton_2" class="globalButtonText lightboxInput_ wideStyle" type="submit"  name="startLightbox" value="Start Lightbox" />
+		<input id="submitbutton_2" class="globalButtonText lightboxInput wideStyle" type="submit"  name="startLightbox" value="Start Lightbox" />
 	</form>
 </body>
 </html>
