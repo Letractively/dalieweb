@@ -6,7 +6,9 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<link href="<%=request.getContextPath()%>/theme/dalieSite.css" rel="stylesheet" type="text/css" media="screen"/>
 <script  type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script src="<%=request.getContextPath()%>/script/dalieSite.js" type="text/javascript"></script>
 <script type="text/javascript">
      google.load("jquery","1.7",{uncompressed:true});
 </script>
@@ -48,8 +50,8 @@ body {
 <title>dalieweb</title>
 </head>
 <body>
-
-<form name="NameOFWebForm" method="post" class="defaultForm" id="defaultForm" action="./GoToServlet001" >
+<div id="targetDIV">
+<form name="NameOFWebForm" method="post" class="defaultForm" id="defaultForm" target="targetDIV" action="./GoToServlet001" >
 <div class="globalTableLayout">
 	<div class="table_Row">
 		<div class="table_cell_first">
@@ -119,12 +121,15 @@ body {
 		<div class="table_cell_first"><!-- --></div>
 
 		<div class="table_cell">
+			<input name="Address.isSubmitted" id="defaultForm_bottom" class="ajaxInput" type="button" value="apply" tabindex="99"/>
+			<!-- 
 			<input name="Address.isSubmitted" id="defaultForm_bottom" class="defaultFormInputbutton" type="submit" value="apply" tabindex="99"/>
+			 -->
 		</div>
 	</div>
 </div>
 </form>
-
+</div>
 <c:forEach var="message" items="${ Address.error }" > 
   <c:out value="${message}"></c:out><br />
 </c:forEach>

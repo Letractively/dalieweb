@@ -20,9 +20,16 @@
 <body>
 	<br /><br /><br />
 	<div id="targetDIV">
-	<form id="StartLightbox" name="StartLightbox" target="targetDIV" action="">
-		<input id="refresh" type="hidden" value="refresh"/>
-		<input id="apply" class="ajaxInput" type="button" value="Start Lightbox"/>
+	<form id="StartLightbox" name="StartLightbox" target="targetDIV" method="post" action="./GoToServlet001">
+		<input id="refresh" name="refresh" type="hidden" value="refresh"/>
+		<input id="submitbutton_1" class="ajaxInput" type="submit" name="startAjaxInput" value="Start AjaxInput"/>
+	</form>
+	</div>
+	
+	<div id="targetDIV">
+	<form id="StartLightbox" name="StartLightbox" target="targetDIV" method="post" action="./GoToServlet001">
+		<input id="refresh" name="refresh" type="hidden" value="refresh"/>
+		<input id="submitbutton_2" class="globalButtonText lightboxInput wideStyle" type="submit"  name="startLightbox" value="Start Lightbox" />
 	</form>
 	</div>
 </body>
