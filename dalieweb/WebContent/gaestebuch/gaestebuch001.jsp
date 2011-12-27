@@ -22,7 +22,7 @@
 <!-- Definition RSS Feed -->
 <link rel="alternate" type="application/rss+xml" title="dalieweb.de RSS-Feed" href="http://www.dalieweb.de/dalieweb/xml/dalieweb.xml"/>
 <!-- Script's  -->
-<script src="<%=request.getContextPath()%>/script/jquery-1.6.2.min.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/script/dalieLogo.js" type="text/javascript"></script>
 <script language="javascript" type="text/javascript">
 function resizeFrame(){
