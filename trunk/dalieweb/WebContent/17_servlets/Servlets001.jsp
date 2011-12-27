@@ -50,8 +50,8 @@ body {
 <title>dalieweb</title>
 </head>
 <body>
-<div id="targetDIV">
-<form name="NameOFWebForm" method="post" class="defaultForm" id="defaultForm" target="targetDIV" action="./GoToServlet001" >
+<div id="AddressAjaxContent">
+<form name="NameOFWebForm" method="post" class="defaultForm" id="defaultForm" target="AddressAjaxContent" action="./GoToServlet001" >
 <div class="globalTableLayout">
 	<div class="table_Row">
 		<div class="table_cell_first">

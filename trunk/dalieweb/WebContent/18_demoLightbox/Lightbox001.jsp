@@ -19,18 +19,17 @@
 </head>
 <body>
 	<br /><br /><br />
-	<div id="targetDIV">
-	<form id="StartLightbox" name="StartLightbox" target="targetDIV" method="post" action="./GoToServlet001">
-		<input id="refresh" name="refresh" type="hidden" value="refresh"/>
+	<div id="targetDIV1">
+	<form id="StartLightbox1" name="StartLightbox1" target="targetDIV1" method="post" action="./GoToServlet001">
+		<input id="refresh1" name="refresh1" type="hidden" value="refresh"/>
 		<input id="submitbutton_1" class="ajaxInput" type="submit" name="startAjaxInput" value="Start AjaxInput"/>
 	</form>
 	</div>
 	
-	<div id="targetDIV">
-	<form id="StartLightbox" name="StartLightbox" target="targetDIV" method="post" action="./GoToServlet001">
-		<input id="refresh" name="refresh" type="hidden" value="refresh"/>
-		<input id="submitbutton_2" class="globalButtonText lightboxInput wideStyle" type="submit"  name="startLightbox" value="Start Lightbox" />
+
+	<form id="StartLightbox2" name="StartLightbox2" method="post" action="./GoToServlet001">
+		<input id="refresh2" name="refresh2" type="hidden" value="refresh"/>
+		<input id="submitbutton_2" class="globalButtonText lightboxInput_ wideStyle" type="submit"  name="startLightbox" value="Start Lightbox" />
 	</form>
-	</div>
 </body>
 </html>

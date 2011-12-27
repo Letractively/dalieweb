@@ -29,11 +29,96 @@ function bindLinksWithLightboxAjaxContent(){
 	
 	jQuery('.lightboxLink, .lightboxInput').live("click", function(event){
 		event.preventDefault();
-		alert("Hier");
-		//lightboxOpen(this);
+		globalGetLightboxAjaxContent({
+			element :jQuery(this),
+			source 	:jQuery(this).parents("form").attr('action'),
+			data	:jQuery(this).parents("form").serialize()
+		});
 	});
 	
 } /* *** bindLinksWithLightboxAjaxContent - END *** */
+
+/* *** globalGetLightboxAjaxContent - BEGINN *** */
+function globalGetLightboxAjaxContent(settings){
+	
+	settings = jQuery.extend({//default settings
+		element 	: null,
+		source		: null,
+		data		: ''
+	}, settings || {});
+
+	if (settings.element && settings.source) {
+		if(!jQuery(settings.element).parents().is("#lightbox") ){
+			
+			var getAjaxContentParameter = addAjaxUrlParameter({
+				currentURL : settings.source
+			});
+			
+			var setLightboxClassName = "";
+			openLightbox({
+				source		: getAjaxContentParameter,
+				data		: settings.data,
+				className	: setLightboxClassName
+			});
+		} else {
+			globalGetAjaxContent({
+				currentElement:		settings.element,
+				url:				settings.source,
+				data:				settings.data
+			});
+		}
+		
+	}
+} /* *** globalGetLightboxAjaxContent -END *** */
+
+function openLightbox(lightbox){
+	
+	lightbox = jQuery.extend({
+		source: '',
+		data: '',
+		target: '#lightbox_content',
+		className: '', // default, full
+		onSuccessF: function(){
+			return false;
+		},
+		onCloseF: function() {			
+		}
+	}, lightbox || {});
+	
+	if ((jQuery("#lightbox").length == 0)) { // no lightbox on screen
+		createLightbox();
+		var target = jQuery('#lightbox_content .lbc_inner');
+	}
+	
+	var ajaxData = lightbox.data + '&lightbox=true';
+	
+	jQuery.ajax({
+		type: 'POST',
+		url: lightbox.source,
+		data: ajaxData,
+		success: function(msg){
+			
+			target.append(msg).show();
+			
+			
+			
+			lightbox.onSuccessF();					
+		} ,
+		error: function(XMLHttpRequest, textStatus, errorThrown){
+			ajaxRedirect({ 
+				ar_XMLHttpRequest	: XMLHttpRequest,
+				targetContainer		: "#lightbox #lightbox_content"
+			});					
+		},
+		complete: function() {
+									
+		}
+	});
+
+	jQuery("#lightbox #lb_close").live("click", function(){
+		jQuery("#background").remove();
+	});
+}
 
 /* *** globalGetAjaxContent - BEGINN */
 function globalGetAjaxContent(settings) {
@@ -149,9 +234,16 @@ function addAjaxUrlParameter(settings){
 	
 	return currentURL;
 	
-}
-/************ addAjaxUrlParameter - END ************/
+} /************ addAjaxUrlParameter - END ************/
 
+/************ createLightbox - BEGIN ************/
+function createLightbox(){
+	jQuery('body')
+			.append(
+					'<div id="background" class="background"><div id="fullscreen" class="fullscreen"></div><div id="lightbox" class="lightbox">');	
+	jQuery('#lightbox').html('<div id="lb_close"><a href="javascript:void(0);" class="footer"> close x</a></div>');
+	jQuery('#lightbox').append('<div id="lightbox_content"><div class="lbc_inner htmlContent"></div></div></div>');
+} /************ createLightbox - END ************/
 /* #################### DOCUMENT READY - BEGIN ############################# */
 jQuery(document).ready(function(){
 	/* NOTE: initialize all jQuery functionalities here */
