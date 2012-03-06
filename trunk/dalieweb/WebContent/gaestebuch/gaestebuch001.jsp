@@ -13,13 +13,13 @@
 <meta http-equiv="Content-Style-Type" content="text/css"/>
 <meta name="keywords" content="dalieweb"/>
 <meta name="author" content="u.dalies"/>
-<!-- CSS und Icons --> 
+<!-- CSS and Icons definitions --> 
 <link href="<%=request.getContextPath()%>/build/base/base-min.css" rel="stylesheet" type="text/css"/>
 <link href="<%=request.getContextPath()%>/build/reset-fonts-grids/reset-fonts-grids.css" rel="stylesheet" type="text/css"/>
 <link href="<%=request.getContextPath()%>/theme/immo001.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="<%=request.getContextPath()%>/theme/selinas-DruckTyp.css" rel="stylesheet" type="text/css" media="print"/>
 <link href="http://www.dalieweb.de/dalieweb/bilder/pfeilmit01.ico" rel="shortcut icon" title="dalieweb" type="image/x-icon"/>
-<!-- Definition RSS Feed -->
+<!-- defined RSS Feed -->
 <link rel="alternate" type="application/rss+xml" title="dalieweb.de RSS-Feed" href="http://www.dalieweb.de/dalieweb/xml/dalieweb.xml"/>
 <!-- Script's  -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
@@ -56,7 +56,7 @@ function resizeFrame(){
 	<div id="doc3" class="yui-t7">
 	<div id="bd">
 		<div class="yui-gf">
-		<!-- 1.Zeile gesamte Breite  -->
+		<!-- 1.row entire width  -->
 				<form id="FOGuestBookEntry" action="#">
 					<table border="0" cellpadding="5" cellspacing="0">
 						<tr>
@@ -66,20 +66,20 @@ function resizeFrame(){
 				</form>
 			</div><!-- /yui-gf 1.Zeile gesamte Breite --> 
 		<div class="yui-gf">
-		<!-- 2.Zeile gesamte Breite --> 
+		<!-- 2.row entire width --> 
 	    	<div class="yui-u first">
-			<!-- 2.Zeile linke hälfte -->
+			<!-- 2.row left part -->
 			<p>2.1</p>
 	       	</div> <!-- yui-u first -->
 	    	<div class="yui-u">
-			<!-- 2.Zeile rechte hälfte -->
+			<!-- 2.row right part -->
 				<p>2.2</p>
 	       	</div><!-- yui-u --> 
-		</div><!-- yui-gf 2.Zeile gesamte Breite  -->
+		</div><!-- yui-gf 2.row entire width  -->
 		<div class="yui-gf">
-		<!-- 3.Zeile gesamte Breite  -->
+		<!-- 3.row entire width  -->
 			<iframe style="margin-bottom: 10px;" src="<%=request.getContextPath()%>/gaestebuch/gaestebuch001F.jsp" id="selinasFrame" name="selinasFrame" height="540" width="100%" frameborder="0"></iframe>
-		</div><!-- /yui-gf 1.Zeile gesamte Breite -->
+		</div><!-- /yui-gf 1.row entire width -->
 	</div><!-- /bd body -->
 	</div><!-- /doc3 = 100%, -->
    	<div id="ft">
