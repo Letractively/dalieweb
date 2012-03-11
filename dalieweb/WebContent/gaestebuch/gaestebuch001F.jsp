@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta name="keywords" content="dalieweb" />
 <meta name="author" content="u.dalies" />
-<!-- CSS und Icons -->
+<!-- CSS und Icons --> 
 <link href="<%= request.getContextPath()%>/build/base/base-min.css" rel="stylesheet" type="text/css" />
 <link href="<%= request.getContextPath()%>/build/reset-fonts-grids/reset-fonts-grids.css" rel="stylesheet" type="text/css" />
 <link href="<%= request.getContextPath()%>/theme/immo001.css" rel="stylesheet" type="text/css" media="screen" />
@@ -53,7 +53,7 @@ a[href ^="mailto:"] {
 	<caption style="border-bottom: 1px dotted #222222"><b>KOMMENTARE</b></caption>
 	<tr><td></td></tr>
 </table>
-<!--Entry-->
+<!--Entry--> 
 <table style="border: 0px solid #FFFFFF;" border="0" width="100%" cellpadding="0" cellspacing="0">
 		<tr>
 			<td width="20%" rowspan="2">Montag, 30. April 2007 <br /> um 19:14:09</td>

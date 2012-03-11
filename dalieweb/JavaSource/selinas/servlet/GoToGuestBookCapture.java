@@ -20,14 +20,14 @@ import java.util.*;
 import java.io.*;
 
 /**
- * Servlet implementation class GoToGuestBookCapturer
+ * Servlet implementation class GoToGuestBookCapture
  */
-@WebServlet(description = "Determine GuestBook Captuer", urlPatterns = { "/GoToGuestBookCapturer" })
+@WebServlet(description = "Determine GuestBook Capture", urlPatterns = { "/GoToGuestBookCapture" })
 public class GoToGuestBookCapture extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private static final String GUEST_BOOK_002_LB = "GuestBook002LB";
-	
+	 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -125,7 +125,7 @@ public class GoToGuestBookCapture extends HttpServlet {
 
 		if (entry.isError()) {
 			entry.setMessage("following correct");
-			nextPage = "/gaestebuch/guestbook002LB.jsp";
+			//nextPage = "/gaestebuch/guestbook002LB.jsp";
 			
 			// Put bean back into context (same as application scope)  
 			context.setAttribute(GUEST_BOOK_002_LB, entry);  
@@ -183,14 +183,15 @@ public class GoToGuestBookCapture extends HttpServlet {
 		}
 		
 		}
-		//System.out.println(nextPage);
-		performForward("/gaestebuch/guestbook002LB.jsp",request,response);//JSP- User Login
+		
+		performForward(nextPage,request,response);//JSP- User Login
 	}//perForm
 	
 	/** handle the next step */
 	protected void performForward (String destination, HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {	
 		ServletContext context = getServletContext();
+		System.out.println(destination);
 		RequestDispatcher dispatcher = context.getRequestDispatcher(destination);
 		dispatcher.forward(request, response);
 	}//performForward

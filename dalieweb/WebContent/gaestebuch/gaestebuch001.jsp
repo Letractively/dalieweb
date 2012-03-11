@@ -6,24 +6,26 @@
 <%@ page language="java"
 	contentType="text/html; charset=ISO-8859-1" 
 	pageEncoding="ISO-8859-1"%>
-<!-- onwn TagLib-Direktive -->
+<!-- own TagLib-Directive -->
 <%@ taglib uri="/WEB-INF/TagLibraryDescriptor.tld" prefix="dalie"%>
 <!-- MetaData -->
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1"/>
 <meta http-equiv="Content-Style-Type" content="text/css"/>
 <meta name="keywords" content="dalieweb"/>
 <meta name="author" content="u.dalies"/>
-<!-- CSS and Icons definitions --> 
+<!-- CSS und Icons --> 
 <link href="<%=request.getContextPath()%>/build/base/base-min.css" rel="stylesheet" type="text/css"/>
 <link href="<%=request.getContextPath()%>/build/reset-fonts-grids/reset-fonts-grids.css" rel="stylesheet" type="text/css"/>
 <link href="<%=request.getContextPath()%>/theme/immo001.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="<%=request.getContextPath()%>/theme/dalieSite.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="<%=request.getContextPath()%>/theme/selinas-DruckTyp.css" rel="stylesheet" type="text/css" media="print"/>
 <link href="http://www.dalieweb.de/dalieweb/bilder/pfeilmit01.ico" rel="shortcut icon" title="dalieweb" type="image/x-icon"/>
-<!-- defined RSS Feed -->
+<!-- Definition RSS Feed -->
 <link rel="alternate" type="application/rss+xml" title="dalieweb.de RSS-Feed" href="http://www.dalieweb.de/dalieweb/xml/dalieweb.xml"/>
 <!-- Script's  -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/script/dalieLogo.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/script/dalieSite.js" type="text/javascript"></script>
 <script language="javascript" type="text/javascript">
 function resizeFrame(){
  
@@ -56,15 +58,11 @@ function resizeFrame(){
 	<div id="doc3" class="yui-t7">
 	<div id="bd">
 		<div class="yui-gf">
-		<!-- 1.row entire width  -->
-				<form id="FOGuestBookEntry" action="#">
-					<table border="0" cellpadding="5" cellspacing="0">
-						<tr>
-							<td><input type="button" id="FOGuestBookEntryButton" value="capture" /></td>
-						</tr>
-					</table>
-				</form>
-			</div><!-- /yui-gf 1.Zeile gesamte Breite --> 
+		<!-- 1.entire over whole line   -->
+			<form id="StartLightbox2" name="StartLightbox2" method="post" action="./GoToGuestBookEntry">
+				<input id="submitbutton_2" class="globalButtonText lightboxInput wideStyle" type="submit"  name="startLightbox" value="Start Lightbox" />
+			</form>
+			</div><!-- /yui-gf 1.entire over whole line --> 
 		<div class="yui-gf">
 		<!-- 2.row entire width --> 
 	    	<div class="yui-u first">
@@ -104,24 +102,5 @@ function resizeFrame(){
 				</div><!-- /vcard -->
 			</div><!-- /meta-wrap -->
 	</div><!-- /ft footer -->
-<script type="text/javascript">
-	jQuery(function() {
-		jQuery("#FOGuestBookEntryButton").click(lightbox);
-
-	});
-	
-	function showLightbox(text) {
-		jQuery('body').append(text);
-	}
-	function lightbox() {
-		jQuery.ajax({
-			type : "POST",
-			url : "/dalieweb/GoToGuestBookEntry",
-			data : jQuery("#FOGuestBookEntry").serialize(),
-			success : showLightbox
-		});
-	}
-</script>
 </body>
-
 </html>

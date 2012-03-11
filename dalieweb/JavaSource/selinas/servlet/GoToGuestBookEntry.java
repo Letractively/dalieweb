@@ -1,6 +1,12 @@
 package selinas.servlet;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.Servlet;
@@ -11,6 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dalieweb.beehive.bean.Address;
+import dalieweb.beehive.bean.GuestBookEntry;
+
 import selinas.bean.GuestBook002LB;
 
 /**
@@ -18,25 +27,66 @@ import selinas.bean.GuestBook002LB;
  */
 public class GoToGuestBookEntry extends HttpServlet implements Servlet {
 	   
-	private static final String GUEST_BOOK_002_LB = "GuestBook002LB";
+	private static final String GUEST_BOOK_ENTRY = "GuestBookEntry";
 	
     /** perform for both HTTP <code>GET</code> and <code>POST</code> methods  */
-	protected void perForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void perForm(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		if (session == null){
-		    return;
+		if (session == null) {
+			return;
 		}
+
+		GuestBookEntry guestBookEntry = (GuestBookEntry) request
+				.getAttribute(GUEST_BOOK_ENTRY);
 		
-		ServletContext context = getServletContext();  
-		// Get bean from servlet context (same as application scope)  
-		GuestBook002LB guestBook002LB = (GuestBook002LB)context.getAttribute(GUEST_BOOK_002_LB);
-		    if (guestBook002LB == null) {
-				guestBook002LB = new GuestBook002LB();
+		if (guestBookEntry == null) {
+			guestBookEntry = new GuestBookEntry();
+		}
+
+		Map<String, String> mParameter = new HashMap<String, String>();
+		Enumeration<?> names = request.getParameterNames();
+		Map<String, String[]> values = request.getParameterMap();
+		for( Map.Entry<String, String[]> entry : values.entrySet() ) {
+			
+			String key = entry.getKey();
+			String[] value = entry.getValue();
+	
+			System.out.println("key" + key);
+			for (int i = 0; i < value.length; i++) {
+				System.out.println("value"+value[i].trim().toString());
+				
 			}
+			
+		} /* for entry */
+		
+		while (names.hasMoreElements()) {
+			String name = (String) names.nextElement();
+			System.out.println(name +";"+ request.getParameter(name.trim()));
+			mParameter.put(name, request.getParameter(name.trim()));
+		}
+
+		if (mParameter.containsKey(GuestBookEntry.GUESTBOOK_ENTRY_NAME)) {
+       	 guestBookEntry.setEntryName(
+       			 mParameter.get(GuestBookEntry.GUESTBOOK_ENTRY_NAME));
+        }
+		if (mParameter.containsKey(GuestBookEntry.GUESTBOOK_ENTRY_EADDRESS)) {
+	       	 guestBookEntry.setEntryEMail(
+	       			 mParameter.get(GuestBookEntry.GUESTBOOK_ENTRY_EADDRESS));
+	        }
+		if (mParameter.containsKey(GuestBookEntry.GUESTBOOK_ENTRY_TEXTENTRY)) {
+	       	 guestBookEntry.setEntryText(
+	       			 mParameter.get(GuestBookEntry.GUESTBOOK_ENTRY_TEXTENTRY));
+	        }
+		
+		if (mParameter.containsKey(GuestBookEntry.GUESTBOOK_SUBMITTED)) {
+       	 guestBookEntry.isValidate();
+        }
+		System.out.println(guestBookEntry.toString());
 		String nextPage = "/gaestebuch/guestbook002LB.jsp";
-		context.setAttribute(GUEST_BOOK_002_LB, guestBook002LB);
-		performForward(nextPage,request,response);//JSP- User Login
-	}//perForm
+		request.setAttribute(GUEST_BOOK_ENTRY, guestBookEntry);
+		performForward(nextPage, request, response);// JSP- User Login
+	}// perForm
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)

@@ -138,6 +138,8 @@ function globalGetAjaxContent(settings) {
 	
 if( settings.type == "post" || settings.formSubmit ){
 		
+	var isOpenedInLightbox = false;
+	
 		if( !settings.url ){
 			var getAjaxContentParameter = addAjaxUrlParameter({
 				currentURL : jQuery(settings.formSubmit).attr('action')
