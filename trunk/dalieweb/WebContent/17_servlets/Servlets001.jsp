@@ -121,10 +121,7 @@ body {
 		<div class="table_cell_first"><!-- --></div>
 
 		<div class="table_cell">
-			<input name="Address.isSubmitted" id="defaultForm_bottom" class="ajaxInput" type="button" value="apply" tabindex="99"/>
-			<!-- 
-			<input name="Address.isSubmitted" id="defaultForm_bottom" class="defaultFormInputbutton" type="submit" value="apply" tabindex="99"/>
-			 -->
+			<input name="Address.isSubmitted" id="Address.isSubmitted" class="ajaxInput" type="submit" value="apply" tabindex="99"/>
 		</div>
 	</div>
 </div>
